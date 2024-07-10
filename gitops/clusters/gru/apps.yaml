@@ -10,7 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./apps
+  path: ./gitops/apps
   prune: true
   wait: true
   timeout: 5m0s
