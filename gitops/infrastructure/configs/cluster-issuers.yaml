@@ -5,10 +5,8 @@ metadata:
   name: letsencrypt
 spec:
   acme:
-    # Replace the email address with your own contact email
     email: benisekj@gmail.com
-    # The server is replaced in /clusters/production/infrastructure.yaml
-    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-nginx
     solvers:
