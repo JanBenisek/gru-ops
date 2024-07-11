@@ -4,20 +4,6 @@ kind: Namespace
 metadata:
   name: metallb-system
 ---
-# MetalLB needs to advertise 
-apiVersion: metallb.io/v1beta1
-kind: BGPAdvertisement
-metadata:
-  name: metallb-advertisment
-  namespace: metallb-system
-spec:
-  ipAddressPools:
-  - metallb-pool # Using the addresses we defined 
-  aggregationLength: 32 # No aggregation of IPs, individual IPs are advertised
-  localPref: 100 # default, local preference for advertised routes
-  communities:
-  - 65535:65282 # community attributes ???
----
 # How to establish session with routers
 apiVersion: metallb.io/v1beta2
 kind: BGPPeer
@@ -39,4 +25,13 @@ metadata:
 spec:
   addresses:
   - 192.168.32.0/24 # From 192.168.32.1 to 192.168.32.254
-
+---
+# MetalLB needs to advertise 
+apiVersion: metallb.io/v1beta1
+kind: BGPAdvertisement
+metadata:
+  name: metallb-advertisment
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - metallb-pool # Using the addresses we defined 
