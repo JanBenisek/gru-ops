@@ -27,20 +27,10 @@ spec:
 
 ---
 apiVersion: metallb.io/v1beta1
-kind: L2Advertisement
+kind: BGPAdvertisement
 metadata:
-  name: my-l2-advertisement
+  name: metallb-advertisement
   namespace: metallb-system
 spec:
   ipAddressPools:
-  - metallb-pool
-
-# ---
-# apiVersion: metallb.io/v1beta1
-# kind: BGPAdvertisement
-# metadata:
-#   name: metallb-advertisement
-#   namespace: metallb-system
-# spec:
-#   ipAddressPools:
-#     - metallb-pool
+    - metallb-pool
