@@ -30,7 +30,7 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: BGPAdvertisement
 metadata:
-  name: metallb-advertisement
+  name: metallb-advertisements
   namespace: metallb-system
 spec:
   ipAddressPools:
