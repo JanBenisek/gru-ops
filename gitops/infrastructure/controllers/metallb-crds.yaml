@@ -3,20 +3,19 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: metallb-system
+
 ---
-# How to establish session with routers
 apiVersion: metallb.io/v1beta2
 kind: BGPPeer
 metadata:
   name: metallb-bgppeer
   namespace: metallb-system
 spec:
-  myASN: 64500 # MetalLB AS number
-  peerASN: 64501 # router AS number
-  peerAddress: 192.168.178.1 # address of my router, I think
+  myASN: 64500
+  peerASN: 64501
+  peerAddress: 192.168.178.1
+
 ---
-# MetalLB needs to assing IP addresses to the services, we do that via this file
-# these IPs should not be used elsewhere
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
@@ -24,9 +23,9 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-  - 192.168.32.0/24 # From 192.168.32.1 to 192.168.32.254
+    - 192.168.32.0/24
+
 ---
-# MetalLB needs to advertise 
 apiVersion: metallb.io/v1beta1
 kind: BGPAdvertisement
 metadata:
@@ -34,4 +33,4 @@ metadata:
   namespace: metallb-system
 spec:
   ipAddressPools:
-  - metallb-pool # Using the addresses we defined 
+    - metallb-pool
