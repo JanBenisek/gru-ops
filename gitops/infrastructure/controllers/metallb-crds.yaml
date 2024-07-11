@@ -1,29 +1,29 @@
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: metallb-system
+# ---
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: metallb-system
 
----
-apiVersion: metallb.io/v1beta2
-kind: BGPPeer
-metadata:
-  name: metallb-bgppeer
-  namespace: metallb-system
-spec:
-  myASN: 64500
-  peerASN: 64501
-  peerAddress: 192.168.178.1
+# ---
+# apiVersion: metallb.io/v1beta2
+# kind: BGPPeer
+# metadata:
+#   name: metallb-bgppeer
+#   namespace: metallb-system
+# spec:
+#   myASN: 64500
+#   peerASN: 64501
+#   peerAddress: 192.168.178.1
 
----
-apiVersion: metallb.io/v1beta1
-kind: IPAddressPool
-metadata:
-  name: metallb-pool
-  namespace: metallb-system
-spec:
-  addresses:
-    - 192.168.32.0/24
+# ---
+# apiVersion: metallb.io/v1beta1
+# kind: IPAddressPool
+# metadata:
+#   name: metallb-pool
+#   namespace: metallb-system
+# spec:
+#   addresses:
+#     - 192.168.32.0/24
 
 ---
 apiVersion: metallb.io/v1beta1
