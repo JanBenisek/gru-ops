@@ -13,7 +13,7 @@ metadata:
 spec:
   myASN: 64500 # MetalLB AS number
   peerASN: 64501 # router AS number
-  peerAddress: 192.168.33.2 # has to be unique?
+  peerAddress: 192.168.178.1 # address of my router, I think
 ---
 # MetalLB needs to assing IP addresses to the services, we do that via this file
 # these IPs should not be used elsewhere
