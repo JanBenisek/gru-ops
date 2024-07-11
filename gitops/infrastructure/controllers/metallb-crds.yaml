@@ -8,7 +8,7 @@
 apiVersion: metallb.io/v1beta2
 kind: BGPPeer
 metadata:
-  name: metallb-bgppeers
+  name: metallb-bgppeer
   namespace: metallb-system
 spec:
   myASN: 64500 # MetalLB AS number
