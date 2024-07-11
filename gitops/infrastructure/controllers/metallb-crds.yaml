@@ -5,15 +5,15 @@
 #   name: metallb-system
 ---
 # How to establish session with routers
-apiVersion: metallb.io/v1beta2
-kind: BGPPeer
-metadata:
-  name: metallb-bgppeer
-  namespace: metallb-system
-spec:
-  myASN: 64500 # MetalLB AS number
-  peerASN: 64501 # router AS number
-  peerAddress: 192.168.33.2 # has to be unique?
+# apiVersion: metallb.io/v1beta2
+# kind: BGPPeer
+# metadata:
+#   name: metallb-bgppeer
+#   namespace: metallb-system
+# spec:
+#   myASN: 64500 # MetalLB AS number
+#   peerASN: 64501 # router AS number
+#   peerAddress: 192.168.33.2 # has to be unique?
 ---
 # MetalLB needs to assing IP addresses to the services, we do that via this file
 # these IPs should not be used elsewhere
