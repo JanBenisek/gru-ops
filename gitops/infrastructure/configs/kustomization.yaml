@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - cluster-issuers.yaml
   - metallb-crds.yaml
-  - dns-endpoint.yaml
+  # - dns-endpoint.yaml
