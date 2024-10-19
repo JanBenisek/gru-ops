@@ -36,6 +36,7 @@ spec:
     provider: cloudflare
     cloudflare:
       apiToken: "CF_API_TOKEN"
+      email: "CF_API_EMAIL"
     crd:
       create: true
     sources:
@@ -46,5 +47,7 @@ spec:
         secretKeyRef:
           name: cloudflare-api-token
           key: apiToken
+    - name: CF_API_EMAIL
+      value: "benisekj@gmail.com" #TODO: as a secret
     
 
