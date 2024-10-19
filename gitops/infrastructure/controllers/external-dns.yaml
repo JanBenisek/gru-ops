@@ -34,6 +34,8 @@ spec:
       retries: 3
   values:
     provider: cloudflare
+    cloudflare:
+      apiToken: "CF_API_TOKEN"
     crd:
       create: true
     sources:
