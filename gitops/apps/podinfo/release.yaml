@@ -29,7 +29,7 @@ spec:
       enabled: true
       className: nginx
       hosts:
-        - host: penguins.example.com
+        - host: podinfo.production
           paths:
             - path: /
               pathType: ImplementationSpecific
