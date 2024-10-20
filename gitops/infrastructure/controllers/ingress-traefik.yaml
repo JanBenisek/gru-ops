@@ -20,6 +20,7 @@ metadata:
   namespace: traefik
 spec:
   interval: 30m
+  releaseName: traefik
   chart:
     spec:
       chart: traefik
@@ -29,5 +30,4 @@ spec:
         name: traefik
         namespace: traefik
       interval: 12h
-      releaseName: traefik
   # values:
