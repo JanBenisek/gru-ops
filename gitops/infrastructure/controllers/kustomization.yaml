@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
   - cert-manager.yaml
   - ingress-nginx.yaml
+  - ingress-traefik.yaml
   - external-dns.yaml
   - metallb-system.yaml
