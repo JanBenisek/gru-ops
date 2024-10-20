@@ -30,9 +30,4 @@ spec:
         namespace: traefik
       interval: 12h
       releaseName: traefik
-  values:
-    controller:
-      service:
-        type: "NodePort"
-    admissionWebhooks:
-      enabled: false
+  # values:
