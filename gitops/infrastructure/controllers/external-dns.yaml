@@ -37,17 +37,17 @@ spec:
     cloudflare:
       apiToken: "CF_API_TOKEN"
       email: "CF_API_EMAIL"
-    crd:
-      create: true
-    sources:
-      - crd
+    # crd: # TBD how to add domains
+    #   create: true
+    # sources:
+    #   - crd
     env:
-    - name: CF_API_TOKEN
-      valueFrom:
-        secretKeyRef:
-          name: cloudflare-api-token
-          key: apiToken
-    - name: CF_API_EMAIL
-      value: "benisekj@gmail.com" #TODO: as a secret
+      - name: CF_API_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare-api-token
+            key: apiToken
+      - name: CF_API_EMAIL
+        value: "benisekj@gmail.com" #TODO: as a secret
     
 
