@@ -22,14 +22,13 @@ spec:
       enabled: true
       repository: public.ecr.aws/docker/library/redis
       tag: 7.0.6
-    # ingress:
-    #   enabled: true
-    #   className: nginx
     ingress:
       enabled: true
-      className: nginx
+      className: traefik
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: podinfo.penguins.com  
       hosts:
-        - host: podinfo.production
+        - host: podinfo.penguins.com
           paths:
             - path: /
               pathType: ImplementationSpecific

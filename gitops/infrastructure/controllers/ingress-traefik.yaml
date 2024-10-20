@@ -2,33 +2,34 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: ingress-nginx
+  name: traefik
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: ingress-nginx
-  namespace: ingress-nginx
+  name: traefik
+  namespace: traefik
 spec:
   interval: 24h
-  url: https://kubernetes.github.io/ingress-nginx
+  url: https://helm.traefik.io/traefik
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: ingress-nginx
-  namespace: ingress-nginx
+  name: traefik
+  namespace: traefik
 spec:
   interval: 30m
   chart:
     spec:
-      chart: ingress-nginx
-      version: "*"
+      chart: traefik
+      version: "32.1.1"
       sourceRef:
         kind: HelmRepository
-        name: ingress-nginx
-        namespace: ingress-nginx
+        name: traefik
+        namespace: traefik
       interval: 12h
+      releaseName: traefik
   values:
     controller:
       service:
