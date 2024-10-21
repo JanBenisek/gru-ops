@@ -22,13 +22,16 @@ spec:
       enabled: true
       repository: public.ecr.aws/docker/library/redis
       tag: 7.0.6
+    service: # TEMP to test metallb
+      enabled: true
+      type: LoadBalancer  
     ingress:
       enabled: true
-      className: traefik
-      annotations:
-        external-dns.alpha.kubernetes.io/hostname: podinfo.penguins.com  
-      hosts:
-        - host: podinfo.penguins.com
-          paths:
-            - path: /
-              pathType: ImplementationSpecific
+      # className: traefik
+      # annotations:
+      #   external-dns.alpha.kubernetes.io/hostname: podinfo.penguins.com  
+      # hosts:
+      #   - host: podinfo.penguins.com
+      #     paths:
+      #       - path: /
+      #         pathType: ImplementationSpecific
