@@ -18,10 +18,13 @@ spec:
     remediation:
       retries: 3
   values:
-    provider: cloudflare
-    cloudflare:
-      apiToken: "CF_API_TOKEN"
-      email: "CF_API_EMAIL"
+    # provider: cloudflare
+    provider:
+      name: cloudflare
+    policy: sync
+    # cloudflare:
+    #   apiToken: "CF_API_TOKEN"
+    #   email: "CF_API_EMAIL"
     # crd: # TBD how to add domains
     #   create: true
     # sources:
