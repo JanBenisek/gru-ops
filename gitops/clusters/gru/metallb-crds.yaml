@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: metallb
+    - name: metallb--metallb-system
       namespace: flux-system # TODO: do I need this?
   interval: 15m
   path: ./gitops/manifests/metallb/crds
