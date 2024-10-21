@@ -6,3 +6,4 @@ resources:
   - metallb.yaml
   - metallb-crds.yaml
   - podinfo.yaml
+  - external-dns.yaml
