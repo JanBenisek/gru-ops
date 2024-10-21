@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: metallb
 resources:
   - ip-address-pool.yaml
-  - l2-advertisment.yaml
+  - l2-advertisement.yaml
