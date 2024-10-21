@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - ingress-nginx.yaml
-  - metallb.yaml
-  - metallb-crds.yaml
+  # - metallb.yaml
+  # - metallb-crds.yaml
   - podinfo.yaml
   - external-dns.yaml
