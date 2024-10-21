@@ -4,5 +4,5 @@ namespace: flux-system
 resources:
   - ingress-nginx.yaml
   - metallb.yaml
-  - metallb-crds.yaml
+  # - metallb-crds.yaml
   - podinfo.yaml
