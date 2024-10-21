@@ -17,5 +17,5 @@ spec:
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
-      name: metallb-controller
+      name: metallb-crd
       namespace: metallb
