@@ -35,5 +35,5 @@ spec:
           secretKeyRef:
             name: cloudflare-api-token
             key: apiToken
-      - name: CF_API_EMAIL
-        value: "benisekj@gmail.com" #TODO: as a secret
+      # - name: CF_API_EMAIL
+      #   value: "benisekj@gmail.com" #TODO: as a secret
