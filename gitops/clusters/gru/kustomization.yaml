@@ -3,6 +3,6 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - traefik.yaml
-  - metallb.yaml
+  # - metallb.yaml
   # - metallb-crds.yaml
-  - podinfo.yaml
+  # - podinfo.yaml
