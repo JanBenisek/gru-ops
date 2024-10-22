@@ -15,9 +15,9 @@ spec:
     - http01:
         ingress:
           class: nginx # or traefik later
-    dns01:
-        cloudflare:
-          email: benisekj@gmail.com
-          apiTokenSecretRef:
-            name: cloudflare-api-key
-            key: apiKey
+      dns01:
+          cloudflare:
+            email: benisekj@gmail.com
+            apiTokenSecretRef:
+              name: cloudflare-api-key
+              key: apiKey
