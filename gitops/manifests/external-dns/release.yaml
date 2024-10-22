@@ -8,10 +8,10 @@ spec:
   chart:
     spec:
       chart: external-dns
-      version: ">=v1.6.0 <1.7.0"
+      version: "6.20.4"
       sourceRef:
         kind: HelmRepository
-        name: external-dns
+        name: bitnami
         namespace: external-dns
   interval: 1h0m0s
   install:
@@ -20,15 +20,14 @@ spec:
   values:
     domainFilters:
     - "pengiuns.com"
-    image:
-      tag: "latest"
-    policy: sync
     sources:
       # - crd # TBD what's better
       - service
       - ingress
-    provider: 
-      name: cloudflare
+    # this should be bitnami
+    provider: cloudflare
+    cloudflare:
+      apiToken: CF_API_TOKEN
     env:
       - name: CF_API_TOKEN
         valueFrom:
