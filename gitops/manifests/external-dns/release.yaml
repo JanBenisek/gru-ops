@@ -22,16 +22,16 @@ spec:
     - "pengiuns.com"
     image:
       tag: "latest"
+    policy: sync
     sources:
       # - crd # TBD what's better
       - service
       - ingress
     provider: 
       name: cloudflare
-    policy: sync
     env:
       - name: CF_API_TOKEN
-    valueFrom:
-      secretKeyRef:
-        name: cloudflare-api-key
-        key: apiKey
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare-api-key
+            key: apiKey
