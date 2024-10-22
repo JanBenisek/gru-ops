@@ -23,8 +23,10 @@ spec:
       - service
       - ingress
     provider: cloudflare
-    # cloudflare:
-    #   apiToken: CF_API_TOKEN
+    cloudflare:
+      # apiToken: CF_API_TOKEN
+      apiKey: CF_API_KEY
+      email: benisekj@gmail.com # maybe as a secret?
     policy: sync
     env:
       - name: CF_API_TOKEN
@@ -32,5 +34,8 @@ spec:
           secretKeyRef:
             name: external-dns-cloudflare-token
             key: apiToken
-      # - name: CF_API_EMAIL
-      #   value: "benisekj@gmail.com" #TODO: as a secret
+      - name: CF_API_KEY
+        valueFrom:
+          secretKeyRef:
+            name: external-dns-cloudflare-key
+            key: apiToken
