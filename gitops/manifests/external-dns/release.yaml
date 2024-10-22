@@ -12,28 +12,25 @@ spec:
         kind: HelmRepository
         name: bitnami
         namespace: external-dns
-      version: "8.3.9"
+      version: "8.3.7"
   interval: 1h0m0s
   install:
     remediation:
       retries: 3
   values:
-    # provider: cloudflare
-    provider:
-      name: cloudflare
-    policy: sync
+    sources:
+      # - crd # TBD what's better
+      - service
+      - ingress
+    provider: cloudflare
     # cloudflare:
-    #   apiToken: "CF_API_TOKEN"
-    #   email: "CF_API_EMAIL"
-    # crd: # TBD how to add domains
-    #   create: true
-    # sources:
-    #   - crd
+    #   apiToken: CF_API_TOKEN
+    policy: sync
     env:
       - name: CF_API_TOKEN
         valueFrom:
           secretKeyRef:
-            name: cloudflare-api-token
+            name: external-dns-cloudflare-token
             key: apiToken
       # - name: CF_API_EMAIL
       #   value: "benisekj@gmail.com" #TODO: as a secret
