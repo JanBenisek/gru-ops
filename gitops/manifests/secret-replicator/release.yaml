@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: kiwigrid/secret-replicator
-      tag: 0.2.0
+      tag: latest
       pullPolicy: IfNotPresent
       ## Specify ImagePullSecrets for Pods
       ## ref: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
