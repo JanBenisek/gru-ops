@@ -9,3 +9,4 @@ resources:
   - external-dns.yaml
   - cert-manager.yaml
   - certs.yaml
+  - secret-replicator.yaml
