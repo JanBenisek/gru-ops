@@ -22,9 +22,9 @@ spec:
       enabled: true
       repository: public.ecr.aws/docker/library/redis
       tag: 7.0.6
-    service: # TEMP to test metallb
+    service: 
       enabled: true
-      type: LoadBalancer  
+      type: ClusterIP  
     ingress:
       enabled: true
       className: traefik
