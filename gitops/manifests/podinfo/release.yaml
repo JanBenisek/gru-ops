@@ -29,7 +29,7 @@ spec:
       enabled: true
       className: traefik
       annotations:
-        external-dns.alpha.kubernetes.io/hostname: podinfo.penguins.com  
+        external-dns.alpha.kubernetes.io/hostname: podinfo.pengiuns.com  
       hosts:
         - host: podinfo.pengiuns.com
           paths:
