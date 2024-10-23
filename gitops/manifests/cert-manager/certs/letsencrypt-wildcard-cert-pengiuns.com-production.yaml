@@ -9,6 +9,6 @@ spec:
     name: letsencrypt-prod
     kind: ClusterIssuer
   dnsNames:
-  - "pengiuns.com"
-  - "*.pengiuns.com"
+    - "pengiuns.com"
+    - "*.pengiuns.com"
 
