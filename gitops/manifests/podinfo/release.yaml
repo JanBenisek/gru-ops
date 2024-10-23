@@ -27,11 +27,11 @@ spec:
       type: LoadBalancer  
     ingress:
       enabled: true
-      # className: traefik
-      # annotations:
-      #   external-dns.alpha.kubernetes.io/hostname: podinfo.penguins.com  
-      # hosts:
-      #   - host: podinfo.penguins.com
-      #     paths:
-      #       - path: /
-      #         pathType: ImplementationSpecific
+      className: traefik
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: podinfo.penguins.com  
+      hosts:
+        - host: podinfo.penguins.com
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
