@@ -7,5 +7,5 @@ resources:
   - metallb-crds.yaml
   - podinfo.yaml
   - external-dns.yaml
-  - cert-manager.yaml
-  - certs.yaml
+  # - cert-manager.yaml
+  # - certs.yaml
