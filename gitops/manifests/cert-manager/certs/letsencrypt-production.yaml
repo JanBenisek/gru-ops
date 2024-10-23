@@ -12,12 +12,12 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-prod
     solvers:
-    - http01:
-        ingress:
-          class: nginx # or traefik later
+    - selector:
+        dnsZones:
+          - "pengiuns.com"
       dns01:
-          cloudflare:
-            email: benisekj@gmail.com
-            apiTokenSecretRef:
-              name: cloudflare-api-key
-              key: apiKey
+        cloudflare:
+          email: benisekj@gmail.com
+          apiTokenSecretRef:
+            name: cloudflare-api-key
+            key: apiKey

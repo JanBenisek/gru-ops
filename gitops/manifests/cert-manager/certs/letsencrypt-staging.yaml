@@ -12,9 +12,9 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-staging
     solvers:
-    - http01:
-        ingress:
-          class: nginx # or traefik later
+    - selector:
+        dnsZones:
+          - "pengiuns.com"
       dns01:
         cloudflare:
           email: benisekj@gmail.com
