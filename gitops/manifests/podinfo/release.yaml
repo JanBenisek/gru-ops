@@ -35,7 +35,7 @@ spec:
           paths:
             - path: /
               pathType: ImplementationSpecific
-    tls:
-      - secretName: letsencrypt-wildcard-cert
-        hosts:
-          - podinfo.pengiuns.com
+      tls:
+        - secretName: letsencrypt-wildcard-cert
+          hosts:
+            - podinfo.pengiuns.com
