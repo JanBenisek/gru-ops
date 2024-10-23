@@ -8,4 +8,4 @@ resources:
   - podinfo.yaml
   - external-dns.yaml
   - cert-manager.yaml
-  # - certs.yaml
+  - certs.yaml
