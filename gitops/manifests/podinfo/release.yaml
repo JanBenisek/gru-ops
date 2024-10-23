@@ -32,6 +32,9 @@ spec:
         # external-dns.alpha.kubernetes.io/hostname: podinfo.pengiuns.com 
       hosts:
         - host: podinfo.pengiuns.com
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
       tls:
         - secretName: letsencrypt-wildcard-cert
           hosts:
