@@ -3,3 +3,6 @@ kind: Kustomization
 resources:
 - letsencrypt-production.yaml
 - letsencrypt-staging.yaml
+- letsencrypt-wildcard-cert-pengiuns.com-production.yaml
+- letsencrypt-wildcard-cert-pengiuns.com-staging.yaml
+# the last two are in a separate namespace
