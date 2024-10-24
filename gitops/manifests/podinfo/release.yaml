@@ -126,9 +126,9 @@ spec:
     cache: ""
     # Redis deployment
     redis:
-      enabled: false
-      repository: redis
-      tag: 6.0.8
+      enabled: true
+      repository: public.ecr.aws/docker/library/redis
+      tag: 7.0.6
 
     serviceAccount:
       # Specifies whether a service account should be created
