@@ -8,10 +8,10 @@ spec:
   chart:
     spec:
       chart: external-dns
-      version: "8.3.9"
+      version: ">=v1.6.0 <1.7.0"
       sourceRef:
         kind: HelmRepository
-        name: bitnami
+        name: external-dns
         namespace: external-dns
   interval: 1h0m0s
   install:
@@ -22,31 +22,22 @@ spec:
     image:
       pullPolicy: Always
     domainFilters:
-    - "pengiuns.com"
+      - "pengiuns.com"
     sources:
-      # - crd # TBD what's better
       - service
       - ingress
-    provider: cloudflare
-    cloudflare:
-      # apiKey: CF_API_KEY
-      # email: CF_API_EMAIL
-      apiToken: CF_API_TOKEN
+    provider: 
+      name: cloudflare
     env:
-      - name: CF_API_TOKEN
+      - name: CF_API_KEY
         valueFrom:
           secretKeyRef:
-            name: cloudflare-api-token
-            key: apiToken
-      # - name: CF_API_KEY
-      #   valueFrom:
-      #     secretKeyRef:
-      #       name: cloudflare-api-key
-      #       key: apiKey
-      # - name: CF_API_EMAIL
-      #   valueFrom:
-      #     secretKeyRef:
-      #       name: cloudflare-api-key
-      #       key: email
+            name: cloudflare-api-key
+            key: apiKey
+      - name: CF_API_EMAIL
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare-api-key
+            key: email
 # k create secret generic cloudflare-api-token --from-literal=apiToken=CF_API_TOKEN -n external-dns
 # k create secret generic cloudflare-api-key --from-literal=apiKey=CF_API_KEY --from-literal=email=EMAIL -n external-dns
