@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: external-dns
-      version: "6.20.4"
+      version: "8.3.9"
       sourceRef:
         kind: HelmRepository
         name: bitnami
@@ -26,7 +26,8 @@ spec:
       - ingress
     provider: cloudflare
     cloudflare:
-      apiToken: CF_API_TOKEN
+      apiKey: CF_API_KEY
+      email: CF_API_EMAIL
       # apiToken: CF_API_TOKEN®
     env:
       # - name: CF_API_TOKEN
