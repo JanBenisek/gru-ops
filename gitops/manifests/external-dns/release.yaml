@@ -24,13 +24,24 @@ spec:
       # - crd # TBD what's better
       - service
       - ingress
-    # this should be bitnami
     provider: cloudflare
-    cloudflare:
-      apiToken: CF_API_TOKEN
+    # cloudflare:
+    #   apiToken: CF_API_TOKEN
     env:
-      - name: CF_API_TOKEN
+      # - name: CF_API_TOKEN
+      #   valueFrom:
+      #     secretKeyRef:
+      #       name: cloudflare-api-key
+      #       key: apiKey
+      - name: CF_API_KEY
         valueFrom:
           secretKeyRef:
             name: cloudflare-api-key
             key: apiKey
+      - name: CF_API_EMAIL
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare-api-key
+            key: email
+# k create secret generic cloudflare-api-key --from-literal=apiKey=CF_API_TOKEN -n external-dns
+# k create secret generic cloudflare-api-key --from-literal=apiKey=CF_API_KEY --from-literal=email=EMAIL -n external-dns
