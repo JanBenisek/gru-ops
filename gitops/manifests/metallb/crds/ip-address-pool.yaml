@@ -11,3 +11,4 @@ spec:
     # - 192.168.32.0/24
     # - 172.20.0.0/24
     # - 172.20.0.120-172.20.0.130
+    # it I don't see the range here, it will not work netstat -rn
