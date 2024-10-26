@@ -25,8 +25,9 @@ spec:
       - service
       - ingress
     provider: cloudflare
-    # cloudflare:
-    #   apiToken: CF_API_TOKEN
+    cloudflare:
+      apiToken: CF_API_TOKEN
+      # apiToken: CF_API_TOKEN®
     env:
       # - name: CF_API_TOKEN
       #   valueFrom:
