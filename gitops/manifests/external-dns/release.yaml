@@ -29,24 +29,24 @@ spec:
       - ingress
     provider: cloudflare
     cloudflare:
-      apiKey: CF_API_KEY
-      email: CF_API_EMAIL
-      # apiToken: CF_API_TOKEN®
+      # apiKey: CF_API_KEY
+      # email: CF_API_EMAIL
+      apiToken: CF_API_TOKEN
     env:
-      # - name: CF_API_TOKEN
+      - name: CF_API_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare-api-token
+            key: apiToken
+      # - name: CF_API_KEY
       #   valueFrom:
       #     secretKeyRef:
       #       name: cloudflare-api-key
       #       key: apiKey
-      - name: CF_API_KEY
-        valueFrom:
-          secretKeyRef:
-            name: cloudflare-api-key
-            key: apiKey
-      - name: CF_API_EMAIL
-        valueFrom:
-          secretKeyRef:
-            name: cloudflare-api-key
-            key: email
-# k create secret generic cloudflare-api-key --from-literal=apiKey=CF_API_TOKEN -n external-dns
+      # - name: CF_API_EMAIL
+      #   valueFrom:
+      #     secretKeyRef:
+      #       name: cloudflare-api-key
+      #       key: email
+# k create secret generic cloudflare-api-token --from-literal=apiToken=CF_API_TOKEN -n external-dns
 # k create secret generic cloudflare-api-key --from-literal=apiKey=CF_API_KEY --from-literal=email=EMAIL -n external-dns
