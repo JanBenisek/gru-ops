@@ -125,12 +125,10 @@ spec:
         kubernetes.io/ingress.class: nginx
         # kubernetes.io/tls-acme: "true"
       hosts:
-        # - host: podinfo.pengiuns.com
-        - host: podinfo.my-app.lab
+        - host: podinfo.pengiuns.com
           paths:
             - path: /
-              # pathType: ImplementationSpecific
-              pathType: Prefix
+              pathType: ImplementationSpecific
       tls: []
         # - secretName: letsencrypt-wildcard-cert
         # - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
