@@ -120,9 +120,9 @@ spec:
 
     ingress:
       enabled: true 
-      className: "nginx"
+      className: "traefik"
       annotations:
-        kubernetes.io/ingress.class: nginx
+        kubernetes.io/ingress.class: traefik
         # kubernetes.io/tls-acme: "true"
       hosts:
         - host: podinfo.pengiuns.com
