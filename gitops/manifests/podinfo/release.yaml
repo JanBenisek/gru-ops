@@ -134,8 +134,7 @@ spec:
                 service:
                   name: podinfo  # Ensure this matches your service name
                   port:
-                    number: 9898  # Ensure this matches the port your app is listening on
-
+                    number: 9898  # moybe not needed? Mentioned in service
       tls: []
         # - secretName: letsencrypt-wildcard-cert
         # - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
