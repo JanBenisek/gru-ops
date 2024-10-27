@@ -10,4 +10,4 @@ resources:
   # - certs.yaml
   - secret-replicator.yaml
   # - ingress-nginx.yaml
-  - traefik.yaml
+  # - traefik.yaml
