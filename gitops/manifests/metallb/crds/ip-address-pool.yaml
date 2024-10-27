@@ -5,8 +5,8 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-    # - 192.168.178.100-192.168.178.250
-    - 42.176.25.64/30
+    - 192.168.178.100-192.168.178.250
+    # - 42.176.25.64/30
     # - 192.168.254.0/24
     # FYI it I don't see the range in `netstat -rn``, it will not work
     # Default there is 192.168.178.
