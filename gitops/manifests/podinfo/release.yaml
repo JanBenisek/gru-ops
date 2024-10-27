@@ -47,7 +47,7 @@ spec:
     service:
       enabled: true
       annotations: {}
-      type: ClusterIP
+      type: LoadBalancer
       metricsPort: 9797
       httpPort: 9898
       externalPort: 9898
