@@ -130,6 +130,12 @@ spec:
             - path: /
               # pathType: ImplementationSpecific
               pathType: Prefix
+              backend:
+                service:
+                  name: podinfo  # Ensure this matches your service name
+                  port:
+                    number: 9898  # Ensure this matches the port your app is listening on
+
       tls: []
         # - secretName: letsencrypt-wildcard-cert
         # - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
