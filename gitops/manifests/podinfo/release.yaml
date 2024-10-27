@@ -48,7 +48,7 @@ spec:
     service:
       enabled: true
       annotations: {}
-      type: LoadBalancer
+      type: ClusterIP
       metricsPort: 9797
       httpPort: 9898
       externalPort: 9898
@@ -119,21 +119,23 @@ spec:
     securityContext: {}
 
     ingress:
-      enabled: true # changed
+      enabled: true 
       className: ""
       annotations:
-        # kubernetes.io/ingress.class: traefik
+        kubernetes.io/ingress.class: nginx
         # kubernetes.io/tls-acme: "true"
       hosts:
-        - host: podinfo.pengiuns.com
+        # - host: podinfo.pengiuns.com
+        - host: podinfo.my-app.lab
           paths:
             - path: /
-              pathType: ImplementationSpecific
-      tls:
+              # pathType: ImplementationSpecific
+              pathType: Prefix
+      tls: []
         # - secretName: letsencrypt-wildcard-cert
-        - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
-          hosts:
-            - podinfo.pengiuns.com
+        # - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+        #   hosts:
+        #     - podinfo.pengiuns.com
 
     linkerd:
       profile:
