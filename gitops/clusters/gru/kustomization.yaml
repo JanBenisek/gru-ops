@@ -9,5 +9,5 @@ resources:
   # - cert-manager.yaml
   # - certs.yaml
   - secret-replicator.yaml
-  # - ingress-nginx.yaml
-  - traefik.yaml
+  - ingress-nginx.yaml
+  # - traefik.yaml
