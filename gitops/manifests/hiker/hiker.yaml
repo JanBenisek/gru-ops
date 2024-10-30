@@ -28,11 +28,14 @@ metadata:
   name: hiker
   namespace: hiker
 spec:
-  ports:
-  - port: 80
-    targetPort: 80
   selector:
     app: hiker
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  type: LoadBalancer
 # ---
 # apiVersion: networking.k8s.io/v1
 # kind: Ingress
