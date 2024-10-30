@@ -53,7 +53,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: web-app
+            name: hiker
             port:
               number: 80
 # spec:
