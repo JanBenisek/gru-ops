@@ -11,4 +11,4 @@ resources:
   - secret-replicator.yaml
   - ingress-nginx.yaml
   # - traefik.yaml
-  # - hiker.yaml
+  - hiker.yaml

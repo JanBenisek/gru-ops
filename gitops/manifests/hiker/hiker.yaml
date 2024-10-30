@@ -46,7 +46,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: swiss.hiker.lab
+  - host: swisshiker.pengiuns.com
     http:
       paths:
       - path: /
