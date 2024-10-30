@@ -4,11 +4,11 @@ namespace: flux-system
 resources:
   - metallb.yaml
   - metallb-crds.yaml
-  - podinfo.yaml
+  # - podinfo.yaml
   - external-dns.yaml
   # - cert-manager.yaml
   # - certs.yaml
   - secret-replicator.yaml
   - ingress-nginx.yaml
   # - traefik.yaml
-  - hiker.yaml
+  # - hiker.yaml
