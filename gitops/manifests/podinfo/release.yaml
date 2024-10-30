@@ -50,8 +50,8 @@ spec:
       annotations: {}
       type: LoadBalancer
       metricsPort: 9797
-      httpPort: 80 #9898
-      externalPort: 80 #9898
+      httpPort: 9898
+      externalPort: 9898
       grpcPort: 9999
       grpcService: podinfo
       nodePort: 31198
