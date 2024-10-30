@@ -119,7 +119,7 @@ spec:
     securityContext: {}
 
     ingress:
-      enabled: true 
+      enabled: false 
       className: "nginx"
       annotations:
         kubernetes.io/ingress.class: nginx
