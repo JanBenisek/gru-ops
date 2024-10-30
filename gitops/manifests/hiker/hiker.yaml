@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hiker
+  namespace: hiker
+  labels:
+    app: hiker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hiker
+  template:
+    metadata:
+      labels:
+        app: hiker
+    spec:
+      containers:
+      - name: nginx
+        image: ghcr.io/janbenisek/swisshikefinder:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hiker
+  namespace: hiker
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: hiker
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: dbt-docs 
+#   annotations:
+#     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+#     kubernetes.io/ingress.class: "nginx"
+# spec:
+#   tls:
+#   - hosts:
+#       - "dbt.${DOMAIN_NAME}"
+#     secretName: dbt-tls
+#   rules:
+#   - host: "dbt.${DOMAIN_NAME}"
+#     http:
+#       paths:
+#       - pathType: Prefix
+#         path: "/"
+#         backend:
+#           service:
+#             name: dbt-docs
+#             port:
+#               number: 80
