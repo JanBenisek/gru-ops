@@ -20,7 +20,7 @@ spec:
         image: ghcr.io/janbenisek/swisshikefinder:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 8080 # internal port for the app
 ---
 apiVersion: v1
 kind: Service
@@ -32,9 +32,9 @@ spec:
     app: hiker
   ports:
   - name: http
-    port: 80
+    port: 80 # we talk to 80
     protocol: TCP
-    targetPort: 80
+    targetPort: 8080 # app listens here
   type: LoadBalancer
 # ---
 # apiVersion: networking.k8s.io/v1
