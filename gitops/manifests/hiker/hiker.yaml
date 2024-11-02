@@ -47,7 +47,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-  - host: swisshiker.pengiuns.com
+  - host: hiker.pengiuns.com
     http:
       paths:
       - path: /
