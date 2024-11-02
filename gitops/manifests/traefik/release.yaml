@@ -17,6 +17,7 @@ spec:
   releaseName: traefik
   values:
     ingressRoute:
-    dashboard:
-      # -- Create an IngressRoute for the dashboard
-      enabled: false
+      # docs: https://doc.traefik.io/traefik/operations/dashboard/
+      dashboard:
+        enabled: true
+        insecure: true
