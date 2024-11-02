@@ -122,7 +122,8 @@ spec:
       enabled: true 
       className: "traefik"
       annotations:
-        kubernetes.io/ingress.class: traefik
+        kubernetes.io/ingress.class: "traefik"
+        external-dns.alpha.kubernetes.io/target: "grafana.pengiuns.com"
         # kubernetes.io/tls-acme: "true"
       hosts:
         - host: podinfo.pengiuns.com
