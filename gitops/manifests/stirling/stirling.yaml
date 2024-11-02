@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: frooodle/s-pdf:latest
+        image: frooodle/s-pdf:latest-ultra-lite
         imagePullPolicy: Always
         ports:
         - containerPort: 8080 # internal port for the app
