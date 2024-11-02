@@ -15,3 +15,8 @@ spec:
   interval: 15m
   timeout: 5m
   releaseName: traefik
+  values:
+    ingressRoute:
+    dashboard:
+      # -- Create an IngressRoute for the dashboard
+      enabled: false
