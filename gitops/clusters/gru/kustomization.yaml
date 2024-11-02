@@ -13,4 +13,4 @@ resources:
   - podinfo.yaml
   - hiker.yaml
   - grafana.yaml
-  # - stirling.yaml
+  - stirling.yaml
