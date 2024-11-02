@@ -19,7 +19,7 @@ spec:
       enabled: true 
       className: "traefik"
       annotations:
-        kubernetes.io/ingress.class: traefik
+        kubernetes.io/ingress.class: "traefik"
         # kubernetes.io/tls-acme: "true"
       hosts:
         - grafana.pengiuns.com
