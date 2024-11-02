@@ -4,6 +4,9 @@ metadata:
   name: external-dns
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: ingress-nginx
+      namespace: flux-system
   interval: 15m
   path: ./gitops/manifests/external-dns
   prune: true # remove any elements later removed from the above path
