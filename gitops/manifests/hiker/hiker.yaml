@@ -45,6 +45,7 @@ metadata:
     # cert-manager.io/cluster-issuer: "letsencrypt-prod"
     kubernetes.io/ingress.class: "traefik"
 spec:
+  className: traefik
   rules:
   - host: swisshiker.pengiuns.com
     http:
