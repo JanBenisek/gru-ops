@@ -11,6 +11,6 @@ resources:
   - ingress-nginx.yaml
   # - traefik.yaml
   - podinfo.yaml
-  # - hiker.yaml
+  - hiker.yaml
   # - grafana.yaml
   # - stirling.yaml
