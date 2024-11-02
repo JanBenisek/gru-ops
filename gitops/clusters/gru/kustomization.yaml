@@ -9,8 +9,8 @@ resources:
   # - certs.yaml
   - secret-replicator.yaml
   - ingress-nginx.yaml
-  # - podinfo.yaml
   # - traefik.yaml
-  # - hiker.yaml
-  # - grafana.yaml
-  # - stirling.yaml
+  - podinfo.yaml
+  - hiker.yaml
+  - grafana.yaml
+  - stirling.yaml

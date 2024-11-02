@@ -4,6 +4,9 @@ metadata:
   name: stirling
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: external-dns
+      namespace: flux-system
   interval: 15m
   path: ./gitops/manifests/stirling
   prune: true # remove any elements later removed from the above path

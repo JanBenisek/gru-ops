@@ -4,6 +4,9 @@ metadata:
   name: hiker
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: external-dns
+      namespace: flux-system
   interval: 15m
   path: ./gitops/manifests/hiker
   prune: true # remove any elements later removed from the above path
