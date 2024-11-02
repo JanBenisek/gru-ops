@@ -12,5 +12,5 @@ resources:
   # - traefik.yaml
   - podinfo.yaml
   - hiker.yaml
-  # - grafana.yaml
+  - grafana.yaml
   # - stirling.yaml
