@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stirling
+  namespace: stirling
+  labels:
+    app: stirling
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stirling
+  template:
+    metadata:
+      labels:
+        app: stirling
+    spec:
+      containers:
+      - name: nginx
+        image: frooodle/s-pdf:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080 # internal port for the app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stirling
+  namespace: stirling
+spec:
+  selector:
+    app: stirling
+  ports:
+  - name: http
+    port: 80 # we talk to 80
+    protocol: TCP
+    targetPort: 8080 # app listens here
+  # type: LoadBalancer # for debugging
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: stirling
+  annotations:
+    # cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    kubernetes.io/ingress.class: "traefik"
+    external-dns.alpha.kubernetes.io/target: "stirling.pengiuns.com"
+    # kubernetes.io/ingress.class: "nginx"
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: stirling.pengiuns.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: stirling
+            port:
+              number: 80
+# spec:
+#   tls:
+#   - hosts:
+#       - "dbt.${DOMAIN_NAME}"
+#     secretName: dbt-tls
+#   rules:
+#   - host: "dbt.${DOMAIN_NAME}"
+#     http:
+#       paths:
+#       - pathType: Prefix
+#         path: "/"
+#         backend:
+#           service:
+#             name: dbt-docs
+#             port:
+#               number: 80
