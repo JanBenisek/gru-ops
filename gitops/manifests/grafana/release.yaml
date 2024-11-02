@@ -22,14 +22,15 @@ spec:
         kubernetes.io/ingress.class: traefik
         # kubernetes.io/tls-acme: "true"
       hosts:
-        - host: grafana.pengiuns.com
-          paths:
-            - path: /
-              # pathType: ImplementationSpecific
-              pathType: Prefix
-              backend:
-                service:
-                  name: grafana
-                  port:
-                    number: 3000
+        - grafana.pengiuns.com
+        # - host: grafana.pengiuns.com
+        #   paths:
+        #     - path: /
+        #       # pathType: ImplementationSpecific
+        #       pathType: Prefix
+        #       backend:
+        #         service:
+        #           name: grafana
+        #           port:
+        #             number: 3000
     
