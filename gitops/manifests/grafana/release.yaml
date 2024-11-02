@@ -20,7 +20,7 @@ spec:
       className: "traefik"
       annotations:
         kubernetes.io/ingress.class: "traefik"
-        # external-dns.alpha.kubernetes.io/target: grafana.pengiuns.com
+        external-dns.alpha.kubernetes.io/target: grafana.pengiuns.com
         # kubernetes.io/tls-acme: "true"
       hosts:
         - grafana.pengiuns.com

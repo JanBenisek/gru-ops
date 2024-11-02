@@ -123,7 +123,7 @@ spec:
       className: "traefik"
       annotations:
         kubernetes.io/ingress.class: "traefik"
-        # external-dns.alpha.kubernetes.io/target: "podinfo.pengiuns.com"
+        external-dns.alpha.kubernetes.io/target: "podinfo.pengiuns.com"
         # kubernetes.io/tls-acme: "true"
       hosts:
         - host: podinfo.pengiuns.com
