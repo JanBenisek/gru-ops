@@ -62,19 +62,3 @@ spec:
       # - "hiker.pengiuns.com"
       - "hiker.${DOMAIN_NAME}"
     secretName: letsencrypt-wildcard-cert-pengiuns.com-production
-# spec:
-#   tls:
-#   - hosts:
-#       - "dbt.${DOMAIN_NAME}"
-#     secretName: dbt-tls
-#   rules:
-#   - host: "dbt.${DOMAIN_NAME}"
-#     http:
-#       paths:
-#       - pathType: Prefix
-#         path: "/"
-#         backend:
-#           service:
-#             name: dbt-docs
-#             port:
-#               number: 80

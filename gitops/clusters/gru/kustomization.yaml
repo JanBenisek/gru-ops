@@ -10,7 +10,6 @@ resources:
   - secret-replicator.yaml
   - ingress-nginx.yaml
   # - traefik.yaml
-  - podinfo.yaml
   - hiker.yaml
   - grafana.yaml
   - stirling.yaml

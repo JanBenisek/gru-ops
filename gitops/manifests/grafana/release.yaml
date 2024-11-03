@@ -21,7 +21,6 @@ spec:
       annotations:
         kubernetes.io/ingress.class: "nginx"
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
-        # kubernetes.io/tls-acme: "true"
       tls:
       - hosts:
           # - "grafana.pengiuns.com"
@@ -29,14 +28,4 @@ spec:
         secretName: letsencrypt-wildcard-cert-pengiuns.com-production
       hosts:
         - grafana.pengiuns.com
-        # - host: grafana.pengiuns.com
-        #   paths:
-        #     - path: /
-        #       # pathType: ImplementationSpecific
-        #       pathType: Prefix
-        #       backend:
-        #         service:
-        #           name: grafana
-        #           port:
-        #             number: 3000
     
