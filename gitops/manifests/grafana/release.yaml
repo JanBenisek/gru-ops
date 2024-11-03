@@ -20,8 +20,12 @@ spec:
       ingressClassName: nginx
       annotations:
         kubernetes.io/ingress.class: "nginx"
-        # external-dns.alpha.kubernetes.io/target: grafana.pengiuns.com
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
         # kubernetes.io/tls-acme: "true"
+      tls:
+      - hosts:
+          - "grafana.pengiuns.com"
+        secretName: letsencrypt-wildcard-cert-pengiuns.com-production
       hosts:
         - grafana.pengiuns.com
         # - host: grafana.pengiuns.com
