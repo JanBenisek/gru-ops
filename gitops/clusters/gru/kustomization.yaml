@@ -17,3 +17,5 @@ configMapGenerator:
   - name: gru-values
     envs:
       - .env
+configurations:
+  - kustomizeconfig.yaml
