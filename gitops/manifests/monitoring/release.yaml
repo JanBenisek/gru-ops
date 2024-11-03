@@ -21,14 +21,14 @@ spec:
     grafana:
       enabled: true
       adminPassword: admin
-      # grafana.ini:
-      #   users:
-      #     auto_assign_org_role: Admin
-      #     default_theme: light
-      #   server:
-      #     root_url: https://grafana.${DOMAIN_NAME}
-      #   auth.basic:
-      #     enabled: false
+      grafana.ini:
+        users:
+          auto_assign_org_role: Admin
+          default_theme: light
+        server:
+          root_url: https://grafana.${DOMAIN_NAME}
+        auth.basic:
+          enabled: true
       persistence:
         enabled: false
       ingress:
@@ -74,22 +74,22 @@ spec:
       serviceAccount:
         name: loki
         create: false
-      # config:
-      #   query_scheduler:
-      #     max_outstanding_requests_per_tenant: 4096
-  #       schema_config:
-  #         configs:
-  #         - from: "2023-02-01"
-  #           store: boltdb-shipper
-  #           object_store: s3
-  #           schema: v11
-  #           index:
-  #             prefix: loki_
-  #             period: "24h"
-  #       storage_config:
-  #         boltdb_shipper:
-  #           active_index_directory: /data/loki/boltdb-shipper-active
-  #           cache_location: /data/loki/boltdb-shipper-cache
-  #           shared_store: s3
-  #         aws:
-  #           s3: s3://eu-west-1/smallpdf-data-loki
+      config:
+        query_scheduler:
+          max_outstanding_requests_per_tenant: 4096
+        schema_config:
+          configs:
+          - from: "2023-02-01"
+            store: boltdb-shipper
+            object_store: s3
+            schema: v11
+            index:
+              prefix: loki_
+              period: "24h"
+        # storage_config:
+        #   boltdb_shipper:
+        #     active_index_directory: /data/loki/boltdb-shipper-active
+        #     cache_location: /data/loki/boltdb-shipper-cache
+        #     shared_store: s3
+        #   aws:
+        #     s3: s3://eu-west-1/smallpdf-data-loki
