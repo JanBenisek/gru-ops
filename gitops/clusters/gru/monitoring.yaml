@@ -1,0 +1,26 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: monitoring
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: external-dns
+      namespace: flux-system
+  interval: 15m
+  path: ./gitops/manifests/monitoring
+  prune: true 
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: gru-values
+  timeout: 10m 
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: server
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: monitoring
+      namespace: monitoring
