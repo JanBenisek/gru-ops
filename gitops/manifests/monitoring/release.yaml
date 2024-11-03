@@ -14,7 +14,11 @@ spec:
         name: kube-prometheus-stack
         namespace: monitoring
   interval: 50m
-  # values:
+  values:
+    grafana:
+      enabled: true
+      ingress:
+        enabled: true
   #   ingress:
   #     enabled: true 
   #     ingressClassName: nginx
