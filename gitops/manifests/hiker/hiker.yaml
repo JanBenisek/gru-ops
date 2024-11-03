@@ -59,6 +59,5 @@ spec:
               number: 80
   tls:
   - hosts:
-      # - "hiker.pengiuns.com"
-      - "hiker.${DOMAIN_NAME}"
+      - hiker.${DOMAIN_NAME}
     secretName: letsencrypt-wildcard-cert-pengiuns.com-production

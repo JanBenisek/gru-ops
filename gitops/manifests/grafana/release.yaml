@@ -23,7 +23,6 @@ spec:
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
       tls:
       - hosts:
-          # - "grafana.pengiuns.com"
           - grafana.${DOMAIN_NAME} # cannot have double quotes
         secretName: letsencrypt-wildcard-cert-pengiuns.com-production
       hosts:
