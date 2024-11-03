@@ -27,3 +27,7 @@ My tiny homelab
 - https://artifacthub.io/packages/helm/grafana/grafana
 - https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm/
 - https://fluxcd.io/flux/monitoring/metrics/
+
+### secret-replicator
+
+- [] replace by something more modern with better features, like removing/replacing old secrets

@@ -57,6 +57,10 @@ spec:
             name: hiker
             port:
               number: 80
+  tls:
+  - hosts:
+      - "hiker.pengiuns.com"
+    secretName: letsencrypt-wildcard-cert
 # spec:
 #   tls:
 #   - hosts:
