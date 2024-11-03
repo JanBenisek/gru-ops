@@ -24,7 +24,7 @@ spec:
       tls:
       - hosts:
           # - "grafana.pengiuns.com"
-          - "grafana.${DOMAIN_NAME}"
+          - grafana.${DOMAIN_NAME} # cannot have double quotes
         secretName: letsencrypt-wildcard-cert-pengiuns.com-production
       hosts:
         - grafana.pengiuns.com
