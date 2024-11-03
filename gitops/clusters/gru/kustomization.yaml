@@ -13,3 +13,7 @@ resources:
   - hiker.yaml
   - grafana.yaml
   - stirling.yaml
+configMapGenerator:
+  - name: gru-values
+    envs:
+      - .env
