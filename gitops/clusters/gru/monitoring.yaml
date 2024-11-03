@@ -14,7 +14,7 @@ spec:
     substituteFrom:
     - kind: ConfigMap
       name: gru-values
-  timeout: 10m 
+  timeout: 20m 
   sourceRef:
     kind: GitRepository
     name: flux-system
