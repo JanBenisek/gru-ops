@@ -63,20 +63,20 @@ spec:
         name: grafana
         namespace: monitoring
       interval: 1m
-  # values:
-  #   promtail:
-  #     config:
-  #       logLevel: debug
-  #     tolerations:
-  #     - effect: NoSchedule
-  #       operator: Exists
-  #   loki:
-  #     serviceAccount:
-  #       name: loki
-  #       create: false
-  #     config:
-  #       query_scheduler:
-  #         max_outstanding_requests_per_tenant: 4096
+  values:
+    promtail:
+      config:
+        logLevel: debug
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
+    loki:
+      serviceAccount:
+        name: loki
+        create: false
+      config:
+        query_scheduler:
+          max_outstanding_requests_per_tenant: 4096
   #       schema_config:
   #         configs:
   #         - from: "2023-02-01"
