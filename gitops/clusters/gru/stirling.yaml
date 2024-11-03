@@ -11,6 +11,10 @@ spec:
   path: ./gitops/manifests/stirling
   prune: true # remove any elements later removed from the above path
   timeout: 2m # if not set, this defaults to interval duration, which is 1h
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: gru-values
   sourceRef:
     kind: GitRepository
     name: flux-system
