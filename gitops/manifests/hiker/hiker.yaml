@@ -60,7 +60,8 @@ spec:
   tls:
   - hosts:
       - "hiker.pengiuns.com"
-    secretName: letsencrypt-wildcard-cert
+    # secretName: letsencrypt-wildcard-cert
+    secretName: letsencrypt-wildcard-cert-pengiuns.com-production
 # spec:
 #   tls:
 #   - hosts:
