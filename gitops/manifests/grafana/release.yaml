@@ -24,7 +24,8 @@ spec:
         # kubernetes.io/tls-acme: "true"
       tls:
       - hosts:
-          - "grafana.pengiuns.com"
+          # - "grafana.pengiuns.com"
+          - "grafana.${DOMAIN_NAME}"
         secretName: letsencrypt-wildcard-cert-pengiuns.com-production
       hosts:
         - grafana.pengiuns.com

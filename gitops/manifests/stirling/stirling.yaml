@@ -65,8 +65,8 @@ spec:
               number: 80
   tls:
   - hosts:
-      - "stirling.pengiuns.com"
-      # - "stirling.${DOMAIN_NAME}"
+      # - "stirling.pengiuns.com"
+      - "stirling.${DOMAIN_NAME}"
     secretName: letsencrypt-wildcard-cert-pengiuns.com-production
 # spec:
 #   tls:
