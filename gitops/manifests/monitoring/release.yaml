@@ -17,6 +17,16 @@ spec:
   values:
     grafana:
       enabled: true
+      grafana.ini:
+        users:
+          auto_assign_org_role: Admin
+          default_theme: light
+        server:
+          root_url: https://grafana.${DOMAIN_NAME}
+        auth.basic:
+          enabled: false
+      persistence:
+        enabled: false
       ingress:
         enabled: true 
         ingressClassName: nginx
@@ -27,6 +37,5 @@ spec:
         - hosts:
             - grafana.${DOMAIN_NAME}
           secretName: letsencrypt-wildcard-cert-pengiuns.com-production
-        hosts:
-          - grafana.${DOMAIN_NAME}
+    # prometheus:
     
