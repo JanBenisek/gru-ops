@@ -10,9 +10,9 @@ resources:
   # - secret-replicator.yaml
   - ingress-nginx.yaml
   # - traefik.yaml
-  # - hiker.yaml
-  # - grafana.yaml
-  # - stirling.yaml
+  - hiker.yaml
+  - grafana.yaml
+  - stirling.yaml
 configMapGenerator:
   - name: gru-values
     envs:
