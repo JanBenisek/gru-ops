@@ -18,17 +18,15 @@ spec:
     grafana:
       enabled: true
       ingress:
-        enabled: true
-  #   ingress:
-  #     enabled: true 
-  #     ingressClassName: nginx
-  #     annotations:
-  #       kubernetes.io/ingress.class: "nginx"
-  #       cert-manager.io/cluster-issuer: "letsencrypt-prod"
-  #     tls:
-  #     - hosts:
-  #         - grafana.${DOMAIN_NAME}
-  #       secretName: letsencrypt-wildcard-cert-pengiuns.com-production
-  #     hosts:
-  #       - grafana.${DOMAIN_NAME}
+        enabled: true 
+        ingressClassName: nginx
+        annotations:
+          kubernetes.io/ingress.class: "nginx"
+          cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        tls:
+        - hosts:
+            - grafana.${DOMAIN_NAME}
+          secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+        hosts:
+          - grafana.${DOMAIN_NAME}
     
