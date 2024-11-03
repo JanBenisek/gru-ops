@@ -7,11 +7,11 @@ spec:
   releaseName: monitoring
   chart:
     spec:
-      chart: grafana
+      chart: kube-prometheus-stack
       version: "65.5.1"
       sourceRef:
         kind: HelmRepository
-        name: monitoring
+        name: kube-prometheus-stack
         namespace: monitoring
   interval: 50m
   # values:
