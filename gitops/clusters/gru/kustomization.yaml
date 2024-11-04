@@ -11,9 +11,7 @@ resources:
   - ingress-nginx.yaml
   # - traefik.yaml
   - hiker.yaml
-  # - grafana.yaml
   - stirling.yaml
-  - monitoring.yaml
 configMapGenerator:
   - name: gru-values
     envs:
