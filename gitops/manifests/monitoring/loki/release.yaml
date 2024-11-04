@@ -1,0 +1,53 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: loki-stack
+  namespace: monitoring
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: loki-stack
+      version: '2.10.2'
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: monitoring
+      interval: 1m
+  values:
+    loki:
+      enabled: true
+      isDefault: true
+      # serviceAccount: # do I need this?
+      #   name: loki
+      #   create: false
+    promtail:
+      enabled: true
+      config:
+        logLevel: debug
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
+    grafana:
+      enabled: false
+    prometheus:
+      enabled: false
+      # config:
+      #   query_scheduler:
+      #     max_outstanding_requests_per_tenant: 4096
+      #   schema_config:
+      #     configs:
+      #     - from: "2023-02-01"
+      #       store: boltdb-shipper
+      #       object_store: s3
+      #       schema: v11
+      #       index:
+      #         prefix: loki_
+      #         period: "24h"
+        # storage_config:
+        #   boltdb_shipper:
+        #     active_index_directory: /data/loki/boltdb-shipper-active
+        #     cache_location: /data/loki/boltdb-shipper-cache
+        #     shared_store: s3
+        #   aws:
+        #     s3: s3://eu-west-1/smallpdf-data-loki
