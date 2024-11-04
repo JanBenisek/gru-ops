@@ -10,11 +10,11 @@ spec:
   interval: 15m
   path: ./gitops/manifests/monitoring/loki
   prune: true 
-  timeout: 20m
   postBuild:
     substituteFrom:
     - kind: ConfigMap
       name: gru-values
+  timeout: 20m
   sourceRef:
     kind: GitRepository
     name: flux-system
