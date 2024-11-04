@@ -1,30 +1,45 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: grafana
+  name: kube-prometheus-stack
   namespace: grafana
 spec:
-  releaseName: grafana
+  interval: 50m
   chart:
     spec:
-      chart: grafana
-      version: "8.5.10"
+      chart: kube-prometheus-stack
+      version: "65.5.1"
       sourceRef:
         kind: HelmRepository
-        name: grafana
+        name: prometheus-community
         namespace: grafana
-  interval: 50m
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
   values:
-    ingress:
-      enabled: true 
-      ingressClassName: nginx
-      annotations:
-        kubernetes.io/ingress.class: "nginx"
-        cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      tls:
-      - hosts:
-          - grafana.${DOMAIN_NAME}
-        secretName: letsencrypt-wildcard-cert-pengiuns.com-production
-      hosts:
-        - grafana.${DOMAIN_NAME}
-    
+    grafana:
+      enabled: true
+      adminPassword: admin
+      grafana.ini:
+        users:
+          auto_assign_org_role: Admin
+          default_theme: light
+        server:
+          root_url: https://grafana.${DOMAIN_NAME}
+        auth.basic:
+          enabled: true
+      persistence:
+        enabled: false
+      ingress:
+        enabled: true 
+        ingressClassName: nginx
+        annotations:
+          kubernetes.io/ingress.class: "nginx"
+          cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        tls:
+        - hosts:
+            - grafana.${DOMAIN_NAME}
+          secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+    prometheus:
+      enabled: true
