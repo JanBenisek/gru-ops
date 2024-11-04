@@ -22,5 +22,5 @@ spec:
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
-      name: kube-prometheus-stack-grafana
+      name: grafana
       namespace: grafana
