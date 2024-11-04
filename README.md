@@ -22,7 +22,13 @@ My tiny homelab
 - https://github.com/Stirling-Tools/Stirling-PDF/blob/main/Version-groups.md
 - https://github.com/Stirling-Tools/Stirling-PDF?tab=readme-ov-file
 
-### Grafana
+### Monitoring
+
+- https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack
+- https://artifacthub.io/packages/helm/grafana/loki-stack 
+- https://github.com/digitalocean/Kubernetes-Starter-Kit-Developers/blob/main/04-setup-observability/loki-stack.md
+- https://github.com/digitalocean/Kubernetes-Starter-Kit-Developers/blob/main/04-setup-observability/prometheus-stack.md
+
 
 - https://artifacthub.io/packages/helm/grafana/grafana
 - https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm/
