@@ -31,13 +31,13 @@ spec:
           enabled: true
       persistence:
         enabled: false
-      additionalDataSources:
-        - name: Loki
-          type: loki
-          url: http://loki.loki-stack:3100
-          access: direct
-          basicAuth: false
-          isDefault: false
+      # additionalDataSources: #enable once loki connections works
+      #   - name: Loki
+      #     type: loki
+      #     url: http://loki.loki-stack:3100
+      #     access: direct
+      #     basicAuth: false
+      #     isDefault: false
       ingress:
         enabled: true 
         ingressClassName: nginx
