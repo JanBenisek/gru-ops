@@ -12,7 +12,7 @@ resources:
   # - traefik.yaml
   - hiker.yaml
   - stirling.yaml
-  - grafana.yaml
+  # - grafana.yaml
 configMapGenerator:
   - name: gru-values
     envs:
