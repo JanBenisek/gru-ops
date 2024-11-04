@@ -1,0 +1,45 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: monitoring
+spec:
+  interval: 50m
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: "65.5.1"
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: monitoring
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  values:
+    grafana:
+      enabled: true
+      adminPassword: admin
+      grafana.ini:
+        users:
+          auto_assign_org_role: Admin
+          default_theme: light
+        server:
+          root_url: https://grafana.${DOMAIN_NAME}
+        auth.basic:
+          enabled: true
+      persistence:
+        enabled: false
+      ingress:
+        enabled: true 
+        ingressClassName: nginx
+        annotations:
+          kubernetes.io/ingress.class: "nginx"
+          cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        tls:
+        - hosts:
+            - grafana.${DOMAIN_NAME}
+          secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+    prometheus:
+      enabled: true
