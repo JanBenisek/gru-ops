@@ -19,7 +19,7 @@ spec:
       image:
         # there is a bug where it pulls by default some old tag
         tag: '2.9.3'
-      # serviceAccount: # do I need this?
+      # serviceAccount: # I probably don't need this
       #   name: loki
       #   create: false
     promtail:

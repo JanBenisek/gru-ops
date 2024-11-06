@@ -24,6 +24,7 @@ My tiny homelab
 
 ### Monitoring
 
+- Note that it takes a while for all the resources to start! Some might need delete.
 - https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack
 - https://artifacthub.io/packages/helm/grafana/loki-stack 
 - https://github.com/digitalocean/Kubernetes-Starter-Kit-Developers/blob/main/04-setup-observability/loki-stack.md
