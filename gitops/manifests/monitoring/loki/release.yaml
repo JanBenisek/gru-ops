@@ -16,8 +16,8 @@ spec:
       interval: 1m
   values:
     loki:
-      enabled: true
-      isDefault: true
+      image:
+        tag: '3.2.1' # there is a bug where it pulls by default some old tag
       # serviceAccount: # do I need this?
       #   name: loki
       #   create: false
