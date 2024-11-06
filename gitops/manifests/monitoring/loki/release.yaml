@@ -18,7 +18,7 @@ spec:
     loki:
       image:
         # there is a bug where it pulls by default some old tag
-        tag: 2.9.3
+        tag: '2.9.3'
       # serviceAccount: # do I need this?
       #   name: loki
       #   create: false
