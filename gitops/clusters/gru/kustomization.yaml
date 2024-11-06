@@ -12,8 +12,8 @@ resources:
   # - traefik.yaml
   - hiker.yaml
   - stirling.yaml
-  - grafana.yaml
-  - loki.yaml
+  # - grafana.yaml
+  # - loki.yaml
 configMapGenerator:
   - name: gru-values
     envs:
