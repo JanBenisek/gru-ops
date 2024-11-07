@@ -14,6 +14,29 @@ My tiny homelab
 - https://www.reddit.com/r/homelab/comments/qty1an/public_dns_record_pointing_to_private_ip_address/
 - https://www.reddit.com/r/homelab/comments/17h16g7/cloudflare_dns_pointed_to_internal_ip_address_safe/
 
+## Sealed secrets
+
+- create public key
+
+```shell
+kubeseal --fetch-cert \
+--controller-name=sealed-secrets \
+--controller-namespace=sealed-secrets \
+> pub-cert.pem
+```
+
+- example to create a secret `mysecret` in current (or default) namespace
+
+```shell
+echo -n batman | kubectl create secret \
+generic mysecret --dry-run=client --from-file=foo=/dev/stdin -o json \
+| kubeseal --cert pub-cert.pem \
+| kubectl create -f -
+```
+
+- this will be seen in the logs `k logs  sealed-secrets-6bc55546dd-b6hlh -n sealed-secrets`
+- the secret `k get secret mysecret -o yaml -n monitoring`
+
 ## Apps
 
 ### Stirling
