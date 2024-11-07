@@ -11,7 +11,7 @@ spec:
       version: "2.6.12"
       sourceRef:
         kind: HelmRepository
-        name: bitnami
+        name: sealed-secrets
         namespace: sealed-secrets
   interval: 1h0m0s
   timeout: 10m
