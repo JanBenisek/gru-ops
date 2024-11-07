@@ -31,7 +31,7 @@ spec:
     provider: cloudflare
     cloudflare:
       proxied: false # default is true which did not work, but review
-      secretName: cloudflare-api-token
+      secretName: "cloudflare-api-token"
       # apiKey: CF_API_KEY
       # email: CF_API_EMAIL
       # apiToken: "DVzmh9hcRb_l9pmZrvXpPWFP7Ym67EP3yXqJX8n8"
