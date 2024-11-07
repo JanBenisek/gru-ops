@@ -35,13 +35,13 @@ spec:
       # apiKey: CF_API_KEY
       # email: CF_API_EMAIL
       # apiToken: "DVzmh9hcRb_l9pmZrvXpPWFP7Ym67EP3yXqJX8n8"
-      # secretName: "cloudflare-api-token"
-      env:
-        - name: CF_API_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: cloudflare-api-token
-              key: apiToken
+      secretName: "cloudflare-api-token"
+      # env:
+      #   - name: CF_API_TOKEN
+      #     valueFrom:
+      #       secretKeyRef:
+      #         name: cloudflare-api-token
+      #         key: apiToken
       # - name: CF_API_KEY
       #   valueFrom:
       #     secretKeyRef:
