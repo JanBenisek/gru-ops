@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: external-dns
-      version: "8.3.9"
+      version: "8.5.1"
       sourceRef:
         kind: HelmRepository
         name: bitnami
@@ -31,22 +31,22 @@ spec:
     provider: cloudflare
     cloudflare:
       proxied: false # default is true which did not work, but review
-      secretName: "cloudflare-api-token"
+      # secretName: "cloudflare-api-token"
       # apiKey: CF_API_KEY
       # email: CF_API_EMAIL
       # apiToken: "DVzmh9hcRb_l9pmZrvXpPWFP7Ym67EP3yXqJX8n8"
       # secretName: "cloudflare-api-token"
-      # env:
+      env:
       #   - name: CF_API_TOKEN
       #     valueFrom:
       #       secretKeyRef:
       #         name: cloudflare-api-token
       #         key: apiToken
-      # - name: CF_API_KEY
-      #   valueFrom:
-      #     secretKeyRef:
-      #       name: cloudflare-api-key
-      #       key: apiKey
+      - name: CF_API_KEY
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare-api-key
+            key: apiKey
       # - name: CF_API_EMAIL
       #   valueFrom:
       #     secretKeyRef:
