@@ -13,38 +13,34 @@ My tiny homelab
 - https://www.reddit.com/r/homelab/comments/qty1an/public_dns_record_pointing_to_private_ip_address/
 - https://www.reddit.com/r/homelab/comments/17h16g7/cloudflare_dns_pointed_to_internal_ip_address_safe/
 
-## Sealed secrets
-
-- create public key
-
-```shell
-kubeseal --fetch-cert \
---controller-name=sealed-secrets \
---controller-namespace=sealed-secrets \
-> pub-cert.pem
-```
-
-- example to create a secret `mysecret` in current (or default) namespace
-
-```shell
-echo -n batman | kubectl create secret \
-generic mysecret --dry-run=client --from-file=foo=/dev/stdin -o json \
-| kubeseal --cert pub-cert.pem \
-| kubectl create -f -
-```
-
-- this will be seen in the logs `k logs  sealed-secrets-6bc55546dd-b6hlh -n sealed-secrets`
-- the secret `k get secret mysecret -o yaml -n monitoring`
 
 ## Apps
 
 ### cert-manager
 
 - Need to have cloudflare secret
+```shell
+k create secret generic cloudflare-api-token \
+  --namespace cert-manager \
+  --dry-run=client \
+  --from-literal=cloudflare_api_token=<SECRET> -o json \
+  | kubeseal --cert "./${PUBLICKEY}" \
+  > /Users/janbenisek/GithubRepos/gru-ops/gitops/manifests/cert-manager/certs/cloudflare-api-token.yaml
+```
 
 ### external-dns
 
-- Need to have cloudflare secret
+- Need to have cloudflare secret (sealed).
+- Follow the procedure in `sealed secrets`, then
+
+```shell
+k create secret generic cloudflare-api-token \
+  --namespace external-dns \
+  --dry-run=client \
+  --from-literal=cloudflare_api_token=<SECRET> -o json \
+  | kubeseal --cert "./${PUBLICKEY}" \
+  > /Users/janbenisek/GithubRepos/gru-ops/gitops/manifests/external-dns/cloudflare-api-token.yaml
+```
 
 ### hiker
 
@@ -73,26 +69,24 @@ generic mysecret --dry-run=client --from-file=foo=/dev/stdin -o json \
 
 ### sealed secrets
 
-- create public key
+- Create my own keys. Pod needs to be rebooted
 
 ```shell
-kubeseal --fetch-cert \
---controller-name=sealed-secrets \
---controller-namespace=sealed-secrets \
-> pub-cert.pem
+export PRIVATEKEY="sealed-secrets-private.key"
+export PUBLICKEY="sealed-secrets-public.crt"
+export NAMESPACE="sealed-secrets"
+export SECRETNAME="my-sealed-secrets-certs"
+
+-- valid for 2yrs
+openssl req -x509 -days 730 -nodes -newkey rsa:4096 -keyout "$PRIVATEKEY" -out "$PUBLICKEY" -subj "/CN=sealed-secret/O=sealed-secret"
+
+k -n "$NAMESPACE" create secret tls "$SECRETNAME" --cert="$PUBLICKEY" --key="$PRIVATEKEY"
+k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-secrets-key=active
 ```
 
-- example to create a secret `mysecret` in current (or default) namespace
-
-```shell
-echo -n batman | kubectl create secret \
-generic mysecret --dry-run=client --from-file=foo=/dev/stdin -o json \
-| kubeseal --cert pub-cert.pem \
-| kubectl create -f -
-```
-
-- this will be seen in the logs `k logs  sealed-secrets-6bc55546dd-b6hlh -n sealed-secrets`
-- the secret `k get secret mysecret -o yaml -n monitoring`
+- readings
+  - https://geek-cookbook.funkypenguin.co.nz/kubernetes/sealed-secrets/
+  - https://github.com/bitnami-labs/sealed-secrets/blob/main/docs/bring-your-own-certificates.md
 
 ### secret-replicator
 

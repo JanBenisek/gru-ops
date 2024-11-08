@@ -18,5 +18,5 @@ spec:
         cloudflare:
           email: benisekj@gmail.com
           apiTokenSecretRef:
-            name: cloudflare-api-key # need to be created in this namespace
-            key: apiKey
+            name: cloudflare-api-token
+            key: cloudflare_api_token

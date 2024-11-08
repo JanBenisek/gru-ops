@@ -18,7 +18,6 @@ spec:
         cloudflare:
           email: benisekj@gmail.com
           apiTokenSecretRef:
-            name: cloudflare-api-key # need to be created in this namespace
-            key: apiKey
-# k create secret generic cloudflare-api-key --from-literal=apiKey=FOO -n cert-manager
+            name: cloudflare-api-token
+            key: cloudflare_api_token
 
