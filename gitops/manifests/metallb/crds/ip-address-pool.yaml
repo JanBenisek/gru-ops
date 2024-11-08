@@ -6,8 +6,5 @@ metadata:
 spec:
   addresses:
     - 192.168.178.100-192.168.178.250
-    # - 42.176.25.64/30
-    # - 192.168.254.0/24
     # FYI it I don't see the range in `netstat -rn``, it will not work
-    # Default there is 192.168.178.
-    # 192.168, 172.16 and 10. are reserved private IPs, cloudflare will reject them
+    # must be in my DHCP range which is 192.168.178.

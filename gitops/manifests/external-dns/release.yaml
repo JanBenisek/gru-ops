@@ -5,6 +5,7 @@ metadata:
   namespace: external-dns
 spec:
   releaseName: external-dns
+  interval: 1h0m0s
   chart:
     spec:
       chart: external-dns
@@ -13,13 +14,11 @@ spec:
         kind: HelmRepository
         name: bitnami
         namespace: external-dns
-  interval: 1h0m0s
   install:
     remediation:
       retries: 3
   values:
     logLevel: debug
-    # txtPrefix: "external-dns."
     image:
       pullPolicy: Always
     domainFilters:
@@ -30,5 +29,5 @@ spec:
       - ingress
     provider: cloudflare
     cloudflare:
-      proxied: false # default is true which did not work, but review
+      proxied: false 
       secretName: "cloudflare-api-token" # the key HAS TO BE `cloudflare_api_token`

@@ -4,15 +4,15 @@ metadata:
   name: cert-manager
 spec:
   releaseName: cert-manager
+  interval: 1h0m0s
   chart:
     spec:
       chart: cert-manager
+      version: "1.12.2"
       sourceRef:
         kind: HelmRepository
         name: jetstack
         namespace: cert-manager
-      version: "1.12.2"
-  interval: 1h0m0s
   install:
     remediation:
       retries: 3
