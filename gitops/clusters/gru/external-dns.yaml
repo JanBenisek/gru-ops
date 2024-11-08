@@ -4,15 +4,15 @@ metadata:
   name: external-dns
   namespace: flux-system
 spec:
+  path: ./gitops/manifests/external-dns
+  interval: 15m
+  prune: true # remove any elements later removed from the above path
+  timeout: 20m
   dependsOn:
     - name: ingress-nginx
       namespace: flux-system
     - name: sealed-secrets
       namespace: flux-system
-  interval: 15m
-  path: ./gitops/manifests/external-dns
-  prune: true # remove any elements later removed from the above path
-  timeout: 10m # if not set, this defaults to interval duration, which is 1h
   sourceRef:
     kind: GitRepository
     name: flux-system

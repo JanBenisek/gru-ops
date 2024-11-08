@@ -4,21 +4,21 @@ metadata:
   name: grafana
   namespace: flux-system
 spec:
+  path: ./gitops/manifests/monitoring/grafana
+  interval: 15m
+  prune: true 
+  timeout: 20m 
+  validation: server
   dependsOn:
     - name: external-dns
       namespace: flux-system
-  interval: 15m
-  path: ./gitops/manifests/monitoring/grafana
-  prune: true 
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
   postBuild:
     substituteFrom:
     - kind: ConfigMap
       name: gru-values
-  timeout: 20m 
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  validation: server
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment

@@ -19,6 +19,7 @@ My tiny homelab
 ### cert-manager
 
 - Need to have cloudflare secret
+
 ```shell
 k create secret generic cloudflare-api-token \
   --namespace cert-manager \

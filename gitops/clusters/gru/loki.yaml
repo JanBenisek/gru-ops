@@ -4,20 +4,20 @@ metadata:
   name: loki
   namespace: flux-system
 spec:
+  path: ./gitops/manifests/monitoring/loki
+  interval: 15m
+  prune: true 
+  timeout: 20m
   dependsOn:
     - name: external-dns
       namespace: flux-system
-  interval: 15m
-  path: ./gitops/manifests/monitoring/loki
-  prune: true 
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
   postBuild:
     substituteFrom:
     - kind: ConfigMap
       name: gru-values
-  timeout: 20m
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
   # validation: server
   # healthChecks: # there seems to be no deployment?
   #   - apiVersion: apps/v1

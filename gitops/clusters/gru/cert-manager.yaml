@@ -4,15 +4,16 @@ metadata:
   name: cert-manager
   namespace: flux-system
 spec:
+  path: ./gitops/manifests/cert-manager/controller
+  interval: 10m0s
+  prune: true
+  timeout: 20m
   dependsOn:
     - name: external-dns
       namespace: flux-system
-  interval: 10m0s
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./gitops/manifests/cert-manager/controller
-  prune: true
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment

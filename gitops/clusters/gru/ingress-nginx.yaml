@@ -4,15 +4,15 @@ metadata:
   name: ingress-nginx
   namespace: flux-system
 spec:
+  path: ./gitops/manifests/ingress-nginx
   interval: 1h
   retryInterval: 1m
+  prune: true
   timeout: 5m
+  wait: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./gitops/manifests/ingress-nginx
-  prune: true
-  wait: true
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
