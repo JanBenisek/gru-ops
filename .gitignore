@@ -1,2 +1,6 @@
 # GitHub actions binaries
 bin/
+
+# Talos 
+talos/secrets.yaml
+talos/rendered/
