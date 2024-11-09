@@ -2,17 +2,14 @@
 
 My tiny homelab
 
-## TO-DOs
 
-- [] the library for secret replication has been archived, find a replacement
-- [] better way to manage secrets, use sops / sealed whatever
-- [] hiker is not removed when removed from here and reconcilled
+## Talos
 
-## DNS rebinding attack
+Let's add the commands later.
 
-- https://www.reddit.com/r/homelab/comments/qty1an/public_dns_record_pointing_to_private_ip_address/
-- https://www.reddit.com/r/homelab/comments/17h16g7/cloudflare_dns_pointed_to_internal_ip_address_safe/
+## Flux
 
+- [] some pods, like hiker, are not removed when removed from here and reconciled
 
 ## Apps
 
@@ -91,7 +88,7 @@ k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-se
 
 ### secret-replicator
 
-- replace by something more modern with better features, like removing/replacing old secrets
+- [] the library for secret replication has been archived, find a replacement
 - it looks for `contains` secrets to replicate
 
 ### stirling
