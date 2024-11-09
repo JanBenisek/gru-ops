@@ -28,7 +28,7 @@ spec:
     # it runs regex match, hence it works for both:
     # https://github.com/kiwigrid/secret-replicator/blob/f43c9c6c983ed06ea11ca631c5e86efbca9b558d/controllers/secret_controller.go#L103
     # secretList: "letsencrypt-wildcard-cert"
-    secretList: "letsencrypt-wildcard-cert-pengiuns.com-production"
+    secretList: "letsencrypt-wildcard-cert"
     # secretList: "secret1,secret2
 
     ignoreNamespaces: "kube-system,kube-public"
