@@ -6,8 +6,8 @@ resources:
   - metallb-crds.yaml
   - sealed-secrets.yaml
   - external-dns.yaml
-  # - cert-manager.yaml
-  # - certs.yaml
+  - cert-manager.yaml
+  - certs.yaml
   - secret-replicator.yaml
   - ingress-nginx.yaml
   - hiker.yaml
