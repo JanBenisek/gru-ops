@@ -2,7 +2,6 @@
 
 My tiny homelab
 
-
 ## Talos
 
 Let's add the commands later.
