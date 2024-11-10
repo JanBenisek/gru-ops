@@ -43,6 +43,10 @@ k create secret generic cloudflare-api-token \
 
 - Just an experiment, try to add endpoints for Grafana to monitor?
 
+### homepage
+
+- Homepage for all tools [source](https://gethomepage.dev/).
+
 ### ingress-nginx
 
 - Ingress, works like a charm.
