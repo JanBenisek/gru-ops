@@ -32,8 +32,7 @@ spec:
           kubernetes.io/ingress.class: "nginx"
           cert-manager.io/cluster-issuer: "letsencrypt-prod"
         hosts:
-          - host: 
-              - it-tools.${DOMAIN_NAME}
+          - host: it-tools.${DOMAIN_NAME}
             paths:
               - path: /
                 pathType: Prefix
