@@ -20,7 +20,7 @@ spec:
       # tag: v0.6.0
 
     # Enable RBAC. RBAC is necessary to use Kubernetes integration
-    enableRbac: false
+    enableRbac: true
 
     extraClusterRoles:
       # - apiGroups:
@@ -33,9 +33,9 @@ spec:
     serviceAccount:
       # Specify a different service account name. When blank it will default to the release
       # name if *create* is enabled, otherwise it will refer to the default service account.
-      name: ""
+      name: "homepage"
       # Create service account. Needed when RBAC is enabled.
-      create: false
+      create: true
 
     service:
       main:
@@ -104,12 +104,18 @@ spec:
                 href: http://localhost/
                 description: Homepage is 😎
       widgets:
-        - resources:
-            # change backend to 'kubernetes' to use Kubernetes integration. Requires RBAC.
-            backend: resources
-            expanded: true
-            cpu: true
-            memory: true
+        - kubernetes:
+            cluster:
+              show: true
+              cpu: true
+              memory: true
+              showLabel: true
+              label: "cluster"
+            nodes:
+              show: true
+              cpu: true
+              memory: true
+              showLabel: true
         - search:
             provider: duckduckgo
             target: _blank
@@ -128,7 +134,7 @@ spec:
         #       showLabel: true
       kubernetes:
         # change mode to 'cluster' to use RBAC service account
-        mode: disable
+        mode: cluster
       docker:
       settings:
 
@@ -162,7 +168,7 @@ spec:
 
     persistence:
       logs:
-        enabled: false
+        enabled: true
         type: emptyDir
         mountPath: /app/config/logs
 
