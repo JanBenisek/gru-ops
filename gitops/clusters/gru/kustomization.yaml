@@ -12,7 +12,7 @@ resources:
   - secret-replicator.yaml
   # Apps
   - hiker.yaml
-  - stirling.yaml
+  # - stirling.yaml
   # - grafana.yaml
   # - loki.yaml
   # - it-tools.yaml
