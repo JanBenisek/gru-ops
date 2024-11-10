@@ -26,21 +26,21 @@ spec:
         enabled: false
     ingress:
       main:
-      enabled: true
-      className: nginx
-      annotations:
-        kubernetes.io/ingress.class: "nginx"
-        cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      hosts:
-        - host: 
-            - it-tools.${DOMAIN_NAME}
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                identifier: it-tools
-                port: http
-      tls:
-        - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
-          hosts:
-            - it-tools.${DOMAIN_NAME}
+        enabled: true
+        className: nginx
+        annotations:
+          kubernetes.io/ingress.class: "nginx"
+          cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        hosts:
+          - host: 
+              - it-tools.${DOMAIN_NAME}
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: it-tools
+                  port: http
+        tls:
+          - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+            hosts:
+              - it-tools.${DOMAIN_NAME}
