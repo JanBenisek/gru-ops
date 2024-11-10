@@ -51,6 +51,6 @@ spec:
         tls:
           - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
             hosts:
-              - it-tools.${DOMAIN_NAME}
+              - grafana.${DOMAIN_NAME}
     prometheus:
       enabled: true
