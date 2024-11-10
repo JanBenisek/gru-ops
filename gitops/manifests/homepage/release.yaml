@@ -67,7 +67,7 @@ spec:
           cert-manager.io/cluster-issuer: "letsencrypt-prod"
         ingressClassName: "nginx"
         hosts:
-          - host: home.${DOMAIN_NAME}
+          - host: homepage.${DOMAIN_NAME}
             paths:
               - path: /
                 pathType: Prefix
@@ -77,7 +77,7 @@ spec:
         tls:
           - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
             hosts:
-              - home.${DOMAIN_NAME}
+              - homepage.${DOMAIN_NAME}
 
     # All the config files for Homepage can be specified under their relevant config block.
     config:
