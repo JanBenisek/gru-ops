@@ -19,8 +19,8 @@ spec:
     substituteFrom:
     - kind: ConfigMap
       name: gru-values
-  # healthChecks:
-  #   - apiVersion: apps/v1
-  #     kind: Deployment
-  #     name: homepage
-  #     namespace: homepage
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: homepage
+      namespace: homepage
