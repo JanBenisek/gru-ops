@@ -7,8 +7,8 @@ resources:
   - ingress-nginx.yaml
   - sealed-secrets.yaml
   - external-dns.yaml
-  # - cert-manager.yaml
-  # - certs.yaml
+  - cert-manager.yaml
+  - certs.yaml
   # - secret-replicator.yaml
   # - hiker.yaml
   # - stirling.yaml
