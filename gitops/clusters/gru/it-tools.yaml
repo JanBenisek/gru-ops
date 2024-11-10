@@ -19,8 +19,8 @@ spec:
     substituteFrom:
     - kind: ConfigMap
       name: gru-values
-  # healthChecks:
-  #   - apiVersion: apps/v1
-  #     kind: Deployment
-  #     name: it-tools
-  #     namespace: it-tools
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: it-tools
+      namespace: it-tools
