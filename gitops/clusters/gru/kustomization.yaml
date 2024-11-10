@@ -12,8 +12,8 @@ resources:
   - ingress-nginx.yaml
   - hiker.yaml
   - stirling.yaml
-  - grafana.yaml
-  - loki.yaml
+  # - grafana.yaml
+  # - loki.yaml
   - it-tools.yaml
   - homepage.yaml
 configMapGenerator:
