@@ -261,6 +261,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
+  ingressClassName: nginx
   rules:
     - host: homepage.${DOMAIN_NAME}
       http:
@@ -272,3 +273,7 @@ spec:
                 name: homepage
                 port:
                   number: 80 # changed from 3000
+  tls:
+    - hosts:
+        - homepage.${DOMAIN_NAME}
+      secretName: letsencrypt-wildcard-cert-pengiuns.com-production
