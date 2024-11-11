@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: homepage
 resources:
   - namespace.yaml
-  - repository.yaml
-  - release.yaml
+  - homepage.yaml
