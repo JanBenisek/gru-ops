@@ -11,7 +11,7 @@ resources:
   - certs.yaml
   - secret-replicator.yaml
   # Apps
-  # - hiker.yaml
+  - hiker.yaml
   - stirling.yaml
   - grafana.yaml
   - loki.yaml
