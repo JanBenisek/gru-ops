@@ -45,8 +45,8 @@ spec:
           kubernetes.io/ingress.class: "nginx"
           cert-manager.io/cluster-issuer: "letsencrypt-prod"
         tls:
-          - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
-            hosts:
+          - hosts:
               - grafana.${DOMAIN_NAME}
+            secretName: letsencrypt-wildcard-cert-pengiuns.com-production
     prometheus:
       enabled: true
