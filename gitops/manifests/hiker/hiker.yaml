@@ -36,6 +36,7 @@ metadata:
   name: hiker
   namespace: hiker
   labels:
+    app: hiker
     app.kubernetes.io/name: hiker
 spec:
   selector:
@@ -52,6 +53,7 @@ kind: Ingress
 metadata:
   name: hiker
   labels:
+    app: hiker
     app.kubernetes.io/name: hiker
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
