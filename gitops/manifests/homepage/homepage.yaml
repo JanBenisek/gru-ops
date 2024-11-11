@@ -33,33 +33,65 @@ metadata:
 data:
   kubernetes.yaml: |
     mode: cluster
-  settings.yaml: ""
-  #settings.yaml: |
-  #  providers:
-  #    longhorn:
-  #      url: https://longhorn.my.network
+  settings.yaml: |
+    title: Home of pengiuns
+    theme: dark
+    layout:
+      Media:
+        style: row
+        columns: 4
+    headerStyle: clean
+    language: en
+    quicklaunch:
+      searchDescriptions: true
+      hideInternetSearch: true
+      showSearchSuggestions: true
+      hideVisitURL: true
+      provider: google
   custom.css: ""
   custom.js: ""
   bookmarks.yaml: |
     - Developer:
         - Github:
-            - abbr: GH
-              href: https://github.com/
+            - icon: github.png
+              href: https://github.com/JanBenisek/gru-ops
+        - Notion:
+            - icon: notion.png
+              href: https://www.notion.so/Homelab-074c94b564de4cb7b57de7a7f60e0e1b
   services.yaml: |
-    - My First Group:
-        - My First Service:
-            href: http://localhost/
-            description: Homepage is awesome
+    - Monitoring:
+        - Grafana:
+            icon: grafana.png
+            href: https://grafana.pengiuns.com
+            description: Them logs!
+            ping: grafana.pengiuns.com
+            namespace: monitoring 
+            app: grafana
 
-    - My Second Group:
-        - My Second Service:
-            href: http://localhost/
-            description: Homepage is the best
+    - Tools:
+        - IT-Tools:
+            icon: it-tools.png
+            href: https://it-tools.pengiuns.com/
+            description: Swiss knife of internet
+            ping: it-tools.pengiuns.com
+            namespace: it-tools 
+            app: it-tools
+        - Stirling PDF:
+            icon: stirling-pdf.png
+            href: https://stirling.pengiuns.com/?lang=en_GB
+            description: PDF tools
+            ping: stirling.pengiuns.com
+            namespace: stirling
+            app: stirling
 
-    - My Third Group:
-        - My Third Service:
-            href: http://localhost/
-            description: Homepage is 😎
+    - Fun:
+        - Hiker:
+            icon: go.png
+            href: https://hiker.pengiuns.com
+            description: Let's go hiking!
+            ping: hiker.pengiuns.com
+            namespace: hiker
+            app: hiker
   widgets.yaml: |
     - kubernetes:
         cluster:
@@ -79,7 +111,7 @@ data:
         cpu: true
         memory: true
     - search:
-        provider: duckduckgo
+        provider: google
         target: _blank
   docker.yaml: ""
 
