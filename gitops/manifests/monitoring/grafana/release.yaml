@@ -28,7 +28,7 @@ spec:
         server:
           root_url: https://grafana.${DOMAIN_NAME}
         auth.basic:
-          enabled: true
+          enabled: false
       persistence:
         enabled: false
       # additionalDataSources: # Enable later? But then need dependsOn
@@ -44,6 +44,8 @@ spec:
         annotations:
           kubernetes.io/ingress.class: "nginx"
           cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        hosts:
+          - grafana.${DOMAIN_NAME}
         tls:
           - hosts:
               - grafana.${DOMAIN_NAME}
