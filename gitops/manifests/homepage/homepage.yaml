@@ -121,9 +121,11 @@ data:
         provider: google
         target: _blank
     - openmeteo:
-        label: Current
+        label: Adliswil
         latitude: 47.310251355387244
         longitude: 8.524921680315584
+        timezone: "Europe/Zurich"
+        units: metric
         cache: 5
   docker.yaml: ""
 
