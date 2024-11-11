@@ -122,8 +122,8 @@ data:
         target: _blank
     - openmeteo:
         label: Adliswil
-        latitude: 47.310251355387244
-        longitude: 8.524921680315584
+        latitude: 47.31
+        longitude: 8.5246
         timezone: "Europe/Berlin"
         units: metric
         cache: 5

@@ -4,18 +4,15 @@ metadata:
   name: stirling
   namespace: stirling
   labels:
-    app: stirling
     app.kubernetes.io/name: stirling
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: stirling
       app.kubernetes.io/name: stirling
   template:
     metadata:
       labels:
-        app: stirling
         app.kubernetes.io/name: stirling
     spec:
       containers:
@@ -41,7 +38,7 @@ metadata:
     app.kubernetes.io/name: stirling
 spec:
   selector:
-    app: stirling
+    app.kubernetes.io/name: stirling
   ports:
   - name: http
     port: 80 # we talk to 80
