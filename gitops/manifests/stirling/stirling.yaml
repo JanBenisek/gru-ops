@@ -4,15 +4,17 @@ metadata:
   name: stirling
   namespace: stirling
   labels:
+    app: stirling
     app.kubernetes.io/name: stirling
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: stirling
+      app: stirling
   template:
     metadata:
       labels:
+        app: stirling
         app.kubernetes.io/name: stirling
     spec:
       containers:
@@ -38,7 +40,7 @@ metadata:
     app.kubernetes.io/name: stirling
 spec:
   selector:
-    app.kubernetes.io/name: stirling
+    app: stirling
   ports:
   - name: http
     port: 80 # we talk to 80
@@ -50,8 +52,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: stirling
-  labels:
-    app.kubernetes.io/name: stirling
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     kubernetes.io/ingress.class: "nginx"
