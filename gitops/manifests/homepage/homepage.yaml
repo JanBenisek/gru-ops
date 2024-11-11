@@ -124,7 +124,7 @@ data:
         label: Adliswil
         latitude: 47.310251355387244
         longitude: 8.524921680315584
-        timezone: "Europe/Zurich"
+        timezone: "Europe/Berlin"
         units: metric
         cache: 5
   docker.yaml: ""
