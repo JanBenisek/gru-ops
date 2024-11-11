@@ -5,15 +5,18 @@ metadata:
   namespace: stirling
   labels:
     app: stirling
+    app.kubernetes.io/name: stirling
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: stirling
+      app.kubernetes.io/name: stirling
   template:
     metadata:
       labels:
         app: stirling
+        app.kubernetes.io/name: stirling
     spec:
       containers:
       - name: nginx
