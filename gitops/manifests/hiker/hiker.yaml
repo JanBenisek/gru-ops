@@ -5,6 +5,7 @@ metadata:
   namespace: hiker
   labels:
     app: hiker
+    app.kubernetes.io/name: hiker
 spec:
   replicas: 1
   selector:
@@ -34,6 +35,8 @@ kind: Service
 metadata:
   name: hiker
   namespace: hiker
+  labels:
+    app.kubernetes.io/name: hiker
 spec:
   selector:
     app: hiker
@@ -48,6 +51,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: hiker
+  labels:
+    app.kubernetes.io/name: hiker
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     kubernetes.io/ingress.class: "nginx"

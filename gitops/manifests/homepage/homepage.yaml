@@ -87,7 +87,6 @@ data:
             icon: go.png
             href: https://hiker.pengiuns.com
             description: Let's go hiking!
-            ping: hiker.pengiuns.com
             namespace: hiker
             app: hiker
     
