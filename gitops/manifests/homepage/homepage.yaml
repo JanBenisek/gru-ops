@@ -55,6 +55,7 @@ data:
         - Github:
             - icon: github.png
               href: https://github.com/JanBenisek/gru-ops
+    - Docs:
         - Notion:
             - icon: notion.png
               href: https://www.notion.so/Homelab-074c94b564de4cb7b57de7a7f60e0e1b
@@ -64,7 +65,6 @@ data:
             icon: grafana.png
             href: https://grafana.pengiuns.com
             description: Them logs!
-            ping: grafana.pengiuns.com
             namespace: monitoring 
             app: grafana
 
@@ -73,14 +73,12 @@ data:
             icon: it-tools.png
             href: https://it-tools.pengiuns.com/
             description: Swiss knife of internet
-            ping: it-tools.pengiuns.com
             namespace: it-tools 
             app: it-tools
         - Stirling PDF:
             icon: stirling-pdf.png
             href: https://stirling.pengiuns.com/?lang=en_GB
             description: PDF tools
-            ping: stirling.pengiuns.com
             namespace: stirling
             app: stirling
 
@@ -92,6 +90,16 @@ data:
             ping: hiker.pengiuns.com
             namespace: hiker
             app: hiker
+    
+    - Experiments:
+      - Router:
+          icon: avmfritzbox.png
+          href: https://fritz.box/
+          description: Router boi
+          widget:
+            type: fritzbox
+            url: http://192.168.178.1
+            fields: ["down", "up", "received", "sent"]
   widgets.yaml: |
     - kubernetes:
         cluster:
@@ -99,7 +107,7 @@ data:
           cpu: true
           memory: true
           showLabel: true
-          label: "cluster"
+          label: "Gru"
         nodes:
           show: true
           cpu: true
@@ -113,6 +121,11 @@ data:
     - search:
         provider: google
         target: _blank
+    - openmeteo:
+        label: Current
+        latitude: 47.310251355387244
+        longitude: 8.524921680315584
+        cache: 5
   docker.yaml: ""
 
 ---
