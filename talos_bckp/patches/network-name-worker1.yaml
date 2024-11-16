@@ -1,0 +1,4 @@
+# patches/network-name-worker1.yaml
+machine:
+  network:
+    hostnamr: stuart

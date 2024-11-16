@@ -1,0 +1,7 @@
+# patches/all.yaml 
+machine:
+  features:
+    hostDNS:
+      enabled: false
+  install:
+    disk: /dev/nvme0n1

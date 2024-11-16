@@ -1,0 +1,9 @@
+# patches/controlplane.yaml
+cluster:
+  allowSchedulingOnControlPlanes: true
+machine:
+  network:
+    hostname: kevin
+  kubelet:
+    clusterDNS:
+      - 192.168.178.1
