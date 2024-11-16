@@ -30,6 +30,14 @@ spec:
           limits:
             memory: "512Mi"  
             cpu: "500m"    
+        volumeMounts:
+        - mountPath: /mnt/store
+          name: local-storage
+      volumes:
+        - name: local-storage
+          persistentVolumeClaim:
+            claimName: local-hostpath-pvc
+
 ---
 apiVersion: v1
 kind: Service
