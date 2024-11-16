@@ -12,7 +12,7 @@ resources:
   - secret-replicator.yaml
   - openebs.yaml
   # Apps
-  # - hiker.yaml
+  - hiker.yaml
   - stirling.yaml
   - grafana.yaml
   - loki.yaml
