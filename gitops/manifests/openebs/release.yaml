@@ -17,7 +17,7 @@ spec:
   values:
     # TODO: add resource limitations
     image:
-      pullPolicy: Always
+      pullPolicy: IfNotPresent #Always got me rate limited
     engines:
       local:
         lvm:
