@@ -11,6 +11,9 @@ cluster:
             namespaces:
               - mayastor
 machine:
+  # moved from all.yaml
+  nodeLabels:
+    openebs.io/engine: "mayastor" # for EBS
   network:
     hostname: kevin
   kubelet:
