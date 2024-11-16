@@ -16,6 +16,15 @@ spec:
       labels:
         app: hiker
         app.kubernetes.io/name: hiker
+    affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname  # might be needed for EBS? 
+                    operator: In 
+                    values:
+                      - kevin
     spec:
       containers:
       - name: nginx
