@@ -16,9 +16,9 @@ spec:
       interval: 12h
   values:
     # TODO: add resource limitations
-    localpv-provisioner:
-      hostpathClass:
-        enabled: false # disable default SC
+    # localpv-provisioner:
+    #   hostpathClass:
+    #     enabled: false # disable default SC
     image:
       pullPolicy: IfNotPresent #Always got me rate limited
     engines:

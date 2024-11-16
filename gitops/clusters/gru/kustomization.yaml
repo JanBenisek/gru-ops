@@ -13,7 +13,7 @@ resources:
   - openebs.yaml
   # - harbor.yaml
   # Apps
-  # - hiker.yaml
+  - hiker.yaml
   - stirling.yaml
   - grafana.yaml
   - loki.yaml
