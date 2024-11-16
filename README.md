@@ -39,6 +39,10 @@ k create secret generic cloudflare-api-token \
   > /Users/janbenisek/GithubRepos/gru-ops/gitops/manifests/external-dns/cloudflare-api-token.yaml
 ```
 
+### harbor
+
+- Store my containers.
+
 ### hiker
 
 - Just an experiment, try to add endpoints for Grafana to monitor?
@@ -71,6 +75,10 @@ k create secret generic cloudflare-api-token \
   - https://artifacthub.io/packages/helm/grafana/grafana
   - https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm/
   - https://fluxcd.io/flux/monitoring/metrics/
+
+### openebs
+
+- ... in progress ...
 
 ### sealed secrets
 
