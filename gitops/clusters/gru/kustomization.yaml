@@ -12,13 +12,13 @@ resources:
   - secret-replicator.yaml
   - openebs.yaml
   # Apps
-  - hiker.yaml
+  # - hiker.yaml
   - stirling.yaml
   - grafana.yaml
   - loki.yaml
   - it-tools.yaml
   - homepage.yaml
-  - harbor.yaml
+  # - harbor.yaml
 configMapGenerator:
   - name: gru-values
     envs:
