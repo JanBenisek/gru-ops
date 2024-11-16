@@ -15,6 +15,7 @@ metadata:
           - "kubernetes.io/hostname=kevin"
 provisioner: openebs.io/local
 volumeBindingMode: WaitForFirstConsumer
+# https://openebs.io/docs/user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-configuration
 allowedTopologies:
 - matchLabelExpressions:
   - key: kubernetes.io/hostname
