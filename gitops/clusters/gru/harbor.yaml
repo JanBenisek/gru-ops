@@ -19,8 +19,8 @@ spec:
     substituteFrom:
     - kind: ConfigMap
       name: gru-values
-  # healthChecks:
-  #   - apiVersion: apps/v1
-  #     kind: Deployment
-  #     name: harbor
-  #     namespace: harbor
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: harbor-core # there is bunch more"
+      namespace: harbor
