@@ -1,0 +1,17 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-hostpath-kevin
+  namespace: openebs
+  annotations:
+    openebs.io/cas-type: local
+    cas.openebs.io/config: |
+      - name: StorageType
+        value: "hostpath"
+      - name: BasePath
+        value: /dev/sda
+      - name: NodeAffinityLabels
+        list:
+          - "kubernetes.io/hostname=kevin"
+provisioner: openebs.io/local
+volumeBindingMode: WaitForFirstConsumer
