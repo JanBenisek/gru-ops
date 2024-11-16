@@ -19,5 +19,5 @@ spec:
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
-      name: openebs-lvm-localpv-controller
+      name: openebs-lvm-localpv-controller # there are more
       namespace: openebs
