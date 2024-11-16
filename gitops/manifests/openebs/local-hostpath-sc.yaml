@@ -15,3 +15,8 @@ metadata:
           - "kubernetes.io/hostname=kevin"
 provisioner: openebs.io/local
 volumeBindingMode: WaitForFirstConsumer
+allowedTopologies:
+- matchLabelExpressions:
+  - key: kubernetes.io/hostname
+    values:
+    - kevin
