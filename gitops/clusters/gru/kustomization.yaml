@@ -10,7 +10,7 @@ resources:
   - cert-manager.yaml
   - certs.yaml
   - secret-replicator.yaml
-  - openebs.yaml
+  # - openebs.yaml
   # - harbor.yaml
   # Apps
   # - hiker.yaml
