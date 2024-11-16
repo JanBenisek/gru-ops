@@ -1,4 +1,0 @@
-# patches/install-to-ssd.yaml
-machine:
-  install:
-    disk: /dev/nvme0n1

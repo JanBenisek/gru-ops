@@ -1,5 +1,0 @@
-# patches/custom-dns.yaml
-machine:
-  kubelet:
-    clusterDNS:
-      - 192.168.178.1

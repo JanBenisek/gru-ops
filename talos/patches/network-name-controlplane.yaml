@@ -1,4 +1,0 @@
-# patches/network-name-controlplane.yaml
-machine:
-  network:
-    hostnamr: kevin

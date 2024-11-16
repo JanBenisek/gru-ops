@@ -1,5 +1,0 @@
-# patches/disable-host-dns.yaml
-machine:
-  features:
-    hostDNS:
-      enabled: false

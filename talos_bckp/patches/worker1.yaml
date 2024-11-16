@@ -1,4 +1,0 @@
-# worker name in the network
-machine:
-  network:
-    hostname: stuart

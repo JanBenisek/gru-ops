@@ -5,3 +5,19 @@ machine:
       enabled: false
   install:
     disk: /dev/nvme0n1
+    image: ghcr.io/siderolabs/installer:v1.8.3 # Allows for supplying the image used to perform the installation.
+    wipe: True # Indicates if the installation disk should be wiped at installation time.
+  
+  sysctls:
+    vm.nr_hugepages: "1024" # for EBS
+  nodeLabels:
+    openebs.io/engine: "mayastor" # for EBS
+  kubelet:
+    extraMounts: # for EBS
+      - destination: /var/local
+        type: bind
+        source: /var/local
+        options:
+          - bind
+          - rshared
+          - rw
