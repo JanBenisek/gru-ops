@@ -10,9 +10,9 @@ resources:
   - cert-manager.yaml
   - certs.yaml
   - secret-replicator.yaml
-  - openebs.yaml
+  # - openebs.yaml
   # Apps
-  - hiker.yaml
+  # - hiker.yaml
   - stirling.yaml
   - grafana.yaml
   - loki.yaml
