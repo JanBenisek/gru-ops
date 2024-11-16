@@ -36,7 +36,7 @@ spec:
       volumes:
         - name: local-storage
           persistentVolumeClaim:
-            claimName: local-hostpath-pvc
+            claimName: pvc-hiker
 
 ---
 apiVersion: v1

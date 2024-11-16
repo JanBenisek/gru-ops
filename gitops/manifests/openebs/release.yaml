@@ -16,6 +16,8 @@ spec:
       interval: 12h
   values:
     # TODO: add resource limitations
+    # nodeSelector:
+    #   kubernetes.io/hostname: kevin # this might be needed?
     image:
       pullPolicy: IfNotPresent #Always got me rate limited
     engines:
