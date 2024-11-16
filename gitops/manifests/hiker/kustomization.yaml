@@ -4,3 +4,4 @@ namespace: hiker
 resources:
   - namespace.yaml
   - hiker.yaml
+  - pvc.yaml
