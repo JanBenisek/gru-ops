@@ -4,6 +4,7 @@ metadata:
   name: local-hostpath-kevin
   namespace: openebs
   annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
     openebs.io/cas-type: local
     cas.openebs.io/config: |
       - name: StorageType
