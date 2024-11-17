@@ -10,9 +10,6 @@ metadata:
         value: "hostpath"
       - name: BasePath
         value: /dev/sda
-      - name: NodeAffinityLabels
-        list:
-          - "kubernetes.io/hostname=kevin"
 provisioner: openebs.io/local
 volumeBindingMode: WaitForFirstConsumer
 # https://openebs.io/docs/user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-configuration
@@ -21,3 +18,7 @@ allowedTopologies:
   - key: kubernetes.io/hostname
     values:
     - kevin
+
+# - name: NodeAffinityLabels
+#   list:
+#     - "kubernetes.io/hostname=kevin"
