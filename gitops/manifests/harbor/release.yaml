@@ -38,6 +38,7 @@ spec:
           core: harbor.${DOMAIN_NAME}
           notary: harbor-notary.${DOMAIN_NAME}
         annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-prod"
           kubernetes.io/ingress.class: "nginx"
           nginx.ingress.kubernetes.io/ssl-redirect: "false"
           nginx.ingress.kubernetes.io/proxy-body-size: "100000m"
