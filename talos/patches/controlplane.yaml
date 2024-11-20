@@ -19,3 +19,15 @@ machine:
   kubelet:
     clusterDNS:
       - 192.168.178.1
+  #   extraMounts: # for EBS
+  #     - destination: /var/mnt/storage
+  #       type: bind
+  #       source: /var/mnt/storage
+  #       options:
+  #         - bind
+  #         - rshared
+  #         - rw
+  # disks:
+  #     - device: /dev/sda
+  #       partitions:
+  #         - mountpoint: /var/mnt/storage # Where to mount the partition.
