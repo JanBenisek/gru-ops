@@ -1,6 +1,5 @@
 # patches/controlplane.yaml
 cluster:
-  allowSchedulingOnControlPlanes: true
   apiServer:
     admissionControl: # Needed by EBS
       - name: PodSecurity
@@ -16,9 +15,7 @@ machine:
     openebs.io/engine: "mayastor" # for EBS
   network:
     hostname: kevin
-  kubelet:
-    clusterDNS:
-      - 192.168.178.1
+  # kubelet:
   #   extraMounts: # for EBS
   #     - destination: /var/mnt/storage
   #       type: bind

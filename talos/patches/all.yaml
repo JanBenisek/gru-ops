@@ -3,6 +3,9 @@ machine:
   features:
     hostDNS:
       enabled: false
+  kubelet:
+    clusterDNS:
+      - 192.168.178.1
   install:
     disk: /dev/nvme0n1
     image: ghcr.io/siderolabs/installer:v1.8.3 # Allows for supplying the image used to perform the installation.
@@ -15,3 +18,6 @@ machine:
     # removed with `t -n 192.168.178.38 edit machineconfig`
     # openebs.io/engine: "mayastor" # for EBS
   # also removed kubelet extra mounts and added it to controlplane
+cluster: 
+  allowSchedulingOnControlPlanes: true
+  clusterName: gru
