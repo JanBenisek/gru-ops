@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: external-dns
 resources:
   - namespace.yaml
+  - cloudflare-api-token.yaml
   - repository.yaml
   - release.yaml
-  - cloudflare-api-token.yaml
+  
