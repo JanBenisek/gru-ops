@@ -8,7 +8,7 @@ resources:
   - sealed-secrets.yaml
   - external-dns.yaml
   - cert-manager.yaml
-  # - certs.yaml
+  - certs.yaml
   - secret-replicator.yaml
   # - openebs.yaml
   # - harbor.yaml
