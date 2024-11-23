@@ -15,12 +15,28 @@ spec:
         namespace: harbor
       interval: 12h
   values:
-    persistance:
-      enabled: false
-    # persistence:
-    #   persistentVolumeClaim:
-    #     registry:
-    #       size: "20Gi"
+    persistence:
+      enabled: true
+      resourcePolicy: "keep"
+      persistentVolumeClaim:
+        registry:
+          existingClaim: "pvc-harbor"
+          subPath: "registry"
+        chartmuseum:
+          existingClaim: "pvc-harbor"
+          subPath: "chartmuseum"
+        jobservice:
+          existingClaim: "pvc-harbor"
+          subPath: "jobservice"
+        database:
+          existingClaim: "pvc-harbor"
+          subPath: "database"
+        redis:
+          existingClaim: "pvc-harbor"
+          subPath: "redis"
+        trivy:
+          existingClaim: "pvc-harbor"
+          subPath: "trivy"
     externalURL: "https://harbor.${DOMAIN_NAME}"
     harborAdminPassword: admin
     notary:
