@@ -15,6 +15,7 @@ spec:
         namespace: openebs
       interval: 12h
   values:
+    # https://github.com/openebs/openebs/blob/main/charts/values.yaml
     # TODO: add resource limitations
     localpv-provisioner:
       hostpathClass:

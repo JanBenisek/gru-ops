@@ -21,6 +21,7 @@ resources:
   - grafana.yaml
   - it-tools.yaml
   - homepage.yaml
+  - ollama.yaml
   # test
 configMapGenerator:
   - name: gru-values
