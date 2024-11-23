@@ -30,7 +30,7 @@ spec:
         auth.basic:
           enabled: false
       persistence:
-        enabled: false
+        enabled: true
       # additionalDataSources: # Enable later? But then need dependsOn
       #   - name: Loki
       #     type: loki
@@ -52,3 +52,14 @@ spec:
             secretName: letsencrypt-wildcard-cert-pengiuns.com-production
     prometheus:
       enabled: true
+      # prometheusSpec:
+      #   storageSpec:
+      #     volumeClaimTemplate:
+      #       spec:
+      #         storageClassName: gp2
+      #         accessModes: ["ReadWriteOnce"]
+      #         resources:
+      #           requests:
+      #             storage: 64Gi
+      #   retentionSize: 62GB
+      #   retention: 365d

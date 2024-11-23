@@ -47,8 +47,8 @@ spec:
         enabled: true
         certSource: "secret"
         secret:
-          secretName: "letsencrypt-wildcard-cert-pengiuns.com-production"
-          notarySecretName: "letsencrypt-wildcard-cert-pengiuns.com-production"
+          secretName: "harbor-core-tls"
+          notarySecretName: "harbor-notary-tls"
       ingress:
         hosts:
           core: harbor.${DOMAIN_NAME}
