@@ -9,7 +9,7 @@ resources:
   - external-dns-secrets.yaml
   - external-dns.yaml
   - cert-manager-secrets.yaml
-  # - cert-manager.yaml
+  - cert-manager.yaml
   # - certs.yaml
   # - secret-replicator.yaml
   # - openebs.yaml
