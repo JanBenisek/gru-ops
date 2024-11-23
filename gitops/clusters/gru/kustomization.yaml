@@ -19,7 +19,7 @@ resources:
   - stirling.yaml
   - loki.yaml
   # - grafana.yaml
-  # - it-tools.yaml
+  - it-tools.yaml
   - homepage.yaml
   # test
 configMapGenerator:
