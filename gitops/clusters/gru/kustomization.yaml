@@ -4,21 +4,21 @@ namespace: flux-system
 resources:
   - metallb.yaml
   - metallb-crds.yaml
-  - ingress-nginx.yaml
-  - sealed-secrets.yaml
-  - external-dns.yaml
-  - cert-manager.yaml
-  - certs.yaml
-  - secret-replicator.yaml
-  - openebs.yaml
+  # - ingress-nginx.yaml
+  # - sealed-secrets.yaml
+  # - external-dns.yaml
+  # - cert-manager.yaml
+  # - certs.yaml
+  # - secret-replicator.yaml
+  # - openebs.yaml
   # - harbor.yaml
   # Apps
   # - hiker.yaml
-  - stirling.yaml
-  - grafana.yaml
-  - loki.yaml
-  - it-tools.yaml
-  - homepage.yaml
+  # - stirling.yaml
+  # - grafana.yaml
+  # - loki.yaml
+  # - it-tools.yaml
+  # - homepage.yaml
 configMapGenerator:
   - name: gru-values
     envs:
