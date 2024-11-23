@@ -3,9 +3,9 @@ machine:
   features:
     hostDNS:
       enabled: false
-  kubelet:
-    clusterDNS:
-      - 192.168.178.1
+  # kubelet:
+  #   clusterDNS:
+  #     - 192.168.178.1
   install:
     disk: /dev/nvme0n1
     image: ghcr.io/siderolabs/installer:v1.8.3 # Allows for supplying the image used to perform the installation.

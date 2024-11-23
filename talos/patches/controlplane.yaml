@@ -15,6 +15,9 @@ machine:
     openebs.io/engine: "mayastor" # for EBS
   network:
     hostname: kevin
+  kubelet:
+    clusterDNS:
+      - 192.168.178.1
   # changed in place with `edit machineconfig`, DO NOT ADD DURING INSTALLATION!!!!
   # kubelet:
   #   extraMounts: # for EBS
