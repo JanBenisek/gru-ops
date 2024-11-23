@@ -3,6 +3,7 @@ machine:
   features:
     hostDNS:
       enabled: false
+  # if applied to all, worker gets this DNS instead internal and stuff stops working
   # kubelet:
   #   clusterDNS:
   #     - 192.168.178.1
