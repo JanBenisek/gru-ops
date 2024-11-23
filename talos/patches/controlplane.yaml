@@ -1,0 +1,31 @@
+# patches/controlplane.yaml
+cluster:
+  apiServer:
+    admissionControl: # Needed by EBS
+      - name: PodSecurity
+        configuration:
+          apiVersion: pod-security.admission.config.k8s.io/v1beta1
+          kind: PodSecurityConfiguration
+          exemptions:
+            namespaces:
+              - mayastor
+machine:
+  # moved from all.yaml
+  nodeLabels:
+    openebs.io/engine: "mayastor" # for EBS
+  network:
+    hostname: kevin
+  # changed in place with `edit machineconfig`, DO NOT ADD DURING INSTALLATION!!!!
+  # kubelet:
+  #   extraMounts: # for EBS
+  #     - destination: /var/mnt/storage/kevin
+  #       type: bind
+  #       source: /var/mnt/storage/kevin
+  #       options:
+  #         - bind
+  #         - rshared
+  #         - rw
+  # disks:
+  #     - device: /dev/sda #/dev/sda is USB stick
+  #       partitions:
+  #         - mountpoint: /var/mnt/storage/kevin # Where to mount the partition.
