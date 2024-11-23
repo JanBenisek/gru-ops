@@ -15,7 +15,7 @@ resources:
   # Apps
   # - hiker.yaml
   - stirling.yaml
-  # - grafana.yaml
+  - grafana.yaml
   - loki.yaml
   - it-tools.yaml
   - homepage.yaml
