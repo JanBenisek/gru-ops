@@ -13,7 +13,7 @@ spec:
       namespace: flux-system
     - name: sealed-secrets
       namespace: flux-system
-    - name: external-dns-secret
+    - name: external-dns-secrets
       namespace: flux-system
   sourceRef:
     kind: GitRepository

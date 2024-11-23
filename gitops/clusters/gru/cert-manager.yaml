@@ -11,6 +11,8 @@ spec:
   dependsOn:
     - name: external-dns
       namespace: flux-system
+    - name: cert-manager-secrets
+      namespace: flux-system
   sourceRef:
     kind: GitRepository
     name: flux-system
