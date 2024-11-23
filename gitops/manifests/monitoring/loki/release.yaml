@@ -22,6 +22,9 @@ spec:
       # serviceAccount: # I probably don't need this
       #   name: loki
       #   create: false
+      limits_config:
+        ingestion_rate_mb: 10  # default is 3MB/sec
+        ingestion_burst_size_mb: 15
     promtail:
       enabled: true
       config:
