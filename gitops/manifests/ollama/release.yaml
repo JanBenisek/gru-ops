@@ -17,6 +17,7 @@ spec:
   values:
     # https://github.com/otwld/ollama-helm
     # https://artifacthub.io/packages/helm/ollama-helm/ollama/0.67.0?modal=values
+    # https://github.com/ollama/ollama?tab=readme-ov-file
 
     # Docker image
     image:
@@ -51,7 +52,7 @@ spec:
 
       tls:
       - hosts:
-        - hiker.${DOMAIN_NAME}
+        - ollama.${DOMAIN_NAME}
         secretName: letsencrypt-wildcard-cert-pengiuns.com-production
 
     # Configure resource requests and limits
