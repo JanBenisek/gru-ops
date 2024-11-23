@@ -36,7 +36,7 @@ k create secret generic cloudflare-api-token \
   --dry-run=client \
   --from-literal=cloudflare_api_token=<SECRET> -o json \
   | kubeseal --cert "./${PUBLICKEY}" \
-  > /Users/janbenisek/GithubRepos/gru-ops/gitops/manifests/external-dns/cloudflare-api-token.yaml
+  > /Users/janbenisek/GithubRepos/gru-ops/gitops/manifests/external-dns/secrets/cloudflare-api-token.yaml
 ```
 
 ### harbor
