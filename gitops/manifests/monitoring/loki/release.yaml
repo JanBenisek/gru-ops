@@ -7,7 +7,7 @@ spec:
   interval: 1m
   chart:
     spec:
-      chart: loki-stack
+      chart: loki-stack # https://github.com/grafana/helm-charts/tree/main/charts/loki-stack
       version: '2.10.2'
       sourceRef:
         kind: HelmRepository

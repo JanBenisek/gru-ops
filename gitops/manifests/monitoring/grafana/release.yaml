@@ -30,7 +30,12 @@ spec:
         auth.basic:
           enabled: false
       persistence:
+        type: pvc
         enabled: true
+        storageClassName: local-hostpath-kevin
+        accessModes:
+          - ReadWriteOnce
+        size: 10Gi
       # additionalDataSources: # Enable later? But then need dependsOn
       #   - name: Loki
       #     type: loki
@@ -51,15 +56,14 @@ spec:
               - grafana.${DOMAIN_NAME}
             secretName: letsencrypt-wildcard-cert-pengiuns.com-production
     prometheus:
-      enabled: true
-      # prometheusSpec:
-      #   storageSpec:
-      #     volumeClaimTemplate:
-      #       spec:
-      #         storageClassName: gp2
-      #         accessModes: ["ReadWriteOnce"]
-      #         resources:
-      #           requests:
-      #             storage: 64Gi
-      #   retentionSize: 62GB
-      #   retention: 365d
+      prometheusSpec:
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: local-hostpath-kevin
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 5Gi
+        retentionSize: 5GB
+        retention: 90d
