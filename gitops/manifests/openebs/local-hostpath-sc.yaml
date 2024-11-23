@@ -10,7 +10,7 @@ metadata:
       - name: StorageType
         value: "hostpath"
       - name: BasePath
-        value: /var/mnt/storage
+        value: /var/mnt/storage/kevin
 provisioner: openebs.io/local
 volumeBindingMode: WaitForFirstConsumer
 # https://openebs.io/docs/user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-configuration
