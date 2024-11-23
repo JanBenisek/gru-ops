@@ -40,7 +40,7 @@ spec:
 
     pipelines:
       # -- Automatically install Pipelines chart to extend Open WebUI functionality using Pipelines: https://github.com/open-webui/pipelines
-      enabled: true
+      enabled: false # Changed
       # -- This section can be used to pass required environment variables to your pipelines (e.g. Langfuse hostname)
       extraEnvVars: []
 
