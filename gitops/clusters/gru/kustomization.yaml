@@ -19,6 +19,7 @@ resources:
   # - loki.yaml
   # - it-tools.yaml
   # - homepage.yaml
+  # test
 configMapGenerator:
   - name: gru-values
     envs:
