@@ -53,7 +53,8 @@ spec:
     # -- Value of cluster domain
     clusterDomain: cluster.local
 
-    annotations: {}
+    annotations:
+      app.kubernetes.io/name: open-webui
     podAnnotations: {}
     replicaCount: 1
     # -- Open WebUI image tags can be found here: https://github.com/open-webui/open-webui/pkgs/container/open-webui
