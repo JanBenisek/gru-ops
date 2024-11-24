@@ -121,13 +121,14 @@ spec:
               - jellyfin.${DOMAIN_NAME}
 
     # -- Resource requests and limits for the Jellyfin container.
-    resources:
-      requests:
-        cpu: 2000m
-        memory: 4096Mi
-      limits:
-        cpu: 6000m
-        memory: 8192Mi
+    resources: {}
+      # limits:
+      #   cpu: 4
+      #   memory: 8G
+      # requests:
+      #   cpu: 2
+      #   memory: 4G
+      
 
     # -- Configure liveness probe for Jellyfin.
     livenessProbe:
