@@ -56,6 +56,9 @@ spec:
     annotations: {}
     podAnnotations:
       app.kubernetes.io/name: "open-webui"
+    podLabels:
+      app.kubernetes.io/name: open-webui
+      app.kubernetes.io/test: test 
     replicaCount: 1
     # -- Open WebUI image tags can be found here: https://github.com/open-webui/open-webui/pkgs/container/open-webui
     image:
