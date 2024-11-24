@@ -184,7 +184,7 @@ spec:
     persistence:
       config:
         # -- set to false to use emptyDir
-        enabled: true
+        enabled: false
         accessMode: ReadWriteOnce
         size: 5Gi
         # -- Custom annotations to be added to the PVC
@@ -195,7 +195,7 @@ spec:
         # existingClaim: ''
       media:
         # -- set to false to use emptyDir
-        enabled: true
+        enabled: false
         accessMode: ReadWriteOnce
         size: 25Gi
         # -- Custom annotations to be added to the PVC
