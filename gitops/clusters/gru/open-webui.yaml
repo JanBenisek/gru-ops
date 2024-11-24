@@ -21,8 +21,8 @@ spec:
     substituteFrom:
     - kind: ConfigMap
       name: gru-values
-  # healthChecks:
+  # healthChecks: # no deployment
   #   - apiVersion: apps/v1
   #     kind: Deployment
-  #     name: hiker
-  #     namespace: hiker
+  #     name: ollama
+  #     namespace: ollama

@@ -18,6 +18,9 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
+  # I think the persistence fucks things up
+  # currently all has to run on 1 node to use storage
+  # but Grafana needs to run on all nodes
     grafana:
       enabled: true
       adminPassword: admin
@@ -29,13 +32,13 @@ spec:
           root_url: https://grafana.${DOMAIN_NAME}
         auth.basic:
           enabled: false
-      persistence:
-        type: pvc
-        enabled: true
-        storageClassName: local-hostpath-kevin
-        accessModes:
-          - ReadWriteOnce
-        size: 10Gi
+      # persistence:
+      #   type: pvc
+      #   enabled: true
+      #   storageClassName: local-hostpath-kevin
+      #   accessModes:
+      #     - ReadWriteOnce
+      #   size: 10Gi
       # additionalDataSources: # Enable later? But then need dependsOn
       #   - name: Loki
       #     type: loki
@@ -55,15 +58,15 @@ spec:
           - hosts:
               - grafana.${DOMAIN_NAME}
             secretName: letsencrypt-wildcard-cert-pengiuns.com-production
-    prometheus:
-      prometheusSpec:
-        storageSpec:
-          volumeClaimTemplate:
-            spec:
-              storageClassName: local-hostpath-kevin
-              accessModes: ["ReadWriteOnce"]
-              resources:
-                requests:
-                  storage: 5Gi
-        retentionSize: 5GB
-        retention: 90d
+    # prometheus:
+    #   prometheusSpec:
+    #     storageSpec:
+    #       volumeClaimTemplate:
+    #         spec:
+    #           storageClassName: local-hostpath-kevin
+    #           accessModes: ["ReadWriteOnce"]
+    #           resources:
+    #             requests:
+    #               storage: 5Gi
+    #     retentionSize: 5GB
+    #     retention: 90d
