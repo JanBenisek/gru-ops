@@ -23,7 +23,7 @@ resources:
   - homepage.yaml
   - ollama.yaml
   - open-webui.yaml
-  - jellyfin.yaml
+  # - jellyfin.yaml
   # test
 configMapGenerator:
   - name: gru-values
