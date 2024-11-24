@@ -90,9 +90,14 @@ k create secret generic cloudflare-api-token \
 - [Docs](https://github.com/ollama/ollama/blob/main/docs/api.md)
 
 ```shell
+# chat
 curl https://ollama.pengiuns.com/api/chat -d '{"model": "llama3.2", "stream": false, "messages": [{ "role": "user", "content": "why is the sky blue?" }]}'
 
+# pull model
 curl https://ollama.pengiuns.com/api/pull -d '{"model": "llama3.2"}'
+
+# list models
+curl https://ollama.pengiuns.com/api/tags
 ```
 
 ### open-webui

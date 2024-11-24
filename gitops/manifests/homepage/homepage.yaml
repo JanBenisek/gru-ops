@@ -95,6 +95,12 @@ data:
             description: Ollama & WebUI locally
             namespace: open-webui
             app: open-webui
+        - Jellyfin:
+            icon: jellyfin.png
+            href: https://jellyfin.pengiuns.com
+            description: There be procrastination 
+            namespace: jellyfin
+            app: jellyfin
     
     - Experiments:
       - Router:
