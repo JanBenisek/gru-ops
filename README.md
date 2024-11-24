@@ -42,6 +42,8 @@ k create secret generic cloudflare-api-token \
 ### harbor
 
 - Store my containers.
+- [Helm](https://artifacthub.io/packages/helm/bitnami/harbor)
+- [Helm values](https://github.com/bitnami/charts/blob/main/bitnami/harbor/values.yaml)
 
 ### hiker
 
@@ -50,6 +52,7 @@ k create secret generic cloudflare-api-token \
 ### homepage
 
 - Homepage for all tools [source](https://gethomepage.dev/).
+- [List of icons](https://github.com/walkxcode/dashboard-icons)
 
 ### ingress-nginx
 
@@ -76,9 +79,31 @@ k create secret generic cloudflare-api-token \
   - https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm/
   - https://fluxcd.io/flux/monitoring/metrics/
 
+### ollama
+
+- LLMs!
+- [Helm](https://github.com/otwld/ollama-helm)
+- [Helm value](https://artifacthub.io/packages/helm/ollama-helm/ollama/0.67.0?modal=values)
+- [Github](https://github.com/ollama/ollama?tab=readme-ov-file)
+
+- Interact with the REST API:
+- [Docs](https://github.com/ollama/ollama/blob/main/docs/api.md)
+
+```shell
+curl https://ollama.pengiuns.com/api/chat -d '{"model": "llama3.2", "stream": false, "messages": [{ "role": "user", "content": "why is the sky blue?" }]}'
+
+curl https://ollama.pengiuns.com/api/pull -d '{"model": "llama3.2"}'
+```
+
+### open-webui
+
+- Web interface for LLMs
+- [Github](https://github.com/open-webui/open-webui)
+- [Helm](https://artifacthub.io/packages/helm/open-webui/open-webui)
+
 ### openebs
 
-- ... in progress ...
+- Storage - see Notion
 
 ### sealed secrets
 

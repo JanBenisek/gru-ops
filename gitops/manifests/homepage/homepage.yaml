@@ -72,7 +72,7 @@ data:
         - IT-Tools:
             icon: it-tools.png
             href: https://it-tools.pengiuns.com/
-            description: Swiss knife of internet
+            description: The Swiss knife of internet
             namespace: it-tools 
             app: it-tools
         - Stirling PDF:
@@ -89,6 +89,12 @@ data:
             description: Let's go hiking!
             namespace: hiker
             app: hiker
+        - LLMs:
+            icon: open-webui.png
+            href: https://chat.pengiuns.com
+            description: Ollama & WebUI locally
+            namespace: open-webui
+            app: open-webui
     
     - Experiments:
       - Router:

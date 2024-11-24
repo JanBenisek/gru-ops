@@ -15,10 +15,6 @@ spec:
         namespace: ollama
       interval: 12h
   values:
-    # https://github.com/otwld/ollama-helm
-    # https://artifacthub.io/packages/helm/ollama-helm/ollama/0.67.0?modal=values
-    # https://github.com/ollama/ollama?tab=readme-ov-file
-
     # Docker image
     image:
       repository: ollama/ollama
@@ -32,6 +28,8 @@ spec:
         enabled: false
       models:
        - llama3.2:1b
+       - llama3.2
+       - gemma2
 
     service:
       type: ClusterIP

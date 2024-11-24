@@ -16,15 +16,16 @@ spec:
       labels:
         app: hiker
         app.kubernetes.io/name: hiker
-    affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: kubernetes.io/hostname  # might be needed for EBS? 
-                    operator: In 
-                    values:
-                      - kevin
+    # should not be needed, keeping as an example
+    # affinity:
+    #     nodeAffinity:
+    #       requiredDuringSchedulingIgnoredDuringExecution:
+    #         nodeSelectorTerms:
+    #           - matchExpressions:
+    #               - key: kubernetes.io/hostname  # might be needed for EBS? 
+    #                 operator: In 
+    #                 values:
+    #                   - kevin
     spec:
       containers:
       - name: nginx
@@ -39,13 +40,13 @@ spec:
           limits:
             memory: "512Mi"  
             cpu: "500m"    
-        volumeMounts:
-        - mountPath: /mnt/store # dir inside container where the app will write
-          name: local-storage # link to the volume name in volumes
-      volumes:
-        - name: local-storage
-          persistentVolumeClaim:
-            claimName: pvc-hiker # connects it to PVC
+        # volumeMounts:
+        # - mountPath: /mnt/store # dir inside container where the app will write
+        #   name: local-storage # link to the volume name in volumes
+      # volumes:
+      #   - name: local-storage
+      #     persistentVolumeClaim:
+      #       claimName: pvc-hiker # connects it to PVC
 
 ---
 apiVersion: v1

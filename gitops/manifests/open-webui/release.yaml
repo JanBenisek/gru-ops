@@ -15,8 +15,6 @@ spec:
         namespace: open-webui
       interval: 12h
   values:
-    # https://github.com/open-webui/open-webui
-    # https://artifacthub.io/packages/helm/open-webui/open-webui
 
     nameOverride: ""
 
