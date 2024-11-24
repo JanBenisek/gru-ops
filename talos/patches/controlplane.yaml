@@ -21,9 +21,9 @@ machine:
   # changed in place with `edit machineconfig`, DO NOT ADD DURING INSTALLATION!!!!
   # kubelet:
   #   extraMounts: # for EBS
-  #     - destination: /var/mnt/storage/kevin
+  #     - destination: /var/mnt/storage
   #       type: bind
-  #       source: /var/mnt/storage/kevin
+  #       source: /var/mnt/storage
   #       options:
   #         - bind
   #         - rshared
@@ -31,4 +31,4 @@ machine:
   # disks:
   #     - device: /dev/sda #/dev/sda is USB stick
   #       partitions:
-  #         - mountpoint: /var/mnt/storage/kevin # Where to mount the partition.
+  #         - mountpoint: /var/mnt/storage # Where to mount the partition.
