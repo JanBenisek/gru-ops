@@ -52,8 +52,7 @@ spec:
     # -- Annotations to add to the pod.
     podAnnotations: {}
     # -- Additional labels to add to the pod.
-    podLabels: 
-      app.kubernetes.io/name: hiker
+    podLabels: {}
 
     # -- Security context for the pod.
     podSecurityContext: {}
