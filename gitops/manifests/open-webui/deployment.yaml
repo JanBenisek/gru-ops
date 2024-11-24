@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: open-webui
+  namespace: open-webui
+  labels:
+    app: open-webui
+    app.kubernetes.io/name: open-webui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: open-webui
+  template:
+    metadata:
+      labels:
+        app: open-webui
+        app.kubernetes.io/name: open-webui
+# I want to add labels for it to be visible on homepage
