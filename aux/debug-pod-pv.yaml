@@ -1,0 +1,26 @@
+# k apply -f debug-pod-pv.yaml
+# k exec -it jellyfin-debug jellyfin -- sh
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jellyfin-debug
+  namespace: jellyfin
+spec:
+  containers:
+    - name: jellyfin
+      image: busybox
+      command: ["sleep", "3600"]
+      volumeMounts:
+        - name: config-volume
+          mountPath: /mnt/config
+        - name: media-volume
+          mountPath: /mnt/media
+  volumes:
+    - name: config-volume
+      persistentVolumeClaim:
+        claimName: jellyfin-config
+    - name: media-volume
+      persistentVolumeClaim:
+        claimName: jellyfin-media
+
