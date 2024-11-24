@@ -10,7 +10,7 @@ metadata:
       - name: StorageType
         value: "hostpath"
       - name: BasePath
-        value: /var/mnt/storage/kevin
+        value: /var/mnt/storage
 provisioner: openebs.io/local
 reclaimPolicy: Delete # is default
 volumeBindingMode: WaitForFirstConsumer
