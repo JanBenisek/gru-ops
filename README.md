@@ -96,6 +96,9 @@ curl https://ollama.pengiuns.com/api/chat -d '{"model": "llama3.2", "stream": fa
 # pull model
 curl https://ollama.pengiuns.com/api/pull -d '{"model": "llama3.2"}'
 
+# remove model
+curl -X DELETE https://ollama.pengiuns.com/api/delete -d '{"model": "gemma2:latest"}'
+
 # list models
 curl https://ollama.pengiuns.com/api/tags
 ```

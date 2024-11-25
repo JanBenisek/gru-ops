@@ -29,7 +29,7 @@ spec:
       models:
        - llama3.2:1b
        - llama3.2
-       - gemma2
+       # - gemma2 #this melts
 
     service:
       type: ClusterIP
@@ -57,23 +57,23 @@ spec:
     # ref: http://kubernetes.io/docs/user-guide/compute-resources/
     resources:
       requests:
-        memory: 4096Mi
+        memory: 8G
         cpu: 2000m
 
       limits: 
-        memory: 8192Mi
+        memory: 14G
         cpu: 4000m
 
     # Configure autoscaling
     autoscaling:
       # -- Enable autoscaling
-      enabled: false
+      enabled: true
 
       # -- Number of minimum replicas
       minReplicas: 1
 
       # -- Number of maximum replicas
-      maxReplicas: 100
+      maxReplicas: 2
 
       # -- CPU usage to target replica
       targetCPUUtilizationPercentage: 80
