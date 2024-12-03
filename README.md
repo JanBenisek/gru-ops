@@ -94,7 +94,7 @@ k create secret generic cloudflare-api-token \
 curl https://ollama.pengiuns.com/api/chat -d '{"model": "llama3.2", "stream": false, "messages": [{ "role": "user", "content": "why is the sky blue?" }]}'
 
 # pull model
-curl https://ollama.pengiuns.com/api/pull -d '{"model": "llama3.2"}'
+curl https://ollama.pengiuns.com/api/pull -d '{"model": "gemma2"}'
 
 # remove model
 curl -X DELETE https://ollama.pengiuns.com/api/delete -d '{"model": "gemma2:latest"}'
