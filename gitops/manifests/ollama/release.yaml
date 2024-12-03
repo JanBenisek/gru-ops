@@ -62,7 +62,7 @@ spec:
     # ref: http://kubernetes.io/docs/user-guide/compute-resources/
     resources:
       requests:
-        memory: 8G
+        memory: 20G
         cpu: 2000m
 
       limits: 
