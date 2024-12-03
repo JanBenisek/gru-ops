@@ -29,7 +29,7 @@ spec:
       models:
        - llama3.2:1b
        - llama3.2
-       # - gemma2 #this melts
+       - gemma2 #this melts
 
     service:
       type: ClusterIP
