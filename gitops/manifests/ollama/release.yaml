@@ -61,8 +61,8 @@ spec:
         cpu: 2000m
 
       limits: 
-        memory: 14G
-        cpu: 4000m
+        memory: 25G
+        cpu: 3000m
 
     # Configure autoscaling
     autoscaling:
