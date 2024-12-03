@@ -101,6 +101,9 @@ curl -X DELETE https://ollama.pengiuns.com/api/delete -d '{"model": "gemma2:late
 
 # list models
 curl https://ollama.pengiuns.com/api/tags
+
+# list running models
+curl https://ollama.pengiuns.com/api/ps
 ```
 
 ### open-webui
