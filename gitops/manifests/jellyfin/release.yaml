@@ -121,13 +121,13 @@ spec:
               - jellyfin.${DOMAIN_NAME}
 
     # -- Resource requests and limits for the Jellyfin container.
-    resources: {}
-      # limits:
-      #   cpu: 4
-      #   memory: 8G
-      # requests:
-      #   cpu: 2
-      #   memory: 4G
+    resources: 
+      limits:
+        cpu: 2
+        memory: 8G
+      requests:
+        cpu: 1
+        memory: 6G
       
 
     # -- Configure liveness probe for Jellyfin.
@@ -164,7 +164,8 @@ spec:
     #   readOnly: true
 
     # -- Node selector for pod scheduling.
-    nodeSelector: {}
+    nodeSelector: 
+      kubernetes.io/hostname: stuart
 
     # -- Tolerations for pod scheduling.
     tolerations: []
@@ -185,18 +186,18 @@ spec:
     persistence:
       config:
         # -- set to false to use emptyDir
-        enabled: false
+        enabled: true
         accessMode: ReadWriteOnce
         size: 5Gi
         # -- Custom annotations to be added to the PVC
         annotations: {}
         # -- If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner.
-        storageClass: ''
+        storageClass: local-hostpath-stuart
         ## -- Use an existing PVC for this mount
         # existingClaim: ''
       media:
         # -- set to false to use emptyDir
-        enabled: false
+        enabled: true
         accessMode: ReadWriteOnce
         size: 25Gi
         # -- Custom annotations to be added to the PVC
