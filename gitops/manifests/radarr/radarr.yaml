@@ -16,16 +16,9 @@ spec:
       labels:
         app: radarr
         app.kubernetes.io/name: radarr
-    affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: kubernetes.io/hostname 
-                    operator: In 
-                    values:
-                      - stuart
     spec:
+      nodeSelector:
+          kubernetes.io/hostname: stuart 
       containers:
       - name: radarr
         image: ghcr.io/hotio/radarr
