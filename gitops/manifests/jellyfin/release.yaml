@@ -203,7 +203,7 @@ spec:
         # -- Custom annotations to be added to the PVC
         annotations: {}
         # -- If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner.
-        storageClass: "local-hostpath-kevin"
+        storageClass: local-hostpath-kevin
         ## -- Use an existing PVC for this mount
         # existingClaim: ''
 
