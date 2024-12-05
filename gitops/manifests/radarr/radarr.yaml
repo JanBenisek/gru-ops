@@ -18,6 +18,8 @@ spec:
         app.kubernetes.io/name: radarr
     spec:
       securityContext:
+        runAsUser: 321  
+        runAsGroup: 111 
         fsGroup: 111
       nodeSelector:
           kubernetes.io/hostname: stuart 
