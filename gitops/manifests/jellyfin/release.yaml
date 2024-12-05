@@ -158,10 +158,6 @@ spec:
       - name: media
         persistentVolumeClaim:
           claimName: pvc-radarr-data
-    # - name: foo
-    #   secret:
-    #     secretName: mysecret
-    #     optional: false
 
     # -- Additional volume mounts for the Jellyfin container.
     volumeMounts:

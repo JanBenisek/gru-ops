@@ -71,7 +71,7 @@ spec:
     app: radarr
   ports:
   - name: http
-    port: 7878 # we talk to this
+    port: 80 # we talk to this
     protocol: TCP
     targetPort: 7878 # app listens here
 ---
