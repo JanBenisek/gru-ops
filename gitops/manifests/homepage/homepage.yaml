@@ -101,6 +101,12 @@ data:
             description: There be procrastination 
             namespace: jellyfin
             app: jellyfin
+        - Radarr:
+            icon: radarr.png
+            href: https://radarr.pengiuns.com
+            description: Movies
+            namespace: radarr
+            app: radarr
     
     - Experiments:
       - Router:

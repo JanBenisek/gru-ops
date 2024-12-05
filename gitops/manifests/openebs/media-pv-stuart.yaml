@@ -4,7 +4,7 @@ metadata:
   name: shared-pv-stuart
 spec:
   capacity:
-    storage: 50Gi
+    storage: 100Gi
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Delete
