@@ -64,22 +64,23 @@ spec:
       #     - secretName: chart-example.local-tls
       #       hosts:
       #         - chart-example.local
-      enabled: true
-      className: "nginx"
-      annotations:
-        cert-manager.io/cluster-issuer: "letsencrypt-prod"
-        kubernetes.io/ingress.class: "nginx"
+      main:
+        enabled: true
+        className: "nginx"
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-prod"
+          kubernetes.io/ingress.class: "nginx"
 
-      hosts:
-        - host: qbittorrent.${DOMAIN_NAME}
-          paths:
-            - path: /
-              pathType: Prefix
+        hosts:
+          - host: qbittorrent.${DOMAIN_NAME}
+            paths:
+              - path: /
+                pathType: Prefix
 
-      tls:
-      - hosts:
-        - qbittorrent.${DOMAIN_NAME}
-        secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+        tls:
+        - hosts:
+          - qbittorrent.${DOMAIN_NAME}
+          secretName: letsencrypt-wildcard-cert-pengiuns.com-production
 
     # -- Configure persistence settings for the chart under this key.
     # Set `enabled` to `true' to create persistant volumes for each of these.
