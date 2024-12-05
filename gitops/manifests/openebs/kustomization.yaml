@@ -7,3 +7,5 @@ resources:
   - release.yaml
   - local-hostpath-sc-kevin.yaml
   - local-hostpath-sc-stuart.yaml
+  - local-hostpath-sc-stuart-media.yaml
+  - media-pv-stuart.yaml

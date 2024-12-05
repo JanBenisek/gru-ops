@@ -23,7 +23,6 @@ resources:
   - homepage.yaml
   - ollama.yaml
   - open-webui.yaml
-  - media_storage.yaml
   # - jellyfin.yaml
   # - radarr.yaml
   # test
