@@ -1,5 +1,5 @@
 # k apply -f debug-pod-pv.yaml
-# k exec -it jellyfin-debug jellyfin -- sh
+# k exec -it n jellyfin -- sh
 
 apiVersion: v1
 kind: Pod
@@ -12,15 +12,10 @@ spec:
       image: busybox
       command: ["sleep", "3600"]
       volumeMounts:
-        - name: config-volume
-          mountPath: /mnt/config
         - name: media-volume
           mountPath: /mnt/media
   volumes:
-    - name: config-volume
-      persistentVolumeClaim:
-        claimName: jellyfin-config
     - name: media-volume
       persistentVolumeClaim:
-        claimName: jellyfin-media
+        claimName: pvc-radarr-data
 

@@ -17,6 +17,8 @@ spec:
         app: radarr
         app.kubernetes.io/name: radarr
     spec:
+      securityContext:
+        fsGroup: 111
       nodeSelector:
           kubernetes.io/hostname: stuart 
       containers:

@@ -154,16 +154,16 @@ spec:
       # periodSeconds: 10
 
     # -- Additional volumes to mount in the Jellyfin pod.
-    volumes:
-      - name: media
-        persistentVolumeClaim:
-          claimName: pvc-radarr-data
+    volumes: []
+      # - name: media
+      #   persistentVolumeClaim:
+      #     claimName: pvc-radarr-data
 
     # -- Additional volume mounts for the Jellyfin container.
-    volumeMounts:
-      - name: media
-        mountPath: "/data"
-        readOnly: true
+    volumeMounts: []
+      # - name: media
+      #   mountPath: "/data"
+      #   readOnly: true
 
     # -- Node selector for pod scheduling.
     nodeSelector: 
@@ -209,9 +209,9 @@ spec:
         # -- Custom annotations to be added to the PVC
         annotations: {}
         # -- If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner.
-        storageClass: local-hostpath-stuart
+        storageClass: ''
         ## -- Use an existing PVC for this mount
-        # existingClaim: ''
+        existingClaim: pvc-radarr-data
 
     # -- Configuration for metrics collection and monitoring
     metrics:
