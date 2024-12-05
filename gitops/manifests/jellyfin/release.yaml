@@ -59,7 +59,10 @@ spec:
       # fsGroup: 2000
 
     # -- Security context for the container.
-    securityContext: {}
+    securityContext:
+      runAsUser: 222   # Jellyfin's user ID
+      runAsGroup: 111   # Matches Radarr's PGID
+      fsGroup: 111      # Ensures group ownership of files is enforced
       # capabilities:
       #   drop:
       #   - ALL
@@ -151,17 +154,20 @@ spec:
       # periodSeconds: 10
 
     # -- Additional volumes to mount in the Jellyfin pod.
-    volumes: []
+    volumes:
+      - name: media
+        persistentVolumeClaim:
+          claimName: pvc-radarr-data
     # - name: foo
     #   secret:
     #     secretName: mysecret
     #     optional: false
 
     # -- Additional volume mounts for the Jellyfin container.
-    volumeMounts: []
-    # - name: foo
-    #   mountPath: "/etc/foo"
-    #   readOnly: true
+    volumeMounts:
+      - name: media
+        mountPath: "/data"
+        readOnly: true
 
     # -- Node selector for pod scheduling.
     nodeSelector: 
@@ -181,7 +187,11 @@ spec:
       # -- Additional arguments for the entrypoint command.
       args: []
       # -- Additional environment variables for the container.
-      env: []
+      env:
+      - name: PUID
+        value: "222" # Jellyfin's user ID; does not need to match Radarr's
+      - name: PGID
+        value: "111" # Match Radarr
 
     persistence:
       config:

@@ -4,5 +4,6 @@ namespace: radarr
 resources:
   - namespace.yaml
   - pvc-radarr-data.yaml
+  - pvc-radarr-config.yaml
   - radarr.yaml
   
