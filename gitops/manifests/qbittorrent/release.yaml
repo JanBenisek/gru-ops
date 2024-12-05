@@ -32,9 +32,12 @@ spec:
 
     # -- environment variables. [[ref]](https://github.com/linuxserver/docker-qbittorrent#parameters)
     # @default -- See [values.yaml](./values.yaml)
+    
     env:
       # -- Set the container timezone
       TZ: UTC
+      # https://github.com/bjw-s/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.yaml
+      PASSWD: 'admin' #otherwise in the logs
 
     # -- Configures service settings for the chart.
     # @default -- See [values.yaml](./values.yaml)
