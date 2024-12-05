@@ -24,8 +24,8 @@ resources:
   - ollama.yaml
   - open-webui.yaml
   - media_storage.yaml
-  - jellyfin.yaml
-  - radarr.yaml
+  # - jellyfin.yaml
+  # - radarr.yaml
   # test
 configMapGenerator:
   - name: gru-values
