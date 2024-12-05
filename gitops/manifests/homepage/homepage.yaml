@@ -107,6 +107,12 @@ data:
             description: Movies
             namespace: radarr
             app: radarr
+        - qbittorrent:
+            icon: qbittorrent.png
+            href: https://qbittorrent.pengiuns.com
+            description: Movies
+            namespace: qbittorrent
+            app: qbittorrent
     
     - Experiments:
       - Router:
