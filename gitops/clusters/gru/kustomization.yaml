@@ -23,7 +23,7 @@ resources:
   - homepage.yaml
   - ollama.yaml
   - open-webui.yaml
-  - radarr.yaml
+  # - radarr.yaml
   - qbittorrent.yaml
   # - jellyfin.yaml
   
