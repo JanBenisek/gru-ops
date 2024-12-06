@@ -29,7 +29,7 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 7878 
-        # env:
+        env:
         # - name: PUID
         #   # Process User ID - under which user will the containers processes run
         #   # Files inside the container belong to that user
