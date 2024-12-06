@@ -40,7 +40,7 @@ spec:
         - name: UMASK
           # Default privileges. 002 is 775 = full access to user and group
           # and read/execute only to others
-          value: "002" 
+          value: "000" 
         - name: TZ
           value: "Etc/UTC" # Timezone
         resources:
@@ -51,7 +51,7 @@ spec:
             memory: "10G"  
             cpu: "1000m"
         volumeMounts:
-        - mountPath: /config      # Mount for Radarr config
+        - mountPath: /config  # Mount for Radarr config
           name: config-storage
         - mountPath: /data # Single volume for Movies and Downloads
           name: data-storage
