@@ -17,10 +17,10 @@ spec:
         app: radarr
         app.kubernetes.io/name: radarr
     spec:
-      # securityContext:
-      #   runAsUser: 321  
-      #   runAsGroup: 111 
-      #   fsGroup: 111
+      securityContext:
+        runAsUser: 321  #all processes in the pod run with user ID 321
+        runAsGroup: 321  # same but for groups
+        fsGroup: 321 # owner of attached volume is group 321
       nodeSelector:
           kubernetes.io/hostname: stuart 
       containers:
@@ -30,17 +30,17 @@ spec:
         ports:
         - containerPort: 7878 
         env:
-        # - name: PUID
-        #   # Process User ID - under which user will the containers processes run
-        #   # Files inside the container belong to that user
-        #   value: "321" 
-        # - name: PGID
-        #   # Similar to the above. Radarr can modify files that belong to a specific group
-        #   value: "111"   
-        # - name: UMASK
-        #   # Default privileges. 002 is 775 = full access to user and group
-        #   # and read/execute only to others
-        #   value: "002" 
+        - name: PUID
+          # Process User ID - under which user will the containers processes run
+          # Files inside the container belong to that user
+          value: "321" 
+        - name: PGID
+          # Similar to the above. Radarr can modify files that belong to a specific group
+          value: "321"   
+        - name: UMASK
+          # Default privileges. 002 is 775 = full access to user and group
+          # and read/execute only to others
+          value: "002" 
         - name: TZ
           value: "Etc/UTC" # Timezone
         resources:
