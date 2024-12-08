@@ -6,7 +6,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: radarr-debug
-  namespace: radarr
+  namespace: ollama
 spec:
   nodeSelector:
     kubernetes.io/hostname: stuart 
@@ -43,4 +43,3 @@ spec:
     - name: data-storage
       persistentVolumeClaim:
         claimName: pvc-radarr-data   # PVC for data storage
-
