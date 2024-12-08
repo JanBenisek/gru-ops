@@ -38,7 +38,7 @@ spec:
               # Files inside the container belong to that user
               value: "321" 
             - name: PGID
-              # Similar to the above. Radarr can modify files that belong to a specific group
+              # Similar to the above. Prowlarr can modify files that belong to a specific group
               value: "321"   
             - name: UMASK
               # Default privileges. 002 is 775 = full access to user and group
@@ -48,23 +48,18 @@ spec:
               value: "Etc/UTC" # Timezone
           resources:
             requests:
-              memory: "5G"  
-              cpu: "500m"      
+              memory: "1G"  
+              cpu: "200m"      
             limits:
-              memory: "10G"  
-              cpu: "1000m"
+              memory: "2G"  
+              cpu: "500m"
           volumeMounts:
-            - mountPath: /config  # Mount for Radarr config
+            - mountPath: /config  # Mount for Prowlarr config
               name: config-storage
-            - mountPath: /data # Single volume for Movies and Downloads
-              name: data-storage
       volumes:
         - name: config-storage
           persistentVolumeClaim:
-            claimName: pvc-radarr-config # PVC for config storage
-        - name: data-storage
-          persistentVolumeClaim:
-            claimName: pvc-radarr-data   # PVC for data storage
+            claimName: pvc-prowlarr-config # PVC for config storage
 ---
 apiVersion: v1
 kind: Service
@@ -102,7 +97,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: radarr
+            name: prowlarr
             port:
               number: 80
   tls:
