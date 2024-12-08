@@ -1,6 +1,6 @@
-# k apply -f debug-pod-pv.yaml
+# k apply -f debug-radarr.yaml
 # k exec -it -n radarr radarr-debug -- sh
-# k delete -f debug-pod-pv.yaml
+# k delete -f debug-radarr.yaml
 
 apiVersion: v1
 kind: Pod
@@ -16,10 +16,7 @@ spec:
     fsGroup: 321 # owner of attached volume is group 321
   containers:
     - name: radarr
-      # image: busybox
-      # command: ["sleep", "3600"]
-      image: alpine
-      command: ["/bin/sh", "-c", "apk add --no-cache vim && sleep 3600"]
+      image: ghcr.io/hotio/radarr
       securityContext:
         runAsUser: 0  # Allow root user for package installation
       env:
