@@ -31,7 +31,7 @@ spec:
             allowPrivilegeEscalation: true
           imagePullPolicy: Always
           ports:
-          - containerPort: 7878 
+          - containerPort: 9696 
           env:
             - name: PUID
               # Process User ID - under which user will the containers processes run
@@ -80,7 +80,7 @@ spec:
   - name: http
     port: 80 # we talk to this
     protocol: TCP
-    targetPort: 7878 # app listens here
+    targetPort: 9696 # app listens here
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
