@@ -32,6 +32,10 @@ spec:
         mayastor:
           enabled: true
     mayastor:
+      base:
+        metrics:
+        # -- Review, was blocking it
+        enabled: false
       io_engine:
         cpuCount: "1"
         resources:
