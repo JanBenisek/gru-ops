@@ -36,6 +36,8 @@ spec:
         metrics:
         # -- Review, was blocking it
         enabled: false
+        initContainers:
+          enabled: false # is this a good idea?
       io_engine:
         cpuCount: "1"
         resources:
