@@ -48,3 +48,5 @@ spec:
         loki:
           persistence:
             size: 2Gi
+      etcd:
+        replicaCount: 2
