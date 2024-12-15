@@ -9,3 +9,4 @@ resources:
   - local-hostpath-sc-stuart.yaml
   - local-hostpath-sc-stuart-media.yaml # new class to use for media
   - media-pv-stuart.yaml
+  - disk-pool.yaml
