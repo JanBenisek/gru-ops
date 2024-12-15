@@ -49,10 +49,10 @@ spec:
           resources:
             requests:
               memory: "5G"  
-              cpu: "500m"      
+              cpu: "300m"      
             limits:
               memory: "10G"  
-              cpu: "1000m"
+              cpu: "500m"
           volumeMounts:
             - mountPath: /config  # Mount for Radarr config
               name: config-storage
