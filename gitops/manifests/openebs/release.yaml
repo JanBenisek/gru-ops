@@ -39,7 +39,7 @@ spec:
         initContainers:
           enabled: false # is this a good idea?
         initHaNodeContainers:
-          enabled: true # same Q?
+          enabled: false # same Q?
       io_engine:
         cpuCount: "1"
         resources:
