@@ -49,8 +49,12 @@ spec:
             hugepages2Mi: "2Gi"
       loki-stack:
         enabled: true
+        localpvScConfig:
+          basePath: "/var/mnt/storage/openebs/local/{{ .Release.Name }}/localpv-hostpath/loki"
         loki:
           persistence:
             size: 2Gi
       etcd:
         replicaCount: 2
+        localpvScConfig:
+          basePath: "/var/mnt/storage/openebs/local/{{ .Release.Name }}/localpv-hostpath/etcd"
