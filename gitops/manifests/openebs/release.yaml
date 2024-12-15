@@ -67,4 +67,4 @@ spec:
           initContainers:
             enabled: false
       crds:
-        enabled: true
+        enabled: true #disabled in main, but enabled in mayastor???
