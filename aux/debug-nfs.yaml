@@ -1,0 +1,107 @@
+# k apply -f debug-nfs.yaml
+# k exec -it -n radarr radarr-debug-v2 -- sh
+# k delete -f debug-nfs.yaml
+
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: openebs-nfs
+  namespace: openebs
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
+provisioner: openebs.io/provisioner-iscsi
+reclaimPolicy: Delete # is default
+parameters:
+  openebs.io/provisioner-class: "nfs"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nfs-server
+  namespace: openebs
+  labels:
+    app: nfs-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nfs-server
+  template:
+    metadata:
+      labels:
+        app: nfs-server
+    spec:
+      containers:
+        - name: nfs-server
+          image: itsthenetwork/nfs-server-alpine
+          # https://github.com/sjiveson/nfs-server-alpine
+          securityContext:
+            capabilities:
+              add: ["SYS_ADMIN", "SETPCAP"]
+          ports:
+            - containerPort: 2049
+          env:
+            - name: SHARED_DIRECTORY
+              value: "/data"  # Set the shared directory path
+          resources:
+            requests:
+              memory: "1G"  
+              cpu: "200m"      
+            limits:
+              memory: "2G"  
+              cpu: "500m"
+          volumeMounts:
+            - mountPath: /data
+              name: nfs-share
+      volumes:
+      - name: nfs-share
+        hostPath:
+          # path: /mnt/nfs-share  # Path on the node where the NFS share will be
+          path: /var/mnt/storage
+          type: Directory
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nfs-server
+  namespace: openebs
+spec:
+  ports:
+    - port: 2049
+      name: nfs
+  selector:
+    app: nfs-server
+
+# --- 
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: nfs-pvc
+#   namespace: openebs
+# spec:
+#   accessModes:
+#     - ReadWriteMany
+#   resources:
+#     requests:
+#       storage: 10Gi
+#   storageClassName: openebs-nfs
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv
+spec:
+  capacity:
+    storage: 10Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany  # NFS allows ReadWriteMany access mode
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: openebs-nfs
+  nfs:
+    path: /data
+    server: nfs-server.default.svc.cluster.local  # Service name of the NFS server
+
