@@ -43,3 +43,8 @@ spec:
             cpu: "500m"
             memory: "500Mi"
             hugepages2Mi: "2Gi"
+      loki-stack:
+        enabled: "true"
+        loki:
+          persistence:
+            size: 2Gi
