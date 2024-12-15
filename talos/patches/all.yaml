@@ -14,11 +14,18 @@ machine:
   
   sysctls:
     vm.nr_hugepages: "1024" # for EBS
-  #nodeLabels:
-    # I think this was wrong with just 1 disk, I removed it from node without a disk
-    # removed with `t -n 192.168.178.38 edit machineconfig`
-    # openebs.io/engine: "mayastor" # for EBS
+  nodeLabels:
+    openebs.io/engine: "mayastor" # for EBS
   # also removed kubelet extra mounts and added it to controlplane
 cluster: 
   allowSchedulingOnControlPlanes: true
   clusterName: gru
+  apiServer:
+    admissionControl: # Needed by EBS
+      - name: PodSecurity
+        configuration:
+          apiVersion: pod-security.admission.config.k8s.io/v1beta1
+          kind: PodSecurityConfiguration
+          exemptions:
+            namespaces:
+              - mayastor

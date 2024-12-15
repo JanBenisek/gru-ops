@@ -31,15 +31,36 @@ spec:
           value: "002" 
         - name: TZ
           value: "Etc/UTC" # Timezone
+      resources:
+        requests:
+          memory: "300Mi"  
+          cpu: "200m"      
+        limits:
+          memory: "500Mi"  
+          cpu: "500m"
       volumeMounts:
-        - mountPath: /config  # Mount for Radarr config
-          name: config-storage
+        # - mountPath: /config  # Mount for Radarr config
+        #   name: config-storage
         - mountPath: /data # Single volume for Movies and Downloads
           name: data-storage
   volumes:
-    - name: config-storage
-      persistentVolumeClaim:
-        claimName: pvc-radarr-config # PVC for config storage
+    # - name: config-storage
+    #   persistentVolumeClaim:
+    #     claimName: pvc-radarr-config # PVC for config storage
     - name: data-storage
       persistentVolumeClaim:
-        claimName: pvc-radarr-data   # PVC for data storage
+        claimName: nfs-pvc   # PVC for data storage
+
+--- 
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-pvc
+  namespace: ollama
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: openebs-nfs
