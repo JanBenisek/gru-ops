@@ -5,7 +5,7 @@ metadata:
   namespace: openebs
 spec:
   node: stuart
-  disks: ["/dev/disk/by-id/wwn-0x500a0751e8ac173c"] # from `t get disks -n "192.168.178.39" sda -o yaml`
+  disks: ["/dev/disk/by-id/wwn-0x500a0751e98ab7d6"] # from `t get disks -n "192.168.178.38" sda -o yaml`
   topology:
     labelled:
-      topology-key: topology-kevin
+      topology-key: topology-stuart
