@@ -12,7 +12,7 @@ resources:
   - cert-manager.yaml
   - certs.yaml #it takes a ~10m to set up and propagate, patience!
   - secret-replicator.yaml
-  - openebs.yaml
+  # - openebs.yaml
   # - harbor.yaml
   # Apps
   - hiker.yaml
@@ -23,9 +23,9 @@ resources:
   - homepage.yaml
   - ollama.yaml
   - open-webui.yaml
-  - radarr.yaml
-  - prowlarr.yaml
-  - qbittorrent.yaml
+  # - radarr.yaml
+  # - prowlarr.yaml
+  # - qbittorrent.yaml
   # - jellyfin.yaml
   
   # test
