@@ -38,6 +38,8 @@ spec:
         enabled: false
         initContainers:
           enabled: false # is this a good idea?
+        initHaNodeContainers:
+          enabled: true # same Q?
       io_engine:
         cpuCount: "1"
         resources:
@@ -60,3 +62,7 @@ spec:
         replicaCount: 1 # is this a good idea?
         localpvScConfig:
           basePath: "/var/mnt/storage/openebs/local/{{ .Release.Name }}/localpv-hostpath/etcd"
+      csi:
+        node:
+          initContainers:
+            enabled: false
