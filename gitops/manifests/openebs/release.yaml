@@ -31,17 +31,15 @@ spec:
       replicated:
         mayastor:
           enabled: true
-          io_engine:
-            cpuCount: "1"
-            resources:
-              limits:
-                cpu: "1"
-                memory: "1Gi"
-                hugepages2Mi: "2Gi"
-              requests:
-                cpu: "500m"
-                memory: "500Mi"
-                hugepages2Mi: "2Gi"
-                    
-
-      
+    mayastor:
+      io_engine:
+        cpuCount: "1"
+        resources:
+          limits:
+            cpu: "1"
+            memory: "1Gi"
+            hugepages2Mi: "2Gi"
+          requests:
+            cpu: "500m"
+            memory: "500Mi"
+            hugepages2Mi: "2Gi"
