@@ -116,6 +116,9 @@ curl https://ollama.pengiuns.com/api/ps
 ### openebs
 
 - Storage - see Notion
+- values:
+  - [main](https://github.com/openebs/openebs/blob/main/charts/values.yaml)
+  - [mayastor](https://github.com/openebs/mayastor-extensions/blob/v2.7.1/chart/values.yaml)
 
 ### sealed secrets
 
