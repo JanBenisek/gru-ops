@@ -55,6 +55,6 @@ spec:
           persistence:
             size: 2Gi
       etcd:
-        replicaCount: 1
+        replicaCount: 1 # is this a good idea?
         localpvScConfig:
           basePath: "/var/mnt/storage/openebs/local/{{ .Release.Name }}/localpv-hostpath/etcd"
