@@ -15,11 +15,10 @@ spec:
         namespace: openebs
       interval: 12h
   values:
-    # https://github.com/openebs/openebs/blob/main/charts/values.yaml
-    # TODO: add resource limitations
     localpv-provisioner:
       hostpathClass:
         enabled: false # disable default SC
+      enabled: true
     image:
       pullPolicy: IfNotPresent #Always got me rate limited
     engines:
@@ -68,3 +67,5 @@ spec:
             enabled: false
       crds:
         enabled: true #disabled in main, but enabled in mayastor???
+      localpv-provisioner:
+        enabled: true
