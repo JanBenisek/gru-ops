@@ -79,6 +79,10 @@ k create secret generic cloudflare-api-token \
   - https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm/
   - https://fluxcd.io/flux/monitoring/metrics/
 
+### nfs-server
+
+- Based on this [OpenEBS](https://openebs.io/docs/Solutioning/read-write-many/nfspvc)
+
 ### ollama
 
 - LLMs!

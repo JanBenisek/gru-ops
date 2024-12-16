@@ -10,3 +10,5 @@ spec:
   topology:
     labelled:
       topology-key: topology-stuart
+# needs SC, we use default `openebs-single-replica`
+# https://openebs.io/docs/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration
