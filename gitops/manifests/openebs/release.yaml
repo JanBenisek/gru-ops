@@ -66,6 +66,6 @@ spec:
           initContainers:
             enabled: false
       crds:
-        enabled: false #disabled in main, but enabled in mayastor???
+        enabled: false # installation breaks if enabled hmmm
       # localpv-provisioner:
       #   enabled: true
