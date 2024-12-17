@@ -5,3 +5,4 @@ resources:
   - namespace.yaml
   - nfs-pvc.yaml
   - nfs-server.yaml
+  # - nfs-sc.yaml
