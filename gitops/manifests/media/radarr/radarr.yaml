@@ -43,7 +43,7 @@ spec:
             - name: UMASK
               # Default privileges. 002 is 775 = full access to user and group
               # and read/execute only to others
-              value: "000" 
+              value: "002" 
             - name: TZ
               value: "Etc/UTC" # Timezone
           resources:
@@ -56,13 +56,13 @@ spec:
           volumeMounts:
             - mountPath: /config  # Mount for Radarr config
               name: config-storage
-            - mountPath: /media # Single volume for Movies and Downloads
-              name: data-storage
+            - mountPath: /movies # Single volume for Movies and Downloads
+              name: media-storage
       volumes:
         - name: config-storage
           persistentVolumeClaim:
             claimName: pvc-radarr-config # PVC for config storage
-        - name: data-storage
+        - name: media-storage
           persistentVolumeClaim:
             claimName: pvc-media   # PVC for data storage
 ---

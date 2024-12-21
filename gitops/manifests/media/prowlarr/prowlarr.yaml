@@ -20,7 +20,7 @@ spec:
       nodeSelector:
           kubernetes.io/hostname: stuart 
       securityContext:
-        runAsUser: 321  #all processes in the pod run with user ID 321
+        runAsUser: 322  #all processes in the pod run with user ID 321
         runAsGroup: 321  # same but for groups
         fsGroup: 321 # owner of attached volume is group 321 
       containers:
@@ -36,7 +36,7 @@ spec:
             - name: PUID
               # Process User ID - under which user will the containers processes run
               # Files inside the container belong to that user
-              value: "321" 
+              value: "322" 
             - name: PGID
               # Similar to the above. Prowlarr can modify files that belong to a specific group
               value: "321"   
