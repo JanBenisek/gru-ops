@@ -25,9 +25,9 @@ resources:
   # - jupyter.yaml
   - media-init.yaml
   - media-jellyfin.yaml
-  # - media-prowlarr.yaml
-  # - media-qbittorrent.yaml
-  # - media-radarr.yaml
+  - media-prowlarr.yaml
+  - media-qbittorrent.yaml
+  - media-radarr.yaml
 configMapGenerator:
   - name: gru-values
     envs:
