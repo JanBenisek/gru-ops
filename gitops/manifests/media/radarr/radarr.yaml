@@ -1,0 +1,111 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radarr
+  namespace: media
+  labels:
+    app: radarr
+    app.kubernetes.io/name: radarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: radarr
+  template:
+    metadata:
+      labels:
+        app: radarr
+        app.kubernetes.io/name: radarr
+    spec:
+      nodeSelector:
+          kubernetes.io/hostname: stuart 
+      securityContext:
+        runAsUser: 321  #all processes in the pod run with user ID 321
+        runAsGroup: 321  # same but for groups
+        fsGroup: 321 # owner of attached volume is group 321 
+      containers:
+        - name: radarr
+          image: ghcr.io/hotio/radarr
+          securityContext:
+            runAsUser: 0  # Temporary root for setup, not great, but does not work otherwise
+            allowPrivilegeEscalation: true
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 7878 
+          env:
+            - name: PUID
+              # Process User ID - under which user will the containers processes run
+              # Files inside the container belong to that user
+              value: "321" 
+            - name: PGID
+              # Similar to the above. Radarr can modify files that belong to a specific group
+              value: "321"   
+            - name: UMASK
+              # Default privileges. 002 is 775 = full access to user and group
+              # and read/execute only to others
+              value: "000" 
+            - name: TZ
+              value: "Etc/UTC" # Timezone
+          resources:
+            requests:
+              memory: "5G"  
+              cpu: "300m"      
+            limits:
+              memory: "10G"  
+              cpu: "500m"
+          volumeMounts:
+            - mountPath: /config  # Mount for Radarr config
+              name: config-storage
+            - mountPath: /data # Single volume for Movies and Downloads
+              name: data-storage
+      volumes:
+        - name: config-storage
+          persistentVolumeClaim:
+            claimName: pvc-radarr-config # PVC for config storage
+        - name: data-storage
+          persistentVolumeClaim:
+            claimName: pvc-radarr-data   # PVC for data storage
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: radarr
+  namespace: media
+  labels:
+    app.kubernetes.io/name: radarr
+spec:
+  selector:
+    app: radarr
+  ports:
+  - name: http
+    port: 80 # we talk to this
+    protocol: TCP
+    targetPort: 7878 # app listens here
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: radarr
+  labels:
+    app: radarr
+    app.kubernetes.io/name: radarr
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: radarr.${DOMAIN_NAME}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: radarr
+            port:
+              number: 80
+  tls:
+  - hosts:
+      - radarr.${DOMAIN_NAME}
+    secretName: letsencrypt-wildcard-cert-pengiuns.com-production
