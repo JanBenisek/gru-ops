@@ -60,8 +60,8 @@ spec:
 
     # -- Security context for the container.
     securityContext:
-      runAsUser: 222   # Jellyfin's user ID
-      runAsGroup: 111   # Matches Radarr's PGID
+      runAsUser: 324   # Jellyfin's user ID
+      runAsGroup: 321   # Matches Radarr's PGID
       fsGroup: 111      # Ensures group ownership of files is enforced
       # capabilities:
       #   drop:
