@@ -21,6 +21,9 @@ spec:
       chp:
         networkPolicy:
           enabled: false
+        traefik:
+          networkPolicy:
+            enabled: true
     singleuser:
       networkPolicy:
         enabled: false
