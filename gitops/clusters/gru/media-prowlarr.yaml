@@ -10,9 +10,7 @@ spec:
   timeout: 10m
   validation: server
   dependsOn:
-    - name: external-dns
-      namespace: flux-system
-    - name: openebs
+    - name: media-init
       namespace: flux-system
   sourceRef:
     kind: GitRepository

@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: pvc-radarr-data
+  name: pvc-radarr-media
   namespace: radarr
 spec:
   storageClassName: local-hostpath-stuart-media

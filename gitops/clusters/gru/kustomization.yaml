@@ -22,12 +22,11 @@ resources:
   - homepage.yaml
   - ollama.yaml
   - open-webui.yaml
-  # - radarr.yaml
-  # - prowlarr.yaml
-  # - qbittorrent.yaml
-  # - jellyfin.yaml
-  
-  # test
+  - media-init.yaml
+  # - media-jellyfin.yaml
+  # - media-prowlarr.yaml
+  - media-qbittorrent.yaml
+  # - media-radarr.yaml
 configMapGenerator:
   - name: gru-values
     envs:
