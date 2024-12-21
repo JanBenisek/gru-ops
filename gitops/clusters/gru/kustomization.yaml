@@ -27,7 +27,7 @@ resources:
   # - media-jellyfin.yaml
   # - media-prowlarr.yaml
   - media-qbittorrent.yaml
-  # - media-radarr.yaml
+  - media-radarr.yaml
 configMapGenerator:
   - name: gru-values
     envs:

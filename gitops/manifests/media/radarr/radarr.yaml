@@ -56,7 +56,7 @@ spec:
           volumeMounts:
             - mountPath: /config  # Mount for Radarr config
               name: config-storage
-            - mountPath: /data # Single volume for Movies and Downloads
+            - mountPath: /media # Single volume for Movies and Downloads
               name: data-storage
       volumes:
         - name: config-storage
@@ -64,7 +64,7 @@ spec:
             claimName: pvc-radarr-config # PVC for config storage
         - name: data-storage
           persistentVolumeClaim:
-            claimName: pvc-radarr-data   # PVC for data storage
+            claimName: pvc-media   # PVC for data storage
 ---
 apiVersion: v1
 kind: Service

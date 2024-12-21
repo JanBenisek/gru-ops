@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: media
 resources:
   - namespace.yaml
-  - pvc-radarr-data.yaml
   - pvc-radarr-config.yaml
   - radarr.yaml
   
