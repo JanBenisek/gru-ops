@@ -56,6 +56,11 @@ k create secret generic cloudflare-api-token \
 
 - Set of interesting IT tools.
 
+### jupyter
+
+- [repo](https://github.com/jupyterhub/zero-to-jupyterhub-k8s)
+- [values](https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/HEAD/jupyterhub/values.yaml)
+
 ### metallb
 
 - Load Balancer, pay attention to DHCP range!

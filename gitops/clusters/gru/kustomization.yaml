@@ -22,6 +22,7 @@ resources:
   - homepage.yaml
   - ollama.yaml
   - open-webui.yaml
+  - jupyter.yaml
   - media-init.yaml
   # - media-jellyfin.yaml
   # - media-prowlarr.yaml
