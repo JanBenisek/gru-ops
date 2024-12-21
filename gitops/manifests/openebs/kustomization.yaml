@@ -6,5 +6,5 @@ resources:
   - repository.yaml
   - release.yaml
   - local-hostpath-sc-kevin.yaml
-  - local-hostpath-sc-stuart.yaml
+  - local-hostpath-sc-stuart-data.yaml
   # - disk-pool.yaml

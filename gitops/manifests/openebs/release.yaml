@@ -53,14 +53,14 @@ spec:
       loki-stack:
         enabled: true
         localpvScConfig:
-          basePath: "/var/mnt/storage/openebs/local/{{ .Release.Name }}/localpv-hostpath/loki"
+          basePath: "/var/mnt/storage/data/openebs/local/{{ .Release.Name }}/localpv-hostpath/loki"
         loki:
           persistence:
             size: 2Gi
       etcd:
         replicaCount: 1 # is this a good idea?
         localpvScConfig:
-          basePath: "/var/mnt/storage/openebs/local/{{ .Release.Name }}/localpv-hostpath/etcd"
+          basePath: "/var/mnt/storage/data/openebs/local/{{ .Release.Name }}/localpv-hostpath/etcd"
       csi:
         node:
           initContainers:
