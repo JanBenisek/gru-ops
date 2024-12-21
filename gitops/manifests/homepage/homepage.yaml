@@ -101,23 +101,31 @@ data:
             description: Ollama & WebUI locally
             namespace: open-webui
             app: open-webui
+
+    - Media:
         - Jellyfin:
             icon: jellyfin.png
             href: https://jellyfin.pengiuns.com
             description: There be procrastination 
-            namespace: jellyfin
+            namespace: media
             app: jellyfin
         - Radarr:
             icon: radarr.png
             href: https://radarr.pengiuns.com
             description: Movies
-            namespace: radarr
+            namespace: media
+            app: radarr
+        - Prowlarr:
+            icon: prowlarr.png
+            href: https://prowlarr.pengiuns.com
+            description: Indexer
+            namespace: media
             app: radarr
         - qbittorrent:
             icon: qbittorrent.png
             href: https://qbittorrent.pengiuns.com
-            description: Movies
-            namespace: qbittorrent
+            description: Torrent
+            namespace: media
             app: qbittorrent
     
     - Experiments:
