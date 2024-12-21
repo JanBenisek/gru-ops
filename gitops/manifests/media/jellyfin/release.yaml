@@ -198,9 +198,9 @@ spec:
         # -- Custom annotations to be added to the PVC
         annotations: {}
         # -- If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner.
-        storageClass: local-hostpath-stuart-data
+        storageClass: ''
         ## -- Use an existing PVC for this mount
-        # existingClaim: ''
+        existingClaim: pvc-jellyfin-config
       media:
         # -- set to false to use emptyDir
         enabled: true
@@ -211,7 +211,7 @@ spec:
         # -- If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner.
         storageClass: ''
         ## -- Use an existing PVC for this mount
-        existingClaim: pvc-radarr-data
+        existingClaim: pvc-media
 
     # -- Configuration for metrics collection and monitoring
     metrics:

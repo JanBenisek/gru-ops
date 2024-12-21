@@ -56,7 +56,7 @@ spec:
           volumeMounts:
             - mountPath: /config  # Mount for Radarr config
               name: config-storage
-            - mountPath: /movies # Single volume for Movies and Downloads
+            - mountPath: /data/movies # Single volume for Movies and Downloads
               name: media-storage
       volumes:
         - name: config-storage

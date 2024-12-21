@@ -56,7 +56,7 @@ spec:
           volumeMounts:
             - mountPath: /config 
               name: config-storage
-            - mountPath: /torrents 
+            - mountPath: /data/torrents 
               name: media-storage
       volumes:
         - name: config-storage
