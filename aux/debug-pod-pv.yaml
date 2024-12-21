@@ -1,21 +1,24 @@
 # k apply -f debug-pod-pv.yaml
-# k exec -it -n radarr radarr-debug -- sh
+# k exec -it -n media debug-pod -- sh
 # k delete -f debug-pod-pv.yaml
+
+# another useful debug pod
+# k debug -it node/stuart --image alpine --profile=sysadmin -n kube-system
 
 apiVersion: v1
 kind: Pod
 metadata:
-  name: radarr-debug
-  namespace: ollama
+  name: debug-pod
+  namespace: media
 spec:
   nodeSelector:
     kubernetes.io/hostname: stuart 
   securityContext:
-    runAsUser: 321  #all processes in the pod run with user ID 321
+    runAsUser: 421  #all processes in the pod run with user ID 321
     runAsGroup: 321  # same but for groups
     fsGroup: 321 # owner of attached volume is group 321
   containers:
-    - name: radarr
+    - name: debug-pod
       # image: busybox
       # command: ["sleep", "3600"]
       image: alpine
@@ -24,7 +27,7 @@ spec:
         runAsUser: 0  # Allow root user for package installation
       env:
         - name: PUID
-          value: "321" 
+          value: "421" 
         - name: PGID
           value: "321"   
         - name: UMASK
@@ -39,28 +42,9 @@ spec:
           memory: "500Mi"  
           cpu: "500m"
       volumeMounts:
-        # - mountPath: /config  # Mount for Radarr config
-        #   name: config-storage
-        - mountPath: /data # Single volume for Movies and Downloads
-          name: data-storage
+        - mountPath: /data 
+          name: media-storage
   volumes:
-    # - name: config-storage
-    #   persistentVolumeClaim:
-    #     claimName: pvc-radarr-config # PVC for config storage
-    - name: data-storage
+    - name: media-storage
       persistentVolumeClaim:
-        claimName: nfs-pvc   # PVC for data storage
-
---- 
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: nfs-pvc
-  namespace: ollama
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: openebs-nfs
+        claimName: pvc-media 
