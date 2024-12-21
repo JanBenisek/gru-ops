@@ -29,43 +29,43 @@ spec:
           enabled: false
       replicated:
         mayastor:
-          enabled: true
-    mayastor:
-      base:
-        metrics:
-        # -- Review, was blocking it
-        enabled: false
-        initContainers:
-          enabled: false # is this a good idea?
-        initHaNodeContainers:
-          enabled: false # same Q?
-      io_engine:
-        cpuCount: "1"
-        resources:
-          limits:
-            cpu: "1"
-            memory: "1Gi"
-            hugepages2Mi: "2Gi"
-          requests:
-            cpu: "500m"
-            memory: "500Mi"
-            hugepages2Mi: "2Gi"
-      loki-stack:
-        enabled: true
-        localpvScConfig:
-          basePath: "/var/mnt/storage/data/openebs/local/{{ .Release.Name }}/localpv-hostpath/loki"
-        loki:
-          persistence:
-            size: 2Gi
-      etcd:
-        replicaCount: 1 # is this a good idea?
-        localpvScConfig:
-          basePath: "/var/mnt/storage/data/openebs/local/{{ .Release.Name }}/localpv-hostpath/etcd"
-      csi:
-        node:
-          initContainers:
-            enabled: false
-      crds:
-        enabled: false # installation breaks if enabled hmmm
-      # localpv-provisioner:
-      #   enabled: true
+          enabled: false
+    # mayastor:
+    #   base:
+    #     metrics:
+    #     # -- Review, was blocking it
+    #     enabled: false
+    #     initContainers:
+    #       enabled: false # is this a good idea?
+    #     initHaNodeContainers:
+    #       enabled: false # same Q?
+    #   io_engine:
+    #     cpuCount: "1"
+    #     resources:
+    #       limits:
+    #         cpu: "1"
+    #         memory: "1Gi"
+    #         hugepages2Mi: "2Gi"
+    #       requests:
+    #         cpu: "500m"
+    #         memory: "500Mi"
+    #         hugepages2Mi: "2Gi"
+    #   loki-stack:
+    #     enabled: true
+    #     localpvScConfig:
+    #       basePath: "/var/mnt/storage/data/openebs/local/{{ .Release.Name }}/localpv-hostpath/loki"
+    #     loki:
+    #       persistence:
+    #         size: 2Gi
+    #   etcd:
+    #     replicaCount: 1 # is this a good idea?
+    #     localpvScConfig:
+    #       basePath: "/var/mnt/storage/data/openebs/local/{{ .Release.Name }}/localpv-hostpath/etcd"
+    #   csi:
+    #     node:
+    #       initContainers:
+    #         enabled: false
+    #   crds:
+    #     enabled: false # installation breaks if enabled hmmm
+    #   # localpv-provisioner:
+    #   #   enabled: true

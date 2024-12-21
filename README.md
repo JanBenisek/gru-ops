@@ -39,12 +39,6 @@ k create secret generic cloudflare-api-token \
   > /Users/janbenisek/GithubRepos/gru-ops/gitops/manifests/external-dns/secrets/cloudflare-api-token.yaml
 ```
 
-### harbor
-
-- Store my containers.
-- [Helm](https://artifacthub.io/packages/helm/bitnami/harbor)
-- [Helm values](https://github.com/bitnami/charts/blob/main/bitnami/harbor/values.yaml)
-
 ### hiker
 
 - Just an experiment, try to add endpoints for Grafana to monitor?
@@ -78,10 +72,6 @@ k create secret generic cloudflare-api-token \
   - https://artifacthub.io/packages/helm/grafana/grafana
   - https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm/
   - https://fluxcd.io/flux/monitoring/metrics/
-
-### nfs-server
-
-- Based on this [OpenEBS](https://openebs.io/docs/Solutioning/read-write-many/nfspvc)
 
 ### ollama
 
@@ -155,3 +145,15 @@ k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-se
 - set up some configs and use FAT version
 - https://github.com/Stirling-Tools/Stirling-PDF/blob/main/Version-groups.md
 - https://github.com/Stirling-Tools/Stirling-PDF?tab=readme-ov-file
+
+## Archive
+
+### NFS
+
+- NFS: Based on this [OpenEBS](https://openebs.io/docs/Solutioning/read-write-many/nfspvc)
+
+### Harbor
+
+- Store my containers.
+- [Helm](https://artifacthub.io/packages/helm/bitnami/harbor)
+- [Helm values](https://github.com/bitnami/charts/blob/main/bitnami/harbor/values.yaml)
