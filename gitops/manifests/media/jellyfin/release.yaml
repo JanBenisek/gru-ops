@@ -60,9 +60,9 @@ spec:
 
     # -- Security context for the container.
     securityContext:
-      runAsUser: 324   # Jellyfin's user ID
-      runAsGroup: 321   # Matches Radarr's PGID
-      fsGroup: 111      # Ensures group ownership of files is enforced
+      runAsUser: 325   # Jellyfin's user ID
+      runAsGroup: 321   # needs to match the others
+      fsGroup: 321      # Ensures group ownership of files is enforced
       # capabilities:
       #   drop:
       #   - ALL
@@ -185,9 +185,9 @@ spec:
       # -- Additional environment variables for the container.
       env:
       - name: PUID
-        value: "222" # Jellyfin's user ID; does not need to match Radarr's
+        value: "325" # Jellyfin's user ID; does not need to match Radarr's
       - name: PGID
-        value: "111" # Match Radarr
+        value: "321" # Match others
 
     persistence:
       config:
