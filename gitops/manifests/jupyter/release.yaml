@@ -15,10 +15,15 @@ spec:
         namespace: jupyter
       interval: 12h
   values:
-    # proxy:
-    #   service:
-    #     type: ClusterIP
+    proxy:
+      service:
+        type: ClusterIP
+      chp:
+        networkPolicy:
+          enabled: false
     singleuser:
+      networkPolicy:
+        enabled: false
       allowPrivilegeEscalation: true
       startTimeout: 600
       extraEnv:
@@ -68,6 +73,8 @@ spec:
         JupyterHub:
           admin_access: true
           authenticator_class: dummy
+      networkPolicy:
+        enabled: false
 
     ingress:
       annotations:

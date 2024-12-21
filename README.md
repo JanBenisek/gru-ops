@@ -58,6 +58,8 @@ k create secret generic cloudflare-api-token \
 
 ### jupyter
 
+- [docs](https://z2jh.jupyter.org/en/stable/jupyterhub/installation.html)
+- [images](https://github.com/jupyter/docker-stacks/tree/main/images)
 - [repo](https://github.com/jupyterhub/zero-to-jupyterhub-k8s)
 - [values](https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/HEAD/jupyterhub/values.yaml)
 
