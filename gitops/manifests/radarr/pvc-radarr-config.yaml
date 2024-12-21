@@ -4,7 +4,7 @@ metadata:
   name: pvc-radarr-config
   namespace: radarr
 spec:
-  storageClassName: local-hostpath-stuart
+  storageClassName: local-hostpath-stuart-data
   accessModes:
     - ReadWriteOnce
   resources:
