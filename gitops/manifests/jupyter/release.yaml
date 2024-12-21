@@ -1,0 +1,75 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: jupyter
+  namespace: jupyter
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: jupyterhub
+      version: "4.0.0"
+      sourceRef:
+        kind: HelmRepository
+        name: jupyterhub
+        namespace: jupyter
+      interval: 12h
+  values:
+    proxy:
+      service:
+        type: ClusterIP
+    singleuser:
+      allowPrivilegeEscalation: true
+      startTimeout: 600
+      extraEnv:
+        GRANT_SUDO: "yes"
+        NOTEBOOK_ARGS: "--allow-root"
+      defaultUrl: "/lab"
+      image:
+        name: 774963458979.dkr.ecr.eu-west-1.amazonaws.com/smalldata
+        tag: jupyter-9
+        pullPolicy: Always
+      profileList:
+        - display_name: "Tintboi"
+          description: "I am trying!"
+          default: true
+          kubespawner_override:
+            cpu_guarantee: 1
+            mem_guarantee: 2G
+            cpu_limit: 1
+            mem_limit: 2G
+      storage:
+        type: "static"
+        static:
+          pvcName: "pvc-jupyter"
+          subPath: "home/{username}"
+      uid: 0
+      fsGid: 100
+      cmd: start-singleuser.sh
+
+    prePuller:
+      hook:
+        enabled: false
+      continuous:
+        enabled: false
+    scheduling:
+      userScheduler:
+        enabled: false
+    hub:
+      config:
+        JupyterHub:
+          admin_access: true
+          authenticator_class: dummy
+
+    ingress:
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        nginx.ingress.kubernetes.io/proxy-body-size: 100m
+      enabled: true
+      hosts:
+        - jupyter.${DOMAIN_NAME}
+      tls:
+      - hosts:
+        - jupyter.${DOMAIN_NAME}
+        secretName: letsencrypt-wildcard-cert-pengiuns.com-production
