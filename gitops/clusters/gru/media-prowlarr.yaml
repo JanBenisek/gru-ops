@@ -23,4 +23,4 @@ spec:
     - apiVersion: apps/v1
       kind: Deployment
       name: prowlarr
-      namespace: prowlarr
+      namespace: media

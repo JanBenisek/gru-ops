@@ -56,7 +56,7 @@ spec:
           volumeMounts:
             - mountPath: /config 
               name: config-storage
-            - mountPath: /data/torrents # this also has to be changed in the UI
+            - mountPath: /data/downloads/torrents # this also has to be changed in the UI
               name: media-storage
       volumes:
         - name: config-storage
