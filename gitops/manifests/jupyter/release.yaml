@@ -15,9 +15,9 @@ spec:
         namespace: jupyter
       interval: 12h
   values:
-    proxy:
-      service:
-        type: ClusterIP
+    # proxy:
+    #   service:
+    #     type: ClusterIP
     singleuser:
       allowPrivilegeEscalation: true
       startTimeout: 600
@@ -42,7 +42,7 @@ spec:
         type: "static"
         static:
           pvcName: "pvc-jupyter"
-          subPath: "home/{username}"
+          subPath: "home/data"
       uid: 0
       fsGid: 100
       cmd: start-singleuser.sh
