@@ -30,10 +30,18 @@ spec:
       #   tag: jupyter-9
       #   pullPolicy: Always
       profileList:
-        - display_name: "Tintboi"
-          description: "I am trying!"
+        - display_name: "Tiny boi"
+          description: "But mighty!"
           default: true
           kubespawner_override:
+            cpu_guarantee: 1
+            mem_guarantee: 2G
+            cpu_limit: 1
+            mem_limit: 2G
+        - display_name: "Data environment"
+          description: "If you want the additional bells and whistles: Python, R, and Julia."
+          kubespawner_override:
+            image: quay.io/jupyter/datascience-notebook
             cpu_guarantee: 1
             mem_guarantee: 2G
             cpu_limit: 1
@@ -42,7 +50,7 @@ spec:
         type: "static"
         static:
           pvcName: "pvc-jupyter"
-          subPath: "home/data"
+          subPath: "/home"
       uid: 0
       fsGid: 100
       cmd: start-singleuser.sh
