@@ -81,6 +81,12 @@ data:
             description: PDF tools
             namespace: stirling
             app: stirling
+        - JupyterHub:
+            icon: jupyter.png
+            href: https://jupyter.pengiuns.com
+            description: Make some cool shit!
+            namespace: jupyter
+            app: jupyter
 
     - Fun:
         - Hiker:
