@@ -12,7 +12,7 @@ resources:
   - cert-manager.yaml
   - certs.yaml #it takes a ~10m to set up and propagate, patience!
   - secret-replicator.yaml
-  # - openebs.yaml
+  - openebs.yaml
   # Apps
   - hiker.yaml
   - stirling.yaml
