@@ -12,7 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: qbittorrent
-        namespace: qbittorrent
+        namespace: media
       interval: 12h
   values:
     #
