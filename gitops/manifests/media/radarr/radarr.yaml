@@ -58,6 +58,8 @@ spec:
               name: config-storage
             - mountPath: /data/movies # Single volume for Movies and Downloads
               name: media-storage
+            - mountPath: /data/downloads/torrents # to get downloads
+              name: media-storage
       volumes:
         - name: config-storage
           persistentVolumeClaim:

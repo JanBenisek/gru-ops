@@ -154,16 +154,16 @@ spec:
       # periodSeconds: 10
 
     # -- Additional volumes to mount in the Jellyfin pod.
-    volumes: []
-      # - name: media
-      #   persistentVolumeClaim:
-      #     claimName: pvc-radarr-data
+    volumes:
+      - name: media
+        persistentVolumeClaim:
+          claimName: pvc-media
 
     # -- Additional volume mounts for the Jellyfin container.
-    volumeMounts: []
-      # - name: media
-      #   mountPath: "/data"
-      #   readOnly: true
+    volumeMounts:
+      - name: media
+        mountPath: /data/movies
+        readOnly: true
 
     # -- Node selector for pod scheduling.
     nodeSelector: 
