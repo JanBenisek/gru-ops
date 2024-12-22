@@ -126,11 +126,11 @@ spec:
     # -- Resource requests and limits for the Jellyfin container.
     resources: 
       limits:
-        cpu: 1
-        memory: 8G
+        cpu: "1500"
+        memory: 4G
       requests:
-        cpu: "500m"
-        memory: 6G
+        cpu: "1000m"
+        memory: 2G
       
 
     # -- Configure liveness probe for Jellyfin.

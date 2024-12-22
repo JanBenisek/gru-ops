@@ -25,7 +25,7 @@ spec:
         fsGroup: 321 # owner of attached volume is group 321 
       containers:
         - name: qbittorrent
-          image: ghcr.io/hotio/qbittorrent
+          image: ghcr.io/hotio/qbittorrent:release-6a09a93
           securityContext:
             runAsUser: 0  # Temporary root for setup, not great, but does not work otherwise
             allowPrivilegeEscalation: true
@@ -49,14 +49,14 @@ spec:
           resources:
             requests:
               memory: "1G"  
-              cpu: "200m"      
+              cpu: "500m"      
             limits:
               memory: "2G"  
-              cpu: "500m"
+              cpu: "1000m"
           volumeMounts:
             - mountPath: /config 
               name: config-storage
-            - mountPath: /data/downloads/torrents # this also has to be changed in the UI
+            - mountPath: /data # In UI add /downloads/torrents
               name: media-storage
       volumes:
         - name: config-storage

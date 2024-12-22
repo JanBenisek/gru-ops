@@ -127,6 +127,18 @@ data:
             description: Torrent
             namespace: media
             app: qbittorrent
+        - Sonarr:
+            icon: sonarr.png
+            href: https://sonarr.pengiuns.com
+            description: Shows
+            namespace: media
+            app: sonarr
+        - Bazarr:
+            icon: bazarr.png
+            href: https://bazarr.pengiuns.com
+            description: Subtitles
+            namespace: media
+            app: bazarr
     
     - Experiments:
       - Router:

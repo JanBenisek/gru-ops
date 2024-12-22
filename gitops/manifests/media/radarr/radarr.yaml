@@ -25,7 +25,7 @@ spec:
         fsGroup: 321 # owner of attached volume is group 321 
       containers:
         - name: radarr
-          image: ghcr.io/hotio/radarr
+          image: ghcr.io/hotio/radarr:release-a4a33f4
           securityContext:
             runAsUser: 0  # Temporary root for setup, not great, but does not work otherwise
             allowPrivilegeEscalation: true
@@ -48,17 +48,15 @@ spec:
               value: "Etc/UTC" # Timezone
           resources:
             requests:
-              memory: "5G"  
+              memory: "1G"  
               cpu: "300m"      
             limits:
-              memory: "10G"  
+              memory: "2G"  
               cpu: "500m"
           volumeMounts:
             - mountPath: /config  # Mount for Radarr config
               name: config-storage
-            - mountPath: /data/movies # Single volume for Movies and Downloads
-              name: media-storage
-            - mountPath: /data/downloads/torrents # to get downloads
+            - mountPath: /data # Single volume for Movies and Downloads
               name: media-storage
       volumes:
         - name: config-storage
