@@ -110,6 +110,11 @@ spec:
       annotations:
         kubernetes.io/ingress.class: "nginx"
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+        nginx.ingress.kubernetes.io/proxy-connect-timeout: "100"
+        nginx.ingress.kubernetes.io/proxy-send-timeout: "100"
+        nginx.ingress.kubernetes.io/proxy-read-timeout: "100"
+        nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "100"
       hosts:
           - host: jellyfin.${DOMAIN_NAME}
             paths:
