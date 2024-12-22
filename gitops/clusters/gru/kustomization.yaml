@@ -24,7 +24,7 @@ resources:
   - open-webui.yaml
   # - jupyter.yaml
   - media-init.yaml
-  - media-jellyfin.yaml
+  # - media-jellyfin.yaml
   - media-prowlarr.yaml
   - media-qbittorrent.yaml
   - media-radarr.yaml
