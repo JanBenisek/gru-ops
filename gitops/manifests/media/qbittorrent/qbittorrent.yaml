@@ -61,7 +61,7 @@ spec:
       volumes:
         - name: config-storage
           persistentVolumeClaim:
-            claimName: pvc-radarr-config 
+            claimName: pvc-qbittorrent-config 
         - name: media-storage
           persistentVolumeClaim:
             claimName: pvc-media
