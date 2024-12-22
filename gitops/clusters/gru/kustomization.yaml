@@ -23,13 +23,13 @@ resources:
   - ollama.yaml
   - open-webui.yaml
   # - jupyter.yaml
-  # - media-init.yaml
+  - media-init.yaml
   # - media-jellyfin.yaml
   # - media-prowlarr.yaml
   # - media-qbittorrent.yaml
   # - media-radarr.yaml
   # - media-sonarr.yaml
-  # - media-bazarr.yaml
+  - media-bazarr.yaml
 configMapGenerator:
   - name: gru-values
     envs:

@@ -43,7 +43,7 @@ spec:
             - name: UMASK
               # Default privileges. 002 is 775 = full access to user and group
               # and read/execute only to others
-              value: "000" 
+              value: "002" 
             - name: TZ
               value: "Etc/UTC" # Timezone
           resources:
