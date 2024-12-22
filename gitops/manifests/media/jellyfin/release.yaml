@@ -155,14 +155,14 @@ spec:
 
     # -- Additional volumes to mount in the Jellyfin pod.
     volumes:
-      - name: media
+      - name: my_media
         persistentVolumeClaim:
           claimName: pvc-media
 
     # -- Additional volume mounts for the Jellyfin container.
     volumeMounts:
-      - name: media
-        mountPath: /data/movies
+      - name: my_media
+        mountPath: /data
         readOnly: true
 
     # -- Node selector for pod scheduling.
