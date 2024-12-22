@@ -203,7 +203,7 @@ spec:
         existingClaim: pvc-jellyfin-config
       media:
         # -- set to false to use emptyDir
-        enabled: true
+        enabled: false
         accessMode: ReadWriteOnce
         size: 25Gi
         # -- Custom annotations to be added to the PVC
