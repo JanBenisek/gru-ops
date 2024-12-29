@@ -82,6 +82,8 @@ spec:
           authenticator_class: dummy
       networkPolicy:
         enabled: false
+      readinessProbe:
+        initialDelaySeconds: 30
 
     ingress:
       annotations:
