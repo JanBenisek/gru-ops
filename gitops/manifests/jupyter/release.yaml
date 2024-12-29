@@ -86,15 +86,15 @@ spec:
         initialDelaySeconds: 30
 
     ingress:
+      enabled: true
       ingressClassName: "nginx"
       annotations:
         kubernetes.io/ingress.class: "nginx"
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
         nginx.ingress.kubernetes.io/proxy-body-size: 100m
-      enabled: true
       hosts:
         - jupyter.${DOMAIN_NAME}
       tls:
-      - hosts:
-        - jupyter.${DOMAIN_NAME}
-        secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+        - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+          hosts:
+            - jupyter.${DOMAIN_NAME}
