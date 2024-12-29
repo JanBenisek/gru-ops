@@ -17,20 +17,17 @@ spec:
   values:
     proxy:
       service:
-        type: LoadBalancer
+        type: ClusterIP
       chp:
         networkPolicy:
-          enabled: true
+          enabled: false
         nodeSelector:
           kubernetes.io/hostname: kevin
-      traefik:
-        networkPolicy:
-          enabled: true
     singleuser:
       nodeSelector:
         kubernetes.io/hostname: kevin
       networkPolicy:
-        enabled: true
+        enabled: false
       allowPrivilegeEscalation: true
       startTimeout: 600
       extraEnv:
@@ -83,7 +80,7 @@ spec:
           admin_access: true
           authenticator_class: dummy
       networkPolicy:
-        enabled: true
+        enabled: false
 
     ingress:
       annotations:
