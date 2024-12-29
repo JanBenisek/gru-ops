@@ -20,17 +20,17 @@ spec:
         type: LoadBalancer
       chp:
         networkPolicy:
-          enabled: false
+          enabled: true
         nodeSelector:
           kubernetes.io/hostname: kevin
       traefik:
         networkPolicy:
-          enabled: false
+          enabled: true
     singleuser:
       nodeSelector:
         kubernetes.io/hostname: kevin
       networkPolicy:
-        enabled: false
+        enabled: true
       allowPrivilegeEscalation: true
       startTimeout: 600
       extraEnv:
@@ -83,7 +83,7 @@ spec:
           admin_access: true
           authenticator_class: dummy
       networkPolicy:
-        enabled: false
+        enabled: true
 
     ingress:
       annotations:
