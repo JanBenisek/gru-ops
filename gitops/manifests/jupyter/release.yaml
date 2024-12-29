@@ -21,11 +21,11 @@ spec:
       chp:
         networkPolicy:
           enabled: false
-        nodeSelector:
-          kubernetes.io/hostname: kevin
+        # nodeSelector:
+        #   kubernetes.io/hostname: kevin
     singleuser:
-      nodeSelector:
-        kubernetes.io/hostname: kevin
+      # nodeSelector:
+      #   kubernetes.io/hostname: kevin
       networkPolicy:
         enabled: false
       allowPrivilegeEscalation: true
@@ -74,8 +74,8 @@ spec:
       userScheduler:
         enabled: false
     hub:
-      nodeSelector:
-        kubernetes.io/hostname: kevin
+      # nodeSelector:
+      #   kubernetes.io/hostname: kevin
       config:
         JupyterHub:
           admin_access: true
