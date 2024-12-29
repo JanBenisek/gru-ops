@@ -20,13 +20,13 @@ spec:
         type: ClusterIP
       chp:
         networkPolicy:
-          enabled: false
+          enabled: true
       traefik:
         networkPolicy:
           enabled: true
     singleuser:
       networkPolicy:
-        enabled: false
+        enabled: true
       allowPrivilegeEscalation: true
       startTimeout: 600
       extraEnv:
@@ -77,7 +77,7 @@ spec:
           admin_access: true
           authenticator_class: dummy
       networkPolicy:
-        enabled: false
+        enabled: true
 
     ingress:
       annotations:
