@@ -16,6 +16,8 @@ spec:
       interval: 12h
   values:
     proxy:
+      nodeSelector:
+        kubernetes.io/hostname: kevin
       service:
         type: ClusterIP
       chp:
@@ -25,6 +27,8 @@ spec:
         networkPolicy:
           enabled: true
     singleuser:
+      nodeSelector:
+        kubernetes.io/hostname: kevin
       networkPolicy:
         enabled: true
       allowPrivilegeEscalation: true
@@ -72,6 +76,8 @@ spec:
       userScheduler:
         enabled: false
     hub:
+      nodeSelector:
+        kubernetes.io/hostname: kevin
       config:
         JupyterHub:
           admin_access: true
