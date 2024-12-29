@@ -98,3 +98,6 @@ spec:
         - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
           hosts:
             - jupyter.${DOMAIN_NAME}
+    
+    debug:
+      enabled: true
