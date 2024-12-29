@@ -56,10 +56,11 @@ spec:
             cpu_limit: 1
             mem_limit: 2G
       storage:
-        type: "static"
-        static:
-          pvcName: "pvc-jupyter"
-          subPath: "/home"
+        type: none
+        # type: "static"
+        # static:
+        #   pvcName: "pvc-jupyter"
+        #   subPath: "/home"
       uid: 0
       fsGid: 100
       cmd: start-singleuser.sh
