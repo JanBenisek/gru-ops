@@ -4,14 +4,14 @@ namespace: flux-system
 resources:
   - metallb.yaml
   - metallb-crds.yaml
-  - ingress-nginx.yaml
+  # - ingress-nginx.yaml
   - sealed-secrets.yaml
   - external-dns-secrets.yaml
-  - external-dns.yaml
-  - cert-manager-secrets.yaml # might not be the best, let's review
-  - cert-manager.yaml
-  - certs.yaml #it takes a ~10m to set up and propagate, patience!
-  - secret-replicator.yaml
+  # - external-dns.yaml
+  #- cert-manager-secrets.yaml # might not be the best, let's review
+  #- cert-manager.yaml
+  #- certs.yaml #it takes a ~10m to set up and propagate, patience!
+  #- secret-replicator.yaml
   - openebs.yaml
   # Apps
   - hiker.yaml
