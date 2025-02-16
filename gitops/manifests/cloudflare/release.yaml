@@ -37,8 +37,8 @@ spec:
           originRequest:
             noTLSVerify: true  # Cloudflare trusts my internal cert
         # - service: http_status:404  # Catch-all for unhandled requests
-        - hostname: hello.example.com
-          service: hello_world
+        # - hostname: hello.example.com
+        #   service: hello_world
 
 
     image:
