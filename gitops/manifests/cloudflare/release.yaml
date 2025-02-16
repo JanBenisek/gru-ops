@@ -33,7 +33,9 @@ spec:
       # https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress
       ingress:
         - hostname: swisshikefinder.com
-          service: http://192.168.178.100  # This is your Nginx Ingress external IP
+          service: https://192.168.178.100  # This is your Nginx Ingress external IP
+          originRequest:
+            noTLSVerify: true  # Cloudflare trusts your internal cert
         - service: http_status:404  # Catch-all for unhandled requests
 
 
