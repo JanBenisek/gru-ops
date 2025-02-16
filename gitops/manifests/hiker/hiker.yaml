@@ -69,6 +69,7 @@ spec:
 # We opened 443 on Fritz and that should get routed to ingress (192.168.178.100), to port 443
 # Internally that will be routed to the service on 80 and passed to pod listening on 8080
 # Check DNS: `dig swisshikefinder.com` - I should see my IP (in duckdns)
+# on 2025/02/16 my IP was 100.65.153.4
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -80,6 +81,8 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/limit-rpm: "3600"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   ingressClassName: nginx
   rules:
