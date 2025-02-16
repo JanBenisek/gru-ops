@@ -66,6 +66,9 @@ spec:
     targetPort: 8080 # app listens here
   # type: LoadBalancer # for debugging
 ---
+# We opened 443 on Fritz and that should get routed to ingress (192.168.178.100), to port 443
+# Internally that will be routed to the service on 80 and passed to pod listening on 8080
+# Check DNS: `dig swisshikefinder.com` - I should see my IP (in duckdns)
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
