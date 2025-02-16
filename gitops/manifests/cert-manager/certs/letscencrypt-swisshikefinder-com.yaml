@@ -4,7 +4,7 @@ metadata:
   name: letsencrypt-swisshikefinder-com
   namespace: letsencrypt-wildcard-cert
 spec:
-  secretName: letsencrypt-swisshikefinder-com-secret
+  secretName: letsencrypt-swisshikefinder-com
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
