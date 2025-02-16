@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: letsencrypt-swisshikefinder-com
+  namespace: letsencrypt-wildcard-cert
+spec:
+  secretName: letsencrypt-swisshikefinder-com-secret
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - "swisshikefinder.com"
+    - "*.swisshikefinder.com"
+
+
