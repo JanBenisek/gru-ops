@@ -1,14 +1,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: cloudflare
+  name: cloudflare-tunnel
   namespace: cloudflare
 spec:
   interval: 30m
   chart:
     spec:
-      chart: cloudflare
-      version: "2024.8.3"
+      chart: cloudflare-tunnel
+      version: "0.3.2"
       sourceRef:
         kind: HelmRepository
         name: cloudflare
@@ -33,9 +33,9 @@ spec:
       # https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress
       ingress:
         - hostname: swisshikefinder.com
-          service: https://192.168.178.100  # This is your Nginx Ingress external IP
+          service: https://192.168.178.100 
           originRequest:
-            noTLSVerify: true  # Cloudflare trusts your internal cert
+            noTLSVerify: true  # Cloudflare trusts my internal cert
         - service: http_status:404  # Catch-all for unhandled requests
 
 
