@@ -25,6 +25,13 @@ k create secret generic cloudflare-api-token \
   > /Users/janbenisek/GithubRepos/gru-ops/gitops/manifests/cert-manager/secrets/cloudflare-api-token.yaml
 ```
 
+### Cloudflare
+
+- To be able to expose my services on the internet.
+- I need to set up the tunnel in cloudflare and add CNAME pointing to `acdf4147-512c-4b16-8ce2-58915c6ab118.cfargotunnel.com` with the orange cloud on.
+- [values](https://github.com/cloudflare/helm-charts/blob/main/charts/cloudflare-tunnel/values.yaml)
+- [docs](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/)
+
 ### external-dns
 
 - Need to have cloudflare secret (sealed).
