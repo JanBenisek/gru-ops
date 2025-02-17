@@ -10,6 +10,6 @@ spec:
     kind: ClusterIssuer
   dnsNames:
     - "swisshikefinder.com"
-    - "*.swisshikefinder.com"
+    # - "*.swisshikefinder.com"
 
 
