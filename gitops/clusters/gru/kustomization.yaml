@@ -15,7 +15,7 @@ resources:
   - openebs.yaml
   # - cloudflare.yaml
   # Apps
-  # - hiker.yaml
+  - hiker.yaml
   - stirling.yaml
   - grafana.yaml
   - loki.yaml
