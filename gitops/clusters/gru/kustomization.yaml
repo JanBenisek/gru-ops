@@ -13,9 +13,9 @@ resources:
   - certs.yaml #it takes a ~10m to set up and propagate, patience!
   - secret-replicator.yaml
   - openebs.yaml
-  # - cloudflare.yaml
+  - cloudflare.yaml
   # Apps
-  # - hiker.yaml
+  - hiker.yaml
   - stirling.yaml
   - grafana.yaml
   - loki.yaml

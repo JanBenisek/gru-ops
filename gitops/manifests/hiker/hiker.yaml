@@ -68,7 +68,7 @@ spec:
 ---
 # Works through cloudflare tunnel
 # The annotation, my ingress should handle HTTPS (gets encrypted stuff from Cloudflare)
-# and listenes on 443, then routes internally to 80 and 8080
+# and listenes on 80, then routes internally to 80 and 8080
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -80,8 +80,8 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/limit-rpm: "3600"
-    nginx.ingress.kubernetes.io/ssl-redirect: "true" 
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    # nginx.ingress.kubernetes.io/ssl-redirect: "true"  # if I want to go through 443 and https
+    # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   ingressClassName: nginx
   rules:
@@ -94,7 +94,7 @@ spec:
           service:
             name: hiker
             port:
-              number: 80
+              number: 80 # or 443
   tls:
   - hosts:
       - swisshikefinder.com

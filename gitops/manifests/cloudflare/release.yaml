@@ -33,9 +33,10 @@ spec:
       # https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress
       ingress:
         - hostname: swisshikefinder.com
-          service: https://192.168.178.100 
-          originRequest:
-            noTLSVerify: true  # Cloudflare trusts my internal cert
+          # service: http://192.168.178.100 
+          service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local
+          # originRequest:
+            # noTLSVerify: true  # Cloudflare trusts my internal cert
         # - service: http_status:404  # Catch-all for unhandled requests
         # - hostname: hello.example.com
         #   service: hello_world
