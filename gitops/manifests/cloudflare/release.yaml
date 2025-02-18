@@ -22,9 +22,10 @@ spec:
       # The name of the tunnel this instance will serve
       tunnelName: k8s-tunnel
       # The ID of the above tunnel.
-      tunnelId: acdf4147-512c-4b16-8ce2-58915c6ab118
+      tunnelId: 8a6098dd-3520-43b4-845d-e106fac07e3a
       # The secret for the tunnel.
-      secret: eyJhIjoiNmY3MmUzYTJiZmNjN2I3NzRmZGNlY2M3NzAwMzUzMzYiLCJ0IjoiYWNkZjQxNDctNTEyYy00YjE2LThjZTItNTg5MTVjNmFiMTE4IiwicyI6Ik16TXpNelEyTm1VdE1qVm1NaTAwTW1FMkxXRTFOekF0T0RFMlpUYzJORGRsTWpCbSJ9
+      secret: eyJhIjoiNmY3MmUzYTJiZmNjN2I3NzRmZGNlY2M3NzAwMzUzMzYiLCJ0IjoiOGE2MDk4ZGQtMzUyMC00M2I0LTg0NWQtZTEwNmZhYzA3ZTNhIiwicyI6Ik9XRXpPRGsyTjJFdFl6RXlZeTAwTkdJM0xUa3dORGd0TUdZNU1qWm1ObVF5Tm1NNSJ9
+      
       # If defined, no secret is created for the credentials, and instead, the secret referenced is used
       secretName: null
       # If true, turn on WARP routing for TCP
