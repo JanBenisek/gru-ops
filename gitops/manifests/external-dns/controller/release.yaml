@@ -23,6 +23,7 @@ spec:
       pullPolicy: Always
     domainFilters:
     - "pengiuns.com"
+    - "swisshikefinder.com"
     sources:
       # - crd # TBD what's better
       - service
