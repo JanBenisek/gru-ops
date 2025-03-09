@@ -11,5 +11,6 @@ spec:
   dnsNames:
     - "swisshikefinder.com"
     # - "*.swisshikefinder.com"
-
+  duration: 2160h # 90 days (default)
+  renewBefore: 360h # 15 days
 
