@@ -45,7 +45,7 @@ spec:
           secretName: "letsencrypt-wildcard-cert-pengiuns.com-production"
       ingress:
         hosts:
-          core: "https://harbor.${DOMAIN_NAME}""
+          core: "https://harbor.${DOMAIN_NAME}"
         className: "nginx"
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-prod"
