@@ -17,7 +17,7 @@ spec:
   values:
     persistence:
       enabled: "true"
-      resourcePolicy: "keep"
+      resourcePolicy: "keep" # TODO: not keep
       persistentVolumeClaim:
         registry:
           existingClaim: "pvc-harbor"
@@ -35,7 +35,7 @@ spec:
           existingClaim: "pvc-harbor"
           subPath: "trivy"
     externalURL: "https://harbor.${DOMAIN_NAME}"
-    harborAdminPassword: admin
+    harborAdminPassword: admin #TODO: better pswd
     expose:
       type: ingress
       tls:
@@ -59,6 +59,6 @@ spec:
     database:
       type: internal
     jobservice:
-    env:
-      - name: CORE_URL
-        value: "https://harbor.${DOMAIN_NAME}"
+      env:
+        - name: CORE_URL
+          value: "https://harbor.${DOMAIN_NAME}"
