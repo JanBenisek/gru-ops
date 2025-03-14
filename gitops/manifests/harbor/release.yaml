@@ -58,7 +58,7 @@ spec:
           nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "300"
     database:
       type: internal
-    jobservice:
-      env:
-        - name: CORE_URL
-          value: "https://harbor.${DOMAIN_NAME}"
+    # jobservice:
+    #   env:
+    #     - name: CORE_URL
+    #       value: "https://harbor.${DOMAIN_NAME}"
