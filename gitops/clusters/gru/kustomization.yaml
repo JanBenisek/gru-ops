@@ -21,7 +21,7 @@ resources:
   - grafana.yaml
   - loki.yaml
   - it-tools.yaml
-  - homepage.yaml
+  # - homepage.yaml
   - ollama.yaml
   - open-webui.yaml
   # - jupyter.yaml

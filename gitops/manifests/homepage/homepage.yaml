@@ -229,6 +229,14 @@ rules: # adjusted: https://github.com/gethomepage/homepage/discussions/2220
       - customresourcedefinitions/status
     verbs:
       - get
+  - apiGroups: # new
+      - gateway.networking.k8s.io
+    resources:
+      - httproutes
+      - gateways
+    verbs:
+      - get
+      - list
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
