@@ -17,7 +17,7 @@ spec:
   values:
     persistence:
       enabled: "true"
-      resourcePolicy: "keep" # TODO: not keep
+      resourcePolicy: # "keep"
       persistentVolumeClaim:
         registry:
           existingClaim: "pvc-harbor"
