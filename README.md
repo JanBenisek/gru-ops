@@ -46,6 +46,13 @@ k create secret generic cloudflare-api-token \
   > /Users/janbenisek/GithubRepos/gru-ops/gitops/manifests/external-dns/secrets/cloudflare-api-token.yaml
 ```
 
+### harbor
+
+- Store containers
+- [values](https://github.com/goharbor/harbor-helm?tab=readme-ov-file)
+- [docs](https://goharbor.io/docs/1.10/install-config/harbor-ha-helm/)
+- [helm](https://github.com/goharbor/harbor-operator/blob/main/docs/installation/by-helm-chart.md)
+
 ### hiker
 
 - Just an experiment, try to add endpoints for Grafana to monitor?
