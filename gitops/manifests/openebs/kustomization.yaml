@@ -8,4 +8,5 @@ resources:
   - local-hostpath-sc-kevin.yaml
   - local-hostpath-sc-stuart-data.yaml
   - local-hostpath-sc-stuart-media.yaml
+  - local-hostpath-sc-stuart.yaml
   # - disk-pool.yaml
