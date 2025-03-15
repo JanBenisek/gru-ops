@@ -60,26 +60,26 @@ spec:
 
     portal:
       nodeSelector:
-        node-name: "stuart"
+        node-name: "kevin"
     core:
       nodeSelector:
-        node-name: "stuart"
+        node-name: "kevin"
     jobservice:
       nodeSelector:
-        node-name: "stuart"
+        node-name: "kevin"
     registry:
       nodeSelector:
-        node-name: "stuart"
+        node-name: "kevin"
     database:
       type: internal
       nodeSelector:
-        node-name: "stuart"
+        node-name: "kevin"
     redis:
       nodeSelector:
-        node-name: "stuart"
+        node-name: "kevin"
     trivy:
       nodeSelector:
-        node-name: "stuart"
+        node-name: "kevin"
 
     
 

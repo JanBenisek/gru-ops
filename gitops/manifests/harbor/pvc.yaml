@@ -4,7 +4,7 @@ metadata:
   name: pvc-harbor
   namespace: harbor
 spec:
-  storageClassName: local-hostpath-stuart
+  storageClassName: local-hostpath-kevin
   accessModes:
     - ReadWriteOnce
   resources:
