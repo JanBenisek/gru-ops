@@ -23,8 +23,9 @@ spec:
           existingClaim: "pvc-harbor"
           subPath: "registry"
         jobservice:
-          existingClaim: "pvc-harbor"
-          subPath: "jobservice"
+          jobLog:
+            existingClaim: "pvc-harbor"
+            subPath: "jobservice"
         database:
           existingClaim: "pvc-harbor"
           subPath: "database"
