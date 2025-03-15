@@ -56,9 +56,30 @@ spec:
           nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
           nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
           nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "300"
+
+    portal:
+      nodeSelector:
+        node-name: "stuart"
+    core:
+      nodeSelector:
+        node-name: "stuart"
+    jobservice:
+      nodeSelector:
+        node-name: "stuart"
+    registry:
+      nodeSelector:
+        node-name: "stuart"
     database:
       type: internal
-    # jobservice:
-    #   env:
-    #     - name: CORE_URL
-    #       value: "https://harbor.${DOMAIN_NAME}"
+      nodeSelector:
+        node-name: "stuart"
+    redis:
+      nodeSelector:
+        node-name: "stuart"
+    trivy:
+      nodeSelector:
+        node-name: "stuart"
+
+    
+
+    
