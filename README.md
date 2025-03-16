@@ -168,6 +168,12 @@ k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-se
 - https://github.com/Stirling-Tools/Stirling-PDF/blob/main/Version-groups.md
 - https://github.com/Stirling-Tools/Stirling-PDF?tab=readme-ov-file
 
+### vllm
+
+- [vllm](https://docs.vllm.ai/en/latest/deployment/integrations/production-stack.html)
+- [docs](https://blog.vllm.ai/production-stack/deployment/helm.html)
+- [values.yaml](https://github.com/vllm-project/production-stack/blob/main/helm/values.yaml)
+
 ## Archive
 
 ### NFS
