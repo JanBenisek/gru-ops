@@ -20,17 +20,17 @@ spec:
 
     # Changed, added from their example
     servingEngineSpec:
-    modelSpec:
-    - name: "opt125m"
-        repository: "lmcache/vllm-openai"
-        tag: "latest"
-        modelURL: "facebook/opt-125m"
-        replicaCount: 1
-        requestCPU: 1
-        requestMemory: "16Gi"
-        # requestGPU: 1
-        storageClass: "local-hostpath-kevin"
-        pvcStorage: "10Gi"
+      modelSpec:
+      - name: "opt125m"
+          repository: "lmcache/vllm-openai"
+          tag: "latest"
+          modelURL: "facebook/opt-125m"
+          replicaCount: 1
+          requestCPU: 1
+          requestMemory: "16Gi"
+          # requestGPU: 1
+          storageClass: "local-hostpath-kevin"
+          pvcStorage: "10Gi"
     # -- Serving engine configuratoon
     # servingEngineSpec:
       # -- Customized labels for the serving engine deployment
