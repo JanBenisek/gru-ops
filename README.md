@@ -173,6 +173,7 @@ k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-se
 - [vllm](https://docs.vllm.ai/en/latest/deployment/integrations/production-stack.html)
 - [docs](https://blog.vllm.ai/production-stack/deployment/helm.html)
 - [values.yaml](https://github.com/vllm-project/production-stack/blob/main/helm/values.yaml)
+- [supported models](https://docs.vllm.ai/en/latest/models/supported_models.html)
 
 ## Archive
 

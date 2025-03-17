@@ -38,6 +38,24 @@ spec:
         lmcacheConfig:
           enabled: true
           cpuOffloadingBufferSize: "2"
+
+      - name: "llama"
+        repository: "lmcache/vllm-openai"
+        tag: "latest"
+        modelURL: "meta-llama/Llama-3.2-1B"
+        replicaCount: 1
+        requestCPU: 1
+        requestMemory: "16Gi"
+        # requestGPU: 1
+        storageClass: "local-hostpath-kevin"
+        pvcStorage: "10Gi"
+        vllmConfig:
+          enableChunkedPrefill: false
+          enablePrefixCaching: false
+          maxModelLen: 16384
+        lmcacheConfig:
+          enabled: true
+          cpuOffloadingBufferSize: "2"
     # -- Serving engine configuratoon
     # servingEngineSpec:
       # -- Customized labels for the serving engine deployment
