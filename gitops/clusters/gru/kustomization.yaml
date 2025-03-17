@@ -13,7 +13,7 @@ resources:
   - certs.yaml #it takes a ~10m to set up and propagate, patience!
   - secret-replicator.yaml
   - openebs.yaml
-  - docker-registry.yaml
+  # - docker-registry.yaml
   # - harbor.yaml
   # - cloudflare.yaml
   # Apps

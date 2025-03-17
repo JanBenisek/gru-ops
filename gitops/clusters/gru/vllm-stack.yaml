@@ -21,8 +21,8 @@ spec:
     substituteFrom:
     - kind: ConfigMap
       name: gru-values
-  healthChecks:
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: vllm-stack
-      namespace: vllm-stack
+  # healthChecks: # TODO uncomment
+  #   - apiVersion: apps/v1
+  #     kind: Deployment
+  #     name: vllm-stack
+  #     namespace: vllm-stack

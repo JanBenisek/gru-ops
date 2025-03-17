@@ -1,7 +1,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: docker-registry
+  name: twuni
   namespace: docker-registry
 spec:
   interval: 30m
