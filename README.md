@@ -36,6 +36,11 @@ k create secret generic cloudflare-api-token \
 - [Helm Chart](https://github.com/twuni/docker-registry.helm)
 - [Docker image](https://hub.docker.com/_/registry)
 - [Docs](https://distribution.github.io/distribution/)
+- interact with registry:
+```
+curl -X GET https://docker-registry.pengiuns.com:5000/v2/_catalog
+curl -X GET docker-registry.pengiuns.com/v2/_catalog
+```
 
 ### external-dns
 
