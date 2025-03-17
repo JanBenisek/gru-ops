@@ -7,11 +7,11 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: docker-registry
+      chart: docker-registry # chart name
       version: "2.2.3"
       sourceRef:
         kind: HelmRepository
-        name: twuni
+        name: twuni # repo name
         namespace: docker-registry
       interval: 12h
   values:
@@ -62,10 +62,7 @@ spec:
       path: /
       # Used to create an Ingress record.
       hosts:
-          - host: docker-registry.${DOMAIN_NAME}
-            paths:
-              - path: /
-                pathType: Prefix
+        - docker-registry.${DOMAIN_NAME}
       annotations:
           annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-prod"
@@ -79,9 +76,9 @@ spec:
         # kubernetes.io/tls-acme: "true"
       labels: {}
       tls:
-        - hosts:
-          - docker-registry.${DOMAIN_NAME}
-          secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+        - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+          hosts:
+            - docker-registry.${DOMAIN_NAME}
         # Secrets must be manually created in the namespace.
         # - secretName: chart-example-tls
         #   hosts:

@@ -34,6 +34,8 @@ k create secret generic cloudflare-api-token \
 
 ### docker-registry
 - [Helm Chart](https://github.com/twuni/docker-registry.helm)
+- [Docker image](https://hub.docker.com/_/registry)
+- [Docs](https://distribution.github.io/distribution/)
 
 ### external-dns
 
