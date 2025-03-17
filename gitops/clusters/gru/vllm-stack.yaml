@@ -4,7 +4,7 @@ metadata:
   name: vllm
   namespace: flux-system
 spec:
-  path: ./gitops/manifests/vllm
+  path: ./gitops/manifests/vllm-stack
   interval: 15m
   prune: true
   timeout: 10m
