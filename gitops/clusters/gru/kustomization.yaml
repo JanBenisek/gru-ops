@@ -13,6 +13,7 @@ resources:
   - certs.yaml #it takes a ~10m to set up and propagate, patience!
   - secret-replicator.yaml
   - openebs.yaml
+  - docker-registry.yaml
   # - harbor.yaml
   # - cloudflare.yaml
   # Apps
@@ -32,7 +33,7 @@ resources:
   - media-radarr.yaml
   - media-sonarr.yaml
   - media-bazarr.yaml
-  - vllm-stack.yaml
+  # - vllm-stack.yaml
 configMapGenerator:
   - name: gru-values
     envs:

@@ -32,6 +32,9 @@ k create secret generic cloudflare-api-token \
 - [values](https://github.com/cloudflare/helm-charts/blob/main/charts/cloudflare-tunnel/values.yaml)
 - [docs](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/)
 
+### docker-registry
+- [Helm Chart](https://github.com/twuni/docker-registry.helm)
+
 ### external-dns
 
 - Need to have cloudflare secret (sealed).
