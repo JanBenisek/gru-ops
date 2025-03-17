@@ -170,7 +170,8 @@ spec:
         cache:
           blobdescriptor: inmemory
       http:
-        addr: :5000
+        # addr: :5000
+        addr: :80
         headers:
           X-Content-Type-Options: [nosniff]
         debug:
