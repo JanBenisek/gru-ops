@@ -31,6 +31,13 @@ spec:
         # requestGPU: 1
         storageClass: "local-hostpath-kevin"
         pvcStorage: "10Gi"
+        vllmConfig:
+          enableChunkedPrefill: false
+          enablePrefixCaching: false
+          maxModelLen: 16384
+        lmcacheConfig:
+          enabled: true
+          cpuOffloadingBufferSize: "2"
     # -- Serving engine configuratoon
     # servingEngineSpec:
       # -- Customized labels for the serving engine deployment
