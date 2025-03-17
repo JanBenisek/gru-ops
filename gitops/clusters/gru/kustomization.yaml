@@ -4,7 +4,7 @@ namespace: flux-system
 resources:
   - metallb.yaml
   - metallb-crds.yaml
-  - ingress-nginx.yaml
+  # - ingress-nginx.yaml
   - sealed-secrets.yaml
   - external-dns-secrets.yaml
   - external-dns.yaml
