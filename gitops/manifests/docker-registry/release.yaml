@@ -64,14 +64,13 @@ spec:
       hosts:
         - docker-registry.${DOMAIN_NAME}
       annotations:
-          annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-prod"
-          kubernetes.io/ingress.class: "nginx"
-          nginx.ingress.kubernetes.io/proxy-body-size: "100m"
-          nginx.ingress.kubernetes.io/proxy-connect-timeout: "1000"
-          nginx.ingress.kubernetes.io/proxy-send-timeout: "1000"
-          nginx.ingress.kubernetes.io/proxy-read-timeout: "1000"
-          nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "1000"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        kubernetes.io/ingress.class: "nginx"
+        nginx.ingress.kubernetes.io/proxy-body-size: "100m"
+        nginx.ingress.kubernetes.io/proxy-connect-timeout: "1000"
+        nginx.ingress.kubernetes.io/proxy-send-timeout: "1000"
+        nginx.ingress.kubernetes.io/proxy-read-timeout: "1000"
+        nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "1000"
         # kubernetes.io/ingress.class: nginx
         # kubernetes.io/tls-acme: "true"
       labels: {}
