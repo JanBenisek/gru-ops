@@ -21,8 +21,8 @@ spec:
     substituteFrom:
     - kind: ConfigMap
       name: gru-values
-  # healthChecks: # TODO uncomment
-  #   - apiVersion: apps/v1
-  #     kind: Deployment
-  #     name: docker-registry
-  #     namespace: docker-registry
+  healthChecks: # TODO uncomment
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: docker-registry
+      namespace: docker-registry
