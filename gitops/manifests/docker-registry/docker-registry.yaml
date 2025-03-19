@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: docker-registry
-        image: registry:2.8 # https://hub.docker.com/_/registry/tags
+        image: registry:2.8
         imagePullPolicy: Always
         ports:
         - containerPort: 5000 # internal port for the app
