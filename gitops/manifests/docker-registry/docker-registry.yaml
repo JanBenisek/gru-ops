@@ -22,6 +22,7 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 5000 # internal port for the app
+        # optional to have user/pswd access
         # env:
         # - name: REGISTRY_HTTP_TLS_CERTIFICATE
         #   value: "/certs/tls.crt"

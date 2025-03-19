@@ -37,10 +37,25 @@ k create secret generic cloudflare-api-token \
 - [Docker image](https://hub.docker.com/_/registry)
 - [Docs](https://distribution.github.io/distribution/)
 - interact with registry:
+```shell
+curl -X GET https://docker-registry.pengiuns.com/v2/_catalog?n=1000
+curl -X GET https://docker-registry.pengiuns.com/v2/ubuntu/tags/list
+
+# add image 
+docker tag nginx docker-registry.pengiuns.com/my-nginx
+docker push docker-registry.pengiuns.com/my-nginx
+
+# remove
+docker image remove docker-registry.pengiuns.com/my-nginx
+
+# pull again
+docker pull docker-registry.pengiuns.com/my-nginx
 ```
-curl -X GET https://docker-registry.pengiuns.com:5000/v2/_catalog
-curl -X GET docker-registry.pengiuns.com/v2/_catalog
-```
+- Useful
+  - https://kb.leaseweb.com/kb/kubernetes/kubernetes-deploying-a-docker-registry-on-kubernetes/
+  - https://medium.com/geekculture/deploying-docker-registry-on-kubernetes-3319622b8f32
+  - https://www.paulsblog.dev/how-to-install-a-private-docker-container-registry-in-kubernetes/
+
 
 ### external-dns
 
