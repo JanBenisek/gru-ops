@@ -57,7 +57,7 @@ docker pull docker-registry.pengiuns.com/my-nginx
 curl -sS -H 'Accept: application/vnd.docker.distribution.manifest.v2+json' \
 -o /dev/null \
 -w '%header{Docker-Content-Digest}' \
-https://docker-registry.pengiuns.com/v2/my-nginx/manifests/latest
+https://docker-registry.pengiuns.com/v2/vllm/manifests/latest
 
 curl -X DELETE https://docker-registry.pengiuns.com/v2/my-nginx/manifests/sha256:c9f91949187fa1c2b4615b88d3acf7902c7e2d4a2557f33ca0cf90164269a7ae
 ```
