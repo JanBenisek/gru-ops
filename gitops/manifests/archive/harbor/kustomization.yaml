@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: harbor
 resources:
   - namespace.yaml
-  - pvc.yaml
-  - certificate.yaml
   - repository.yaml
   - release.yaml
+  - pvc.yaml

@@ -14,7 +14,6 @@ resources:
   - secret-replicator.yaml
   - openebs.yaml
   - docker-registry.yaml
-  # - harbor.yaml
   # - cloudflare.yaml
   # Apps
   - hiker.yaml

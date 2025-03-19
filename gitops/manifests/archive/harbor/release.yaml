@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: harbor
-      version: '1.15.1'
+      version: '1.16.2'
       sourceRef:
         kind: HelmRepository
         name: harbor
@@ -17,17 +17,15 @@ spec:
   values:
     persistence:
       enabled: true
-      resourcePolicy: "keep"
+      resourcePolicy: # "keep"
       persistentVolumeClaim:
         registry:
           existingClaim: "pvc-harbor"
           subPath: "registry"
-        chartmuseum:
-          existingClaim: "pvc-harbor"
-          subPath: "chartmuseum"
         jobservice:
-          existingClaim: "pvc-harbor"
-          subPath: "jobservice"
+          jobLog:
+            existingClaim: "pvc-harbor"
+            subPath: "jobservice"
         database:
           existingClaim: "pvc-harbor"
           subPath: "database"
@@ -38,21 +36,18 @@ spec:
           existingClaim: "pvc-harbor"
           subPath: "trivy"
     externalURL: "https://harbor.${DOMAIN_NAME}"
-    harborAdminPassword: admin
-    notary:
-      enabled: false
+    harborAdminPassword: admin #TODO: better pswd
     expose:
       type: ingress
       tls:
         enabled: true
         certSource: "secret"
         secret:
-          secretName: "harbor-core-tls"
-          notarySecretName: "harbor-notary-tls"
+          secretName: "letsencrypt-wildcard-cert-pengiuns.com-production"
       ingress:
         hosts:
           core: harbor.${DOMAIN_NAME}
-          notary: harbor-notary.${DOMAIN_NAME}
+        className: "nginx"
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-prod"
           kubernetes.io/ingress.class: "nginx"
@@ -62,5 +57,28 @@ spec:
           nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
           nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
           nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "300"
+
+    portal:
+      nodeSelector:
+        node-name: "kevin"
+    core:
+      nodeSelector:
+        node-name: "kevin"
+    jobservice:
+      nodeSelector:
+        node-name: "kevin"
+    registry:
+      nodeSelector:
+        node-name: "kevin"
     database:
       type: internal
+      internal:
+        nodeSelector:
+          node-name: "kevin"
+    redis:
+      internal:
+        nodeSelector:
+          node-name: "kevin"
+    trivy:
+      nodeSelector:
+        node-name: "kevin"
