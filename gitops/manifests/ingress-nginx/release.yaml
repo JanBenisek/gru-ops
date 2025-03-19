@@ -14,13 +14,10 @@ spec:
         name: ingress-nginx
         namespace: ingress-nginx
       interval: 12h
-  values:
-    controller:
-      service:
-        type: LoadBalancer
-        ports:
-          http: 80
-          https: 443
-          custom: 5000  # for docker-registry
-      config:
-        listen-ports: '[{"port":5000,"protocol":"HTTP"}]'
+  # values: # defaults, no need to adjust
+  #   controller:
+  #     service:
+  #       type: LoadBalancer
+  #       ports:
+  #         http: 80
+  #         https: 443

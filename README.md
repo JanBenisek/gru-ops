@@ -75,6 +75,7 @@ k create secret generic cloudflare-api-token \
 ### ingress-nginx
 
 - Ingress, works like a charm.
+- [values.yaml](https://github.com/kubernetes/ingress-nginx/blob/main/charts/ingress-nginx/values.yaml)
 
 ### it-tools
 
