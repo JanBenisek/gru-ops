@@ -45,7 +45,7 @@ spec:
         modelURL: "meta-llama/Llama-3.2-3B-Instruct "
         replicaCount: 1
         requestCPU: 1
-        requestMemory: "6Gi"
+        requestMemory: "12Gi"
         storageClass: "local-hostpath-kevin"
         pvcStorage: "10Gi"
         vllmConfig:
