@@ -7,7 +7,7 @@ spec:
   path: ./gitops/manifests/vllm-stack
   interval: 15m
   prune: true
-  timeout: 10m
+  timeout: 30m
   validation: server
   dependsOn:
     - name: external-dns
