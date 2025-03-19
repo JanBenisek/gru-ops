@@ -57,10 +57,9 @@ curl -I -H GET https://docker-registry.pengiuns.com/v2/my-nginx/manifests/latest
 # extract `docker-content-digest: sha256:75bec3ab93b825e1a590bed073dc919fea541f68e1f95e2bedfa0363ef8653cf`
 curl -X DELETE https://docker-registry.pengiuns.com/v2/my-nginx/tags/manifests/my-nginx
 curl -X DELETE https://docker-registry.pengiuns.com/v2/my-nginx/manifests/sha256:75bec3ab93b825e1a590bed073dc919fea541f68e1f95e2bedfa0363ef8653cf
-
-
-
 ```
+- [Garbage Collection](https://distribution.github.io/distribution/about/garbage-collection/)
+  - in container: `registry garbage-collect -m /etc/docker/registry/config.yml --delete-untagged --dry-run`
 - Useful
   - https://kb.leaseweb.com/kb/kubernetes/kubernetes-deploying-a-docker-registry-on-kubernetes/
   - https://medium.com/geekculture/deploying-docker-registry-on-kubernetes-3319622b8f32
