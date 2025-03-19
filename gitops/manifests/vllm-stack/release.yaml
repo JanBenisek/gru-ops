@@ -47,7 +47,7 @@ spec:
         requestCPU: 1
         requestMemory: "6Gi"
         storageClass: "local-hostpath-kevin"
-        pvcStorage: "3Gi"
+        pvcStorage: "10Gi"
         vllmConfig:
           enableChunkedPrefill: false
           enablePrefixCaching: false
