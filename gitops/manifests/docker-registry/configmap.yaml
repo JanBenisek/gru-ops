@@ -4,6 +4,7 @@ metadata:
   name: docker-registry-config
   namespace: docker-registry
 data:
+  # docs: https://distribution.github.io/distribution/about/configuration/#list-of-configuration-options
   config.yml: |
     version: 0.1
     log:
