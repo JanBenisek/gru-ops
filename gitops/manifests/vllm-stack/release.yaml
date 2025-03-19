@@ -27,10 +27,10 @@ spec:
         modelURL: "facebook/opt-125m"
         replicaCount: 1
         requestCPU: 1
-        requestMemory: "16Gi"
+        requestMemory: "6Gi"
         # requestGPU: 1
         storageClass: "local-hostpath-kevin"
-        pvcStorage: "10Gi"
+        pvcStorage: "3Gi"
         vllmConfig:
           enableChunkedPrefill: false
           enablePrefixCaching: false
@@ -42,13 +42,12 @@ spec:
       - name: "llama"
         repository: "lmcache/vllm-openai"
         tag: "latest"
-        modelURL: "meta-llama/Llama-3.2-1B"
+        modelURL: "meta-llama/Llama-3.2-3B-Instruct "
         replicaCount: 1
         requestCPU: 1
-        requestMemory: "16Gi"
-        # requestGPU: 1
+        requestMemory: "6Gi"
         storageClass: "local-hostpath-kevin"
-        pvcStorage: "10Gi"
+        pvcStorage: "3Gi"
         vllmConfig:
           enableChunkedPrefill: false
           enablePrefixCaching: false
@@ -237,7 +236,7 @@ spec:
       tolerations: []
 
       # -- RuntimeClassName configuration, set to "nvidia" if the model requires GPU
-      runtimeClassName: "nvidia"
+      # runtimeClassName: "nvidia"
 
       # -- SchedulerName configuration
       schedulerName: ""
