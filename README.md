@@ -33,6 +33,7 @@ k create secret generic cloudflare-api-token \
 - [docs](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/)
 
 ### docker-registry
+
 - [Helm Chart](https://github.com/twuni/docker-registry.helm)
 - [Docker image](https://hub.docker.com/_/registry)
 - [Docs](https://distribution.github.io/distribution/)
@@ -46,17 +47,19 @@ curl -X GET https://docker-registry.pengiuns.com/v2/my-nginx/tags/list
 docker tag nginx docker-registry.pengiuns.com/my-nginx
 docker push docker-registry.pengiuns.com/my-nginx
 
-# remove
+# remove locally
 docker image remove docker-registry.pengiuns.com/my-nginx
 
 # pull again
 docker pull docker-registry.pengiuns.com/my-nginx
 
-# remove
-curl -I -H GET https://docker-registry.pengiuns.com/v2/my-nginx/manifests/latest
-# extract `docker-content-digest: sha256:75bec3ab93b825e1a590bed073dc919fea541f68e1f95e2bedfa0363ef8653cf`
-curl -X DELETE https://docker-registry.pengiuns.com/v2/my-nginx/tags/manifests/my-nginx
-curl -X DELETE https://docker-registry.pengiuns.com/v2/my-nginx/manifests/sha256:75bec3ab93b825e1a590bed073dc919fea541f68e1f95e2bedfa0363ef8653cf
+# remove from storage
+curl -sS -H 'Accept: application/vnd.docker.distribution.manifest.v2+json' \
+-o /dev/null \
+-w '%header{Docker-Content-Digest}' \
+https://docker-registry.pengiuns.com/v2/my-nginx/manifests/latest
+
+curl -X DELETE https://docker-registry.pengiuns.com/v2/my-nginx/manifests/sha256:c9f91949187fa1c2b4615b88d3acf7902c7e2d4a2557f33ca0cf90164269a7ae
 ```
 - [Garbage Collection](https://distribution.github.io/distribution/about/garbage-collection/)
   - in container: `registry garbage-collect -m /etc/docker/registry/config.yml --delete-untagged --dry-run`
