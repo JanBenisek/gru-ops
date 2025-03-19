@@ -37,9 +37,10 @@ k create secret generic cloudflare-api-token \
 - [Docker image](https://hub.docker.com/_/registry)
 - [Docs](https://distribution.github.io/distribution/)
 - interact with registry:
+  - [API](https://distribution.github.io/distribution/spec/api/)
 ```shell
 curl -X GET https://docker-registry.pengiuns.com/v2/_catalog?n=1000
-curl -X GET https://docker-registry.pengiuns.com/v2/ubuntu/tags/list
+curl -X GET https://docker-registry.pengiuns.com/v2/my-nginx/tags/list
 
 # add image 
 docker tag nginx docker-registry.pengiuns.com/my-nginx
@@ -50,6 +51,15 @@ docker image remove docker-registry.pengiuns.com/my-nginx
 
 # pull again
 docker pull docker-registry.pengiuns.com/my-nginx
+
+# remove
+curl -I -H GET https://docker-registry.pengiuns.com/v2/my-nginx/manifests/latest
+# extract `docker-content-digest: sha256:75bec3ab93b825e1a590bed073dc919fea541f68e1f95e2bedfa0363ef8653cf`
+curl -X DELETE https://docker-registry.pengiuns.com/v2/my-nginx/tags/manifests/my-nginx
+curl -X DELETE https://docker-registry.pengiuns.com/v2/my-nginx/manifests/sha256:75bec3ab93b825e1a590bed073dc919fea541f68e1f95e2bedfa0363ef8653cf
+
+
+
 ```
 - Useful
   - https://kb.leaseweb.com/kb/kubernetes/kubernetes-deploying-a-docker-registry-on-kubernetes/

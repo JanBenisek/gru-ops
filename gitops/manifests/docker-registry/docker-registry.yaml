@@ -39,6 +39,9 @@ spec:
           # - name: registry-certs
           #   mountPath: "/certs"
           #   readOnly: true
+          - name: registry-config
+            mountPath: /etc/docker/registry
+            subPath: config.yml
           - name: registry-data
             mountPath: /var/lib/registry
             subPath: registry
@@ -46,6 +49,12 @@ spec:
         # - name: registry-certs
         #   secret:
         #     secretName: registry-cert
+        - name: registry-config
+          configMap:
+            name: docker-registry-config
+            items:
+              - key: config.yml
+                path: config.yml
         - name: registry-data
           persistentVolumeClaim:
             claimName: pvc-docker-registry
