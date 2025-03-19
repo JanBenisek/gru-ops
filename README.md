@@ -63,6 +63,7 @@ curl -X DELETE https://docker-registry.pengiuns.com/v2/my-nginx/manifests/sha256
 ```
 - [Garbage Collection](https://distribution.github.io/distribution/about/garbage-collection/)
   - in container: `registry garbage-collect -m /etc/docker/registry/config.yml --delete-untagged --dry-run`
+  - it removes blobs which stay around after removing image or tag
 - Useful
   - https://kb.leaseweb.com/kb/kubernetes/kubernetes-deploying-a-docker-registry-on-kubernetes/
   - https://medium.com/geekculture/deploying-docker-registry-on-kubernetes-3319622b8f32
