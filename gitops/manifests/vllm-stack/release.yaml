@@ -7,11 +7,11 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: vllm-stack
+      chart: vllm-stack # chart name
       version: "0.1.0"
       sourceRef:
         kind: HelmRepository
-        name: vllm
+        name: vllm # Must match the HelmRepository name ("vllm")
         namespace: vllm-stack
       interval: 12h
   values:
