@@ -44,7 +44,7 @@ spec:
             subPath: config.yml
           - name: registry-data
             mountPath: /var/lib/registry
-            subPath: registry
+            # subPath: registry
       volumes:
         # - name: registry-certs
         #   secret:
