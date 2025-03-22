@@ -22,7 +22,7 @@ resources:
   - loki.yaml
   - it-tools.yaml
   - homepage.yaml
-  - ollama.yaml
+  # - ollama.yaml
   - open-webui.yaml
   # - jupyter.yaml
   - media-init.yaml
@@ -32,7 +32,7 @@ resources:
   - media-radarr.yaml
   - media-sonarr.yaml
   - media-bazarr.yaml
-  - vllm-stack.yaml
+  # - vllm-stack.yaml
 configMapGenerator:
   - name: gru-values
     envs:
