@@ -4,4 +4,5 @@ namespace: vllm-stack
 resources:
   - namespace.yaml
   - vllm-stack.yaml
+  - pvc.yaml
   

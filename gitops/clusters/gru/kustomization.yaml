@@ -23,7 +23,7 @@ resources:
   - it-tools.yaml
   - homepage.yaml
   - ollama.yaml
-  - open-webui.yaml
+  # - open-webui.yaml
   # - jupyter.yaml
   - media-init.yaml
   - media-jellyfin.yaml
