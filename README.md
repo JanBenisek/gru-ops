@@ -214,6 +214,17 @@ k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-se
 - [values.yaml](https://github.com/vllm-project/production-stack/blob/main/helm/values.yaml)
 - [supported models](https://docs.vllm.ai/en/latest/models/supported_models.html)
 
+```shell
+curl https://vllm.pengiuns.com/v1/completions \
+    -H "Content-Type: application/json" \
+    -d '{
+        "model": "facebook/opt-125m",
+        "prompt": "what is 3+3",
+        "max_tokens": 1900,
+        "temperature": 0
+    }'
+```
+
 ## Archive
 
 ### NFS
