@@ -20,6 +20,9 @@ spec:
 
     # Changed, added from their example
     servingEngineSpec:
+      labels:
+        environment: "prod"
+        release: "prod"
       modelSpec:
       - name: "opt125m"
         repository: "lmcache/vllm-openai"
@@ -41,7 +44,11 @@ spec:
           enablePrefixCaching: false
           maxModelLen: 16384
         nodeSelectorTerms:
-          kubernetes.io/hostname: kevin
+          - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: "In"
+                values:
+                  - kevin
         # lmcacheConfig:
         #   enabled: true
         #   cpuOffloadingBufferSize: "2"
