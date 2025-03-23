@@ -29,15 +29,15 @@ spec:
         requestCPU: 1
         requestMemory: "6Gi"
         # requestGPU: 1
-        storageClass: "local-hostpath-kevin"
+        # storageClass: "local-hostpath-kevin"
         pvcStorage: "3Gi"
         vllmConfig:
           enableChunkedPrefill: false
           enablePrefixCaching: false
           maxModelLen: 16384
-        lmcacheConfig:
-          enabled: true
-          cpuOffloadingBufferSize: "2"
+        # lmcacheConfig:
+        #   enabled: true
+        #   cpuOffloadingBufferSize: "2"
 
       # - name: "llama"
       #   repository: "lmcache/vllm-openai"
