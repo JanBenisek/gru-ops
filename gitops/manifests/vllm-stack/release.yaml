@@ -40,6 +40,8 @@ spec:
           enableChunkedPrefill: false
           enablePrefixCaching: false
           maxModelLen: 16384
+        nodeSelector:
+          kubernetes.io/hostname: kevin
         # lmcacheConfig:
         #   enabled: true
         #   cpuOffloadingBufferSize: "2"
