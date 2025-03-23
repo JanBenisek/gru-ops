@@ -30,7 +30,12 @@ spec:
         requestMemory: "6Gi"
         # requestGPU: 1
         storageClass: "local-hostpath-kevin"
+        model: "opt125m"
         pvcStorage: "3Gi"
+        pvcAccessMode:
+          - ReadWriteOnce
+        pvcMatchLabels:
+          model: "opt125m"
         vllmConfig:
           enableChunkedPrefill: false
           enablePrefixCaching: false
