@@ -40,7 +40,7 @@ spec:
           enableChunkedPrefill: false
           enablePrefixCaching: false
           maxModelLen: 16384
-        nodeSelector:
+        nodeSelectorTerms:
           kubernetes.io/hostname: kevin
         # lmcacheConfig:
         #   enabled: true
