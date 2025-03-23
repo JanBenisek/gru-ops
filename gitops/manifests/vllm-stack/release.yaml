@@ -20,9 +20,9 @@ spec:
 
     # Changed, added from their example
     servingEngineSpec:
-      labels:
-        environment: "prod"
-        release: "prod"
+      # labels:
+      #   environment: "prod"
+      #   release: "prod"
       modelSpec:
       - name: "opt125m"
         repository: "lmcache/vllm-openai"
@@ -37,8 +37,8 @@ spec:
         pvcStorage: "3Gi"
         pvcAccessMode:
           - ReadWriteOnce
-        pvcMatchLabels:
-          model: "opt125m"
+        # pvcMatchLabels:
+        #   model: "opt125m"
         vllmConfig:
           enableChunkedPrefill: false
           enablePrefixCaching: false
