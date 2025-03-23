@@ -18,7 +18,7 @@ resources:
   # Apps
   - hiker.yaml
   - stirling.yaml
-  # - grafana.yaml
+  - grafana.yaml
   # - loki.yaml
   - it-tools.yaml
   - homepage.yaml
@@ -32,7 +32,7 @@ resources:
   - media-radarr.yaml
   - media-sonarr.yaml
   - media-bazarr.yaml
-  # - vllm-stack.yaml
+  - vllm-stack.yaml
 configMapGenerator:
   - name: gru-values
     envs:
