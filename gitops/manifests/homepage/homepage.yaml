@@ -67,12 +67,6 @@ data:
             description: Them logs!
             namespace: monitoring 
             app: grafana
-        - Harbor:
-            icon: harbor.png
-            href: https://harbor.pengiuns.com
-            description: Containers
-            namespace: harbor 
-            app: harbor
 
     - Tools:
         - IT-Tools:

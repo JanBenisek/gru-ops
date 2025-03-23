@@ -3,6 +3,5 @@ kind: Kustomization
 namespace: vllm-stack
 resources:
   - namespace.yaml
-  - pvc.yaml
   - vllm-stack.yaml
   
