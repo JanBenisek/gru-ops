@@ -29,8 +29,7 @@ spec:
         requestCPU: 1
         requestMemory: "6Gi"
         # requestGPU: 1
-        # storageClass: "local-hostpath-kevin"
-        storageClass: ""
+        storageClass: "local-hostpath-kevin"
         pvcStorage: "3Gi"
         vllmConfig:
           enableChunkedPrefill: false
