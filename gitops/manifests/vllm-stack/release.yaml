@@ -25,7 +25,8 @@ spec:
       #   release: "prod"
       modelSpec:
       - name: "opt125m"
-        repository: "lmcache/vllm-openai"
+        # repository: "lmcache/vllm-openai"
+        repository: "docker-registry.pengiuns.com/vllm:cpu"
         tag: "latest"
         modelURL: "facebook/opt-125m"
         replicaCount: 1

@@ -41,17 +41,17 @@ k create secret generic cloudflare-api-token \
   - [API](https://distribution.github.io/distribution/spec/api/)
 ```shell
 curl -X GET https://docker-registry.pengiuns.com/v2/_catalog?n=1000
-curl -X GET https://docker-registry.pengiuns.com/v2/my-nginx/tags/list
+curl -X GET https://docker-registry.pengiuns.com/v2/vllm/tags/list
 
 # add image 
-docker tag nginx docker-registry.pengiuns.com/my-nginx
-docker push docker-registry.pengiuns.com/my-nginx
+docker tag vllm:cpu docker-registry.pengiuns.com/vllm:cpu
+docker push docker-registry.pengiuns.com/vllm:cpu
 
 # remove locally
-docker image remove docker-registry.pengiuns.com/my-nginx
+docker image remove docker-registry.pengiuns.com/vllm:cpu
 
 # pull again
-docker pull docker-registry.pengiuns.com/my-nginx
+docker pull docker-registry.pengiuns.com/vllm:cpu
 
 # remove from storage
 curl -sS -H 'Accept: application/vnd.docker.distribution.manifest.v2+json' \
