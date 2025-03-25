@@ -165,8 +165,8 @@ spec:
     # If not set or set to true, kuberay auto injects an init container waiting for ray GCS.
     # If false, you will need to inject your own init container to ensure ray GCS is up before the ray workers start.
     # Warning: we highly recommend setting to true and let kuberay handle for you.
-    # - name: ENABLE_INIT_CONTAINER_INJECTION
-    #   value: "true"
+    - name: ENABLE_INIT_CONTAINER_INJECTION
+      value: "true"
     # If set to true, kuberay creates a normal ClusterIP service for a Ray Head instead of a Headless service. Default to false.
     # - name: ENABLE_RAY_HEAD_CLUSTER_IP_SERVICE
     #   value: "false"
