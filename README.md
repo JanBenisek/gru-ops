@@ -126,13 +126,15 @@ k create secret generic cloudflare-api-token \
 - Note that it takes a while for all the resources to start! Some might need delete.
 - `kube-promehteus-stack` (Grafana)
   - https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack
-  - https://artifacthub.io/packages/helm/grafana/loki-stack 
   - https://github.com/digitalocean/Kubernetes-Starter-Kit-Developers/blob/main/04-setup-observability/loki-stack.md
   - https://github.com/digitalocean/Kubernetes-Starter-Kit-Developers/blob/main/04-setup-observability/prometheus-stack.md
-- `loki-stack`
-  - https://artifacthub.io/packages/helm/grafana/grafana
+- `loki`
+  - `loki` seems to be recommended now, as opposed to `loki-stack`
+  - [values](https://artifacthub.io/packages/helm/grafana/loki)
+  - https://community.grafana.com/t/difference-between-helm-charts-loki-and-loki-stack/87380/8
   - https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm/
   - https://fluxcd.io/flux/monitoring/metrics/
+  - https://github.com/grafana/helm-charts/tree/main/charts/loki
 
 ### ollama
 
