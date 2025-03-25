@@ -20,4 +20,4 @@ spec:
     - apiVersion: apps/v1
       kind: Deployment
       name: kuberay-operator
-      namespace: monitoring
+      namespace: kuberay
