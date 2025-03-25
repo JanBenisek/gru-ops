@@ -177,6 +177,16 @@ curl https://ollama.pengiuns.com/api/ps
   - [main](https://github.com/openebs/openebs/blob/main/charts/values.yaml)
   - [mayastor](https://github.com/openebs/mayastor-extensions/blob/v2.7.1/chart/values.yaml)
 
+### Ray
+
+- [Docs](https://docs.ray.io/en/latest/cluster/kubernetes/getting-started/raycluster-quick-start.html)
+- https://github.com/ray-project/kuberay/blob/master/helm-chart/ray-cluster/README.md
+- [values.yaml](https://github.com/ray-project/kuberay/blob/master/helm-chart/ray-cluster/values.yaml) 
+- Options
+  - RayCluster: When you want a persistent Ray cluster that can run multiple workloads over time.
+  - RayJob: When you just need to run a single job and don’t need a persistent cluster.
+  - RayService: When you want to deploy a long-running, scalable service like an AI inference API.
+
 ### sealed secrets
 
 - Create my own keys. Pod needs to be rebooted
