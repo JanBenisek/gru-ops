@@ -16,6 +16,7 @@ spec:
       interval: 1m
   values:
     loki:
+      auth_enabled: false
       image:
         registry: docker.io
         repository: grafana/loki
