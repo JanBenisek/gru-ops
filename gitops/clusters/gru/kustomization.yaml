@@ -34,6 +34,7 @@ resources:
   - media-bazarr.yaml
   - vllm-stack.yaml
   - ray.yaml
+  - ray-crds.yaml
 configMapGenerator:
   - name: gru-values
     envs:
