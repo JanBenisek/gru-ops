@@ -2,7 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: kuberay-operator
-  namespace: ray
+  namespace: kuberay
 spec:
   interval: 30m
   chart:
@@ -12,7 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: kuberay
-        namespace: ray
+        namespace: kuberay
       interval: 12h
   values:
     # Default values for kuberay-operator.

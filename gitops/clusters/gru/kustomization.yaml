@@ -33,7 +33,7 @@ resources:
   - media-sonarr.yaml
   - media-bazarr.yaml
   - vllm-stack.yaml
-  - ray.yaml
+  - ray-operator.yaml
   - ray-crds.yaml
 configMapGenerator:
   - name: gru-values
