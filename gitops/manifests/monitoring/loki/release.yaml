@@ -17,6 +17,10 @@ spec:
   values:
     loki:
       auth_enabled: false
+
+      gateway:
+        enabled: true
+
       image:
         registry: docker.io
         repository: grafana/loki
@@ -57,6 +61,7 @@ spec:
       replicas: 1
       persistence:
         enabled: false
+      affinity: {}
 
     # Zero out replica counts of other deployment modes
     backend:
