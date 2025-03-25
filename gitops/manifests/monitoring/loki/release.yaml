@@ -39,3 +39,5 @@ spec:
 
     singleBinary:
       replicas: 1
+      persistence:
+        enabled: false
