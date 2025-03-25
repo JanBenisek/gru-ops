@@ -4,7 +4,7 @@ metadata:
   name: ray
   namespace: flux-system
 spec:
-  path: ./gitops/manifests/monitoring/ray
+  path: ./gitops/manifests/ray
   interval: 15m
   prune: true 
   timeout: 20m 
