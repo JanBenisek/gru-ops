@@ -15,8 +15,15 @@ spec:
     args:
       - -c
       - |
-        apk update && apk add --update bind-tools && sleep 3600
+        apk update && apk add --update bind-tools && apk add busybox-extras && sleep 3600
     imagePullPolicy: IfNotPresent
     name: alpine-dns
   restartPolicy: Always
   dnsPolicy: ClusterFirst
+  dnsConfig:
+    nameservers:
+      - 10.96.0.10
+    searches:
+      - default.svc.cluster.local
+      - svc.cluster.local
+      - cluster.local
