@@ -16,7 +16,7 @@ spec:
       - -c
       - |
         apk update && apk add --update bind-tools && apk add busybox-extras && apk add --no-cache vim && sleep 3600
-    imagePullPolicy: IfNotPresent
+    imagePullPolicy: Always # IfNotPresent
     name: alpine-dns
   restartPolicy: Always
   dnsPolicy: ClusterFirstWithHostNet
@@ -24,6 +24,7 @@ spec:
     nameservers:
       - 10.96.0.10
     searches:
+      - flux-system.svc.cluster.local
       - default.svc.cluster.local
       - svc.cluster.local
       - cluster.local
