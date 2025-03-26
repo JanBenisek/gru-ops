@@ -1,5 +1,5 @@
 # k apply -f debug-dns.yaml
-# k exec -it alpine-dns -- sh
+# k exec -it -rm alpine-dns -- sh
 # k delete -f debug-dns.yaml
 
 apiVersion: v1
@@ -15,7 +15,7 @@ spec:
     args:
       - -c
       - |
-        apk update && apk add --update bind-tools && apk add busybox-extras && sleep 3600
+        apk update && apk add --update bind-tools && apk add busybox-extras && apk add --no-cache vim && sleep 3600
     imagePullPolicy: IfNotPresent
     name: alpine-dns
   restartPolicy: Always
