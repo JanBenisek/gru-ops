@@ -1,5 +1,5 @@
 # k apply -f debug-dns.yaml
-# k exec -it -rm alpine-dns -- sh
+# k exec -it alpine-dns -- sh
 # k delete -f debug-dns.yaml
 
 apiVersion: v1
@@ -19,7 +19,7 @@ spec:
     imagePullPolicy: IfNotPresent
     name: alpine-dns
   restartPolicy: Always
-  dnsPolicy: ClusterFirst
+  dnsPolicy: ClusterFirstWithHostNet
   dnsConfig:
     nameservers:
       - 10.96.0.10
@@ -27,3 +27,4 @@ spec:
       - default.svc.cluster.local
       - svc.cluster.local
       - cluster.local
+      - flux-system.svc.cluster.local
