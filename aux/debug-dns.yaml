@@ -1,0 +1,19 @@
+# k apply -f debug-dns.yaml
+# k exec -it busybox -- sh
+# k delete -f debug-dns.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+  # namespace: default
+spec:
+  containers:
+  - image: busybox:1.28
+    command:
+      - sleep
+      - "3600"
+    imagePullPolicy: IfNotPresent
+    name: busybox
+  restartPolicy: Always
+  dnsPolicy: ClusterFirst
