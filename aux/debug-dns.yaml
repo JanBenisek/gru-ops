@@ -19,7 +19,7 @@ spec:
     imagePullPolicy: Always # IfNotPresent
     name: alpine-dns
   restartPolicy: Always
-  dnsPolicy: ClusterFirstWithHostNet
+  dnsPolicy: ClusterFirst # ClusterFirstWithHostNet
   dnsConfig:
     nameservers:
       - 10.96.0.10
