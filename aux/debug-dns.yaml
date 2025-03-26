@@ -1,5 +1,5 @@
 # k apply -f debug-dns.yaml
-# k exec -it busybox -- sh
+# k exec -it alpine-dns -- sh
 # k delete -f debug-dns.yaml
 
 apiVersion: v1
@@ -9,11 +9,11 @@ metadata:
   # namespace: default
 spec:
   containers:
-  - image: busybox:1.28
+  - image: alpine
     command:
       - sleep
       - "3600"
     imagePullPolicy: IfNotPresent
-    name: busybox
+    name: alpine-dns
   restartPolicy: Always
   dnsPolicy: ClusterFirst
