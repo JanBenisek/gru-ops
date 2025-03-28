@@ -47,7 +47,7 @@ spec:
 
       schemaConfig:
         configs:
-          - from: 2022-06-01
+          - from: "2022-06-01"
             store: boltdb-shipper
             object_store: filesystem
             schema: v11
