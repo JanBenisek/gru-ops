@@ -63,11 +63,11 @@ spec:
     # ref: http://kubernetes.io/docs/user-guide/compute-resources/
     resources:
       requests:
-        memory: 20G
+        memory: 10G
         cpu: 400m
 
       limits: 
-        memory: 25G
+        memory: 5G
         cpu: 2000m
 
     # Configure autoscaling
