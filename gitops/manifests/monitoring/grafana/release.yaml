@@ -32,7 +32,7 @@ spec:
           root_url: https://grafana.${DOMAIN_NAME}
         auth.basic:
           enabled: false
-        # new stuff
+        # new stuff, experiment with kuberay grafana embedding
         security:
           allow_embedding: true
         auth.anonymous:
