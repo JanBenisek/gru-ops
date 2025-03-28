@@ -69,7 +69,7 @@ spec:
     singleBinary:
       replicas: 1
       persistence:
-        enabled: false
+        enabled: true
         size: 4Gi
       affinity: {} # otherwise rules prohibiting some nodes
   
