@@ -49,10 +49,10 @@ spec:
           resources:
             requests:
               memory: "500Mi"  
-              cpu: "200m"      
+              cpu: "50m"      
             limits:
               memory: "1G"  
-              cpu: "500m"
+              cpu: "200m"
           volumeMounts:
             - mountPath: /config  
               name: config-storage

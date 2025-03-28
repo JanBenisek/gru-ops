@@ -50,7 +50,7 @@ spec:
         # Monitor memory usage and adjust as needed.
         memory: 512Mi
       requests:
-        cpu: 200m
+        cpu: 100m
         memory: 512Mi
 
     logging:

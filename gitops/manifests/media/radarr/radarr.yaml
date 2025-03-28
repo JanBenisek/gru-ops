@@ -48,8 +48,8 @@ spec:
               value: "Etc/UTC" # Timezone
           resources:
             requests:
-              memory: "1G"  
-              cpu: "300m"      
+              memory: "500Mi"  
+              cpu: "100m"      
             limits:
               memory: "2G"  
               cpu: "500m"
