@@ -4,3 +4,4 @@ namespace: kuberay
 resources:
   - release.yaml
   # - raycluster-embed-grafana.yaml
+  - rayjob.yaml
