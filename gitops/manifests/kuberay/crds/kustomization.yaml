@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: kuberay
 resources:
   - release.yaml
-  - raycluster-embed-grafana.yaml
+  # - raycluster-embed-grafana.yaml
