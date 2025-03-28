@@ -4,6 +4,8 @@ metadata:
   name: raycluster-embed-grafana
 spec:
   # Ray head pod configuration
+  # Attempt to use Grafana, not finished
+  # https://docs.ray.io/en/latest/cluster/kubernetes/k8s-ecosystem/prometheus-grafana.html#kuberay-prometheus-grafana
   headGroupSpec:
     rayStartParams: {}
     # pod template

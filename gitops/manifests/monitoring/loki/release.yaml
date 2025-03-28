@@ -63,42 +63,16 @@ spec:
             index:
               prefix: loki_index_
               period: 24h
-
     minio:
       enabled: true
-          
     deploymentMode: SingleBinary
-
     singleBinary:
       replicas: 1
       persistence:
         enabled: false
+        size: 4Gi
       affinity: {} # otherwise rules prohibiting some nodes
-
-
-    schemaConfig:
-      configs:
-        - from: "2024-04-01"
-          store: tsdb
-          object_store: s3
-          schema: v13
-          index:
-            prefix: loki_index_
-            period: 24h
-    pattern_ingester:
-        enabled: true
-    limits_config:
-      allow_structured_metadata: true
-      volume_enabled: true
-    ruler:
-      enable_api: true
-
-minio:
-  enabled: true
-      
-deploymentMode: SingleBinary
-
-
+  
     # Zero out replica counts of other deployment modes
     backend:
       replicas: 0
