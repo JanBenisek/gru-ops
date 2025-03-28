@@ -32,6 +32,12 @@ spec:
           root_url: https://grafana.${DOMAIN_NAME}
         auth.basic:
           enabled: false
+        # new stuff
+        security:
+          allow_embedding: true
+        auth.anonymous:
+          enabled: true
+          org_role: Viewer
       # persistence:
       #   type: pvc
       #   enabled: true
