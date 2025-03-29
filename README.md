@@ -10,6 +10,13 @@ Let's add the commands later.
 
 - [] some pods, like hiker, are not removed when removed from here and reconciled
 
+## KRR
+- Adjut usage - https://github.com/robusta-dev/krr
+- `z home/krr`
+- `source krr/bin/activate`
+- `k port-forward -n monitoring svc/kube-prometheus-stack-prometheus 9090:9090`
+- `python krr.py simple -p http://localhost:9090`
+
 ## Apps
 
 ### cert-manager
