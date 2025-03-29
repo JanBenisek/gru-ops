@@ -30,7 +30,7 @@ spec:
           image: rayproject/ray:2.41.0
           ports:
           - containerPort: 6379
-            name: gcs
+            name: gcs-server
           - containerPort: 8265
             name: dashboard
           - containerPort: 10001
@@ -87,9 +87,9 @@ spec:
           image: rayproject/ray:2.41.0
           # use volumeMounts.Optional.
           # Refer to https://kubernetes.io/docs/concepts/storage/volumes/
-          volumeMounts:
-            - mountPath: /tmp/ray
-              name: ray-logs
+          # volumeMounts: # i disabled it
+          #   - mountPath: /tmp/ray
+          #     name: ray-logs
           # The resource requests and limits in this config are too small for production!
           # For an example with more realistic resource configuration, see
           # ray-cluster.autoscaler.large.yaml.
@@ -114,7 +114,7 @@ spec:
               memory: "128Mi"
         # use volumes
         # Refer to https://kubernetes.io/docs/concepts/storage/volumes/
-        volumes:
-          - name: ray-logs
-            emptyDir: {}
+        # volumes: # I disabled it
+        #   - name: ray-logs
+        #     emptyDir: {}
 ######################status#################################
