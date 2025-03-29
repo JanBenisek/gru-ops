@@ -41,6 +41,7 @@ spec:
       #  - name: BLAH
       #    value: VAL
     head:
+      # it seems that all settings for head node go under it
       service:
         type: ClusterIP  
       ports:
@@ -54,6 +55,21 @@ spec:
           name: dashboard  # Ray dashboard
         - containerPort: 10001
           name: client
+
+      headGroupSpec:
+        template:
+          spec:
+            containers:
+              - name: raycluster-head
+                ports:
+                  - containerPort: 6379
+                    name: gcs-server
+                  - containerPort: 8265
+                    name: dashboard
+                  - containerPort: 10001
+                    name: client
+                  - containerPort: 80  # The missing port for your service, added here
+                    name: http
       # rayVersion determines the autoscaler's image version.
       # It should match the Ray version in the image of the containers.
       # rayVersion: 2.41.0
