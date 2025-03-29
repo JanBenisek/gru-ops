@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: raycluster-ingress-head-ingress
+  labels:
+    app: kuberay
+    app.kubernetes.io/name: kuberay
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/proxy-body-size: "0" 
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "1000"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "1000"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "1000"
+    nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "1000"
+spec:
+  ingressClassName: nginx  
+  rules:
+  - host: raycluster.${DOMAIN_NAME}
+    http:
+      paths:
+      - backend:
+          service:
+            name: raycluster-ingress-head-svc 
+            port:
+              number: 80 #8265 is where dashboard is originally
+        path: /raycluster-ingress/(.*)  # (.*) is regex
+        pathType: Exact  # Matches the URL path exactly and with case sensitivity.
+  tls:
+  - hosts:
+      - kuberay.${DOMAIN_NAME}
+    secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+
+
+

@@ -188,7 +188,8 @@ curl https://ollama.pengiuns.com/api/ps
 
 - [Docs](https://docs.ray.io/en/latest/cluster/kubernetes/getting-started/raycluster-quick-start.html)
 - https://github.com/ray-project/kuberay/blob/master/helm-chart/ray-cluster/README.md
-- [values.yaml](https://github.com/ray-project/kuberay/blob/master/helm-chart/ray-cluster/values.yaml) 
+- [operator values.yaml](https://github.com/ray-project/kuberay/blob/master/helm-chart/kuberay-operator/values.yaml)
+- [cluster  values.yaml](https://github.com/ray-project/kuberay/blob/master/helm-chart/ray-cluster/values.yaml) 
 - Options
   - RayCluster: When you want a persistent Ray cluster that can run multiple workloads over time.
   - RayJob: When you just need to run a single job and don’t need a persistent cluster.

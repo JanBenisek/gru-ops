@@ -48,7 +48,7 @@ spec:
       # additionalDataSources: # Enable later? But then need dependsOn
       #   - name: Loki
       #     type: loki
-      #     url: http://loki-stack:3100 # it listens to 3100 (see k describe)
+      #     url: http://loki:3100 # it listens to 3100 (see k describe)
       #     access: direct
       #     basicAuth: false
       #     isDefault: false

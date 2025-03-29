@@ -87,4 +87,4 @@ spec:
   tls:
   - hosts:
       -  vllm.${DOMAIN_NAME}
-    secretName: letsencrypt-swisshikefinder-com
+    secretName: letsencrypt-wildcard-cert-pengiuns.com-production
