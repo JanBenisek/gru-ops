@@ -1,345 +1,120 @@
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
+# The resource requests and limits in this config are too small for production!
+# For examples with more realistic resource configuration, see
+# ray-cluster.complete.large.yaml and
+# ray-cluster.autoscaler.large.yaml.
+apiVersion: ray.io/v1
+kind: RayCluster
 metadata:
-  name: raycluster
-  namespace: kuberay
+  name: raycluster-complete
 spec:
-  interval: 30m
-  chart:
-    spec:
-      chart: ray-cluster
-      version: "1.3.1"
-      sourceRef:
-        kind: HelmRepository
-        name: kuberay
-        namespace: kuberay
-      interval: 12h
-  values:
-    # Default values for ray-cluster.
-    # This is a YAML-formatted file.
-    # Declare variables to be passed into your templates.
-
-    # The KubeRay community welcomes PRs to expose additional configuration
-    # in this Helm chart.
-
-    image:
-      repository: rayproject/ray
-      tag: 2.41.0
-      pullPolicy: IfNotPresent
-
-    nameOverride: "kuberay"
-    fullnameOverride: ""
-
-    imagePullSecrets: []
-      # - name: an-existing-secret
-
-    # common defined values shared between the head and worker
-    common:
-      # containerEnv specifies environment variables for the Ray head and worker containers.
-      # Follows standard K8s container env schema.
-      containerEnv: []
-      #  - name: BLAH
-      #    value: VAL
-    head:
-      # it seems that all settings for head node go under it
-      service:
-        type: ClusterIP  
-      ports:
-        - name: http # added by me, to forward the trafic from 80 to 8265     
-          port: 80           
-          targetPort: 8265    
-          protocol: TCP
-        - containerPort: 6379
-          name: gcs-server
-        - containerPort: 8265
-          name: dashboard  # Ray dashboard
-        - containerPort: 10001
-          name: client
-
-      headGroupSpec:
-        template:
-          spec:
-            containers:
-              - name: raycluster-head
-                ports:
-                  - containerPort: 6379
-                    name: gcs-server
-                  - containerPort: 8265
-                    name: dashboard
-                  - containerPort: 10001
-                    name: client
-                  - containerPort: 80  # The missing port for your service, added here
-                    name: http
-      # rayVersion determines the autoscaler's image version.
-      # It should match the Ray version in the image of the containers.
-      # rayVersion: 2.41.0
-      # If enableInTreeAutoscaling is true, the autoscaler sidecar will be added to the Ray head pod.
-      # Ray autoscaler integration is supported only for Ray versions >= 1.11.0
-      # Ray autoscaler integration is Beta with KubeRay >= 0.3.0 and Ray >= 2.0.0.
-      # enableInTreeAutoscaling: true
-      # autoscalerOptions is an OPTIONAL field specifying configuration overrides for the Ray autoscaler.
-      # The example configuration shown below represents the DEFAULT values.
-      # autoscalerOptions:
-        # upscalingMode: Default
-        # idleTimeoutSeconds is the number of seconds to wait before scaling down a worker pod which is not using Ray resources.
-        # idleTimeoutSeconds: 60
-        # imagePullPolicy optionally overrides the autoscaler container's default image pull policy (IfNotPresent).
-        # imagePullPolicy: IfNotPresent
-        # Optionally specify the autoscaler container's securityContext.
-        # securityContext: {}
-        # env: []
-        # envFrom: []
-        # resources specifies optional resource request and limit overrides for the autoscaler container.
-        # For large Ray clusters, we recommend monitoring container resource usage to determine if overriding the defaults is required.
-        # resources:
-        #   limits:
-        #     cpu: "500m"
-        #     memory: "512Mi"
-        #   requests:
-        #     cpu: "500m"
-        #     memory: "512Mi"
-      labels: {}
-      # Note: From KubeRay v0.6.0, users need to create the ServiceAccount by themselves if they specify the `serviceAccountName`
-      # in the headGroupSpec. See https://github.com/ray-project/kuberay/pull/1128 for more details.
-      serviceAccountName: ""
-      restartPolicy: ""
-      rayStartParams: {}
-      # containerEnv specifies environment variables for the Ray container,
-      # Follows standard K8s container env schema.
-      containerEnv: []
-      # - name: EXAMPLE_ENV
-      #   value: "1"
-      envFrom: []
-        # - secretRef:
-        #     name: my-env-secret
-      # ports optionally allows specifying ports for the Ray container.
-      # ports: []
-      # resource requests and limits for the Ray head container.
-      # Modify as needed for your application.
-      # Note that the resources in this example are much too small for production;
-      # we don't recommend allocating less than 8G memory for a Ray pod in production.
-      # Ray pods should be sized to take up entire K8s nodes when possible.
-      # Always set CPU and memory limits for Ray pods.
-      # It is usually best to set requests equal to limits.
-      # See https://docs.ray.io/en/latest/cluster/kubernetes/user-guides/config.html#resources
-      # for further guidance.
-      resources:
-        limits:
-          cpu: "1"
-          # To avoid out-of-memory issues, never allocate less than 2G memory for the Ray head.
-          memory: "2G"
-        requests:
-          cpu: "100m"
-          memory: "1G"
-      annotations: {}
-      nodeSelector: {}
-      tolerations: []
-      affinity: {}
-      # Pod security context.
-      podSecurityContext: {}
-      # Ray container security context.
-      securityContext: {}
-      # Optional: The following volumes/volumeMounts configurations are optional but recommended because
-      # Ray writes logs to /tmp/ray/session_latests/logs instead of stdout/stderr.
-      volumes:
-        - name: log-volume
-          emptyDir: {}
-      volumeMounts:
-        - mountPath: /tmp/ray
-          name: log-volume
-      # sidecarContainers specifies additional containers to attach to the Ray pod.
-      # Follows standard K8s container spec.
-      sidecarContainers: []
-      # See docs/guidance/pod-command.md for more details about how to specify
-      # container command for head Pod.
-      command: []
-      args: []
-      # Optional, for the user to provide any additional fields to the service.
-      # See https://pkg.go.dev/k8s.io/Kubernetes/pkg/api/v1#Service
-      headService:
-        ports:
-          - name: gcs-server
-            port: 6379
-            targetPort: 6379
-          - name: dashboard
-            port: 8265
-            targetPort: 8265
-          - name: client
-            port: 10001
-            targetPort: 10001
-        # metadata:
-        #   annotations:
-        #     prometheus.io/scrape: "true"
-
-      # Custom pod DNS configuration
-      # See https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config
-      # dnsConfig:
-      #   nameservers:
-      #     - 8.8.8.8
-      #   searches:
-      #     - example.local
-      #   options:
-      #     - name: ndots
-      #       value: "2"
-      #     - name: edns0
-      topologySpreadConstraints: {}
-
-
-    worker:
-      # If you want to disable the default workergroup
-      # uncomment the line below
-      # disabled: true
-      groupName: workergroup
-      replicas: 1
-      minReplicas: 1
-      maxReplicas: 3
-      labels: {}
-      serviceAccountName: ""
-      restartPolicy: ""
-      rayStartParams: {}
-      # containerEnv specifies environment variables for the Ray container,
-      # Follows standard K8s container env schema.
-      containerEnv: []
-      # - name: EXAMPLE_ENV
-      #   value: "1"
-      envFrom: []
-        # - secretRef:
-        #     name: my-env-secret
-      # ports optionally allows specifying ports for the Ray container.
-      # ports: []
-      # resource requests and limits for the Ray head container.
-      # Modify as needed for your application.
-      # Note that the resources in this example are much too small for production;
-      # we don't recommend allocating less than 8G memory for a Ray pod in production.
-      # Ray pods should be sized to take up entire K8s nodes when possible.
-      # Always set CPU and memory limits for Ray pods.
-      # It is usually best to set requests equal to limits.
-      # See https://docs.ray.io/en/latest/cluster/kubernetes/user-guides/config.html#resources
-      # for further guidance.
-      resources:
-        limits:
-          cpu: "1"
-          memory: "2G"
-        requests:
-          cpu: "100m"
-          memory: "1G"
-      annotations: {}
-      nodeSelector: {}
-      tolerations: []
-      affinity: {}
-      # Pod security context.
-      podSecurityContext: {}
-      # Ray container security context.
-      securityContext: {}
-      # Optional: The following volumes/volumeMounts configurations are optional but recommended because
-      # Ray writes logs to /tmp/ray/session_latests/logs instead of stdout/stderr.
-      volumes:
-        - name: log-volume
-          emptyDir: {}
-      volumeMounts:
-        - mountPath: /tmp/ray
-          name: log-volume
-      # sidecarContainers specifies additional containers to attach to the Ray pod.
-      # Follows standard K8s container spec.
-      sidecarContainers: []
-      # See docs/guidance/pod-command.md for more details about how to specify
-      # container command for worker Pod.
-      command: []
-      args: []
-      topologySpreadConstraints: {}
-
-
-      # Custom pod DNS configuration
-      # See https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config
-      # dnsConfig:
-      #   nameservers:
-      #     - 8.8.8.8
-      #   searches:
-      #     - example.local
-      #   options:
-      #     - name: ndots
-      #       value: "2"
-      #     - name: edns0
-
-    # The map's key is used as the groupName.
-    # For example, key:small-group in the map below
-    # will be used as the groupName
-    additionalWorkerGroups:
-      smallGroup:
-        # Disabled by default
-        disabled: true
-        replicas: 0
-        minReplicas: 0
-        maxReplicas: 3
+  rayVersion: '2.41.0'
+  # Ray head pod configuration
+  headGroupSpec:
+    # Kubernetes Service Type. This is an optional field, and the default value is ClusterIP.
+    # Refer to https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types.
+    serviceType: ClusterIP
+    # The `rayStartParams` are used to configure the `ray start` command.
+    # See https://github.com/ray-project/kuberay/blob/master/docs/guidance/rayStartParams.md for the default settings of `rayStartParams` in KubeRay.
+    # See https://docs.ray.io/en/latest/cluster/cli.html#ray-start for all available options in `rayStartParams`.
+    rayStartParams:
+      dashboard-host: '0.0.0.0'
+    # pod template
+    template:
+      metadata:
+        # Custom labels. NOTE: To avoid conflicts with KubeRay operator, do not define custom labels start with `raycluster`.
+        # Refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
         labels: {}
-        serviceAccountName: ""
-        restartPolicy: ""
-        rayStartParams: {}
-        # containerEnv specifies environment variables for the Ray container,
-        # Follows standard K8s container env schema.
-        containerEnv: []
-          # - name: EXAMPLE_ENV
-          #   value: "1"
-        envFrom: []
-            # - secretRef:
-            #     name: my-env-secret
-        # ports optionally allows specifying ports for the Ray container.
-        # ports: []
-        # resource requests and limits for the Ray head container.
-        # Modify as needed for your application.
-        # Note that the resources in this example are much too small for production;
-        # we don't recommend allocating less than 8G memory for a Ray pod in production.
-        # Ray pods should be sized to take up entire K8s nodes when possible.
-        # Always set CPU and memory limits for Ray pods.
-        # It is usually best to set requests equal to limits.
-        # See https://docs.ray.io/en/latest/cluster/kubernetes/user-guides/config.html#resources
-        # for further guidance.
-        resources:
-          limits:
-            cpu: 1
-            memory: "2G"
-          requests:
-            cpu: "100m"
-            memory: "1G"
-        annotations: {}
-        nodeSelector: {}
-        tolerations: []
-        affinity: {}
-        # Pod security context.
-        podSecurityContext: {}
-        # Ray container security context.
-        securityContext: {}
-        # Optional: The following volumes/volumeMounts configurations are optional but recommended because
-        # Ray writes logs to /tmp/ray/session_latests/logs instead of stdout/stderr.
+      spec:
+        containers:
+        - name: ray-head
+          image: rayproject/ray:2.41.0
+          ports:
+          - containerPort: 6379
+            name: gcs
+          - containerPort: 8265
+            name: dashboard
+          - containerPort: 10001
+            name: client
+          volumeMounts:
+            - mountPath: /tmp/ray
+              name: ray-logs
+          # The resource requests and limits in this config are too small for production!
+          # For an example with more realistic resource configuration, see
+          # ray-cluster.autoscaler.large.yaml.
+          # It is better to use a few large Ray pod than many small ones.
+          # For production, it is ideal to size each Ray pod to take up the
+          # entire Kubernetes node on which it is scheduled.
+          resources:
+            limits:
+              cpu: "1"
+              memory: "2G"
+            requests:
+              # For production use-cases, we recommend specifying integer CPU requests and limits.
+              # We also recommend setting requests equal to limits for both CPU and memory.
+              # For this example, we use a 500m CPU request to accomodate resource-constrained local
+              # Kubernetes testing environments such as KinD and minikube.
+              cpu: "100m"
+              memory: "256Mi"
         volumes:
-          - name: log-volume
+          - name: ray-logs
             emptyDir: {}
-        volumeMounts:
-          - mountPath: /tmp/ray
-            name: log-volume
-        sidecarContainers: []
-        # See docs/guidance/pod-command.md for more details about how to specify
-        # container command for worker Pod.
-        command: []
-        args: []
-
-        # Topology Spread Constraints for worker pods
-        # See: https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/
-        topologySpreadConstraints: {}
-
-        # Custom pod DNS configuration
-        # See https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config
-        # dnsConfig:
-        #   nameservers:
-        #     - 8.8.8.8
-        #   searches:
-        #     - example.local
-        #   options:
-        #     - name: ndots
-        #       value: "2"
-        #     - name: edns0
-
-    # Configuration for Head's Kubernetes Service
-    service:
-      # This is optional, and the default is ClusterIP.
-      type: ClusterIP
+  workerGroupSpecs:
+  # the pod replicas in this group typed worker
+  - replicas: 1
+    minReplicas: 1
+    maxReplicas: 1
+    # logical group name, for this called small-group, also can be functional
+    groupName: small-group
+    # If worker pods need to be added, we can increment the replicas.
+    # If worker pods need to be removed, we decrement the replicas, and populate the workersToDelete list.
+    # The operator will remove pods from the list until the desired number of replicas is satisfied.
+    # If the difference between the current replica count and the desired replicas is greater than the
+    # number of entries in workersToDelete, random worker pods will be deleted.
+    #scaleStrategy:
+    #  workersToDelete:
+    #  - raycluster-complete-worker-small-group-bdtwh
+    #  - raycluster-complete-worker-small-group-hv457
+    #  - raycluster-complete-worker-small-group-k8tj7
+    # The `rayStartParams` are used to configure the `ray start` command.
+    # See https://github.com/ray-project/kuberay/blob/master/docs/guidance/rayStartParams.md for the default settings of `rayStartParams` in KubeRay.
+    # See https://docs.ray.io/en/latest/cluster/cli.html#ray-start for all available options in `rayStartParams`.
+    rayStartParams: {}
+    #pod template
+    template:
+      spec:
+        containers:
+        - name: ray-worker
+          image: rayproject/ray:2.41.0
+          # use volumeMounts.Optional.
+          # Refer to https://kubernetes.io/docs/concepts/storage/volumes/
+          volumeMounts:
+            - mountPath: /tmp/ray
+              name: ray-logs
+          # The resource requests and limits in this config are too small for production!
+          # For an example with more realistic resource configuration, see
+          # ray-cluster.autoscaler.large.yaml.
+          # It is better to use a few large Ray pod than many small ones.
+          # For production, it is ideal to size each Ray pod to take up the
+          # entire Kubernetes node on which it is scheduled.
+          resources:
+            limits:
+              cpu: "300m"
+              memory: "5128Mi"
+            # For production use-cases, we recommend specifying integer CPU requests and limits.
+            # We also recommend setting requests equal to limits for both CPU and memory.
+            # For this example, we use a 500m CPU request to accomodate resource-constrained local
+            # Kubernetes testing environments such as KinD and minikube.
+            requests:
+              # For production use-cases, we recommend specifying integer CPU reqests and limits.
+              # We also recommend setting requests equal to limits for both CPU and memory.
+              # For this example, we use a 500m CPU request to accomodate resource-constrained local
+              # Kubernetes testing environments such as KinD and minikube.
+               cpu: "100m"
+              # For production use-cases, we recommend allocating at least 8Gb memory for each Ray container.
+              memory: "128Mi"
+        # use volumes
+        # Refer to https://kubernetes.io/docs/concepts/storage/volumes/
+        volumes:
+          - name: ray-logs
+            emptyDir: {}
+######################status#################################
