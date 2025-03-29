@@ -5,7 +5,7 @@
 apiVersion: ray.io/v1
 kind: RayCluster
 metadata:
-  name: raycluster-complete
+  name: raycluster
 spec:
   rayVersion: '2.41.0'
   # Ray head pod configuration
