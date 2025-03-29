@@ -40,7 +40,7 @@ spec:
         volume_enabled: true # persistence
       
       ruler:
-        enable_api: true
+        enable_api: false
 
       # storage:
       #   type: filesystem
