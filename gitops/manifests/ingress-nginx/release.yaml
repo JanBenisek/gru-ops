@@ -14,7 +14,13 @@ spec:
         name: ingress-nginx
         namespace: ingress-nginx
       interval: 12h
-  # values: # defaults, no need to adjust
+  values: 
+    resources:  # no limit on purpose
+      requests:
+        memory: "256Mi"  
+        cpu: "10m"       
+  
+  # defaults, no need to adjust
   #   controller:
   #     service:
   #       type: LoadBalancer

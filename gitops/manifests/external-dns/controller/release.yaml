@@ -32,3 +32,11 @@ spec:
     cloudflare:
       proxied: false 
       secretName: "cloudflare-api-token" # the key HAS TO BE `cloudflare_api_token`
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "10m"
+      limits:
+        memory: "256Mi"
+        cpu: "200m"
+

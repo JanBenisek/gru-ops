@@ -39,13 +39,13 @@ spec:
     rbac:
       enabled: true
 
-    resources: {}
-      # limits:
-      #   cpu: 50m
-      #   memory: 20Mi
-      # requests:
-      #   cpu: 20m
-      #   memory: 20Mi
+    resources:
+      requests:
+        memory: "125Mi"  
+        cpu: "10m"      
+      limits:
+        memory: "256Mi"  
+        cpu: "100m"
 
     nodeSelector: {}
 

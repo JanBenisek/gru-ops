@@ -15,5 +15,12 @@ spec:
         namespace: sealed-secrets
   interval: 1h0m0s
   timeout: 10m
-  # values:
+  values:
+    resources: 
+      requests:
+        memory: "125Mi"  
+        cpu: "10m"      
+      limits:
+        memory: "256Mi"  
+        cpu: "100m"    
     

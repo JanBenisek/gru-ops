@@ -19,6 +19,14 @@ spec:
       hostpathClass:
         enabled: false # disable default SC
       enabled: true
+      localpv:
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "10m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
     image:
       pullPolicy: IfNotPresent #Always got me rate limited
     engines:

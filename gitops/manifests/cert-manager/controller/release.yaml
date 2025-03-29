@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: cert-manager
-      version: "1.12.2"
+      version: "1.17.1"
       sourceRef:
         kind: HelmRepository
         name: jetstack
@@ -18,3 +18,10 @@ spec:
       retries: 3
   values:
     installCRDs: true
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "10m"
+      limits:
+        memory: "256Mi"
+        cpu: "100m"

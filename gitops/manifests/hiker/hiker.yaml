@@ -35,10 +35,10 @@ spec:
         - containerPort: 8080 # internal port for the app
         resources: # added by me
           requests:
-            memory: "256Mi"  
-            cpu: "50m"      
+            memory: "128Mi"  
+            cpu: "10m"      
           limits:
-            memory: "512Mi"  
+            memory: "256Mi"  
             cpu: "100m"    
         # volumeMounts:
         # - mountPath: /mnt/store # dir inside container where the app will write

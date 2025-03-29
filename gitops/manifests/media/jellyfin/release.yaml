@@ -132,10 +132,10 @@ spec:
     resources: 
       limits:
         cpu: "1"
-        memory: 4G
+        memory: "4Gi"
       requests:
-        cpu: "500"
-        memory: 2G
+        cpu: "500m"
+        memory: "3Gi"
       
 
     # -- Configure liveness probe for Jellyfin.
