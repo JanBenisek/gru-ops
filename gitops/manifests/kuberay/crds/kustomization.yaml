@@ -3,5 +3,6 @@ kind: Kustomization
 namespace: kuberay
 resources:
   - raycluster.yaml
+  - ingress.yaml
   # - raycluster-embed-grafana.yaml
   # - rayjob.yaml
