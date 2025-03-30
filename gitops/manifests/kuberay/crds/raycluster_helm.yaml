@@ -96,11 +96,11 @@ spec:
       # for further guidance.
       resources:
         limits:
-          cpu: "200m"
+          cpu: "500m"
           # To avoid out-of-memory issues, never allocate less than 2G memory for the Ray head.
           memory: "3Gi"
         requests:
-          cpu: "50m"
+          cpu: "200m"
           memory: "2Gi"
       annotations: {}
       nodeSelector: {}
@@ -179,11 +179,11 @@ spec:
       # for further guidance.
       resources:
         limits:
-          cpu: "200m"
-          memory: "256Mi"
+          cpu: "400m"
+          memory: "1Gi"
         requests:
-          cpu: "50m"
-          memory: "128Mi"
+          cpu: "200m"
+          memory: "512Mi"
       annotations: {}
       nodeSelector: {}
       tolerations: []
@@ -256,12 +256,13 @@ spec:
         # See https://docs.ray.io/en/latest/cluster/kubernetes/user-guides/config.html#resources
         # for further guidance.
         resources:
+        resources:
           limits:
-            cpu: "200m"
-            memory: "256Mi"
+            cpu: "400m"
+            memory: "1Gi"
           requests:
-            cpu: "50m"
-            memory: "128Mi"
+            cpu: "200m"
+            memory: "512Mi"
         annotations: {}
         nodeSelector: {}
         tolerations: []
