@@ -25,8 +25,8 @@ spec:
             name: raycluster-kuberay-head-svc 
             port:
               number: 80 #8265 is where dashboard is originally
-        path: /raycluster-ingress/(.*)  # (.*) is regex
-        pathType: ImplementationSpecific  
+        path: /
+        pathType: Prefix  
   tls:
   - hosts:
       - raycluster.${DOMAIN_NAME}
