@@ -303,7 +303,7 @@ spec:
     # Configuration for Head's Kubernetes Service
     service:
       # This is optional, and the default is ClusterIP.
-      type: LoadBalancer #???
+      type: ClusterIP
       # addin ingress?
       ports:
         - name: http # added by me, to forward the trafic from 80 to 8265     
