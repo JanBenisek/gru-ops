@@ -1,5 +1,6 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
+# sad: https://docs.ray.io/en/latest/cluster/kubernetes/k8s-ecosystem/ingress.html
 metadata:
   name: raycluster-ingress-head-ingress
   labels:

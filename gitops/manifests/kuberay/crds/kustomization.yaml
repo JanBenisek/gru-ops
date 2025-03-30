@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: kuberay
 resources:
   - raycluster_helm.yaml
-  - ingress.yaml
+  # - ingress.yaml #does not work, bastard
   # - raycluster_kustomize.yaml=
   # - raycluster-embed-grafana.yaml
   # - rayjob.yaml
