@@ -317,6 +317,7 @@ spec:
         - containerPort: 10001
           name: client
       headGroupSpec:
+        serviceType: NodePort
         template:
           spec:
             containers:
@@ -330,3 +331,5 @@ spec:
                     name: client
                   - containerPort: 80  # The missing port for your service, added here
                     name: http
+                    targetPort: 8265    
+                    protocol: TCP
