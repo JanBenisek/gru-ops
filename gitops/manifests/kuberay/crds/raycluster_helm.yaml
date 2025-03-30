@@ -304,3 +304,29 @@ spec:
     service:
       # This is optional, and the default is ClusterIP.
       type: ClusterIP
+      # addin ingress?
+      ports:
+        - name: http # added by me, to forward the trafic from 80 to 8265     
+          port: 80           
+          targetPort: 8265    
+          protocol: TCP
+        - containerPort: 6379
+          name: gcs-server
+        - containerPort: 8265
+          name: dashboard  # Ray dashboard
+        - containerPort: 10001
+          name: client
+      headGroupSpec:
+        template:
+          spec:
+            containers:
+              - name: raycluster-head
+                ports:
+                  - containerPort: 6379
+                    name: gcs-server
+                  - containerPort: 8265
+                    name: dashboard
+                  - containerPort: 10001
+                    name: client
+                  - containerPort: 80  # The missing port for your service, added here
+                    name: http

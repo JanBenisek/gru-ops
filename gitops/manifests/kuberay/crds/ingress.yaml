@@ -26,10 +26,10 @@ spec:
             port:
               number: 80 #8265 is where dashboard is originally
         path: /raycluster-ingress/(.*)  # (.*) is regex
-        pathType: ImplementationSpecific  # Matches the URL path exactly and with case sensitivity.
+        pathType: ImplementationSpecific  
   tls:
   - hosts:
-      - kuberay.${DOMAIN_NAME}
+      - raycluster.${DOMAIN_NAME}
     secretName: letsencrypt-wildcard-cert-pengiuns.com-production
 
 
