@@ -100,7 +100,7 @@ spec:
           # To avoid out-of-memory issues, never allocate less than 2G memory for the Ray head.
           memory: "3Gi"
         requests:
-          cpu: "400m"
+          cpu: "600m"
           memory: "2Gi"
       annotations: {}
       nodeSelector: {}
@@ -182,7 +182,7 @@ spec:
           cpu: "800m"
           memory: "1Gi"
         requests:
-          cpu: "400m"
+          cpu: "600m"
           memory: "512Mi"
       annotations: {}
       nodeSelector: {}
@@ -260,7 +260,7 @@ spec:
             cpu: "800m"
             memory: "1Gi"
           requests:
-            cpu: "400m"
+            cpu: "600m"
             memory: "512Mi"
         annotations: {}
         nodeSelector: {}
