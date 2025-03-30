@@ -98,10 +98,10 @@ spec:
         limits:
           cpu: "200m"
           # To avoid out-of-memory issues, never allocate less than 2G memory for the Ray head.
-          memory: "256Mi"
+          memory: "3Gi"
         requests:
           cpu: "50m"
-          memory: "128Mi"
+          memory: "2Gi"
       annotations: {}
       nodeSelector: {}
       tolerations: []
