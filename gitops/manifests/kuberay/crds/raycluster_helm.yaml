@@ -256,7 +256,6 @@ spec:
         # See https://docs.ray.io/en/latest/cluster/kubernetes/user-guides/config.html#resources
         # for further guidance.
         resources:
-        resources:
           limits:
             cpu: "400m"
             memory: "1Gi"
