@@ -22,7 +22,7 @@ spec:
       paths:
       - backend:
           service:
-            name: raycluster-ingress-head-svc 
+            name: raycluster-kuberay-head-svc 
             port:
               number: 80 #8265 is where dashboard is originally
         path: /raycluster-ingress/(.*)  # (.*) is regex
