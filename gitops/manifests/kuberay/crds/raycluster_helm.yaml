@@ -152,7 +152,7 @@ spec:
       # disabled: true
       groupName: workergroup
       replicas: 1
-      minReplicas: 1
+      minReplicas: 2
       maxReplicas: 3
       labels: {}
       serviceAccountName: ""
