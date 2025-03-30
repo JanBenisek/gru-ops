@@ -28,7 +28,7 @@ spec:
         # path: /
         # pathType: Prefix  
         path: /raycluster-ingress/(.*) # (.*) is regex
-        pathType: Exact
+        pathType: ImplementationSpecific
   tls:
   - hosts:
       - raycluster.${DOMAIN_NAME}
