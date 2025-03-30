@@ -30,6 +30,3 @@ spec:
   - hosts:
       - raycluster.${DOMAIN_NAME}
     secretName: letsencrypt-wildcard-cert-pengiuns.com-production
-
-
-
