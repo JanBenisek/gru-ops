@@ -156,7 +156,7 @@ spec:
       maxReplicas: 3
       labels: {}
       serviceAccountName: ""
-      restartPolicy: ""
+      restartPolicy: "Always"
       rayStartParams: {}
       # containerEnv specifies environment variables for the Ray container,
       # Follows standard K8s container env schema.
@@ -179,10 +179,10 @@ spec:
       # for further guidance.
       resources:
         limits:
-          cpu: "400m"
+          cpu: "800m"
           memory: "1Gi"
         requests:
-          cpu: "200m"
+          cpu: "400m"
           memory: "512Mi"
       annotations: {}
       nodeSelector: {}
@@ -257,10 +257,10 @@ spec:
         # for further guidance.
         resources:
           limits:
-            cpu: "400m"
+            cpu: "800m"
             memory: "1Gi"
           requests:
-            cpu: "200m"
+            cpu: "400m"
             memory: "512Mi"
         annotations: {}
         nodeSelector: {}

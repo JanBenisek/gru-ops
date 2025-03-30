@@ -34,7 +34,7 @@ resources:
   - media-bazarr.yaml
   - vllm-stack.yaml
   - kuberay-operator.yaml
-  # - kuberay-crds.yaml
+  - kuberay-crds.yaml
 configMapGenerator:
   - name: gru-values
     envs:
