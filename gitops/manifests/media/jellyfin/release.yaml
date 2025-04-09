@@ -131,7 +131,7 @@ spec:
     # -- Resource requests and limits for the Jellyfin container.
     resources: 
       limits:
-        cpu: "1"
+        cpu: "2"
         memory: "4Gi"
       requests:
         cpu: "500m"
