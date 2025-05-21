@@ -32,9 +32,6 @@ resources:
   - media-radarr.yaml
   - media-sonarr.yaml
   - media-bazarr.yaml
-  - vllm-stack.yaml
-  - kuberay-operator.yaml
-  - kuberay-crds.yaml
 configMapGenerator:
   - name: gru-values
     envs:

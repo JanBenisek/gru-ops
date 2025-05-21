@@ -49,7 +49,6 @@ spec:
     # -- A list of Ollama API endpoints. These can be added in lieu of automatically installing the Ollama Helm chart, or in addition to it.
     ollamaUrls:
       - "https://ollama.pengiuns.com"
-      - "https://vllm.pengiuns.com"
 
     # -- Value of cluster domain
     clusterDomain: cluster.local
