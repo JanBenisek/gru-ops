@@ -84,6 +84,10 @@ metadata:
     nginx.ingress.kubernetes.io/limit-rpm: "3600"
     # nginx.ingress.kubernetes.io/ssl-redirect: "true"  # if I want to go through 443 and https
     # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    nginx.ingress.kubernetes.io/proxy-redirect-from: "http://"
+    nginx.ingress.kubernetes.io/proxy-redirect-to: "https://"
 spec:
   ingressClassName: nginx
   rules:
