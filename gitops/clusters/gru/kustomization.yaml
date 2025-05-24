@@ -33,6 +33,7 @@ resources:
   - media-radarr.yaml
   - media-sonarr.yaml
   - media-bazarr.yaml
+  - funnaiest.yaml
 configMapGenerator:
   - name: gru-values
     envs:
