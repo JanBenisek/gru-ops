@@ -169,7 +169,7 @@ k create secret generic cloudflare-api-token \
 
 ```shell
 # chat
-curl https://ollama.pengiuns.com/api/chat -d '{"model": "llama3.2", "stream": false, "messages": [{ "role": "user", "content": "why is the sky blue?" }]}'
+curl https://ollama.pengiuns.com/api/chat -d '{"model": "llama3.2", "stream": true, "messages": [{ "role": "user", "content": "why is the sky blue?" }]}'
 
 # pull model
 curl https://ollama.pengiuns.com/api/pull -d '{"model": "gemma2"}'
