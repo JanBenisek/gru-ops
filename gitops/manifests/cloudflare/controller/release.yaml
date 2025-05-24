@@ -17,7 +17,8 @@ spec:
   values:
     # Cloudflare parameters.
     cloudflare:
-      tunnel_token: "eyJhIjoiNmY3MmUzYTJiZmNjN2I3NzRmZGNlY2M3NzAwMzUzMzYiLCJ0IjoiMTE2N2M5MTItNWEwOC00YTcyLThiODUtMDQ4M2YwMzRiNzY4IiwicyI6Ik16Y3pPVGN3TUdRdE5XVXpZaTAwTURGbUxUaGhNVGd0T0Raa1pEZzJNekV6WVRRMCJ9"
+      # empty, picked up from secret
+      tunnel_token: ""
 
     image:
       repository: cloudflare/cloudflared
