@@ -4,10 +4,17 @@ metadata:
   name: cloudflare
   namespace: flux-system
 spec:
-  path: ./gitops/manifests/cloudflare
+  path: ./gitops/manifests/cloudflare/controller
   interval: 15m
   prune: true 
   timeout: 20m 
+  dependsOn:
+    - name: ingress-nginx
+      namespace: flux-system
+    - name: sealed-secrets
+      namespace: flux-system
+    - name: cloudflare-secrets
+      namespace: flux-system
   validation: server
   sourceRef:
     kind: GitRepository
