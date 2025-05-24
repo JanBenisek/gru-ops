@@ -40,10 +40,10 @@ k create secret generic cloudflare-api-token \
 - [docs](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/)
 - `tunel_token`
 ```shell
-k create secret generic cloudflare-tunel-token \
+k create secret generic cloudflare-cloudflare-tunnel-remote \
   --namespace cloudflare \
   --dry-run=client \
-  --from-literal=cloudflare-tunel-token=eyJhIjoiNmY3MmUzYTJiZmNjN2I3NzRmZGNlY2M3NzAwMzUzMzYiLCJ0IjoiMTE2N2M5MTItNWEwOC00YTcyLThiODUtMDQ4M2YwMzRiNzY4IiwicyI6Ik16Y3pPVGN3TUdRdE5XVXpZaTAwTURGbUxUaGhNVGd0T0Raa1pEZzJNekV6WVRRMCJ9 -o json \
+  --from-literal=tunnelToken=eyJhIjoiNmY3MmUzYTJiZmNjN2I3NzRmZGNlY2M3NzAwMzUzMzYiLCJ0IjoiMTE2N2M5MTItNWEwOC00YTcyLThiODUtMDQ4M2YwMzRiNzY4IiwicyI6Ik16Y3pPVGN3TUdRdE5XVXpZaTAwTURGbUxUaGhNVGd0T0Raa1pEZzJNekV6WVRRMCJ9 -o json \
   | kubeseal --cert "./${PUBLICKEY}" \
   > /home/github/gru-ops/gitops/manifests/cloudflare/cloudflare-tunel-token.yaml
 ```
