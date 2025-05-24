@@ -35,9 +35,18 @@ k create secret generic cloudflare-api-token \
 ### Cloudflare
 
 - To be able to expose my services on the internet.
-- I need to set up the tunnel in cloudflare and add CNAME pointing to `acdf4147-512c-4b16-8ce2-58915c6ab118.cfargotunnel.com` with the orange cloud on.
-- [values](https://github.com/cloudflare/helm-charts/blob/main/charts/cloudflare-tunnel/values.yaml)
+- I chose "remote" version - I create the tunnel in the UI and just connect to it.
+- [values](https://github.com/cloudflare/helm-charts/blob/main/charts/cloudflare-tunnel-remote/values.yaml)
 - [docs](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/)
+- `tunel_token`
+```shell
+k create secret generic cloudflare-tunel-token \
+  --namespace cloudflare \
+  --dry-run=client \
+  --from-literal=cloudflare-tunel-token=eyJhIjoiNmY3MmUzYTJiZmNjN2I3NzRmZGNlY2M3NzAwMzUzMzYiLCJ0IjoiMTE2N2M5MTItNWEwOC00YTcyLThiODUtMDQ4M2YwMzRiNzY4IiwicyI6Ik16Y3pPVGN3TUdRdE5XVXpZaTAwTURGbUxUaGhNVGd0T0Raa1pEZzJNekV6WVRRMCJ9 -o json \
+  | kubeseal --cert "./${PUBLICKEY}" \
+  > /home/github/gru-ops/gitops/manifests/cloudflare/cloudflare-tunel-token.yaml
+```
 
 ### docker-registry
 
