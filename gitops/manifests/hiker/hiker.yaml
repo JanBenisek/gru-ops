@@ -59,14 +59,14 @@ metadata:
 spec:
   selector:
     app: hiker
-  type: LoadBalancer
-  loadBalancerIP: 192.168.178.200 # fix IP for cloudflare to reach it
+  type: ClusterIP
+  # type: LoadBalancer
+  # loadBalancerIP: 192.168.178.200 # fixed IP for cloudflare to reach it (also handy for debugging)
   ports:
   - name: http
     port: 80 # we talk to 80
     protocol: TCP
     targetPort: 8080 # app listens here
-  # type: LoadBalancer # for debugging
 ---
 # Works through cloudflare tunnel
 # The annotation, my ingress should handle HTTPS (gets encrypted stuff from Cloudflare)
