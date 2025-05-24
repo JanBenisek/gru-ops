@@ -15,7 +15,7 @@ resources:
   - openebs.yaml
   - docker-registry.yaml
   - cloudflare-secrets.yaml
-  - cloudflare.yaml
+  # - cloudflare.yaml
   # Apps
   - hiker.yaml
   - stirling.yaml
