@@ -19,7 +19,7 @@ spec:
     image:
       repository: ollama/ollama
       pullPolicy: IfNotPresent
-      tag: ""
+      tag: "0.7.1"
 
     # Ollama parameters
     ollama:
