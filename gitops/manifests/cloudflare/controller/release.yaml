@@ -26,7 +26,7 @@ spec:
       # If supplied, this overrides "latest"
       tag: "2025.5.0"
 
-    replicaCount: 2
+    replicaCount: 1
 
     imagePullSecrets: []
     nameOverride: ""

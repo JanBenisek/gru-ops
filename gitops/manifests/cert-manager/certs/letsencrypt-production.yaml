@@ -15,6 +15,7 @@ spec:
         dnsZones:
           - "pengiuns.com"
           - "swisshikefinder.com" 
+          - "funnaiest.com"
       dns01:
         cloudflare:
           email: benisekj@gmail.com

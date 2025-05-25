@@ -24,6 +24,7 @@ spec:
     domainFilters:
     - "pengiuns.com"
     - "swisshikefinder.com"
+    - "funnaiest.com"
     sources:
       # - crd # TBD what's better
       - service
