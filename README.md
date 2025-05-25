@@ -173,6 +173,8 @@ curl https://ollama.pengiuns.com/api/chat -d '{"model": "llama3.2", "stream": tr
 
 # pull model
 curl https://ollama.pengiuns.com/api/pull -d '{"model": "gemma2"}'
+curl -L --insecure https://ollama.pengiuns.com/api/pull -d '{"model": "qwen3:1.7b"}'
+
 
 # remove model
 curl -X DELETE https://ollama.pengiuns.com/api/delete -d '{"model": "gemma2:latest"}'
@@ -278,6 +280,7 @@ gh repo clone vllm-project/vllm
 uv venv --python 3.12 --seed
 docker build -f docker/Dockerfile.cpu --tag vllm-cpu-env --target vllm-openai .
 
+#       --model=unsloth/Llama-3.2-1B \
 docker run --rm \
              --privileged=true \
              --shm-size=4g \
@@ -286,6 +289,6 @@ docker run --rm \
              -e VLLM_CPU_KVCACHE_SPACE=5 \
              -e VLLM_CPU_OMP_THREADS_BIND=2 \
              vllm-cpu-env \
-             --model=unsloth/Llama-3.2-1B \
+             --model=meta-llama/Llama-3.2-1B-Instruct \
              --dtype=bfloat16
 ```

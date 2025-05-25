@@ -9,7 +9,7 @@ resources:
   - external-dns-secrets.yaml
   - external-dns.yaml
   - cert-manager-secrets.yaml # might not be the best, let's review
-  # - cert-manager.yaml
+  - cert-manager.yaml
   - certs.yaml #it takes a ~10m to set up and propagate, patience!
   - secret-replicator.yaml
   - openebs.yaml
