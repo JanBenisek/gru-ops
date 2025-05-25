@@ -166,6 +166,7 @@ k create secret generic cloudflare-api-token \
 
 - Interact with the REST API:
 - [Docs](https://github.com/ollama/ollama/blob/main/docs/api.md)
+- [Models](https://ollama.com/library)
 
 ```shell
 # chat
