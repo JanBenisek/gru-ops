@@ -286,6 +286,6 @@ docker run --rm \
              -e VLLM_CPU_KVCACHE_SPACE=5 \
              -e VLLM_CPU_OMP_THREADS_BIND=2 \
              vllm-cpu-env \
-             --model=meta-llama/Llama-3.2-1B-Instruct \
+             --model=unsloth/Llama-3.2-1B \
              --dtype=bfloat16
 ```

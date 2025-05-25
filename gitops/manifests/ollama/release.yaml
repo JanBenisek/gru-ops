@@ -28,9 +28,10 @@ spec:
         enabled: false
       models:
        - llama3.2:1b
-       - deepseek-r1:1.5b 
-       - llama3.2
-       - gemma2 #this melts
+       - deepseek-r1:1.5b
+       - gemma3:1b
+       - qwen3:0.6b
+       - qwen3:1.7b
 
     service:
       type: ClusterIP
@@ -63,12 +64,12 @@ spec:
     # ref: http://kubernetes.io/docs/user-guide/compute-resources/
     resources:
       requests:
-        memory: 5G
+        memory: 10G
         cpu: 1000m
 
       limits: 
-        memory: 10G
-        cpu: 2000m
+        memory: 20G
+        cpu: 3000m
 
     # Configure autoscaling
     autoscaling:
