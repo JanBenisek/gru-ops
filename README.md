@@ -271,3 +271,21 @@ curl https://vllm.pengiuns.com/v1/completions \
         "temperature": 0
     }'
 ```
+- run in docker for cpu
+```shell
+# https://docs.vllm.ai/en/stable/getting_started/installation/cpu.html
+gh repo clone vllm-project/vllm
+uv venv --python 3.12 --seed
+docker build -f docker/Dockerfile.cpu --tag vllm-cpu-env --target vllm-openai .
+
+docker run --rm \
+             --privileged=true \
+             --shm-size=4g \
+             --env "HUGGING_FACE_HUB_TOKEN=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" \
+             -p 8000:8000 \
+             -e VLLM_CPU_KVCACHE_SPACE=5 \
+             -e VLLM_CPU_OMP_THREADS_BIND=2 \
+             vllm-cpu-env \
+             --model=meta-llama/Llama-3.2-1B-Instruct \
+             --dtype=bfloat16
+```
