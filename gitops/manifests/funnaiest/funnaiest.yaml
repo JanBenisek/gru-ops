@@ -58,14 +58,15 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/limit-rpm: "3600"
-    # nginx.ingress.kubernetes.io/ssl-redirect: "false" # do not redirect HTTP to HTTPS
-    # nginx.ingress.kubernetes.io/backend-protocol: "HTTP" # not it expects HTTP from cloudflare
-    # nginx.ingress.kubernetes.io/proxy-redirect-from: "http://" # telling how to redirect
-    # nginx.ingress.kubernetes.io/proxy-redirect-to: "https://"
+    # extra, see hiker readme
+    nginx.ingress.kubernetes.io/ssl-redirect: "false" # do not redirect HTTP to HTTPS
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP" # not it expects HTTP from cloudflare
+    nginx.ingress.kubernetes.io/proxy-redirect-from: "http://" # telling how to redirect
+    nginx.ingress.kubernetes.io/proxy-redirect-to: "https://"
 spec:
   ingressClassName: nginx
   rules:
-  - host: funnaiest.${DOMAIN_NAME}
+  - host: funnaiest.com
     http:
       paths:
       - path: /
@@ -77,5 +78,5 @@ spec:
               number: 80
   tls:
   - hosts:
-      - funnaiest.${DOMAIN_NAME}
-    secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+      - funnaiest.com
+    secretName: letsencrypt-funnaiest-com
