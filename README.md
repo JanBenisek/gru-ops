@@ -281,11 +281,12 @@ gh repo clone vllm-project/vllm
 uv venv --python 3.12 --seed
 docker build -f docker/Dockerfile.cpu --tag vllm-cpu-env --target vllm-openai .
 
-#       --model=unsloth/Llama-3.2-1B \
+# --model=unsloth/Llama-3.2-1B \
+# get token from huggingface web
 docker run --rm \
              --privileged=true \
              --shm-size=4g \
-             --env "HUGGING_FACE_HUB_TOKEN=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" \
+             --env "HUGGING_FACE_HUB_TOKEN=<>" \
              -p 8000:8000 \
              -e VLLM_CPU_KVCACHE_SPACE=5 \
              -e VLLM_CPU_OMP_THREADS_BIND=2 \
