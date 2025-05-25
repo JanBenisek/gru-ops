@@ -41,7 +41,7 @@ k create secret generic cloudflare-api-token \
 - `tunel_token`
   - it seems like it must be named `tunnelToken`, then it should be picked up, based on the chart
 ```shell
-k create secret generic cloudflare-cloudflare-tunnel-remote \
+k create secret generic cloudflare-tunnel-cloudflare-tunnel-remote \
   --namespace cloudflare \
   --dry-run=client \
   --from-literal=tunnelToken=<secrety> -o json \
