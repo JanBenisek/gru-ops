@@ -57,7 +57,6 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/limit-rpm: "3600"
     # extra, see hiker readme
     nginx.ingress.kubernetes.io/ssl-redirect: "false" # do not redirect HTTP to HTTPS
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP" # not it expects HTTP from cloudflare
@@ -67,6 +66,13 @@ metadata:
     nginx.ingress.kubernetes.io/auth-type: "basic"
     nginx.ingress.kubernetes.io/auth-secret: "basic-auth" # this is the name of the secret
     nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
+    # Extra stuff to block (I guess not needed now with the auth), first blocks automatically
+    nginx.ingress.kubernetes.io/server-snippet: |
+      location ~* /(wp-admin|wp-includes|wp-content|wordpress|cms|site|sito)/ {
+        return 403;
+      }
+    nginx.ingress.kubernetes.io/limit-connections: "1" # 1 concurrent connection per IP
+    nginx.ingress.kubernetes.io/limit-rpm: "30" # max requests per minute
 spec:
   ingressClassName: nginx
   rules:
