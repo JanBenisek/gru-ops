@@ -63,14 +63,14 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-redirect-from: "http://" # telling how to redirect
     nginx.ingress.kubernetes.io/proxy-redirect-to: "https://"
     # basic auth
-    nginx.ingress.kubernetes.io/auth-type: "basic"
-    nginx.ingress.kubernetes.io/auth-secret: "basic-auth" # this is the name of the secret
-    nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
+    # nginx.ingress.kubernetes.io/auth-type: "basic"
+    # nginx.ingress.kubernetes.io/auth-secret: "basic-auth" # this is the name of the secret
+    # nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
     # Extra stuff to block (I guess not needed now with the auth), first blocks automatically
-    nginx.ingress.kubernetes.io/server-snippet: |
-      location ~* /(wp-admin|wp-includes|wp-content|wordpress|cms|site|sito)/ {
-        return 403;
-      }
+    # nginx.ingress.kubernetes.io/server-snippet: |
+    #   location ~* /(wp-admin|wp-includes|wp-content|wordpress|cms|site|sito)/ {
+    #     return 403;
+    #   }
     nginx.ingress.kubernetes.io/limit-connections: "1" # 1 concurrent connection per IP
     nginx.ingress.kubernetes.io/limit-rpm: "30" # max requests per minute
 spec:
