@@ -113,12 +113,20 @@ k create secret generic cloudflare-api-token \
   > /Users/janbenisek/GithubRepos/gru-ops/gitops/manifests/external-dns/secrets/cloudflare-api-token.yaml
 ```
 
-### harbor
+## funnaiest
+- Fun LLM app to test cloudflare tunnel
+- Also experimenting with auth
+```shell
+sudo apt install apache2-utils 
+htpasswd -c auth myuser
+# usr: guest, pswd: give99jokes
+# I can also add more users, without the -c
 
-- Store containers
-- [values](https://github.com/goharbor/harbor-helm?tab=readme-ov-file)
-- [docs](https://goharbor.io/docs/1.10/install-config/harbor-ha-helm/)
-- [helm](https://github.com/goharbor/harbor-operator/blob/main/docs/installation/by-helm-chart.md)
+kubectl create secret generic basic-auth \
+  --from-file=auth \
+  -n funnaiest
+# TODO: try sealed secrets and more users
+```
 
 ### hiker
 
