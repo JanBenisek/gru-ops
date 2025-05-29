@@ -16,7 +16,7 @@ resources:
   - docker-registry.yaml
   - cloudflare-secrets.yaml
   - cloudflare.yaml
-  - authelia.yaml
+  # - authelia.yaml
   # Apps
   - hiker.yaml
   - stirling.yaml
