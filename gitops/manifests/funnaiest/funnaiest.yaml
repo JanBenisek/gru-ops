@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: docker-registry.pengiuns.com/funnaiest:0.0.3
+        image: docker-registry.pengiuns.com/funnaiest:0.0.4
         imagePullPolicy: Always
         ports:
         - containerPort: 9090 # internal port for the app
