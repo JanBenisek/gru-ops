@@ -19,14 +19,6 @@ Let's add the commands later.
 
 ## Apps
 
-### Authelia
-- [values.yaml](https://github.com/authelia/chartrepo/blob/master/charts/authelia/values.yaml)
-- relevant docs
-  - https://www.authelia.com/integration/proxies/nginx/
-  - https://www.authelia.com/integration/proxies/nginx/
-  - https://gist.github.com/userdocs/7634b8a57e803e378b09c18225edd446
-  - this!!! https://matwick.ca/authelia-nginx-sso/
-
 ### cert-manager
 
 - Need to have cloudflare secret
@@ -126,6 +118,7 @@ kubectl create secret generic basic-auth \
   --from-file=auth \
   -n funnaiest
 # TODO: try sealed secrets and more users
+# also oath2, looks promising!
 ```
 
 ### hiker
