@@ -24,6 +24,8 @@ spec:
     grafana:
       enabled: true
       adminPassword: admin
+      plugins:
+        - yesoreyeram-infinity-datasource
       grafana.ini:
         users:
           auto_assign_org_role: Admin
