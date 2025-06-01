@@ -32,10 +32,6 @@ spec:
         memory: "3Gi"
         cpu: "5000m"
     
-    serviceAccount:
-      create: false
-      name: sa-ssm
-    
     ingress:
       enabled: true
       hosts:

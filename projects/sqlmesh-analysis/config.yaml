@@ -1,9 +1,4 @@
 gateways:
-  duckdb:
-    connection:
-      type: duckdb
-      database: db.db
-
   postgres:
     connection:
       type: postgres
