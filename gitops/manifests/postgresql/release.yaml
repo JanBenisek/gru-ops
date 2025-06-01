@@ -55,10 +55,6 @@ spec:
         existingClaim: pvc-postgresql
 
       service:
-        # type: LoadBalancer
-        # ports:
-        #   postgresql: 5432
-        
         type: LoadBalancer
         ports:
           postresql: 5432

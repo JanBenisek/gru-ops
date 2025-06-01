@@ -12,7 +12,7 @@ metadata:
       - name: BasePath
         value: /var/mnt/storage/media
 provisioner: openebs.io/local
-reclaimPolicy: Delete # is default
+reclaimPolicy: Retain # Delete is default
 volumeBindingMode: WaitForFirstConsumer
 # https://openebs.io/docs/user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-configuration
 allowedTopologies:
