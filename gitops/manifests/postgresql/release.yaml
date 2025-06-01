@@ -1,0 +1,54 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: postgresql
+  namespace: postgresql
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: postgresql
+      version: "16.7.8"
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: postgresql
+      interval: 12h
+  values:
+    global:
+      postgresql:
+        auth:
+          # TODO: Replace with sealed secrets
+          postgresPassword: mysecurepassword #pswd for `postgres` admin user
+          username: jerry #custom user & pswd
+          password: myuserpassword
+          database: prod
+    
+    image:
+      registry: docker.io
+      repository: bitnami/postgresql
+      tag: 17.5.0-debian-12-r8
+      
+    architecture: standalone
+
+    containerPorts:
+      postgresql: 5432
+    
+    primary: #primary DB
+      name: master
+      
+      resources:
+        limits:
+          cpu: 500m
+          memory: 1Gi
+        requests:
+          cpu: 100m
+          memory: 512Mi
+
+      persistence:
+        enabled: true
+        existingClaim: pvc-postgresql
+        size: 8Gi
+      
+    metrics:
+      enabled: true

@@ -210,6 +210,9 @@ curl https://ollama.pengiuns.com/api/ps
   - [main](https://github.com/openebs/openebs/blob/main/charts/values.yaml)
   - [mayastor](https://github.com/openebs/mayastor-extensions/blob/v2.7.1/chart/values.yaml)
 
+### postgresql
+- [chart](https://artifacthub.io/packages/helm/bitnami/postgresql)
+
 ### sealed secrets
 
 - Create my own keys. Pod needs to be rebooted
