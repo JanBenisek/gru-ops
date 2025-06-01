@@ -36,6 +36,11 @@ spec:
     
     primary: #primary DB
       name: master
+
+      initdb:
+        scripts:
+          init.sql: |
+            CREATE DATABASE metabase;
       
       resources:
         limits:
