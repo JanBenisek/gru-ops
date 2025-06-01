@@ -34,7 +34,7 @@ resources:
   - media-sonarr.yaml
   - media-bazarr.yaml
   - funnaiest.yaml
-  - postgresql.yaml
+  # - postgresql.yaml
   # - metabase.yaml
 configMapGenerator:
   - name: gru-values
