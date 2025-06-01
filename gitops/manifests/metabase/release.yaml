@@ -56,10 +56,10 @@ spec:
       port: 5432
       dbname: metabase
       username: bot_metabase
-      password: vanity-cecilia-hailey
-      # existingSecret: secrets
+      # password: vanity-cecilia-hailey
+      # existingSecret: bot-metabase-pswd
       # existingSecretUsernameKey: METABASE_POSTGRESQL_USERNAME
-      # existingSecretPasswordKey: METABASE_POSTGRESQL_PASSWORD
+      existingSecretPasswordKey: bot_metabase_pswd
     service:
       labels:
         app.kubernetes.io/name: "metabase"
