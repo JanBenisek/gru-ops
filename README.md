@@ -148,6 +148,7 @@ kubectl create secret generic basic-auth \
 - [refrence](https://z2jh.jupyter.org/en/latest/resources/reference.html)
 
 ## metabase
+
 - [values](https://github.com/pmint93/helm-charts/tree/master/charts/metabase)
 
 ### metallb
@@ -214,7 +215,17 @@ curl https://ollama.pengiuns.com/api/ps
   - [mayastor](https://github.com/openebs/mayastor-extensions/blob/v2.7.1/chart/values.yaml)
 
 ### postgresql
+
 - [chart](https://artifacthub.io/packages/helm/bitnami/postgresql)
+- connection:
+```shell
+brew install libpq
+echo 'export PATH="/usr/local/opt/libpq/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+
+psql -h 192.168.178.101 -p 5432 -U postgres -d postgres
+psql -h 192.168.178.101 -p 5432 -U jerry -d prod
+```
 
 ### sealed secrets
 

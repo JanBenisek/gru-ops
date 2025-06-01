@@ -56,14 +56,16 @@ spec:
         size: 8Gi
 
       service:
+        # type: LoadBalancer
+        # ports:
+        #   postgresql: 5432
+        
         type: LoadBalancer
         ports:
-          postgresql: 5432
-        # type: LoadBalancer
-        # port: 5432
-        # loadBalancerIP: 192.168.100.50 # pick from `k get ipaddresspool -A`
-        # annotations:
-        #   external-dns.alpha.kubernetes.io/hostname: postgresql.pengiuns.com
+          postresql: 5432
+        loadBalancerIP: 192.168.100.50 # pick from `k get ipaddresspool -A`
+        annotations:
+          external-dns.alpha.kubernetes.io/hostname: postgresql.${DOMAIN_NAME}
       
     metrics:
       enabled: true
