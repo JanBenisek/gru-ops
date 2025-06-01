@@ -67,7 +67,7 @@ data:
             description: Them logs!
             namespace: monitoring 
             app: grafana
-        - Metabase
+        - Metabase:
             icon: metabase.png
             href: https://metabase.pengiuns.com
             description: Moar data.
