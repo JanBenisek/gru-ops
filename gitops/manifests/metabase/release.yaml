@@ -60,3 +60,6 @@ spec:
       # existingSecret: secrets
       # existingSecretUsernameKey: METABASE_POSTGRESQL_USERNAME
       # existingSecretPasswordKey: METABASE_POSTGRESQL_PASSWORD
+    service:
+      labels:
+        app.kubernetes.io/name: "metabase"
