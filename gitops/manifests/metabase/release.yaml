@@ -54,7 +54,7 @@ spec:
       type: postgres
       host: "${POSTGRESQL_HOST}"
       port: 5432
-      db_name: metabase
+      dbname: metabase
       username: bot_metabase
       password: vanity-cecilia-hailey
       # existingSecret: secrets
