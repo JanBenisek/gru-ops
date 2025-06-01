@@ -231,6 +231,8 @@ psql -h 192.168.178.150 -p 5432 -U postgres -d postgres
 psql -h 192.168.178.150 -p 5432 -U jerry -d prod
 psql -h 192.168.178.150 -p 5432 -U jerry -d metabase
 
+psql -h postgresql.pengiuns.com -p 5432 -U bot_metabase -d metabase
+
 # or postgresql.pengiuns.com as a host
 
 # inside pod / k8s
