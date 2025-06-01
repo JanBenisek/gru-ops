@@ -147,6 +147,9 @@ kubectl create secret generic basic-auth \
 - [values](https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/HEAD/jupyterhub/values.yaml)
 - [refrence](https://z2jh.jupyter.org/en/latest/resources/reference.html)
 
+## metabase
+- [values](https://github.com/pmint93/helm-charts/tree/master/charts/metabase)
+
 ### metallb
 
 - Load Balancer, pay attention to DHCP range!
