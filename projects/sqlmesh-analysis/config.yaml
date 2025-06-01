@@ -1,24 +1,24 @@
 gateways:
   duckdb:
     connection:
-      # For more information on configuring the connection to your execution engine, visit:
-      # https://sqlmesh.readthedocs.io/en/stable/reference/configuration/#connections
-      # https://sqlmesh.readthedocs.io/en/stable/integrations/engines/duckdb/#connection-options
       type: duckdb
       database: db.db
+
+  postgres:
+    connection:
+      type: postgres
+      host: postgresql.pengiuns.com
+      port: 5432
+      user: jerry
+      password: myuserpassword
+      database: prod
+      # Optional tuning:
+      # pre_ping: true
       # concurrent_tasks: 1
-      # register_comments: True
-      # pre_ping: False
-      # pretty_sql: False
-      # catalogs: 
-      # extensions: 
-      # connector_config: 
-      # secrets: 
-      # token: 
+      # pretty_sql: true
 
-
-default_gateway: duckdb
+default_gateway: postgres
 
 model_defaults:
-  dialect: duckdb
+  dialect: postgres
   start: 2025-05-30

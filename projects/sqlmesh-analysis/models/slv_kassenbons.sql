@@ -20,6 +20,7 @@ select
 
 from migros.raw_kassenbons
 where Filiale == 'MM Adliswil'
+-- lost about 364 records
 	and Artikel not like '%Bonus-Coupon%'
 	and Artikel not like '%CUM%'
 	and Artikel not like '%Cumulus%'
