@@ -1,0 +1,8 @@
+2025-05-31 22:10:28,212 - MainThread - sqlmesh.core.config.connection - INFO - Creating new DuckDB adapter for data files: {'db.db'} (connection.py:423)
+2025-05-31 22:10:29,117 - MainThread - sqlmesh.core.config.connection - INFO - Creating new DuckDB adapter for in-memory database (connection.py:425)
+2025-05-31 22:10:29,117 - ThreadPoolExecutor-0_0 - sqlmesh.core.console - WARNING - Model '"db"."sqlmesh_example"."full_model"' was not found at /Users/janbenisek/github/gru-ops/projects/sqlmesh-analysis/tests/test_full_model.yaml (console.py:2026)
+2025-05-31 22:10:29,122 - MainThread - sqlmesh.core.config.connection - INFO - Using existing DuckDB adapter due to overlapping data file: db.db (connection.py:413)
+2025-05-31 22:10:29,212 - MainThread - sqlmesh.core.state_sync.db.migrator - INFO - Applying migration <module 'sqlmesh.migrations.v0001_init' from '/Users/janbenisek/github/gru-ops/projects/sqlmesh-analysis/.venv/lib/python3.12/site-packages/sqlmesh/migrations/v0001_init.py'> (migrator.py:177)
+2025-05-31 22:10:29,215 - MainThread - sqlmesh.core.engine_adapter.base - WARNING - Failed to create schema 'sqlmesh': IO Error: Could not set lock on file "/Users/janbenisek/github/gru-ops/projects/sqlmesh-analysis/db.db": Conflicting lock is held in /usr/local/Cellar/duckdb/1.3.0/bin/duckdb (PID 68589) by user janbenisek. See also https://duckdb.org/docs/stable/connect/concurrency (base.py:1178)
+2025-05-31 22:10:29,219 - MainThread - sqlmesh.core.state_sync.db.migrator - INFO - Starting migration rollback. (migrator.py:135)
+2025-05-31 22:10:29,240 - MainThread - root - INFO - Shutting down the event dispatcher (dispatcher.py:159)

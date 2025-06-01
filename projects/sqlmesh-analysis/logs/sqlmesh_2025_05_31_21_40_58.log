@@ -1,0 +1,5 @@
+2025-05-31 21:40:58,731 - MainThread - sqlmesh.core.config.connection - INFO - Creating new DuckDB adapter for data files: {'db.db'} (connection.py:423)
+2025-05-31 21:40:59,588 - MainThread - sqlmesh.core.config.connection - INFO - Creating new DuckDB adapter for in-memory database (connection.py:425)
+2025-05-31 21:40:59,589 - ThreadPoolExecutor-0_0 - sqlmesh.core.console - WARNING - Model '"db"."sqlmesh_example"."full_model"' was not found at /Users/janbenisek/github/gru-ops/projects/sqlmesh-analysis/tests/test_full_model.yaml (console.py:2026)
+2025-05-31 21:40:59,593 - MainThread - sqlmesh.core.config.connection - INFO - Using existing DuckDB adapter due to overlapping data file: db.db (connection.py:413)
+2025-05-31 21:41:54,701 - MainThread - root - INFO - Shutting down the event dispatcher (dispatcher.py:159)
