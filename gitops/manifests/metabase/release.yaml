@@ -56,8 +56,7 @@ spec:
       port: 5432
       dbname: metabase
       username: bot_metabase
-      # password: vanity-cecilia-hailey
-      # existingSecret: bot-metabase-pswd
+      existingSecret: bot-metabase-pswd
       # existingSecretUsernameKey: METABASE_POSTGRESQL_USERNAME
       existingSecretPasswordKey: bot_metabase_pswd
     service:
