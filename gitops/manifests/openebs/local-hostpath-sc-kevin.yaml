@@ -13,7 +13,7 @@ metadata:
         value: /var/mnt/storage
 provisioner: openebs.io/local
 allowVolumeExpansion: true
-reclaimPolicy: Delete # is default
+reclaimPolicy: Retain # Delete is default, but I need Retain for psql and such
 volumeBindingMode: WaitForFirstConsumer
 # https://openebs.io/docs/user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-configuration
 allowedTopologies:

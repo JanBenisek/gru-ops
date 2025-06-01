@@ -53,7 +53,6 @@ spec:
       persistence:
         enabled: true
         existingClaim: pvc-postgresql
-        size: 8Gi
 
       service:
         # type: LoadBalancer
