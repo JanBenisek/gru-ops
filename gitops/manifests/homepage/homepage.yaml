@@ -107,6 +107,12 @@ data:
             description: Ollama & WebUI locally
             namespace: open-webui
             app: open-webui
+        - Funnaiest:
+            icon: deepseek.png
+            href: https://funnaiest.com
+            description: I am so funny
+            namespace: funnaiest
+            app: funnaiest
 
     - Media:
         - Jellyfin:
