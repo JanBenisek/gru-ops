@@ -57,8 +57,9 @@ spec:
       dbname: metabase
       username: bot_metabase
       existingSecret: bot-metabase-pswd
-      # existingSecretUsernameKey: METABASE_POSTGRESQL_USERNAME
+      # existingSecretUsernameKey: <TODO: add later>
       existingSecretPasswordKey: bot_metabase_pswd
+    
     service:
       labels:
         app.kubernetes.io/name: "metabase"

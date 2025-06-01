@@ -152,7 +152,7 @@ kubectl create secret generic basic-auth \
 - [values](https://github.com/pmint93/helm-charts/tree/master/charts/metabase)
 ```sql
 create database metabase;
-create user bot_metabase with password 'vanity-cecilia-hailey';
+create user bot_metabase with password '<pswd>';
 alter database metabase owner to bot_metabase;
 grant all priviledges on database metabase to bot_metabase;
 ```
@@ -163,7 +163,7 @@ export PUBLICKEY="sealed-secrets-public.crt"
 k create secret generic bot-metabase-pswd \
   --namespace metabase \
   --dry-run=client \
-  --from-literal=bot_metabase_pswd=vanity-cecilia-hailey -o json \
+  --from-literal=bot_metabase_pswd=<pswd> -o json \
   | kubeseal --cert "./${PUBLICKEY}" \
   > /home/github/gru-ops/gitops/manifests/metabase/bot_metabase_pswd.yaml
 ```
