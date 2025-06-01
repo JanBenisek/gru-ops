@@ -165,7 +165,7 @@ k create secret generic bot_metabase_pswd \
   --dry-run=client \
   --from-literal=bot_metabase_pswd=vanity-cecilia-hailey -o json \
   | kubeseal --cert "./${PUBLICKEY}" \
-  > /Users/janbenisek/GithubRepos/gru-ops/gitops/manifests/metabase/bot_metabase_pswd.yaml
+  > /home/github/gru-ops/gitops/manifests/metabase/bot_metabase_pswd.yaml
 ```
 
 ### metallb
