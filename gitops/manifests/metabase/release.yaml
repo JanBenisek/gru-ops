@@ -56,9 +56,11 @@ spec:
     
     database:
       type: postgres
-      host: "${METABASE_POSTGRESQL_HOST}"
+      host: "${POSTGRESQL_HOST}"
       port: 5432
       db_name: metabase
-      existingSecret: secrets
-      existingSecretUsernameKey: METABASE_POSTGRESQL_USERNAME
-      existingSecretPasswordKey: METABASE_POSTGRESQL_PASSWORD
+      username: bot_metabase
+      password: mypassword
+      # existingSecret: secrets
+      # existingSecretUsernameKey: METABASE_POSTGRESQL_USERNAME
+      # existingSecretPasswordKey: METABASE_POSTGRESQL_PASSWORD

@@ -150,7 +150,11 @@ kubectl create secret generic basic-auth \
 ## metabase
 
 - [values](https://github.com/pmint93/helm-charts/tree/master/charts/metabase)
-
+```sql
+CREATE USER bot_metabase WITH PASSWORD 'mypassword';
+ALTER DATABASE metabase OWNER TO bot_metabase;
+GRANT ALL PRIVILEGES ON DATABASE metabase TO bot_metabase;
+```
 ### metallb
 
 - Load Balancer, pay attention to DHCP range!
@@ -223,8 +227,15 @@ brew install libpq
 echo 'export PATH="/usr/local/opt/libpq/bin:$PATH"' >> ~/.zshrc
 source ~/.zshrc
 
-psql -h 192.168.178.101 -p 5432 -U postgres -d postgres
-psql -h 192.168.178.101 -p 5432 -U jerry -d prod
+psql -h 192.168.178.150 -p 5432 -U postgres -d postgres
+psql -h 192.168.178.150 -p 5432 -U jerry -d prod
+psql -h 192.168.178.150 -p 5432 -U jerry -d metabase
+
+# or postgres.pengiuns.com as a host
+
+# inside pod / k8s
+psql -h postgresql.postgresql.svc.cluster.local -U postgres -d postgres
+
 ```
 
 ### sealed secrets
