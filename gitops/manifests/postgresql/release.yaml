@@ -63,7 +63,7 @@ spec:
         type: LoadBalancer
         ports:
           postresql: 5432
-        loadBalancerIP: 192.168.100.50 # pick from `k get ipaddresspool -A`
+        loadBalancerIP: 192.168.178.150 # pick from `k get ipaddresspool -A`
         annotations:
           external-dns.alpha.kubernetes.io/hostname: postgresql.${DOMAIN_NAME}
       
