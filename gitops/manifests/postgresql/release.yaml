@@ -54,6 +54,11 @@ spec:
         enabled: true
         existingClaim: pvc-postgresql
         size: 8Gi
+
+      service:
+        type: LoadBalancer
+        ports:
+          postgresql: 5432
       
     metrics:
       enabled: true
