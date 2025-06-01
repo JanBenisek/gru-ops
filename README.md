@@ -160,7 +160,7 @@ grant all priviledges on database metabase to bot_metabase;
 ```shell
 export PUBLICKEY="sealed-secrets-public.crt"
 
-k create secret generic bot_metabase_pswd \
+k create secret generic bot-metabase-pswd \
   --namespace metabase \
   --dry-run=client \
   --from-literal=bot_metabase_pswd=vanity-cecilia-hailey -o json \
