@@ -151,10 +151,23 @@ kubectl create secret generic basic-auth \
 
 - [values](https://github.com/pmint93/helm-charts/tree/master/charts/metabase)
 ```sql
-CREATE USER bot_metabase WITH PASSWORD 'mypassword';
-ALTER DATABASE metabase OWNER TO bot_metabase;
-GRANT ALL PRIVILEGES ON DATABASE metabase TO bot_metabase;
+create database metabase;
+create user bot_metabase with password 'vanity-cecilia-hailey';
+alter database metabase owner to bot_metabase;
+grant all priviledges on database metabase to bot_metabase;
 ```
+- sealed secret
+```shell
+export PUBLICKEY="sealed-secrets-public.crt"
+
+k create secret generic bot_metabase_pswd \
+  --namespace metabase \
+  --dry-run=client \
+  --from-literal=bot_metabase_pswd=vanity-cecilia-hailey -o json \
+  | kubeseal --cert "./${PUBLICKEY}" \
+  > /Users/janbenisek/GithubRepos/gru-ops/gitops/manifests/metabase/bot_metabase_pswd.yaml
+```
+
 ### metallb
 
 - Load Balancer, pay attention to DHCP range!

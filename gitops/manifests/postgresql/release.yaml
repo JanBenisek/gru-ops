@@ -38,10 +38,10 @@ spec:
       name: master
 
       initdb:
-        scripts:
+        scripts: # executed by `postgres` admin user
           init.sql: |
-            CREATE DATABASE metabase;
-      
+            create database metabase;
+
       resources:
         limits:
           cpu: 500m

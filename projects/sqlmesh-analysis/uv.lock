@@ -825,12 +825,14 @@ name = "sqlmesh-analysis"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "pandas" },
     { name = "psycopg2-binary" },
     { name = "sqlmesh" },
 ]
 
 [package.metadata]
 requires-dist = [
+    { name = "pandas", specifier = ">=2.2.3" },
     { name = "psycopg2-binary", specifier = ">=2.9.10" },
     { name = "sqlmesh", extras = ["postgresl", "postgresql"], specifier = ">=0.187.6" },
 ]

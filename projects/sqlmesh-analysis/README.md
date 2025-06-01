@@ -3,21 +3,18 @@
 ## Commands sqlmesh
 - `sqlmesh plan` - runs stuff
 
-## Commands DuckDB
-- `show all tables`
-- `copy migros.slv_kassenbons to '/Users/janbenisek/Desktop/migros.csv' (header, delimiter ',');`
 
 ## Migros analysis
 Columns
-- Datum = date of purchase
-- Zeit = time of purchase
-- Filiale = location of the store, remove some (like "MICASA")
-- Kassennummer = number of the checkout
-- Transaktionsnummer = like purchase number, groups all items into one visit
-- Artikel = name of the item
-- menge = quantity
-- Aktion = discount, amount saved
-- umsatz = total amount paid for item(s)
+- Datum (purchase_date) = date of purchase
+- Zeit (purchase_time) = time of purchase
+- Filiale (branch) = location of the store, remove some (like "MICASA")
+- Kassennummer (cash_register_number) = number of the checkout
+- Transaktionsnummer (transaction_number) = like purchase number, groups all items into one visit
+- Artikel (article) = name of the item
+- menge (quantity) = quantity
+- Aktion (discount) = discount, amount saved
+- umsatz (total) = total amount paid for item(s)
 
 example:
 `banen menge: 1.413, umsatz 3.25, so price per kg is 3.25/1.413=2.3`
@@ -35,3 +32,17 @@ Sample:
   29.11.2021;09:07:19;MM Adliswil;252;10;Kartoffelbrot Nuss;1;0.00;2.70
 ```
 
+## SQL
+```sql
+create table migros.raw_kassenbons  (
+    purchase_date text,
+    purchase_time text,
+    branch text,
+    cash_register_number text,
+    transaction_number int,
+    article text,
+    quanitity float,
+    discount float,
+    total float
+);
+```
