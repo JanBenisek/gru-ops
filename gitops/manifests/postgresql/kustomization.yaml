@@ -5,5 +5,5 @@ resources:
   - namespace.yaml
   - repository.yaml
   - release.yaml
-  - psql_secrets.yaml
+  - psql-secrets.yaml
   - pvc-postgresql.yaml
