@@ -55,9 +55,9 @@ spec:
       host: "${POSTGRESQL_HOST}"
       port: 5432
       dbname: metabase
-      username: bot_metabase
+      # username: bot_metabase
       existingSecret: bot-metabase-pswd
-      # existingSecretUsernameKey: <TODO: add later>
+      existingSecretUsernameKey: bot_metabase_user
       existingSecretPasswordKey: bot_metabase_pswd
     
     service:

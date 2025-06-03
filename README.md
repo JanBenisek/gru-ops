@@ -163,6 +163,7 @@ export PUBLICKEY="sealed-secrets-public.crt"
 k create secret generic bot-metabase-pswd \
   --namespace metabase \
   --dry-run=client \
+  --from-literal=bot_metabase_user=<pswd> -o json \
   --from-literal=bot_metabase_pswd=<pswd> -o json \
   | kubeseal --cert "./${PUBLICKEY}" \
   > /home/github/gru-ops/gitops/manifests/metabase/bot_metabase_pswd.yaml
