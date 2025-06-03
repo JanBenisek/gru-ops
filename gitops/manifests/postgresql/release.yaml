@@ -19,10 +19,15 @@ spec:
       postgresql:
         auth:
           # TODO: Replace with sealed secrets
-          postgresPassword: mysecurepassword #pswd for `postgres` admin user
-          username: jerry #custom user & pswd
-          password: myuserpassword
-          database: prod
+          # postgresPassword: mysecurepassword #pswd for `postgres` admin user # user_postgres
+          # username: jerry # custom user & pswd
+          # password: user_bot_jerry
+          # database: prod
+
+          existingSecret: psql-secrets
+          secretKeys:
+            adminPasswordKey: user_postgres
+            userPasswordKey: user_bot_jerry
     
     image:
       registry: docker.io
@@ -34,7 +39,7 @@ spec:
     containerPorts:
       postgresql: 5432
     
-    primary: #primary DB
+    primary: # primary DB
       name: master
 
       initdb:

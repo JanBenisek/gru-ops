@@ -250,7 +250,20 @@ psql -h postgresql.pengiuns.com -p 5432 -U bot_metabase -d metabase
 
 # inside pod / k8s
 psql -h postgresql.postgresql.svc.cluster.local -U postgres -d postgres
+```
 
+- sealed secret
+```shell
+export PUBLICKEY="sealed-secrets-public.crt"
+
+k create secret generic psql-secrets \
+  --namespace postgresql \
+  --dry-run=client \
+  --from-literal=user_postgres=<pswd> \
+  --from-literal=user_bot_jerry=<pswd> \
+  -o json \
+  | kubeseal --cert "./${PUBLICKEY}" \
+  > /home/github/gru-ops/gitops/manifests/postgresql/psql_secrets.yaml
 ```
 
 ### sealed secrets
