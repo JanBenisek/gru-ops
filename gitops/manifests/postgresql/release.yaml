@@ -20,10 +20,8 @@ spec:
         auth:
           # TODO: Replace with sealed secrets
           # postgresPassword: mysecurepassword #pswd for `postgres` admin user # user_postgres
-          # username: jerry # custom user & pswd
-          # password: user_bot_jerry
-          # database: prod
-
+          username: bot_jerry
+          database: prod
           existingSecret: psql-secrets
           secretKeys:
             adminPasswordKey: user_postgres
