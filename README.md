@@ -242,8 +242,8 @@ echo 'export PATH="/usr/local/opt/libpq/bin:$PATH"' >> ~/.zshrc
 source ~/.zshrc
 
 psql -h 192.168.178.150 -p 5432 -U postgres -d postgres
-psql -h 192.168.178.150 -p 5432 -U jerry -d prod
-psql -h 192.168.178.150 -p 5432 -U jerry -d metabase
+psql -h 192.168.178.150 -p 5432 -U bot_jerry -d prod
+psql -h 192.168.178.150 -p 5432 -U bot_metabase -d metabase
 
 psql -h postgresql.pengiuns.com -p 5432 -U bot_metabase -d metabase
 

@@ -154,7 +154,7 @@ data:
     
     - Experiments:
       - Router:
-          icon: avmfritzbox.png
+          icon: fritzbox.png
           href: https://fritz.box/
           description: Router boi
           widget:
