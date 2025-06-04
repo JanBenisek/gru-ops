@@ -18,9 +18,9 @@ spec:
     proxy:
       service:
         type: ClusterIP
-      chp:
-        networkPolicy:
-          enabled: false
+      # chp:
+      #   networkPolicy:
+      #     enabled: false
         # nodeSelector:
         #   kubernetes.io/hostname: kevin
     singleuser:
