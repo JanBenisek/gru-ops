@@ -154,7 +154,7 @@ kubectl create secret generic basic-auth \
 create database metabase;
 create user bot_metabase with password '<pswd>';
 alter database metabase owner to bot_metabase;
-grant all priviledges on database metabase to bot_metabase;
+grant all privileges on database metabase to bot_metabase;
 ```
 - sealed secret
 ```shell
