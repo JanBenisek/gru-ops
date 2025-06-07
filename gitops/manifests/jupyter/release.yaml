@@ -15,4 +15,79 @@ spec:
         namespace: jupyter
       interval: 12h
   values:
-    
+    debug:
+      enabled: True
+
+    hub:
+      db:
+        type: sqlite-memory # should not need PVC, change later
+      # networkPolicy: # enabled by default
+      #   enabled: true
+      config:
+        JupyterHub:
+          admin_access: true
+          authenticator_class: dummy
+          log_level: 'DEBUG'
+          # TODO: use secret
+          proxy_auth_token: 93b2706b1babfb2f74a33ca51cfa592d94c8309298735b9526d83ed3d87e0ed4
+      # nodeSelector:
+        # kubernetes.io/hostname: stuart
+
+    proxy:
+      #  openssl rand -hex 3
+      #  read with echo ... | base64 -d
+      secretToken: 93b2706b1babfb2f74a33ca51cfa592d94c8309298735b9526d83ed3d87e0ed4
+      # chp:
+      #   networkPolicy:
+      #     enabled: True # default
+      #   nodeSelector:
+      #     kubernetes.io/hostname: kevin
+
+      # traefik:
+      #   networkPolicy:
+      #     enabled: True # default
+      #   nodeSelector:
+      #     kubernetes.io/hostname: kevin
+
+    singleuser:
+
+      extraEnv:
+        GRANT_SUDO: "yes"
+        NOTEBOOK_ARGS: "--allow-root"
+      defaultUrl: "/lab"
+
+      storage: # no storage for users
+        type: none
+    #   networkPolicy:
+    #     enabled: True # default
+    #   nodeSelector:
+    #     kubernetes.io/hostname: kevin
+
+    # scheduling:
+    #   userScheduler:
+    #     enabled: True # don't need it, but seems nicer
+    #     nodeSelector:
+    #       kubernetes.io/hostname: kevin
+
+    prePuller:
+      hook:
+        enabled: false # not strictly needed, check later
+        # nodeSelector:
+        #   kubernetes.io/hostname: kevin
+      continuous:
+        enabled: false # not strictly needed, check later
+
+    ingress:
+      enabled: true
+      ingressClassName: "nginx"
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        nginx.ingress.kubernetes.io/proxy-body-size: 100m
+      hosts:
+        - jupyter.${DOMAIN_NAME}
+      tls:
+        - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+          hosts:
+            - jupyter.${DOMAIN_NAME}
+

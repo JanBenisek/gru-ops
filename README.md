@@ -147,6 +147,10 @@ kubectl create secret generic basic-auth \
 - [values](https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/HEAD/jupyterhub/values.yaml)
 - [refrence](https://z2jh.jupyter.org/en/latest/resources/reference.html)
 - [Helm chart](https://github.com/jupyterhub/helm-chart)
+- ports:
+  - Hub pod: 8081 (default)
+  - Proxy pod: 8000 (user-facing HTTP), 8001 (API, hub ↔ proxy communication)
+  - Singleuser pods: 8888 (default Jupyter Notebook/Lab port)
 
 - Testing and debugging on helm chart
 ```shell
