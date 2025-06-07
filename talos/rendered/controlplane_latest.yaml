@@ -21,8 +21,9 @@ machine:
     kubelet:
         image: ghcr.io/siderolabs/kubelet:v1.32.2 # The `image` field is an optional reference to an alternative kubelet image.
         # The `ClusterDNS` field is an optional reference to an alternative kubelet clusterDNS ip list.
-        clusterDNS:
-            - 192.168.178.1
+        # chaned on 2025-06-07
+        # clusterDNS:
+        #     - 192.168.178.1
         # The `extraMounts` field is used to add additional mounts to the kubelet container.
         extraMounts:
             - destination: /var/mnt/storage # Destination is the absolute path where the mount will be placed in the container.

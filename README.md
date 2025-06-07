@@ -146,6 +146,38 @@ kubectl create secret generic basic-auth \
 - [repo](https://github.com/jupyterhub/zero-to-jupyterhub-k8s)
 - [values](https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/HEAD/jupyterhub/values.yaml)
 - [refrence](https://z2jh.jupyter.org/en/latest/resources/reference.html)
+- [Helm chart](https://github.com/jupyterhub/helm-chart)
+
+- Testing and debugging on helm chart
+```shell
+helm upgrade --cleanup-on-fail \
+  --install jupyterhub jupyterhub/jupyterhub \
+  --namespace jupyterhub \
+  --create-namespace \
+  --version=4.2.0 \
+  --values config.yaml
+
+# remove
+helm uninstall jupyterhub --namespace jupyterhub
+
+curl -v -H "Authorization: token <TKN>" http://proxy-api:8001/api/routes
+
+# Secret in PROXY
+k exec -it proxy-5958c7cd-6qsjq -n jupyterhub -- printenv CONFIGPROXY_AUTH_TOKEN
+
+# Secret in HUB
+k get pod hub-577dd768bb-t5p4h -n jupyterhub -o jsonpath='{.spec.containers[0].env}'
+
+k get secret hub -n jupyterhub -o jsonpath='{.data.hub\.config\.ConfigurableHTTPProxy\.auth_token}' | base64 -d
+
+
+# DEBUG
+kubectl run -it --rm alpine \
+  --image=alpine \
+  --restart=Never \
+  --overrides='{"spec": {"nodeSelector": {"kubernetes.io/hostname": "stuart"}}}' \
+  -- sh
+```
 
 ## metabase
 
