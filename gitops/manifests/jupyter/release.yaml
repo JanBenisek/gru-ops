@@ -15,6 +15,11 @@ spec:
         namespace: jupyter
       interval: 12h
   values:
+    # TODO: remove user-scheduler?
+    # figure out persistence
+    # inspire from data-gitops
+    # more differnt options and resources
+    # read docs and fine-tune!
     debug:
       enabled: True
 
