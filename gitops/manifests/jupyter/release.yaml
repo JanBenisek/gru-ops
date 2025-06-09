@@ -61,7 +61,7 @@ spec:
           description: "Python, [1/2 CPU, 1G RAM]"
           default: true
           kubespawner_override:
-            cpu_guarantee: 500m
+            cpu_guarantee: 0.5
             mem_guarantee: 1G
             cpu_limit: 1
             mem_limit: 5G
