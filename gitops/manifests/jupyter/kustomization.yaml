@@ -3,6 +3,6 @@ kind: Kustomization
 namespace: jupyter
 resources:
   - namespace.yaml
-  - pvc-jupyter.yaml
+  - pvc-jupyter-shared.yaml
   - repository.yaml
   - release.yaml

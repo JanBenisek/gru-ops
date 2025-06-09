@@ -15,15 +15,24 @@ spec:
         namespace: jupyter
       interval: 12h
   values:
-    # TODO: remove user-scheduler?
-    # figure out persistence
-    # inspire from data-gitops
-    # more differnt options and resources
-    # read docs and fine-tune!
+    # TODO: read docs and fine-tune!
     debug:
       enabled: True
 
     hub:
+      # TODO: User auth (see gitops)
+      # https://z2jh.jupyter.org/en/stable/administrator/authentication.html
+      config:
+        Authenticator:
+          admin_users:
+            - corgi
+          allowed_users:
+            - penguin
+        DummyAuthenticator:
+          password: a-shared-secret-password
+        JupyterHub:
+          authenticator_class: dummy
+      # TODO: Persistence
       db:
         type: sqlite-memory # should not need PVC, change later
 
@@ -39,19 +48,41 @@ spec:
       #  openssl rand -hex 3
       #  read with echo ... | base64 -d
       secretToken: 93b2706b1babfb2f74a33ca51cfa592d94c8309298735b9526d83ed3d87e0ed4
-
+    
     singleuser:
+      # TODO: Figure out
+      # uid: 0
+      # fsGid: 100
+      
       defaultUrl: "/lab" # default Jupyter
 
-      storage: # no storage for users
-        type: none
+      # storage: # no storage for users
+      #   type: none
+      storage:
+        dynamic:
+          capacity: 2Gi
+          storageClass: local-hostpath-kevin
+        extraVolumes:
+          # This is ephemeral storage, uses node on the disk
+          - name: tmp
+            emptyDir:
+              sizeLimit: 1Gi
+          - name: shared
+            persistentVolumeClaim:
+              claimName: pvc-jupyter-shared
+        extraVolumeMounts:
+          - name: tmp
+            mountPath: /tmp
+          - name: shared
+            mountPath: /home/jovyan/shared
       
       extraEnv:
         EDITOR: "vim"
-        GRANT_SUDO: "yes" # TODO: What is this
-        NOTEBOOK_ARGS: "--allow-root" # TODO: What is this
+        GRANT_SUDO: "yes" # TODO: Does this enable sudo to all?
+        NOTEBOOK_ARGS: "--allow-root" # TOD: Allows root access in Jupyter, how to do just for admin?
 
       image:
+        # The default image
         name: quay.io/jupyter/minimal-notebook
         tag: 7830074b9e0a
         pullPolicy: Always
@@ -80,6 +111,19 @@ spec:
             mem_guarantee: 1G
             cpu_limit: 1
             mem_limit: 5G
+      
+      extraFiles:
+        # Playing with more custom culling
+        # https://z2jh.jupyter.org/en/stable/jupyterhub/customizing/user-management.html
+        # https://github.com/jupyterhub/zero-to-jupyterhub-k8s/issues/2244
+        jupyter_notebook_config.json:
+          mountPath: /etc/jupyter/jupyter_notebook_config.json
+          data:
+            MappingKernelManager:
+              cull_idle_timeout: 1200 # idle kernel is considered for culling
+              cull_interval: 600 # interval to check kernels for culling
+              cull_connected: true # consider kernels for culling with active connections
+              cull_busy: false # consider kernels for culling with running code
 
     # Pre-pulls images on new nodes, useful for autoscaling, not needed
     prePuller:
@@ -97,7 +141,7 @@ spec:
     cull:
       enabled: true
       adminUsers: true 
-      timeout: 1800 # 30 mins
+      timeout: 1200 # 20 mins
       every: 600 # 10 minutes
 
     ingress:
