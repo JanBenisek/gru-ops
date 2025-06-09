@@ -97,7 +97,7 @@ spec:
     cull:
       enabled: true
       adminUsers: true 
-      timeout: 3600 # 1 hour
+      timeout: 1800 # 30 mins
       every: 600 # 10 minutes
 
     ingress:
