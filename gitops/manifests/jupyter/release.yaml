@@ -16,6 +16,8 @@ spec:
       interval: 12h
   values:
     # TODO: read docs and fine-tune!
+    # TODO: understand RBAC 
+    #    https://z2jh.jupyter.org/en/stable/administrator/security.html#use-role-based-access-control-rbac
     debug:
       enabled: True
 
@@ -34,7 +36,6 @@ spec:
           memory: 2Gi
 
       config:
-        
         JupyterHub:
           admin_access: true
           authenticator_class: dummy
@@ -49,8 +50,6 @@ spec:
             - penguin
         DummyAuthenticator:
           password: a-shared-secret-password
-        JupyterHub:
-          authenticator_class: dummy
 
     proxy:
       #  openssl rand -hex 3
