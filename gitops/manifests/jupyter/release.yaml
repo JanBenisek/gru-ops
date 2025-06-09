@@ -75,6 +75,7 @@ spec:
         - display_name: "I love p-values"
           description: "R, [1/2 CPU, 1-5G RAM]"
           kubespawner_override:
+            image: jupyter/r-notebook:7830074b9e0a
             cpu_guarantee: 0.5
             mem_guarantee: 1G
             cpu_limit: 1
