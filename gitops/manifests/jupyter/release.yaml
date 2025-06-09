@@ -15,6 +15,7 @@ spec:
         namespace: jupyter
       interval: 12h
   values:
+    # FIX: PV(C) not there, vim not there
     # TODO: read docs and fine-tune!
     # TODO: understand RBAC 
     #    https://z2jh.jupyter.org/en/stable/administrator/security.html#use-role-based-access-control-rbac
