@@ -35,6 +35,13 @@ spec:
       # TODO: Persistence
       db:
         type: sqlite-memory # should not need PVC, change later
+      resources:
+        requests:
+          cpu: 100m 
+          memory: 1Gi 
+        limits:
+          cpu: 1
+          memory: 2Gi
 
       config:
         JupyterHub:
@@ -48,6 +55,14 @@ spec:
       #  openssl rand -hex 3
       #  read with echo ... | base64 -d
       secretToken: 93b2706b1babfb2f74a33ca51cfa592d94c8309298735b9526d83ed3d87e0ed4
+      chp: # proxy pod, running jupyterhub/configurable-http-proxy
+        resources:
+          requests:
+            cpu: 50m 
+            memory: 64Mi 
+          limits:
+            cpu: 100m 
+            memory: 128Mi 
     
     singleuser:
       # TODO: Figure out
@@ -132,7 +147,9 @@ spec:
       continuous:
         enabled: false 
 
-    # Efficiently packing pods on a node, not needed
+    # Preparing small images on nodes, so users do not have to wait when they arrive.
+    # Also efficiently packing pods on a node, not needed.
+    # Good content: https://z2jh.jupyter.org/en/stable/administrator/optimization.html
     scheduling:
       userScheduler:
         enabled: false 
