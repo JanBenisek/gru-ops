@@ -73,7 +73,7 @@ spec:
             cpu_limit: 2
             mem_limit: 15G
         - display_name: "I love p-values"
-          description: "R, [1 CPU, 1-5G RAM]"
+          description: "R, [1/2 CPU, 1-5G RAM]"
           kubespawner_override:
             cpu_guarantee: 0.5
             mem_guarantee: 1G
