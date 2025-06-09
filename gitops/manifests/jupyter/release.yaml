@@ -26,8 +26,7 @@ spec:
     hub:
       db:
         type: sqlite-memory # should not need PVC, change later
-      # networkPolicy: # enabled by default
-      #   enabled: true
+
       config:
         JupyterHub:
           admin_access: true
@@ -35,52 +34,70 @@ spec:
           log_level: 'DEBUG'
           # TODO: use secret
           proxy_auth_token: 93b2706b1babfb2f74a33ca51cfa592d94c8309298735b9526d83ed3d87e0ed4
-      # nodeSelector:
-        # kubernetes.io/hostname: stuart
 
     proxy:
       #  openssl rand -hex 3
       #  read with echo ... | base64 -d
       secretToken: 93b2706b1babfb2f74a33ca51cfa592d94c8309298735b9526d83ed3d87e0ed4
-      # chp:
-      #   networkPolicy:
-      #     enabled: True # default
-      #   nodeSelector:
-      #     kubernetes.io/hostname: kevin
-
-      # traefik:
-      #   networkPolicy:
-      #     enabled: True # default
-      #   nodeSelector:
-      #     kubernetes.io/hostname: kevin
 
     singleuser:
-
-      extraEnv:
-        GRANT_SUDO: "yes"
-        NOTEBOOK_ARGS: "--allow-root"
-      defaultUrl: "/lab"
+      defaultUrl: "/lab" # default Jupyter
 
       storage: # no storage for users
         type: none
-    #   networkPolicy:
-    #     enabled: True # default
-    #   nodeSelector:
-    #     kubernetes.io/hostname: kevin
+      
+      extraEnv:
+        EDITOR: "vim"
+        GRANT_SUDO: "yes"
+        NOTEBOOK_ARGS: "--allow-root"
 
-    # scheduling:
-    #   userScheduler:
-    #     enabled: True # don't need it, but seems nicer
-    #     nodeSelector:
-    #       kubernetes.io/hostname: kevin
+      image:
+        name: jupyter/minimal-notebook
+        tag: 7830074b9e0a
+        pullPolicy: Always
+      
+      profileList:
+        - display_name: "Tiny"
+          description: "Python, [1/2 CPU, 1G RAM]"
+          default: true
+          kubespawner_override:
+            cpu_guarantee: 500m
+            mem_guarantee: 1G
+            cpu_limit: 1
+            mem_limit: 5G
+        - display_name: "Chonky boi ༼ つ ◕_◕ ༽つ🍰"
+          description: "Python, [2 CPU, 10G RAM]"
+          kubespawner_override:
+            cpu_guarantee: 2
+            mem_guarantee: 10G
+            cpu_limit: 2
+            mem_limit: 15G
+        - display_name: "I love p-values"
+          description: "R, [1 CPU, 2G RAM]"
+          kubespawner_override:
+            cpu_guarantee: 1
+            mem_guarantee: 2G
+            cpu_limit: 1
+            mem_limit: 5G
 
+    # Pre-pulls images on new nodes, useful for autoscaling, not needed
     prePuller:
       hook:
-        enabled: false # not strictly needed, check later
-        # nodeSelector:
-        #   kubernetes.io/hostname: kevin
+        enabled: false 
       continuous:
-        enabled: false # not strictly needed, check later
+        enabled: false 
+
+    # Efficiently packing pods on a node, not needed
+    scheduling:
+      userScheduler:
+        enabled: false 
+
+    # Rules to remove inactive pods (see all default values)
+    cull:
+      enabled: true
+      adminUsers: true 
+      timeout: 3600 # 1 hour
+      every: 600 # 10 minutes
 
     ingress:
       enabled: true

@@ -143,10 +143,13 @@ kubectl create secret generic basic-auth \
 
 - [docs](https://z2jh.jupyter.org/en/stable/jupyterhub/installation.html)
 - [images](https://github.com/jupyter/docker-stacks/tree/main/images)
+  - more: https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-datascience-notebook
 - [repo](https://github.com/jupyterhub/zero-to-jupyterhub-k8s)
 - [values](https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/HEAD/jupyterhub/values.yaml)
 - [refrence](https://z2jh.jupyter.org/en/latest/resources/reference.html)
 - [Helm chart](https://github.com/jupyterhub/helm-chart)
+
+
 - ports:
   - Hub pod: 8081 (default)
   - Proxy pod: 8000 (user-facing HTTP), 8001 (API, hub ↔ proxy communication)
