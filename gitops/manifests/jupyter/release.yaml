@@ -22,16 +22,6 @@ spec:
     hub:
       # TODO: User auth (see gitops)
       # https://z2jh.jupyter.org/en/stable/administrator/authentication.html
-      config:
-        Authenticator:
-          admin_users:
-            - corgi
-          allowed_users:
-            - penguin
-        DummyAuthenticator:
-          password: a-shared-secret-password
-        JupyterHub:
-          authenticator_class: dummy
       # TODO: Persistence
       db:
         type: sqlite-memory # should not need PVC, change later
@@ -44,12 +34,23 @@ spec:
           memory: 2Gi
 
       config:
+        
         JupyterHub:
           admin_access: true
           authenticator_class: dummy
           log_level: 'DEBUG'
           # TODO: use secret
           proxy_auth_token: 93b2706b1babfb2f74a33ca51cfa592d94c8309298735b9526d83ed3d87e0ed4
+        
+        Authenticator:
+          admin_users:
+            - corgi
+          allowed_users:
+            - penguin
+        DummyAuthenticator:
+          password: a-shared-secret-password
+        JupyterHub:
+          authenticator_class: dummy
 
     proxy:
       #  openssl rand -hex 3
