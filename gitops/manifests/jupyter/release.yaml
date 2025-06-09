@@ -75,7 +75,7 @@ spec:
         - display_name: "I love p-values"
           description: "R, [1 CPU, 2G RAM]"
           kubespawner_override:
-            cpu_guarantee: 1
+            cpu_guarantee: 0.5
             mem_guarantee: 2G
             cpu_limit: 1
             mem_limit: 5G
