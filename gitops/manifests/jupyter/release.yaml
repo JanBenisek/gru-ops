@@ -58,7 +58,7 @@ spec:
       
       profileList:
         - display_name: "Tiny"
-          description: "Python, [1/2 CPU, 1G RAM]"
+          description: "Python, [1/2 CPU, 1-5G RAM]"
           default: true
           kubespawner_override:
             cpu_guarantee: 0.5
@@ -66,17 +66,17 @@ spec:
             cpu_limit: 1
             mem_limit: 5G
         - display_name: "Chonky boi ༼ つ ◕_◕ ༽つ🍰"
-          description: "Python, [2 CPU, 10G RAM]"
+          description: "Python, [2 CPU, 10-15G RAM]"
           kubespawner_override:
             cpu_guarantee: 2
             mem_guarantee: 10G
             cpu_limit: 2
             mem_limit: 15G
         - display_name: "I love p-values"
-          description: "R, [1 CPU, 2G RAM]"
+          description: "R, [1 CPU, 1-5G RAM]"
           kubespawner_override:
             cpu_guarantee: 0.5
-            mem_guarantee: 2G
+            mem_guarantee: 1G
             cpu_limit: 1
             mem_limit: 5G
 
