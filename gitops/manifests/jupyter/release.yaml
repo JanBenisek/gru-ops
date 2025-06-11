@@ -26,6 +26,9 @@ spec:
       # TODO: User auth (see gitops)
       # https://z2jh.jupyter.org/en/stable/administrator/authentication.html
       # TODO: Persistence
+      labels:
+        app: jupyter
+        app.kubernetes.io/name: jupyter
       db:
         type: sqlite-memory # should not need PVC, change later
       resources:
