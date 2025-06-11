@@ -76,17 +76,13 @@
       
       singleuser:
         uid: 0 # run as root!
+        # uid: 1000 # is default user in JupyterHub - jovyan
         fsGid: 100 # all files created will be owned by group ID 100
         cmd: start-singleuser.sh
         extraEnv:
           EDITOR: "vim"
           GRANT_SUDO: "yes" # Also need the one below and uid=0
           NOTEBOOK_ARGS: "--allow-root" # TODO: Allows root access in Jupyter, how to do just for admin?
-
-        securityContext:
-          allowPrivilegeEscalation: true
-          runAsUser: 0
-          runAsGroup: 0
 
         nodeSelector:
           kubernetes.io/hostname: kevin # for the PVC
@@ -96,8 +92,9 @@
         # storage: # no storage for users
         #   type: none
         storage:
+          type: dynamic
+          capacity: 2Gi
           dynamic:
-            capacity: 2Gi
             storageClass: local-hostpath-kevin
           extraVolumes:
             # This is ephemeral storage, uses node on the disk
