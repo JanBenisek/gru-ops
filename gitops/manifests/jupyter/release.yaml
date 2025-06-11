@@ -75,6 +75,7 @@
             kubernetes.io/hostname: kevin
       
       singleuser:
+        llowPrivilegeEscalation: true
         uid: 0 # run as root!
         # uid: 1000 # is default user in JupyterHub - jovyan
         fsGid: 100 # all files created will be owned by group ID 100
