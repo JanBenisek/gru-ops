@@ -29,6 +29,9 @@
         labels:
           app: jupyter
           app.kubernetes.io/name: jupyter
+        nodeSelector:
+          kubernetes.io/hostname: kevin
+
         db:
           type: sqlite-memory # should not need PVC, change later
         resources:
@@ -66,7 +69,10 @@
               memory: 64Mi 
             limits:
               cpu: 100m 
-              memory: 128Mi 
+              memory: 128Mi
+
+          nodeSelector:
+            kubernetes.io/hostname: kevin
       
       singleuser:
         uid: 0 # run as root!
