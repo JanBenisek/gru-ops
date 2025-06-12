@@ -22,23 +22,15 @@ machine:
     kubelet:
         image: ghcr.io/siderolabs/kubelet:v1.32.2 # The `image` field is an optional reference to an alternative kubelet image.
         # The `extraMounts` field is used to add additional mounts to the kubelet container.
-        # extraMounts: # Modified - commented out
-        #     - destination: /var/mnt/storage/data # Destination is the absolute path where the mount will be placed in the container.
-        #       type: bind # Type specifies the mount kind.
-        #       source: /var/mnt/storage/data # Source specifies the source path of the mount.
-        #       # Options are fstab style mount options.
-        #       options:
-        #         - bind
-        #         - rshared
-        #         - rw
-        #     - destination: /var/mnt/storage/media # Destination is the absolute path where the mount will be placed in the container.
-        #       type: bind # Type specifies the mount kind.
-        #       source: /var/mnt/storage/media # Source specifies the source path of the mount.
-        #       # Options are fstab style mount options.
-        #       options:
-        #         - bind
-        #         - rshared
-        #         - rw
+        extraMounts: # Modified - commented out
+            - destination: /var/mnt/storage/data # Destination is the absolute path where the mount will be placed in the container.
+              type: bind # Type specifies the mount kind.
+              source: /var/mnt/storage/data # Source specifies the source path of the mount.
+              # Options are fstab style mount options.
+              options:
+                - bind
+                - rshared
+                - rw
         defaultRuntimeSeccompProfileEnabled: true # Enable container runtime default Seccomp profile.
         disableManifestsDirectory: true # The `disableManifestsDirectory` field configures the kubelet to get static pod manifests from the /etc/kubernetes/manifests directory.
         
@@ -197,14 +189,12 @@ machine:
         # kubespan:
         #     enabled: true # Enable the KubeSpan feature.
     # Used to partition, format and mount additional disks.
-    # disks: # TODO: Figure it out
-    #     - device: /dev/sda # The name of the disk to use.
-    #       # A list of partitions to create on the disk.
-    #       partitions:
-    #         - size: 140 GB # The size of partition: either bytes or human readable representation. If `size:` is omitted, the partition is sized to occupy the full disk.
-    #           mountpoint: /var/mnt/storage/data # Where to mount the partition.
-    #         - size: 340 GB # The size of partition: either bytes or human readable representation. If `size:` is omitted, the partition is sized to occupy the full disk.
-    #           mountpoint: /var/mnt/storage/media # Where to mount the partition.
+    disks: # TODO: Figure it out
+        - device: /dev/sdb # The name of the disk to use.
+          # A list of partitions to create on the disk.
+          partitions:
+            - mountpoint: /var/mnt/storage/data # Where to mount the partition, size omitted, take all
+
     # Used to provide instructions for installations.
     install:
         disk: /dev/sda # from `t -n 192.168.178.85 get disks --insecure`
