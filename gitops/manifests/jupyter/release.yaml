@@ -116,7 +116,7 @@
         
         profileList:
           - display_name: "Tiny"
-            description: "Python, [1/2 CPU, 1-5G RAM]"
+            description: "Python, [0.2 CPU, 1-5G RAM]"
             default: true
             kubespawner_override:
               cpu_guarantee: 0.2

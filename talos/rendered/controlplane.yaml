@@ -1,3 +1,4 @@
+# Editing MachineConfigs.config.talos.dev/v1alpha1 at node kevin
 version: v1alpha1 # Indicates the schema used to decode the contents.
 debug: false # Enable verbose logging to the console.
 persist: true
@@ -18,27 +19,26 @@ machine:
 
     # Used to provide additional options to the kubelet.
     kubelet:
-        image: ghcr.io/siderolabs/kubelet:v1.30.1 # The `image` field is an optional reference to an alternative kubelet image.
+        image: ghcr.io/siderolabs/kubelet:v1.32.2 # The `image` field is an optional reference to an alternative kubelet image.
         # The `ClusterDNS` field is an optional reference to an alternative kubelet clusterDNS ip list.
-        clusterDNS:
-            - 192.168.178.1
+        # clusterDNS:
+        #     - 192.168.178.1
+        # The `extraMounts` field is used to add additional mounts to the kubelet container.
+        extraMounts:
+            - destination: /var/mnt/storage # Destination is the absolute path where the mount will be placed in the container.
+              type: bind # Type specifies the mount kind.
+              source: /var/mnt/storage # Source specifies the source path of the mount.
+              # Options are fstab style mount options.
+              options:
+                - bind
+                - rshared
+                - rw
         defaultRuntimeSeccompProfileEnabled: true # Enable container runtime default Seccomp profile.
         disableManifestsDirectory: true # The `disableManifestsDirectory` field configures the kubelet to get static pod manifests from the /etc/kubernetes/manifests directory.
         
         # # The `extraArgs` field is used to provide additional flags to the kubelet.
         # extraArgs:
         #     key: value
-
-        # # The `extraMounts` field is used to add additional mounts to the kubelet container.
-        # extraMounts:
-        #     - destination: /var/lib/example # Destination is the absolute path where the mount will be placed in the container.
-        #       type: bind # Type specifies the mount kind.
-        #       source: /var/lib/example # Source specifies the source path of the mount.
-        #       # Options are fstab style mount options.
-        #       options:
-        #         - bind
-        #         - rshared
-        #         - rw
 
         # # The `extraConfig` field is used to provide kubelet configuration overrides.
         # extraConfig:
@@ -90,13 +90,13 @@ machine:
         #       #     busPath: 00:* # PCI, USB bus prefix, supports matching by wildcard.
         #       # # select a device with mac address matching `*:f0:ab` and `virtio` kernel driver.
         #       # deviceSelector:
-        #       #     hardwareAddr: '*:f0:ab' # Device hardware address, supports matching by wildcard.
-        #       #     driver: virtio # Kernel driver, supports matching by wildcard.
+        #       #     hardwareAddr: '*:f0:ab' # Device hardware (MAC) address, supports matching by wildcard.
+        #       #     driver: virtio_net # Kernel driver, supports matching by wildcard.
         #       # # select a device with bus prefix 00:*, a device with mac address matching `*:f0:ab` and `virtio` kernel driver.
         #       # deviceSelector:
         #       #     - busPath: 00:* # PCI, USB bus prefix, supports matching by wildcard.
-        #       #     - hardwareAddr: '*:f0:ab' # Device hardware address, supports matching by wildcard.
-        #       #       driver: virtio # Kernel driver, supports matching by wildcard.
+        #       #     - hardwareAddr: '*:f0:ab' # Device hardware (MAC) address, supports matching by wildcard.
+        #       #       driver: virtio_net # Kernel driver, supports matching by wildcard.
 
         #       # # Bond specific options.
         #       # bond:
@@ -107,8 +107,8 @@ machine:
         #       #     # Picks a network device using the selector.
         #       #     deviceSelectors:
         #       #         - busPath: 00:* # PCI, USB bus prefix, supports matching by wildcard.
-        #       #         - hardwareAddr: '*:f0:ab' # Device hardware address, supports matching by wildcard.
-        #       #           driver: virtio # Kernel driver, supports matching by wildcard.
+        #       #         - hardwareAddr: '*:f0:ab' # Device hardware (MAC) address, supports matching by wildcard.
+        #       #           driver: virtio_net # Kernel driver, supports matching by wildcard.
         #       #     mode: 802.3ad # A bond option.
         #       #     lacpRate: fast # A bond option.
 
@@ -118,9 +118,13 @@ machine:
         #       #     interfaces:
         #       #         - enxda4042ca9a51
         #       #         - enxae2a6774c259
-        #       #     # A bridge option.
+        #       #     # Enable STP on this bridge.
         #       #     stp:
         #       #         enabled: true # Whether Spanning Tree Protocol (STP) is enabled.
+
+        #       # # Configure this device as a bridge port.
+        #       # bridgePort:
+        #       #     master: br0 # The name of the bridge master interface
 
         #       # # Indicates if DHCP should be used to configure the interface.
         #       # dhcp: true
@@ -165,6 +169,11 @@ machine:
         #     - 8.8.8.8
         #     - 1.1.1.1
 
+        # # Used to statically set arbitrary search domains.
+        # searchDomains:
+        #     - example.org
+        #     - example.com
+
         # # Allows for extra entries to be added to the `/etc/hosts` file
         # extraHostEntries:
         #     - ip: 192.168.1.100 # The IP of the host.
@@ -176,6 +185,19 @@ machine:
         # # Configures KubeSpan feature.
         # kubespan:
         #     enabled: true # Enable the KubeSpan feature.
+    # Used to partition, format and mount additional disks.
+    disks:
+        - device: /dev/sda # The name of the disk to use.
+          # A list of partitions to create on the disk.
+          partitions:
+            - mountpoint: /var/mnt/storage # Where to mount the partition.
+              
+              # # The size of partition: either bytes or human readable representation. If `size:` is omitted, the partition is sized to occupy the full disk.
+
+              # # Human readable representation.
+              # size: 100 MB
+              # # Precise value in bytes.
+              # size: 1073741824
     # Used to provide instructions for installations.
     install:
         disk: /dev/nvme0n1 # The disk used for installations.
@@ -199,33 +221,6 @@ machine:
     # Used to configure the machine's sysctls.
     sysctls:
         vm.nr_hugepages: "1024"
-    # Used to configure the machine's container image registry mirrors.
-    registries: {}
-    # # Specifies mirror configuration for each registry host namespace.
-    # mirrors:
-    #     ghcr.io:
-    #         # List of endpoints (URLs) for registry mirrors to use.
-    #         endpoints:
-    #             - https://registry.insecure
-    #             - https://ghcr.io/v2/
-
-    # # Specifies TLS & auth configuration for HTTPS image registries.
-    # config:
-    #     registry.insecure:
-    #         # The TLS configuration for the registry.
-    #         tls:
-    #             insecureSkipVerify: true # Skip TLS server certificate verification (not recommended).
-    #             
-    #             # # Enable mutual TLS authentication with the registry.
-    #             # clientIdentity:
-    #             #     crt: LS0tIEVYQU1QTEUgQ0VSVElGSUNBVEUgLS0t
-    #             #     key: LS0tIEVYQU1QTEUgS0VZIC0tLQ==
-    #         
-    #         # # The auth configuration for this registry.
-    #         # auth:
-    #         #     username: username # Optional registry authentication.
-    #         #     password: password # Optional registry authentication.
-
     # Features describe individual Talos features that can be switched on or off.
     features:
         rbac: true # Enable role-based access control (RBAC).
@@ -277,22 +272,6 @@ machine:
     #             - image: nginx
     #               name: nginx
 
-    # # Used to partition, format and mount additional disks.
-
-    # # MachineDisks list example.
-    # disks:
-    #     - device: /dev/sdb # The name of the disk to use.
-    #       # A list of partitions to create on the disk.
-    #       partitions:
-    #         - mountpoint: /var/mnt/extra # Where to mount the partition.
-    #           
-    #           # # The size of partition: either bytes or human readable representation. If `size:` is omitted, the partition is sized to occupy the full disk.
-
-    #           # # Human readable representation.
-    #           # size: 100 MB
-    #           # # Precise value in bytes.
-    #           # size: 1073741824
-
     # # Allows the addition of user specified files.
 
     # # MachineFiles usage example.
@@ -330,6 +309,32 @@ machine:
     # # MachineSysfs usage example.
     # sysfs:
     #     devices.system.cpu.cpu0.cpufreq.scaling_governor: performance
+
+    # # Used to configure the machine's container image registry mirrors.
+    # registries:
+    #     # Specifies mirror configuration for each registry host namespace.
+    #     mirrors:
+    #         ghcr.io:
+    #             # List of endpoints (URLs) for registry mirrors to use.
+    #             endpoints:
+    #                 - https://registry.insecure
+    #                 - https://ghcr.io/v2/
+    #     # Specifies TLS & auth configuration for HTTPS image registries.
+    #     config:
+    #         registry.insecure:
+    #             # The TLS configuration for the registry.
+    #             tls:
+    #                 insecureSkipVerify: true # Skip TLS server certificate verification (not recommended).
+    #                 
+    #                 # # Enable mutual TLS authentication with the registry.
+    #                 # clientIdentity:
+    #                 #     crt: LS0tIEVYQU1QTEUgQ0VSVElGSUNBVEUgLS0t
+    #                 #     key: LS0tIEVYQU1QTEUgS0VZIC0tLQ==
+    #             
+    #             # # The auth configuration for this registry.
+    #             # auth:
+    #             #     username: username # Optional registry authentication.
+    #             #     password: password # Optional registry authentication.
 
     # # Machine system disk encryption configuration.
     # systemDiskEncryption:
@@ -383,6 +388,22 @@ machine:
     #       value:
     #         defaultAction: SCMP_ACT_LOG
 
+    # # Override (patch) settings in the default OCI runtime spec for CRI containers.
+
+    # # override default open file limit
+    # baseRuntimeSpecOverrides:
+    #     process:
+    #         rlimits:
+    #             - hard: 1024
+    #               soft: 1024
+    #               type: RLIMIT_NOFILE
+
+    # # Configures the node annotations for the machine.
+
+    # # node annotations example.
+    # nodeAnnotations:
+    #     customer.io/rack: r13a25
+
     # # Configures the node taints for the machine. Effect is optional.
 
     # # node taints example.
@@ -427,7 +448,7 @@ cluster:
         key: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlKS2dJQkFBS0NBZ0VBdUxBVVF6OCtDUjFUQnI4NlRRSEpKTVgwZEF3S29IaFdNTHZ6S24xZlR1MTFkaHpkCmxBWkdjRFROTGo3N3pBY2R3UU0rUEVLQmNmUmRvTmVXOFlVYlBIakgvV2VNTFM1SlFPN1YycXRkaTAvWW1TVjEKbU5IeHRBTk5kVjYxNmdFY2ZUdkwvdnk5dXNiYXU0bXlzQ3R2a3dJRWdwVjJYTkZBbWxRcjFxeFZLcjhNc0VqWgo0SWh0Smhnb0dvVTl1Rys1RE5MRHJpVElKV2pyb3RBNVQyZVNPWE1UTGpVZnc2U0ZhakZiaG1ValFMbmtHdVJUCmVLdVcvZ1l4Z3cvSnNLWUFnNVE2Z2xEMVdZbm1JckhkOEJjK0ZWQTBrMW5XVjloK1FZNk5GSzhtNlRqQmZlRCsKZHpHdllWWU1oMWFjT29STFZmMnhjL0RjN1dpWXBSaHZxeEdMWGJ2cDVHNGpaR254bVYzNkMvb3FkcmtqdzZzVApTSzAzU0FTaVhDd0lsRmxSZlRMU2sydndCWGlGa1NkcWltSEJDNEoxMUdxcFN4bC9VMjVod2xGWXdVMHVCaXdsCllvZllBOHkzd2V2Wnc4YVBMNU04VW1rcHROYnVUS2c4dm1WSU5YOG5GTEJzSVFYSXZJRGhHeHV6ZWhiVittV08KYjJuWkJaeU5mWHFic2xqWW5mRE5sMi9MdFBKd21RTzdsVlZpYittc2ZKVC9DT240cUlXcHF5TFZQcWhyVlZVeAprVEM4ajF3L3lPaHNXR25YUkVxZS9ydUNSV0trWFducHNwcksyUEUvV0FtTGZJWEp0NytNTThOdlVleDdES3JKCkZ4RmZnSmJjbk1NcXRuOStyS1BBY2crbGRCT3pRL0p0M0ZPR3FoNFpXMVI2a3k1N0ZXRTd0RWNwamNzQ0F3RUEKQVFLQ0FnRUFnNExHZXZndXFYamJKVVBJTlF1ZmVuTUhWaGM0L2ZtU2psTlhuUnIzWWhHUEFkTWVLUWlxNGIySAptWFc2QVJmVUpSdTFGbDNaSlJiNEVNOVRxWm01d2o3VFVldUpFcWNSL0kzVmRFZHdiZ0ltWHk4Z1pQaWlYeWUyCjRXdldwOUd3d3JCdzI1cUhVOWZENjZUcXU2M0NYbkVpV3dZbzZZRUx1cGxUT2lNdTVpaHkxWmlhcE5zZ3RlNmYKcC9yVzcxMkc3TTJzRDNZYm14L3lJdGFZNktUOHA3SDhwM3VtcWI2ZVRmYmxrSGEyT3FIai93NDFMZ2twbEtzKwpXSEJHazJZeG1ZQlVoWFUyc0ZLVXNJSHRZc2g2S2QwYUF3OEdwVGtBOXBlV2VITWNoeGdtR0FlOXk0eHlzU0gvCisrTTlqaUdrTDVCZDZ3eEpsVGhVOGNMTHlZbk5yWFJRdm05Q1Q0cGd0ZTJjR1FFSU5IcmhiQ3Rha2ZDRTdFUkoKWEFmeWlIOTU4UGNVRFFIMStES0hXeGY5OVk4cmFOMmxTMmNjdGxiNitvdWwvb1N6bVRNUnlIK1N3M0NHM0Y5NgpsZGo0TmQ5NHZ2bjZjUGRZamlMN3lKVGNjUkxjcWZ0RDFJK2JoRlJUTisyMWtUWkYybnBWc0pyNHlBWUhIak96ClhjZmpNRDVqSmtZanplcWJKdlhjWWNpdnBWeS9rS0FXRWVwZ2ZuZng1cjhYcFc5L1VyUW9qWGlpYnp6R1RWK2kKd1V1Rm1uRGFsdnByVDdRdXBxdnI3MmQ2a2l6WkR2M2gvcytzZDVpNVhMclJNYVRKNU9sRVFoOVd5cFB1VDlhMAoxNWw5RWYrUHNxdy9Nc3pwekphNzRFamVJVWZSZzlxSEl2QUZ1OTBnRWVPdGpKYUt2U0VDZ2dFQkFPU3M2TXRKCkJyS0hJbkM1S05vV2doY2xSV2lNeWI5bk1ublNuUTAxLzYxMEZSdkdsQlFjUUJ2WUk4TDlhaGpLbCt3N2x3TFAKVHFYaE91ZVVuU0xSM1Vod2QwTlc4R082U3Jxd2FhNVN4amUzY1RjamhLTXdzQU5RMFVTV2VUQmZuVFkwUUJiZQowa1p6Njd4NlBwNkl6Mzc0R3loWnNqbU9ZeG5XK2Y0Rlo0Nk40WDhoQWpRQzZCRkNrTjdHb2xoY3pjSjRyR2hsCjY4Ky9SODNnNFY2Z3dnU0VBZjZNNmswVGVSY29aWDNDY1hsS0JlZWFmblQ2bVFoMmFkdXhWeVN4aXg1SjVHOVUKQlBJUEFjdVY4THhFYThJaS9iY2tRbUtwNHhGSlJyK01jdThHZ0tvVysrZTNaS2FteVdnbCtpWU5od0VvMGRGdwovK1hQVG1BWW4zeHY5M0VDZ2dFQkFNN0JteU02NjZqM0dXQzNQNDEvNDVEK21rYkVhVGkrRHpTRFRyTm1KSmxVCjlCaG0yR0RWdDYyU1dMczRaOTlUUWdvM09sdmdLb0FFMkZpaGhiRmhycEZqUlpvMHpDbzI2MC9XQld6d2pzS1QKSXlUakF2YXV3eG1NQjJtK2M1anN3bVMxQk5KdFVpdmJYZUwzRzRmNzZ6Z01KNjNsWjd2YzRFdjM0TmNxcmM4WQpZU1QwNE50WElPZFR6dUVINVh4bnY0WjlnSk1aNXRkYUNveUllZ2dHbDdXY0p1R3F5b1NDTFNFSWh5MGUxY0FpCmp5aG16RmU0V3B0cGJOL2RFOWxaa2M3d0YvKzZRVXo5NVpXSUx3bk5vTGREdWZLcSt3NW9XempJaDJaY3QrbDcKVFlVOEZSanBqeXIvcUphY1BjeTJaY0llYXJLdFExUzN5UkdGTlIrOEV2c0NnZ0VBSGNZWnBXWkR0Zmo4VmZyMQp3N2VNaHFEMnNZOHJNWDJwUjgxUlg0ZjVXMGN5L0dQVm9leXZ1REJqTDU4NU1qTW1wcjUzZ2drbDcxa3RCendGClhhUS9rSS84SjB0cGowS1JPazkvNHcrcCtWVXNLNGEzWFZ3WWZzWUdDVTBpU0ZjYXJCVVBoeXJKN0J4cHhDZVMKZ2FmRWhINmZZcGlUS1FWT0IrNUNySDFkcDJUM3lFcXU4OEN4SUpZdk1LSmlQdWtPYlZTeTlnRFhQRHhtaC9yUQp2VFpuTEpsWGZTSXgyNGsraWZKYmpJMUZvd290VEtPRDlZMHZZYmV4UHNhUFZ4cTZ4MTNObldVdUk2b3FqS3hnCkpOTXZ5SjR2dEtuRzd2dTVzZVY5amJFbXdkSng3RE9ENXY2czN6bjJIVlpjaEpuY1N4MWFmRStmTWZmVTk1UWQKSitHWU1RS0NBUUVBdEl2U09sQ0FhM3JqdVZZcjlCZGlsRUlRWEkyMVNLeUhRSmNOU1pGL2tqbmlNZERWVUxJdwpCQzBRdU9TSHFEZmZLbWFSMnBzRTRlZlpPSVJMNTlyaUF1bUtaUitIemJGSmlOemV2Z1BPMWxDQVZ2eTVvTXA1CmFqeWlXSS9NQ0JWdnAxdC9pM1dWVk9EcHVvR0lsQlhEa0p6a3BYRDNSZENhT1J5TFJibHFMN2NkVlpWVktaU0wKRWhaWVNKK0pvVHBEd0dDbHYwN1dDdVlBNGpsblBzenErOWNSQ08wSWplL1RFczZNcERVUitRYjB0aFlXaU45ZQpsK25XL2lIaTdHRFA5OEluWXRPMXBGTHVnY1o3TlBkUVNkaWxieWdwdGFvaFJwT3QwUkJVTlZuTUZ2V2hnckNwCnFhVzVCVlFJajFRVHhoQ2pvY1cxVHl4eU00OThGV3M1c3dLQ0FRRUEzS29vdW1rdHNRckZRYUpLTzdIR2hTT3MKS2VUUlVSeVlyTDc0alFQQUhkTXZXYkRoamJQMmhiaE9sb1lMN1Q4TWhENGJlRHpKRGFuSDNYZUlCdnN5NWU0Rwo5UlEzMXFsR001aHUyWXpoNTNubC9Kb2NvSm1Pa1g3OVhFa1BKNFNIWndDNW51bTNzdGZ4cTN6cVdiV05LT08rCkJKNFZpMFRhUklPT0JtSEw2RFluMkRNWmZTcjlOV3dmQy95dlpCdGZZbyswL29VTUF4QVVGNitabVgvOUJVZmMKQkJ2bzBHeVNiSFJtZFFxOGg0MjhKb0hBMzQ2NmVwVEhZa05xYkl2b3cwd0FGa05YdnlmSXFielNaazRRcHlqMgpweW5NeVFHM1h6b3ovcG8xc2lNVEZ4bzBJMSt5aFRESyt2ZUxSNEtFdDFleld6eXV0RGVFcmkrM3VwNnNkUT09Ci0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
     # API server specific configuration options.
     apiServer:
-        image: registry.k8s.io/kube-apiserver:v1.30.1 # The container image used in the API server manifest.
+        image: registry.k8s.io/kube-apiserver:v1.32.2 # The container image used in the API server manifest.
         # Extra certificate subject alternative names for the API server's certificate.
         certSANs:
             - 192.168.178.39
@@ -458,18 +479,44 @@ cluster:
             kind: Policy
             rules:
                 - level: Metadata
+        
+        # # Configure the API server authorization config. Node and RBAC authorizers are always added irrespective of the configuration.
+        # authorizationConfig:
+        #     - type: Webhook # Type is the name of the authorizer. Allowed values are `Node`, `RBAC`, and `Webhook`.
+        #       name: webhook # Name is used to describe the authorizer.
+        #       # webhook is the configuration for the webhook authorizer.
+        #       webhook:
+        #         connectionInfo:
+        #             type: InClusterConfig
+        #         failurePolicy: Deny
+        #         matchConditionSubjectAccessReviewVersion: v1
+        #         matchConditions:
+        #             - expression: has(request.resourceAttributes)
+        #             - expression: '!(\''system:serviceaccounts:kube-system\'' in request.groups)'
+        #         subjectAccessReviewVersion: v1
+        #         timeout: 3s
+        #     - type: Webhook # Type is the name of the authorizer. Allowed values are `Node`, `RBAC`, and `Webhook`.
+        #       name: in-cluster-authorizer # Name is used to describe the authorizer.
+        #       # webhook is the configuration for the webhook authorizer.
+        #       webhook:
+        #         connectionInfo:
+        #             type: InClusterConfig
+        #         failurePolicy: NoOpinion
+        #         matchConditionSubjectAccessReviewVersion: v1
+        #         subjectAccessReviewVersion: v1
+        #         timeout: 3s
     # Controller manager server specific configuration options.
     controllerManager:
-        image: registry.k8s.io/kube-controller-manager:v1.30.1 # The container image used in the controller manager manifest.
+        image: registry.k8s.io/kube-controller-manager:v1.32.2 # The container image used in the controller manager manifest.
     # Kube-proxy server-specific configuration options
     proxy:
-        image: registry.k8s.io/kube-proxy:v1.30.1 # The container image used in the kube-proxy manifest.
+        image: registry.k8s.io/kube-proxy:v1.32.2 # The container image used in the kube-proxy manifest.
         
         # # Disable kube-proxy deployment on cluster bootstrap.
         # disabled: false
     # Scheduler server specific configuration options.
     scheduler:
-        image: registry.k8s.io/kube-scheduler:v1.30.1 # The container image used in the scheduler manifest.
+        image: registry.k8s.io/kube-scheduler:v1.32.2 # The container image used in the scheduler manifest.
     # Configures cluster member discovery.
     discovery:
         enabled: true # Enable the cluster membership discovery feature.
@@ -490,7 +537,7 @@ cluster:
             key: LS0tLS1CRUdJTiBFQyBQUklWQVRFIEtFWS0tLS0tCk1IY0NBUUVFSUFvOGFMMzlXbzJnMkYrRnVnUit1OUo2akh2azRYR3NFQVZDaWhrWmtzUDlvQW9HQ0NxR1NNNDkKQXdFSG9VUURRZ0FFWll5QlFYeXVqMENjd2tqY1l5MnN4QTJuVGJSaVkxcC9NZDFYUVQ2cEpSdFRMTnF1aDZwcwpacWRpUlhoNmtHMVc3QkdMSGkwK3hSUElSY0xkU0puaTN3PT0KLS0tLS1FTkQgRUMgUFJJVkFURSBLRVktLS0tLQo=
         
         # # The container image used to create the etcd service.
-        # image: gcr.io/etcd-development/etcd:v3.5.13
+        # image: gcr.io/etcd-development/etcd:v3.5.19
 
         # # The `advertisedSubnets` field configures the networks to pick etcd advertised IP from.
         # advertisedSubnets:
@@ -518,7 +565,7 @@ cluster:
 
     # # Core DNS specific configuration options.
     # coreDNS:
-    #     image: registry.k8s.io/coredns/coredns:v1.11.1 # The `image` field is an override to the default coredns image.
+    #     image: registry.k8s.io/coredns/coredns:v1.12.0 # The `image` field is an override to the default coredns image.
 
     # # External cloud provider configuration.
     # externalCloudProvider:
