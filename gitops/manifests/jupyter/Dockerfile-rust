@@ -4,25 +4,23 @@
 
 FROM quay.io/jupyter/minimal-notebook:7830074b9e0a
 
-ARG RUST_VERSION=1.70.0
-
 USER root
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    curl \
-    pkg-config \
-    libssl-dev \
- && apt-get clean && rm -rf /var/lib/apt/lists/*
+ARG RUST_VERSION=nightly
 
-USER $NB_UID
+RUN apt-get update && \
+    apt-get install -y curl build-essential && \
+    curl https://sh.rustup.rs -sSf | sh -s -- -y && \
+    . "$HOME/.cargo/env" && \
+    rustup install ${RUST_VERSION} && \
+    rustup default ${RUST_VERSION} && \
+    rustc --version && \
+    cargo --version && \
+    cargo install evcxr_jupyter && \
+    evcxr_jupyter --install && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain ${RUST_VERSION}
+USER jovyan
 
-ENV PATH="/home/jovyan/.cargo/bin:${PATH}"
+ENV PATH="/home/jovyan/.cargo/bin:/root/.cargo/bin:${PATH}"
 
-RUN rustc --version
-
-RUN cargo install evcxr_jupyter && evcxr_jupyter --install
-
-RUN echo '\nexport PATH="$HOME/.cargo/bin:$PATH"\n' >> /home/jovyan/.bashrc

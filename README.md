@@ -157,7 +157,7 @@ kubectl create secret generic basic-auth \
 - Kernels
   - https://github.com/jupyter/jupyter/wiki/Jupyter-kernels
   - https://github.com/gopherdata/gophernotes
-
+  - https://jupyter-docker-stacks.readthedocs.io/en/latest/index.html
 
 - ports:
   - Hub pod: 8081 (default)
