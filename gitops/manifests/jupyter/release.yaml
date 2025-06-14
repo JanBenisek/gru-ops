@@ -110,8 +110,10 @@
 
         image:
           # The default image
-          name: quay.io/jupyter/minimal-notebook
-          tag: 7830074b9e0a
+          # name: quay.io/jupyter/minimal-notebook
+          # tag: 7830074b9e0a
+          name: docker-registry.pengiuns.com/jupyter-minimal
+          tag: latest
           pullPolicy: Always
         
         profileList:
