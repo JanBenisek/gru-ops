@@ -143,7 +143,7 @@
           - display_name: "Let's Go!"
             description: "Go, [1/2 CPU, 1-5G RAM]"
             kubespawner_override:
-              image: docker-registry.pengiuns.com/jupyter-minimal:go
+              image: docker-registry.pengiuns.com/jupyter:go
               cpu_guarantee: 0.2
               mem_guarantee: 1G
               cpu_limit: 1
