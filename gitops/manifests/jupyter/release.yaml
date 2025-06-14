@@ -152,6 +152,7 @@
             description: "Rust 1.70.0, [1/2 CPU, 1-5G RAM]"
             kubespawner_override:
               image: docker-registry.pengiuns.com/jupyter:rust
+              imagePullPolicy: Always # might take too long
               cpu_guarantee: 0.2
               mem_guarantee: 1G
               cpu_limit: 1

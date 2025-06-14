@@ -195,6 +195,20 @@ kubectl run -it --rm alpine \
   -- sh
 ```
 
+### User Management - PAMAuthenticator
+- Create password for each user - `mkpasswd --method=SHA-512`
+- Create file named `passwd`
+```bash
+alice:x:1000:1000::/home/alice:/bin/bash
+bob:x:1001:1001::/home/bob:/bin/bash
+```
+- Create a file named `shadow`
+```bash
+alice:$6$hashed...:18599:0:99999:7:::
+bob:$6$hashed...:18599:0:99999:7:::
+```
+- Tar them together `tar czvf users.tar.gz passwd shadow`
+
 ## metabase
 
 - [values](https://github.com/pmint93/helm-charts/tree/master/charts/metabase)
