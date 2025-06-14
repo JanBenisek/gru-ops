@@ -62,7 +62,7 @@ k get secret cloudflare-cloudflare-tunnel-remote -n cloudflare -o jsonpath="{.da
   - [API](https://distribution.github.io/distribution/spec/api/)
 ```shell
 curl -X GET https://docker-registry.pengiuns.com/v2/_catalog?n=1000
-curl -X GET https://docker-registry.pengiuns.com/v2/vllm/tags/list
+curl -X GET https://docker-registry.pengiuns.com/v2/jupyter-minimal/tags/list
 
 # add image 
 docker tag vllm:cpu docker-registry.pengiuns.com/vllm:cpu
@@ -78,6 +78,11 @@ docker pull docker-registry.pengiuns.com/vllm:cpu
 curl -sS -H 'Accept: application/vnd.docker.distribution.manifest.v2+json' \
 -o /dev/null \
 -w '%header{Docker-Content-Digest}' \
+https://docker-registry.pengiuns.com/v2/jupyter-minimal/manifests/latest
+
+curl -sS -H 'Accept: application/vnd.docker.distribution.manifest.v2+json' \
+-o /dev/null \
+-w '%header{Docker-Content-Digest}' \
 https://docker-registry.pengiuns.com/v2/vllm/manifests/latest
 
 curl -X DELETE https://docker-registry.pengiuns.com/v2/my-nginx/manifests/sha256:c9f91949187fa1c2b4615b88d3acf7902c7e2d4a2557f33ca0cf90164269a7ae
@@ -89,6 +94,7 @@ curl -X DELETE https://docker-registry.pengiuns.com/v2/my-nginx/manifests/sha256
   - https://kb.leaseweb.com/kb/kubernetes/kubernetes-deploying-a-docker-registry-on-kubernetes/
   - https://medium.com/geekculture/deploying-docker-registry-on-kubernetes-3319622b8f32
   - https://www.paulsblog.dev/how-to-install-a-private-docker-container-registry-in-kubernetes/
+  - Images are stored in `/var/lib/registry/docker/registry/v2`
 
 
 ### external-dns

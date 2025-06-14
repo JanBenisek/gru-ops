@@ -112,13 +112,13 @@
           # The default image
           # name: quay.io/jupyter/minimal-notebook
           # tag: 7830074b9e0a
-          name: docker-registry.pengiuns.com/jupyter-minimal
-          tag: latest
+          name: docker-registry.pengiuns.com/jupyter
+          tag: minimal
           pullPolicy: Always
         
         profileList:
           - display_name: "Tiny"
-            description: "Python, [0.2 CPU, 1-5G RAM]"
+            description: "Python 3.12.10, [0.2 CPU, 1-5G RAM]"
             default: true
             kubespawner_override:
               cpu_guarantee: 0.2
@@ -126,7 +126,7 @@
               cpu_limit: 1
               mem_limit: 5G
           - display_name: "Chonky boi ༼ つ ◕_◕ ༽つ🍰"
-            description: "Python, [2 CPU, 10-15G RAM]"
+            description: "Python 3.12.10, [2 CPU, 10-15G RAM]"
             kubespawner_override:
               cpu_guarantee: 2
               mem_guarantee: 10G
@@ -137,6 +137,14 @@
             kubespawner_override:
               image: quay.io/jupyter/r-notebook:7830074b9e0a
               cpu_guarantee: 0.5
+              mem_guarantee: 1G
+              cpu_limit: 1
+              mem_limit: 5G
+          - display_name: "Let's Go!"
+            description: "Go, [1/2 CPU, 1-5G RAM]"
+            kubespawner_override:
+              image: docker-registry.pengiuns.com/jupyter-minimal:go
+              cpu_guarantee: 0.2
               mem_guarantee: 1G
               cpu_limit: 1
               mem_limit: 5G

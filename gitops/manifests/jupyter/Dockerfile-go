@@ -1,0 +1,27 @@
+# docker build -t docker-registry.pengiuns.com/jupyter:go -f Dockerfile-go .
+# docker push docker-registry.pengiuns.com/jupyter:go
+# docker run --rm -it --entrypoint /bin/bash docker-registry.pengiuns.com/jupyter:go
+# FROM quay.io/jupyter/base-notebook:7830074b9e0a
+FROM jupyter/base-notebook
+
+# Install Go
+ENV GO_VERSION=1.22.3
+RUN wget https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz && \
+    tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz && \
+    rm go${GO_VERSION}.linux-amd64.tar.gz
+ENV PATH=$PATH:/usr/local/go/bin
+
+# Install gophernotes (Go kernel for Jupyter)
+RUN apt-get update && apt-get install -y git
+RUN git clone https://github.com/gopherdata/gophernotes.git /tmp/gophernotes && \
+    cd /tmp/gophernotes && \
+    GOPATH=/tmp/gophernotes go install && \
+    mkdir -p ${CONDA_DIR}/share/jupyter/kernels/gophernotes && \
+    cp -r kernel/* ${CONDA_DIR}/share/jupyter/kernels/gophernotes/ && \
+    cp $(go env GOPATH)/bin/gophernotes ${CONDA_DIR}/share/jupyter/kernels/gophernotes/ && \
+    rm -rf /tmp/gophernotes
+
+# Set permissions
+USER root
+RUN chown -R ${NB_UID}:${NB_GID} ${CONDA_DIR}/share/jupyter/kernels/gophernotes
+USER ${NB_UID}
