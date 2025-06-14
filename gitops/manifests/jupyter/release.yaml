@@ -121,6 +121,8 @@
             description: "Python 3.12.10, [0.2 CPU, 1-5G RAM]"
             default: true
             kubespawner_override:
+              image: docker-registry.pengiuns.com/jupyter:minimal
+              imagePullPolicy: Always # might take too long
               cpu_guarantee: 0.2
               mem_guarantee: 1G
               cpu_limit: 1
@@ -128,6 +130,8 @@
           - display_name: "Chonky boi ༼ つ ◕_◕ ༽つ🍰"
             description: "Python 3.12.10, [2 CPU, 10-15G RAM]"
             kubespawner_override:
+              image: docker-registry.pengiuns.com/jupyter:minimal
+              imagePullPolicy: Always # might take too long
               cpu_guarantee: 2
               mem_guarantee: 10G
               cpu_limit: 2
@@ -144,6 +148,7 @@
             description: "Go 1.22.3, [1/2 CPU, 1-5G RAM]"
             kubespawner_override:
               image: docker-registry.pengiuns.com/jupyter:go
+              imagePullPolicy: Always # might take too long
               cpu_guarantee: 0.2
               mem_guarantee: 1G
               cpu_limit: 1

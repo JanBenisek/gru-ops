@@ -199,7 +199,7 @@ kubectl run -it --rm alpine \
 - Create password for each user - `mkpasswd --method=SHA-512`
 - Create file named `passwd`
 ```bash
-alice:x:1000:1000::/home/alice:/bin/bash
+honza:x:1000:1000::/home/alice:/bin/bash
 bob:x:1001:1001::/home/bob:/bin/bash
 ```
 - Create a file named `shadow`
