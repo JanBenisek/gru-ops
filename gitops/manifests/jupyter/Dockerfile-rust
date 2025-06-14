@@ -1,0 +1,28 @@
+# docker build -t docker-registry.pengiuns.com/jupyter:rust -f Dockerfile-rust .
+# docker push docker-registry.pengiuns.com/jupyter:rust
+# docker run --rm -it --entrypoint /bin/bash docker-registry.pengiuns.com/jupyter:rust
+
+FROM quay.io/jupyter/minimal-notebook:7830074b9e0a
+
+ARG RUST_VERSION=1.70.0
+
+USER root
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    curl \
+    pkg-config \
+    libssl-dev \
+ && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+USER $NB_UID
+
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain ${RUST_VERSION}
+
+ENV PATH="/home/jovyan/.cargo/bin:${PATH}"
+
+RUN rustc --version
+
+RUN cargo install evcxr_jupyter && evcxr_jupyter --install
+
+RUN echo '\nexport PATH="$HOME/.cargo/bin:$PATH"\n' >> /home/jovyan/.bashrc

@@ -154,6 +154,9 @@ kubectl create secret generic basic-auth \
 - [values](https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/HEAD/jupyterhub/values.yaml)
 - [refrence](https://z2jh.jupyter.org/en/latest/resources/reference.html)
 - [Helm chart](https://github.com/jupyterhub/helm-chart)
+- Kernels
+  - https://github.com/jupyter/jupyter/wiki/Jupyter-kernels
+  - https://github.com/gopherdata/gophernotes
 
 
 - ports:

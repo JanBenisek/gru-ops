@@ -141,9 +141,17 @@
               cpu_limit: 1
               mem_limit: 5G
           - display_name: "Let's Go!"
-            description: "Go, [1/2 CPU, 1-5G RAM]"
+            description: "Go 1.22.3, [1/2 CPU, 1-5G RAM]"
             kubespawner_override:
               image: docker-registry.pengiuns.com/jupyter:go
+              cpu_guarantee: 0.2
+              mem_guarantee: 1G
+              cpu_limit: 1
+              mem_limit: 5G
+          - display_name: "Blazingly fast"
+            description: "Rust 1.70.0, [1/2 CPU, 1-5G RAM]"
+            kubespawner_override:
+              image: docker-registry.pengiuns.com/jupyter:rust
               cpu_guarantee: 0.2
               mem_guarantee: 1G
               cpu_limit: 1
