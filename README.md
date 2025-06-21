@@ -62,7 +62,7 @@ k get secret cloudflare-cloudflare-tunnel-remote -n cloudflare -o jsonpath="{.da
   - [API](https://distribution.github.io/distribution/spec/api/)
 ```shell
 curl -X GET https://docker-registry.pengiuns.com/v2/_catalog?n=1000
-curl -X GET https://docker-registry.pengiuns.com/v2/jupyter-minimal/tags/list
+curl -X GET https://docker-registry.pengiuns.com/v2/jupyter/tags/list
 
 # add image 
 docker tag vllm:cpu docker-registry.pengiuns.com/vllm:cpu
@@ -78,14 +78,12 @@ docker pull docker-registry.pengiuns.com/vllm:cpu
 curl -sS -H 'Accept: application/vnd.docker.distribution.manifest.v2+json' \
 -o /dev/null \
 -w '%header{Docker-Content-Digest}' \
-https://docker-registry.pengiuns.com/v2/jupyter-minimal/manifests/latest
+https://docker-registry.pengiuns.com/v2/jupyter/manifests/rust
 
-curl -sS -H 'Accept: application/vnd.docker.distribution.manifest.v2+json' \
--o /dev/null \
--w '%header{Docker-Content-Digest}' \
-https://docker-registry.pengiuns.com/v2/vllm/manifests/latest
+# Second option of the above does not work
+curl -sI -H "Accept: application/vnd.oci.image.index.v1+json" https://docker-registry.pengiuns.com/v2/jupyter/manifests/rust
 
-curl -X DELETE https://docker-registry.pengiuns.com/v2/my-nginx/manifests/sha256:c9f91949187fa1c2b4615b88d3acf7902c7e2d4a2557f33ca0cf90164269a7ae
+curl -v -X DELETE https://docker-registry.pengiuns.com/v2/jupyter/manifests/sha256:f8705bf78ad6519496337cc2a331d90e4ac84b3de2aef29e9223e9b9a776c127
 ```
 - [Garbage Collection](https://distribution.github.io/distribution/about/garbage-collection/)
   - in container: `registry garbage-collect -m /etc/docker/registry/config.yml --delete-untagged --dry-run`
