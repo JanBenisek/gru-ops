@@ -18,8 +18,8 @@ spec:
     # here
     image:
       repository: nextcloud
+      flavor: apache
       pullPolicy: Always
-      flavour: apache
       # tag: "TODO"
 
     replicaCount: 1
