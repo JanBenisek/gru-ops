@@ -63,12 +63,6 @@ spec:
         accessMode: ReadWriteOnce
         size: 8Gi
 
-    collabora:
-  enabled: false
-
-  autoscaling:
-    enabled: false
-
   persistence:
     # Nextcloud Data (/var/www/html)
     enabled: false
