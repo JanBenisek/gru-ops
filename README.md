@@ -32,6 +32,11 @@ k create secret generic cloudflare-api-token \
   > /Users/janbenisek/GithubRepos/gru-ops/gitops/manifests/cert-manager/secrets/cloudflare-api-token.yaml
 ```
 
+### Collabora
+- [GitHub](https://github.com/CollaboraOnline/online)
+- [Helm Chart](https://artifacthub.io/packages/helm/collabora-online/collabora-online)
+- [Values](https://github.com/CollaboraOnline/online/blob/master/kubernetes/helm/collabora-online/values.yaml)
+
 ### Cloudflare
 
 - To be able to expose my services on the internet.
