@@ -73,6 +73,10 @@ spec:
       enabled: true
       
       collabora:
+        aliasgroups:
+          - host: "https://nextcloud.pengiuns.com"
+        extra_params: --o:ssl.enable=false --o:ssl.termination=true
+
         password: examplepass
         username: admin
 
