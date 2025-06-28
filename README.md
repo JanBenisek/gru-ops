@@ -253,6 +253,10 @@ k create secret generic bot-metabase-pswd \
   - https://fluxcd.io/flux/monitoring/metrics/
   - https://github.com/grafana/helm-charts/tree/main/charts/loki
 
+### nextcloud
+- [Helm Chart](https://artifacthub.io/packages/helm/nextcloud/nextcloud)
+- [values](https://github.com/nextcloud/helm/blob/main/charts/nextcloud/values.yaml)
+
 ### ollama
 
 - LLMs!

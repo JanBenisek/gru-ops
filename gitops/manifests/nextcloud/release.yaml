@@ -1,0 +1,119 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: nextcloud
+  namespace: nextcloud
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: nextcloud
+      version: "6.6.10"
+      sourceRef:
+        kind: HelmRepository
+        name: nextcloud
+        namespace: nextcloud
+      interval: 12h
+  values:
+    # here
+    image:
+      repository: nextcloud
+      pullPolicy: Always
+      flavour: apache
+      # tag: "TODO"
+
+    replicaCount: 1
+
+    ingress:
+      enabled: true
+      hosts:
+        - "nextcloud.${DOMAIN_NAME}"
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        nginx.ingress.kubernetes.io/proxy-body-size: 100m
+        nginx.ingress.kubernetes.io/proxy-connect-timeout: 900
+        nginx.ingress.kubernetes.io/proxy-send-timeout: 900
+        nginx.ingress.kubernetes.io/proxy-read-timeout: 900
+        nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: 900
+      
+      tls:
+        - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+          hosts:
+            - "nextcloud.${DOMAIN_NAME}"
+
+    nextcloud:
+      host: nextcloud.kube.home
+      username: admin
+      password: changeme
+
+    internalDatabase:
+      enabled: true
+      name: nextcloud # sqlite
+
+    externalDatabase: # TODO: use my postgres
+      enabled: false
+
+    primary:
+      persistence:
+        enabled: false
+        # Use an existing Persistent Volume Claim (must be created ahead of time)
+        existingClaim: ""
+        storageClass: ""
+        accessMode: ReadWriteOnce
+        size: 8Gi
+
+    collabora:
+  enabled: false
+
+  autoscaling:
+    enabled: false
+
+  persistence:
+    # Nextcloud Data (/var/www/html)
+    enabled: false
+
+  resources:
+    limits:
+        cpu: "1000m"
+        memory: "3000Mi"
+    requests:
+        cpu: "200m"
+        memory: "2000Mi"
+
+  metrics:
+    enabled: true
+
+  collabora:
+    password: examplepass
+    username: admin
+
+    resources:
+      limits:
+          cpu: "1000m"
+          memory: "3000Mi"
+      requests:
+          cpu: "300m"
+          memory: "2000Mi"
+
+    ingress:
+      enabled: true
+      className: "nginx"
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        nginx.ingress.kubernetes.io/upstream-hash-by: "$arg_WOPISrc"
+        nginx.ingress.kubernetes.io/proxy-body-size: "0"
+        nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+        nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+      hosts:
+        - host: "collabora.${DOMAIN_NAME}"
+          paths:
+          - path: /
+          pathType: ImplementationSpecific
+      tls:
+        - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+          hosts:
+            - "collabora.${DOMAIN_NAME}"
+
+    

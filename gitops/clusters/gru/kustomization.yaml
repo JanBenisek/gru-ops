@@ -36,7 +36,8 @@ resources:
   - funnaiest.yaml
   - postgresql.yaml
   - metabase.yaml
-  - collabora.yaml
+  # - collabora.yaml
+  - nextcloud.yaml
 configMapGenerator:
   - name: gru-values
     envs:
