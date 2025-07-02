@@ -48,6 +48,7 @@ data:
       showSearchSuggestions: true
       hideVisitURL: true
       provider: google
+    statusStyle: "dot"
   custom.css: ""
   custom.js: ""
   bookmarks.yaml: |
@@ -96,7 +97,7 @@ data:
             href: https://jupyter.pengiuns.com
             description: Make some cool shit!
             namespace: jupyter
-            app: jupyter
+            app: jupyterhub
 
     - Fun:
         - Hiker:
