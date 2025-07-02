@@ -98,6 +98,12 @@ data:
             description: Make some cool shit!
             namespace: jupyter
             app: jupyterhub
+        - NextCloud:
+            icon: nextcloud.png
+            href: https://nextcloud.pengiuns.com
+            description: My data!
+            namespace: nextcloud
+            app: nextcloud
 
     - Fun:
         - Hiker:
