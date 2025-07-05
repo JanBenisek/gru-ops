@@ -79,9 +79,9 @@ data:
             href: https://192.168.178.40:8006
             description: VMs for everyone.
         - Wireguard:
-          icon: wireguard.png
-          href: https://wg.pengiuns.com
-          description: Everday I'm tunellin'
+            icon: wireguard.png
+            href: https://wg.pengiuns.com
+            description: Everday I'm tunellin'
 
     - Tools:
         - IT-Tools:
