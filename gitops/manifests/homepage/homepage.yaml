@@ -56,10 +56,10 @@ data:
         - Github:
             - icon: github.png
               href: https://github.com/JanBenisek/gru-ops
-        - Cloudflare
+        - Cloudflare:
             - icon: cloudflare.png
               href: https://dash.cloudflare.com/6f72e3a2bfcc7b774fdcecc770035336/home/domains
-        - Hetzner
+        - Hetzner:
             - icon: hetzner.png
               href: https://console.hetzner.com/projects
     - Docs:
