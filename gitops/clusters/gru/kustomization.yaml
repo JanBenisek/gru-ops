@@ -38,6 +38,7 @@ resources:
   - metabase.yaml
   # - collabora.yaml
   - nextcloud.yaml
+  - joplin.yaml
 configMapGenerator:
   - name: gru-values
     envs:

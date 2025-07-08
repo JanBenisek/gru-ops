@@ -148,6 +148,13 @@ kubectl create secret generic basic-auth \
 
 - Set of interesting IT tools.
 
+
+### joplin
+- [GitHub](https://github.com/laurent22/joplin)
+- [values](https://artifacthub.io/packages/helm/rubxkube/joplin?modal=values)
+- [Helm Chart](https://github.com/RubxKube/charts/tree/main/charts/joplin)
+
+
 ### jupyter
 
 - [docs](https://z2jh.jupyter.org/en/stable/jupyterhub/installation.html)
