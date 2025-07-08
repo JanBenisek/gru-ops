@@ -72,9 +72,9 @@ spec:
           enabled: true
           secretName: letsencrypt-wildcard-cert-pengiuns.com-production
         # For Ingress CRD
-        ingressClassName: ""
+        ingressClassName: "nginx"
         # For IngressRoute CRD
-        isIngressRoute: true
+        isIngressRoute: false
         entrypoint: websecure
         certResolver: letsencrypt # leave empty if you don't use, tls.enabled must be true and secretName must me empty
         annotations:
