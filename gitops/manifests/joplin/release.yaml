@@ -84,7 +84,7 @@ spec:
           DB_CLIENT: pg
           POSTGRES_DATABASE: "joplin"
           POSTGRES_USER: "bot_joplin"
-          POSTGRES_PASSWORD: "joplinpass"
+          # POSTGRES_PASSWORD: "joplinpass"
           POSTGRES_HOST: "postgresql.pengiuns.com"
           POSTGRES_PORT: "5432"
           APP_BASE_URL: https://joplin.pengiuns.com

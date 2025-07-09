@@ -168,6 +168,15 @@ k create secret generic bot-immich-pswd \
   > /home/github/gru-ops/gitops/manifests/immich/bot_immich_pswd.yaml
 ```
 
+- install extension
+  - https://docs.vectorchord.ai/getting-started/installation.html
+  - https://github.com/immich-app/immich-charts/issues/149
+```shell
+kubectl exec -n postgresql -it postgresql-0 -- bash
+
+
+```
+
 ### ingress-nginx
 
 - Ingress, works like a charm.
