@@ -57,7 +57,7 @@ spec:
       # ingress
       ingress:
         enabled: true
-        hostName: jupyter.${DOMAIN_NAME}
+        hostName: joplin.${DOMAIN_NAME}
         tls:
           enabled: true
           secretName: letsencrypt-wildcard-cert-pengiuns.com-production
@@ -78,7 +78,7 @@ spec:
           POSTGRES_PASSWORD:
             valueFrom:
               secretKeyRef:
-                name: bot_joplin_pswd
+                name: bot-joplin-pswd
                 key: password
         nonSecret:
           DB_CLIENT: pg

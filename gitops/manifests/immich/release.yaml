@@ -30,7 +30,7 @@ spec:
       DB_PASSWORD:
         valueFrom:
           secretKeyRef:
-            name: bot_immich_pswd
+            name: bot-immich-pswd
             key: password
       IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
 
