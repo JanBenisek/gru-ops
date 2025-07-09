@@ -20,20 +20,10 @@ spec:
 
     postgresql:
       enabled: false
-      auth:
-        postgresPassword: "changeme"
-        database: joplin
-        username: joplinuser
-        password: joplinpass
-      primary:
-        persistence:
-          enabled: true
-          existingClaim: ""
-          storageClass: ""
-          # size: 8Gi
 
     common:
       name: joplin
+
 
       service:
         type: ClusterIP
@@ -84,15 +74,20 @@ spec:
 
       # env variables
       variables:
-        secret: {}
+        secret:
+          POSTGRES_PASSWORD:
+            valueFrom:
+              secretKeyRef:
+                name: bot_joplin_pswd
+                key: password
         nonSecret:
           DB_CLIENT: pg
           POSTGRES_DATABASE: "joplin"
-          POSTGRES_USER: "joplinuser"
+          POSTGRES_USER: "bot_joplin"
           POSTGRES_PASSWORD: "joplinpass"
-          POSTGRES_HOST: "joplin-postgresql" # if postgresql.enabled, must be RELEASE-NAME-postgresql (ex: my-wakapi-postgresql)
+          POSTGRES_HOST: "postgresql.pengiuns.com"
           POSTGRES_PORT: "5432"
-          APP_BASE_URL: https://joplin.une-tasse-de.cafe
+          APP_BASE_URL: https://joplin.pengiuns.com
           MAILER_ENABLED: 0 # set to 1 to enable mailing
           MAILER_HOST: "mail.une-tasse-de.cafe"
           MAILER_PORT: 25

@@ -182,7 +182,30 @@ k create secret generic bot-immich-pswd \
 - [GitHub](https://github.com/laurent22/joplin)
 - [values](https://artifacthub.io/packages/helm/rubxkube/joplin?modal=values)
 - [Helm Chart](https://github.com/RubxKube/charts/tree/main/charts/joplin)
+- Set up DB
+```sql
+CREATE DATABASE joplin;
+CREATE USER bot_joplin WITH PASSWORD 'pswd';
+GRANT ALL PRIVILEGES ON DATABASE joplin TO bot_joplin;
 
+GRANT USAGE ON SCHEMA public TO bot_joplin;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO bot_joplin;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO bot_joplin;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO bot_joplin;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON SEQUENCES TO bot_joplin;
+```
+
+- sealed secret
+```shell
+export PUBLICKEY="sealed-secrets-public.crt"
+
+k create secret generic bot-joplin-pswd \
+  --namespace joplin \
+  --dry-run=client \
+  --from-literal=password=<pswd> -o json \
+  | kubeseal --cert "./${PUBLICKEY}" \
+  > /home/github/gru-ops/gitops/manifests/joplin/bot_joplin_pswd.yaml
+```
 
 ### jupyter
 
