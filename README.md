@@ -163,7 +163,7 @@ export PUBLICKEY="sealed-secrets-public.crt"
 k create secret generic bot-immich-pswd \
   --namespace immich \
   --dry-run=client \
-  --from-literal=password=<pswd> -o json \
+  --from-literal=password=squeals-dispatch-fussy-seaside -o json \
   | kubeseal --cert "./${PUBLICKEY}" \
   > /home/github/gru-ops/gitops/manifests/immich/bot_immich_pswd.yaml
 ```
@@ -202,7 +202,7 @@ export PUBLICKEY="sealed-secrets-public.crt"
 k create secret generic bot-joplin-pswd \
   --namespace joplin \
   --dry-run=client \
-  --from-literal=password=<pswd> -o json \
+  --from-literal=password=moya-psychics-rutledge-defences -o json \
   | kubeseal --cert "./${PUBLICKEY}" \
   > /home/github/gru-ops/gitops/manifests/joplin/bot_joplin_pswd.yaml
 ```
