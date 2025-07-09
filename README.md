@@ -139,6 +139,35 @@ kubectl create secret generic basic-auth \
 - Homepage for all tools [source](https://gethomepage.dev/).
 - [List of icons](https://github.com/walkxcode/dashboard-icons)
 
+### Immich
+- [Docs](https://immich.app/docs/install/kubernetes/)
+- [Helm](https://github.com/immich-app/immich-charts/blob/main/README.md)
+- [Chart Repo](https://artifacthub.io/packages/helm/immich/immich)
+
+- Set up DB
+```sql
+CREATE DATABASE immich;
+CREATE USER bot_immich WITH PASSWORD 'your_strong_password';
+GRANT ALL PRIVILEGES ON DATABASE immich TO bot_immich;
+
+GRANT USAGE ON SCHEMA public TO bot_immich;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO bot_immich;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO bot_immich;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO bot_immich;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON SEQUENCES TO bot_immich;
+```
+- sealed secret
+```shell
+export PUBLICKEY="sealed-secrets-public.crt"
+
+k create secret generic bot-immich-pswd \
+  --namespace immich \
+  --dry-run=client \
+  --from-literal=password=<pswd> -o json \
+  | kubeseal --cert "./${PUBLICKEY}" \
+  > /home/github/gru-ops/gitops/manifests/immich/bot_immich_pswd.yaml
+```
+
 ### ingress-nginx
 
 - Ingress, works like a charm.
