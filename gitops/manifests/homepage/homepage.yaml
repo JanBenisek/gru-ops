@@ -114,6 +114,18 @@ data:
             description: My data!
             namespace: nextcloud
             app: nextcloud
+        - Immich:
+            icon: immich.png
+            href: https://immich.pengiuns.com
+            description: So pretty!
+            namespace: immich
+            app: immich
+        - Joplin:
+            icon: joplin.png
+            href: https://joplin.pengiuns.com
+            description: Document it!
+            namespace: joplin
+            app: joplin
 
     - Fun:
         - Hiker:
