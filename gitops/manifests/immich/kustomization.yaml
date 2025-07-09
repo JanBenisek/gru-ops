@@ -6,3 +6,4 @@ resources:
   - pvc-immich.yaml
   - repository.yaml
   - release.yaml
+  - bot_immich_pswd.yaml
