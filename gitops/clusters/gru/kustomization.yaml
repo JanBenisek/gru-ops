@@ -40,7 +40,7 @@ resources:
   - nextcloud.yaml
   # - joplin.yaml
   - immich-cnpg.yaml
-  # - immich.yaml
+  # - immich-app.yaml
 configMapGenerator:
   - name: gru-values
     envs:
