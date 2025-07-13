@@ -21,6 +21,20 @@ spec:
     postgresql:
       enabled: false
 
+    # postgresql:
+    #   enabled: true
+    #   auth:
+    #     postgresPassword: "changeme"
+    #     database: joplin
+    #     username: joplinuser
+    #     password: joplinpass
+    #   primary:
+    #     persistence:
+    #       enabled: true
+    #       existingClaim: ""
+    #       storageClass: ""
+    #       # size: 8Gi
+
     common:
       name: joplin
 
@@ -84,7 +98,7 @@ spec:
           DB_CLIENT: pg
           POSTGRES_DATABASE: "joplin"
           POSTGRES_USER: "bot_joplin"
-          POSTGRES_PASSWORD: "moya-psychics-rutledge-defences"
+          # POSTGRES_PASSWORD: "nope"
           POSTGRES_HOST: "postgresql.pengiuns.com"
           POSTGRES_PORT: "5432"
           APP_BASE_URL: https://joplin.pengiuns.com
