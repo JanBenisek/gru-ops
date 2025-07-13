@@ -65,9 +65,7 @@ spec:
           # secret:
           #   name: bot-immich-pswd 
           postInitSQL:
-            # - CREATE EXTENSION IF NOT EXISTS "vectors";
-            # - CREATE EXTENSION IF NOT EXISTS "cube" CASCADE;
-            # - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
+            - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
 
       backups:
         # TODO
