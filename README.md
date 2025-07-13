@@ -36,7 +36,9 @@ k create secret generic cloudflare-api-token \
 - Because immich needs `VectorChord` extension which is too hard to install in bitnami chart.
   - [VectorChord Github](https://github.com/tensorchord/VectorChord/)
 
-- I went with `Cluster` deployment, seems easier
+- I went with `Cluster` deployment, seems easier.
+  - Not all values are in `values.yaml` (see the link below)
+  - [Docs](https://cloudnative-pg.io/documentation/1.24/installation_upgrade/)
   - [CloudNative Chart](https://github.com/cloudnative-pg/charts)
   - [Getting Started](https://github.com/cloudnative-pg/charts/blob/main/charts/cluster/docs/Getting%20Started.md)
   - [Values](https://github.com/cloudnative-pg/charts/blob/main/charts/cluster/values.yaml)
@@ -178,7 +180,7 @@ k create secret generic bot-immich-pswd \
   --namespace immich \
   --type=kubernetes.io/basic-auth \
   --from-literal=username=bot_immich \
-  --from-literal=password=squeals-dispatch-fussy-seaside \
+  --from-literal=password=<secret> \
   --dry-run=client -o json \
   | kubeseal --cert "./${PUBLICKEY}" \
   > /home/github/gru-ops/gitops/manifests/immich/cnpg/bot_immich_pswd.yaml

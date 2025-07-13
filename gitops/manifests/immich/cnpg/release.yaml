@@ -27,6 +27,16 @@ spec:
       imageName: "tensorchord/vchord-postgres:pg17-v0.4.3"
       imagePullPolicy: Always
 
+      managed:
+        services:
+          disabledDefaultServices: ["ro", "r"]
+        roles:
+          - name: bot_immich
+            superuser: true
+            login: true
+            passwordSecret:
+              name: bot-immich-pswd
+
       storage:
         size: 10Gi
         storageClass: "local-hostpath-kevin"
@@ -41,8 +51,8 @@ spec:
       
       logLevel: "debug"
 
-      enableSuperuserAccess: true
-      superuserSecret: "changeme"
+      enableSuperuserAccess: false # should not be needed 
+      # superuserSecret: "changeme"
 
       monitoring:
         # -- Whether to enable monitoring
@@ -52,13 +62,16 @@ spec:
         initdb:
           database: immich
           owner: bot_immitch
-          secret:
-            name: bot-immich-pswd # TODO: rebuilt, needs to be password=
+          # secret:
+          #   name: bot-immich-pswd 
           postInitSQL:
-            - CREATE EXTENSION IF NOT EXISTS "vectors";
+            # - CREATE EXTENSION IF NOT EXISTS "vectors";
             # - CREATE EXTENSION IF NOT EXISTS "cube" CASCADE;
             # - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
 
+      backups:
+        # TODO
+        enabled: false
 
 
 

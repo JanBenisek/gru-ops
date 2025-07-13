@@ -6,4 +6,4 @@ resources:
   - repository.yaml
   - release.yaml
   - bot_immich_pswd.yaml
-  - pvc-cnpg.yaml
+  - pvc-service.yaml
