@@ -1,0 +1,23 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "bot-immich-pswd",
+    "namespace": "immich",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "bot-immich-pswd",
+        "namespace": "immich",
+        "creationTimestamp": null
+      },
+      "type": "kubernetes.io/basic-auth"
+    },
+    "encryptedData": {
+      "password": "AgARXF1rMDeAwc/In/2ejQsufzLmcyjwv6uUhSxhuNLUG7374z8Ob7imSlHpC2jXFmVXKoTWtmvr37mfCQ4UCyqShLSv0KfNoI9BnFeZaJ6Gl0hKeEKNAZuwiIHtXXE0cvs73HtaoEsD4k23uawYIIn8zO52rD96GqNLhVdjgxyLtFcp7sEZrxB7MxwNb/sTI9cVEjqmA8jerbTDNgF+orzB38Zw7JKPos2azVPpcd8byO5O/3auG/MGhN+zLqhEEUemHSBmxgMpViBYSevPUzRhqe4MpIWsLKPfD0d8zFTbA/xfpA8WvCmNJRFWjt5qX06/2s4AWZmgkfb8ZsX69vmVHAp9jdFzdUhtqlPCLZFvqogQUoNssAqeYlc4R4DnyXSyJTNES/9CGxGvNR71uV45QiTThHkQo68N5cO8NCf6gd6PubhRGkQuNXK26dZ8NrXYlHyaDJFkAaBwqYT6HWTsB61Gv9+Ckx6AljgV5dMfFf3f/ckp2wUvC/bnCDZnVXrgIh9zmhfXUu0AKEaQ3rHorvv/w+3T0ITedLPjHs7nU/0dZdCsOelJJgLgw017+xMHDG9wQTbrsaa6jEIGYeUZy8j8meSvMAveD4ZfcxW+v8osXsFpSchH2bVx5sJjNVMsf1sINl3t9qcfZtTRGpLurp8wCpUPSFfN9OSNdA1l2tfKjy/pvLwJ9y81cmdcgdovNY/UdUXgOHwukDGDP/0+I6MPcrg5I06oLLrsqrE=",
+      "username": "AgBwa8tIiYm4tNbvjvJTBP3HboqD48b4aR8xClUJ5UCiRRrfG2XFHwFkCq7SxcOzLTigDAv0TW3DJFDRh+Is2ItfFTIbwS+IxTUwK76Bs2LBmyCODgenJhe1+iIiKK97eLMmRsejwPIr0pAFXsKTyLbQ1iODm9ahQwMBs/MafotAM0r738aDouI/vCodkQ5opq7pNNb5LnxxOllXcqlc4/+d9US3of/xMattQbYRih6VNucyaXn4/dUmy5N29fnf9y0de85jozSbrxsGF1EplhRyKPx3kII3fSf9vrNIn1DdyxJPoSs0IbmBy+U07rob8AXAQ8iubW+wl7MoZ4hZdBW1HMM8gNIOH2oxNFFzw515kkj+uUCVyXpn9SCZMWMcCRWumdMVPLORYs5L300O72Vqvjg0oVsorsT1L/Ss6gWCpg0nYY0+FU5cxo4uQ7jL1C5nj1qlHWJkXDO/eT624aM+LK8Jh/MnfgnHkhNzm/dMDwxZOruLl0jhL2qXbzoAd6uTSpfUgMZiC+pkiMfhxrKmVB91EHTM0/hkAxPl+zURSNO1Ux67LahetBY0JNWNM/CC7JXk3VC+9aAPpJVYzmqJiNKMPpuT7+D+HoChiyedgdb4uzx2elXuQmc7W+1k/kzTiwfa44BOranIHf2TG0zjCip/LEVxzhlqB2evEZ0HOvev85T5WBW6U5w8vQRwm4CplpDqQvF2TxLR"
+    }
+  }
+}
