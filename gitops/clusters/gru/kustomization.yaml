@@ -39,8 +39,9 @@ resources:
   # - collabora.yaml
   - nextcloud.yaml
   - joplin.yaml
-  - immich-cnpg.yaml
-  - immich-app.yaml
+  # - immich-cnpg-crds.yaml
+  # - immich-cnpg.yaml
+  # - immich-app.yaml
 configMapGenerator:
   - name: gru-values
     envs:

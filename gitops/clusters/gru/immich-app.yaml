@@ -10,6 +10,8 @@ spec:
   timeout: 10m
   validation: server
   dependsOn:
+    - name: immich-cnpg
+      namespace: flux-system
     - name: external-dns
       namespace: flux-system
     - name: openebs

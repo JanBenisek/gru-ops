@@ -42,6 +42,8 @@ k create secret generic cloudflare-api-token \
   - [CloudNative Chart](https://github.com/cloudnative-pg/charts)
   - [Getting Started](https://github.com/cloudnative-pg/charts/blob/main/charts/cluster/docs/Getting%20Started.md)
   - [Values](https://github.com/cloudnative-pg/charts/blob/main/charts/cluster/values.yaml)
+- crds:
+  - [values](https://artifacthub.io/packages/helm/cloudnative-pg/cloudnative-pg)
 - Immich related
   - [example](https://gist.github.com/kabakaev/1d8fa31d4e7fa8134c968101fa88d200)
 
