@@ -39,7 +39,7 @@ resources:
   # - collabora.yaml
   - nextcloud.yaml
   - joplin.yaml
-  - immich-crds.yaml
+  - immich-cnpg.yaml
   - immich-cluster.yaml
   - immich-app.yaml
 configMapGenerator:
