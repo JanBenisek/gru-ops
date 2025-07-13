@@ -10,8 +10,6 @@ spec:
   timeout: 20m 
   validation: server
   dependsOn:
-    - name: cnpg
-      namespace: flux-system
     - name: external-dns
       namespace: flux-system
     - name: openebs
