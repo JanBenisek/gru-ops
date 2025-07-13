@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cluster-external
+  namespace: immich
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: immichcluster.${DOMAIN_NAME}
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 192.168.178.151 # pick from `k get ipaddresspool -A`
+  selector:
+    cnpg.io/cluster: cluster # must match my cluster name
+    role: primary
+  ports:
+    - name: cluster
+      port: 5432
+      targetPort: 5432
