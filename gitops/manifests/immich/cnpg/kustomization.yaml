@@ -5,5 +5,3 @@ resources:
   - namespace.yaml
   - repository.yaml
   - release.yaml
-  - bot_immich_pswd.yaml
-  - cnpg-service.yaml
