@@ -23,7 +23,7 @@ spec:
 
     env:
       REDIS_HOSTNAME: '{{ printf "%s-redis-master" .Release.Name }}'
-      DB_HOSTNAME: "postgresql.pengiuns.com"
+      DB_HOSTNAME: "cnpg.pengiuns.com"
       DB_USERNAME: "bot_immich"
       DB_DATABASE_NAME: "immich"
       # -- You should provide your own secret outside of this helm-chart and use `postgresql.global.postgresql.auth.existingSecret` to provide credentials to the postgresql instance
@@ -32,15 +32,15 @@ spec:
           secretKeyRef:
             name: bot-immich-pswd
             key: password
-      IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
+      # IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
 
     image:
       tag: v1.119.0
 
     immich:
       metrics:
-        # Enabling this will create the service monitors needed to monitor immich with the prometheus operator
-        enabled: true
+        # TODO: Enable metrics
+        enabled: false
       persistence:
         # Main data store for all photos shared between different components.
         library:
@@ -90,16 +90,3 @@ spec:
 
     machine-learning:
       enabled: false # to be reviewed
-      image:
-        repository: ghcr.io/immich-app/immich-machine-learning
-        pullPolicy: IfNotPresent
-      env:
-        TRANSFORMERS_CACHE: /cache
-      persistence:
-        cache:
-          enabled: true
-          size: 10Gi
-          # Optional: Set this to pvc to avoid downloading the ML models every start.
-          type: emptyDir
-          accessMode: ReadWriteMany
-          # storageClass: your-class
