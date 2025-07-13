@@ -32,6 +32,20 @@ k create secret generic cloudflare-api-token \
   > /Users/janbenisek/GithubRepos/gru-ops/gitops/manifests/cert-manager/secrets/cloudflare-api-token.yaml
 ```
 
+## cnpg
+- Because immich needs `VectorChord` extension which is too hard to install in bitnami chart.
+  - [VectorChord Github](https://github.com/tensorchord/VectorChord/)
+
+- I went with `Cluster` deployment, seems easier
+  - [CloudNative Chart](https://github.com/cloudnative-pg/charts)
+  - [Getting Started](https://github.com/cloudnative-pg/charts/blob/main/charts/cluster/docs/Getting%20Started.md)
+  - [Values](https://github.com/cloudnative-pg/charts/blob/main/charts/cluster/values.yaml)
+- Immich related
+  - [example](https://gist.github.com/kabakaev/1d8fa31d4e7fa8134c968101fa88d200)
+
+
+
+
 ### Collabora
 - [GitHub](https://github.com/CollaboraOnline/online)
 - [Helm Chart](https://artifacthub.io/packages/helm/collabora-online/collabora-online)
@@ -162,20 +176,15 @@ export PUBLICKEY="sealed-secrets-public.crt"
 
 k create secret generic bot-immich-pswd \
   --namespace immich \
-  --dry-run=client \
-  --from-literal=password=squeals-dispatch-fussy-seaside -o json \
+  --type=kubernetes.io/basic-auth \
+  --from-literal=username=bot_immich \
+  --from-literal=password=squeals-dispatch-fussy-seaside \
+  --dry-run=client -o json \
   | kubeseal --cert "./${PUBLICKEY}" \
-  > /home/github/gru-ops/gitops/manifests/immich/bot_immich_pswd.yaml
+  > /home/github/gru-ops/gitops/manifests/immich/cnpg/bot_immich_pswd.yaml
 ```
 
-- install extension
-  - https://docs.vectorchord.ai/getting-started/installation.html
-  - https://github.com/immich-app/immich-charts/issues/149
-```shell
-kubectl exec -n postgresql -it postgresql-0 -- bash
 
-
-```
 
 ### ingress-nginx
 

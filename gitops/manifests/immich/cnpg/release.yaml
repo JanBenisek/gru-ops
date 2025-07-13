@@ -1,0 +1,135 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cnpg
+  namespace: immich
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: cluster
+      version: "0.3.1"
+      sourceRef:
+        kind: HelmRepository
+        name: cnpg
+        namespace: immich
+      interval: 12h
+  values:
+    # here
+    type: postgresql
+    version:
+      # -- PostgreSQL major version to use
+    postgresql: "17"
+
+    cluster:
+      # -- Number of instances
+      instances: 1
+      imageName: "tensorchord/vchord-postgres:pg17-v0.4.3"
+      imagePullPolicy: Always
+
+      storage:
+        size: 10Gi
+        storageClass: "local-hostpath-kevin"
+
+      resources: 
+        requests:
+          memory: "2Gi"  
+          cpu: "200m"      
+        limits:
+          memory: "3Gi"  
+          cpu: "500m"  
+      
+      logLevel: "debug"
+
+      enableSuperuserAccess: true
+      superuserSecret: "changeme"
+
+      monitoring:
+        # -- Whether to enable monitoring
+        enabled: true
+
+      bootstrap:
+        initdb:
+          database: immich
+          owner: bot_immitch
+          secret:
+            name: bot-immich-pswd # TODO: rebuilt, needs to be password=
+          postInitSQL:
+            - CREATE EXTENSION IF NOT EXISTS "vectors";
+            # - CREATE EXTENSION IF NOT EXISTS "cube" CASCADE;
+            # - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
+
+
+
+
+
+
+
+
+
+
+
+    # TODO: review storage, reuse user name and pswd bot_immich! Review all settings
+    # TODO: imngress, resources
+    image:
+      repository: tensorchord/vchord-postgres:pg14-v0.4.3
+      tag: pg17-v0.4.3
+
+    resources: 
+      requests:
+        memory: "2Gi"  
+        cpu: "200m"      
+      limits:
+        memory: "3Gi"  
+        cpu: "500m"  
+
+    monitoring:
+      podMonitorEnabled: true
+      grafanaDashboard:
+        create: true
+
+    instances: 1
+
+    # postgresql:
+    #   sharedPreloadLibraries:
+    #     - vectors.so
+
+    enableSuperuserAccess: true
+
+    managed:
+      roles:
+        - name: immich
+          superuser: true
+          login: true
+          passwordSecret:
+            name: immich-postgres-user
+
+    bootstrap:
+      initdb:
+        database: immich
+        owner: immich
+        postInitSQL:
+          - CREATE EXTENSION IF NOT EXISTS "vectors";
+          - CREATE EXTENSION IF NOT EXISTS "cube" CASCADE;
+          - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
+
+    storage:
+      size: 8Gi
+      storageClass: rook-ceph-block
+
+    # backup:
+    #   barmanObjectStore:
+    #     destinationPath: "s3://cnpg-immich-backup-bucket-name"
+    #     endpointURL: "https://minio.example.com"
+    #     s3Credentials:
+    #       accessKeyId:
+    #         name: s3-immich
+    #         key: ACCESS_KEY_ID
+    #       secretAccessKey:
+    #         name: s3-immich
+    #         key: ACCESS_SECRET_KEY
+    #     data:
+    #       compression: bzip2
+    #     wal:
+    #       compression: bzip2
+    #   retentionPolicy: "30d"
