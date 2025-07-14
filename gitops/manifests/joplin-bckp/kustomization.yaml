@@ -3,5 +3,6 @@ kind: Kustomization
 namespace: joplin
 resources:
   - namespace.yaml
-  - joplin.yaml
+  - repository.yaml
+  - release.yaml
   - bot_joplin_pswd.yaml
