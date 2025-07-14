@@ -210,11 +210,8 @@ CREATE DATABASE joplin;
 CREATE USER bot_joplin WITH PASSWORD 'pswd';
 GRANT ALL PRIVILEGES ON DATABASE joplin TO bot_joplin;
 
-GRANT USAGE ON SCHEMA public TO bot_joplin;
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO bot_joplin;
-GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO bot_joplin;
-ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO bot_joplin;
-ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON SEQUENCES TO bot_joplin;
+-- I must connect to the db `joplin` with postgres (admin) user and run this!
+GRANT ALL ON SCHEMA public TO bot_joplin;
 ```
 
 - sealed secret
