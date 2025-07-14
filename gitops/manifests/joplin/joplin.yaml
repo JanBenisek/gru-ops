@@ -26,7 +26,7 @@ spec:
         env:
         # TODO: Review emailer
         - name: APP_PORT
-          value: 22300
+          value: "22300"
         - name: APP_BASE_URL
           value: "${APP_BASE_URL}"
         - name: DB_CLIENT
@@ -41,15 +41,15 @@ spec:
               name: bot-joplin-pswd
               key: password
         - name: POSTGRES_PORT
-          value: 5432
+          value: "5432"
         - name: POSTGRES_HOST
           value: "${POSTGRESQL_HOST}" 
         - name: MAILER_ENABLED
-          value: 0
+          value: "0"
         - name: MAILER_HOST
           value: "fake.mailer"
         - name: MAILER_PORT
-          value: 25
+          value: "25"
         - name: MAILER_SECURITY
           value: "none"
         - name: MAILER_AUTH_USER
