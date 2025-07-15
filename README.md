@@ -312,7 +312,7 @@ k create secret generic hetzner-credentials \
 k create secret generic restic-credentials \
   --namespace k8up \
   --dry-run=client \
-  --from-literal=password=foo \
+  --from-literal=password=foo -o json \
   | kubeseal --cert "./${PUBLICKEY}" \
   > /home/github/gru-ops/gitops/manifests/k8up/restic-credentials.yaml
 ```
