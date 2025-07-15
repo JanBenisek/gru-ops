@@ -290,6 +290,12 @@ bob:$6$hashed...:18599:0:99999:7:::
 ```
 - Tar them together `tar czvf users.tar.gz passwd shadow`
 
+
+## k8up
+- Backup of PVs and DBs
+- [Repo](https://github.com/k8up-io/k8up)
+- [Values](https://github.com/k8up-io/k8up/tree/master/charts/k8up)
+
 ## metabase
 
 - [values](https://github.com/pmint93/helm-charts/tree/master/charts/metabase)
