@@ -304,8 +304,8 @@ export PUBLICKEY="sealed-secrets-public.crt"
 k create secret generic hetzner-credentials \
   --namespace k8up \
   --dry-run=client \
-  --from-literal=username=RYH6OMTZVDF0D0UR4B4X \
-  --from-literal=password=foo \
+  --from-literal=username=RYH6OMTZVDF0D0UR4B4X -o json \
+  --from-literal=password=foo -o json \
   | kubeseal --cert "./${PUBLICKEY}" \
   > /home/github/gru-ops/gitops/manifests/k8up/hetzner-credentials.yaml
 
