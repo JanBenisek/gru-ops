@@ -314,7 +314,7 @@ k create secret generic restic-credentials \
   --dry-run=client \
   --from-literal=password=foo \
   | kubeseal --cert "./${PUBLICKEY}" \
-  > /home/github/gru-ops/gitops/manifests/k8up/hetzner-credentials.yaml
+  > /home/github/gru-ops/gitops/manifests/k8up/restic-credentials.yaml
 ```
 
 ## metabase
