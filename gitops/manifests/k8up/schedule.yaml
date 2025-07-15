@@ -24,11 +24,11 @@ spec:
     # optional
     #promURL: https://prometheus-io-instance:8443
   check:
-    schedule: '0 1 * * 1'
+    schedule: '0 1 * * 1' # runs every monday, validates integrity of backup
     # optional
     #promURL: https://prometheus-io-instance:8443
   prune:
-    schedule: '0 1 * * 0'
+    schedule: '0 1 * * 0' #Every sunday at 1am, prunes based on retention policy
     retention:
-      keepLast: 5
-      keepDaily: 14
+      keepLast: 5 # keeps last 5 snapshots
+      keepDaily: 14 # one backup per day for 14 days

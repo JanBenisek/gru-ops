@@ -3,8 +3,8 @@
   metadata:
     name: jupyter
     namespace: jupyter
-    # annotations:
-      # k8up.io/backup: "true"
+    annotations:
+      k8up.io/backup: "true"
   spec:
     interval: 30m
     chart:
