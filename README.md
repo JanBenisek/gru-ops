@@ -221,7 +221,7 @@ export PUBLICKEY="sealed-secrets-public.crt"
 k create secret generic bot-joplin-pswd \
   --namespace joplin \
   --dry-run=client \
-  --from-literal=password=moya-psychics-rutledge-defences -o json \
+  --from-literal=password=foo -o json \
   | kubeseal --cert "./${PUBLICKEY}" \
   > /home/github/gru-ops/gitops/manifests/joplin/bot_joplin_pswd.yaml
 ```
@@ -295,6 +295,27 @@ bob:$6$hashed...:18599:0:99999:7:::
 - Backup of PVs and DBs
 - [Repo](https://github.com/k8up-io/k8up)
 - [Values](https://github.com/k8up-io/k8up/tree/master/charts/k8up)
+
+- Secrets
+```shell
+export PUBLICKEY="sealed-secrets-public.crt"
+
+# Hetzner
+k create secret generic hetzner-credentials \
+  --namespace k8up \
+  --dry-run=client \
+  --from-literal=username=RYH6OMTZVDF0D0UR4B4X \
+  --from-literal=password=foo \
+  | kubeseal --cert "./${PUBLICKEY}" \
+  > /home/github/gru-ops/gitops/manifests/k8up/hetzner-credentials.yaml
+
+k create secret generic restic-credentials \
+  --namespace k8up \
+  --dry-run=client \
+  --from-literal=password=foo \
+  | kubeseal --cert "./${PUBLICKEY}" \
+  > /home/github/gru-ops/gitops/manifests/k8up/hetzner-credentials.yaml
+```
 
 ## metabase
 

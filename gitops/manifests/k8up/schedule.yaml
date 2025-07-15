@@ -6,8 +6,8 @@ metadata:
 spec:
   backend:
     s3:
-      endpoint: http://minio:9000
-      bucket: backups
+      endpoint: https://hel1.your-objectstorage.com
+      bucket: pengiunsbackup
       accessKeyIDSecretRef:
         name: minio-credentials
         key: username
