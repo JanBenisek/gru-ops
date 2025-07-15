@@ -3,6 +3,9 @@ kind: HelmRelease
 metadata:
   name: postgresql
   namespace: postgresql
+  # annotations:
+      # k8up.io/backupcommand: sh -c 'PGDATABASE=joplin PGUSER="$POSTGRES_USER" PGPASSWORD="$POSTGRES_PASSWORD" pg_dump --clean'
+      # k8up.io/file-extension: .sql
 spec:
   interval: 30m
   chart:
