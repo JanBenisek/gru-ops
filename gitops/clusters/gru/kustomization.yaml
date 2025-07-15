@@ -41,7 +41,7 @@ resources:
   - joplin.yaml
   - immich-cnpg.yaml
   - immich-cluster.yaml
-  - immich-app.yaml
+  # - immich-app.yaml
   - k8up.yaml
 configMapGenerator:
   - name: gru-values
