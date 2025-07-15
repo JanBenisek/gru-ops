@@ -9,13 +9,13 @@ spec:
       endpoint: https://hel1.your-objectstorage.com
       bucket: pengiunsbackup
       accessKeyIDSecretRef:
-        name: minio-credentials
+        name: hetzner-credentials
         key: username
       secretAccessKeySecretRef:
-        name: minio-credentials
+        name: hetzner-credentials
         key: password
     repoPasswordSecretRef:
-      name: backup-repo
+      name: restic-credentials
       key: password
   backup:
     schedule: "0 2 * * *" # runs daily at 2am
