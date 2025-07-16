@@ -42,6 +42,7 @@ resources:
   - immich-cnpg.yaml
   - immich-cluster.yaml
   # - immich-app.yaml
+  - k8up-crds.yaml
   - k8up.yaml
 configMapGenerator:
   - name: gru-values
