@@ -295,6 +295,7 @@ bob:$6$hashed...:18599:0:99999:7:::
 - Backup of PVs and DBs
 - [Repo](https://github.com/k8up-io/k8up)
 - [Values](https://github.com/k8up-io/k8up/tree/master/charts/k8up)
+- Created Hetzner Bucket
 
 - Secrets
 ```shell

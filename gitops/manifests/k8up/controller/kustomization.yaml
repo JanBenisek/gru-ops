@@ -7,5 +7,5 @@ resources:
   - release.yaml
   - hetzner-credentials.yaml
   - restic-credentials.yaml
-  - backup.yaml
+  # - backup.yaml # run this with k apply -f backup.yaml
   - schedule.yaml
