@@ -24,8 +24,15 @@ spec:
               repository: triliumnext/notes
               tag: v0.92.4
               pullPolicy: IfNotPresent
-            env:
-              key: "value"
+            # env:
+            #   key: "value"
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+
 
     persistence:
       data:
