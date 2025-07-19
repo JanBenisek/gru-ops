@@ -45,7 +45,7 @@ spec:
       volumes:
       - name: trilium-data
         persistentVolumeClaim:
-          claimName: trilium-data
+          claimName: pvc-trilium
       - name: tz-config
         hostPath:
           path: /etc/timezone
