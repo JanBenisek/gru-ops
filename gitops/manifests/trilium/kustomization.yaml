@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: trilium
 resources:
   - namespace.yaml
-  - release.yaml
-  - repository.yaml
+  # - release.yaml
+  # - repository.yaml
   - pvc-trilium.yaml
+  - trilium-docker.yaml
