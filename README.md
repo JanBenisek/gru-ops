@@ -447,7 +447,7 @@ k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-se
 - https://github.com/Stirling-Tools/Stirling-PDF/blob/main/Version-groups.md
 - https://github.com/Stirling-Tools/Stirling-PDF?tab=readme-ov-file
 
-### Trillium
+### Trilium
 - [Helm](https://github.com/TriliumNext/helm-charts)
 - [Docker](https://github.com/TriliumNext/Trilium/blob/main/docs/User%20Guide/User%20Guide/Installation%20&%20Setup/Server%20Installation/1.%20Installing%20the%20server/Using%20Docker.md)
 - [App](https://formulae.brew.sh/cask/triliumnext-notes)

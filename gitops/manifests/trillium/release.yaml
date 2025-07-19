@@ -59,10 +59,17 @@ spec:
           nginx.ingress.kubernetes.io/proxy-send-timeout: "900"
           nginx.ingress.kubernetes.io/proxy-read-timeout: "900"
           nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "900"
+        # hosts:
+        # - host: trilium.${DOMAIN_NAME}
+        #   paths:
+        #     - path: "/api/v1"
         hosts:
-         - host: trilium.${DOMAIN_NAME}
-           paths:
-             - path: "/api/v1"
+          - host: trilium.${DOMAIN_NAME}
+            paths:
+              - path: /
+                pathType: Prefix
+
+        
         tls:
           - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
             hosts:
