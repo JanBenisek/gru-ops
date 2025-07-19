@@ -79,10 +79,11 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
-                service:
-                  name: trilium
-                  port:
-                    number: 80
+                backend:
+                  service:
+                    name: trilium
+                    port:
+                      number: 80
 
         
         tls:
