@@ -27,13 +27,13 @@ spec:
             # env:
             #   key: "value"
 
-    # service:
-    #   main:
-    #     enabled: true
-    #     type: ClusterIP
-    #     ports:
-    #       http:
-    #         port: 8080
+    service:
+      main:
+        enabled: true
+        type: ClusterIP
+        ports:
+          http:
+            port: 8080
 
 
     persistence:
