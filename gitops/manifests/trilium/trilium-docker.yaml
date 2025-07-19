@@ -36,24 +36,24 @@ spec:
         volumeMounts:
         - name: trilium-data
           mountPath: /home/node/trilium-data
-        - name: tz-config
-          mountPath: /etc/timezone
-          readOnly: true
-        - name: localtime-config
-          mountPath: /etc/localtime
-          readOnly: true
+        # - name: tz-config
+        #   mountPath: /etc/timezone
+        #   readOnly: true
+        # - name: localtime-config
+        #   mountPath: /etc/localtime
+        #   readOnly: true
       volumes:
       - name: trilium-data
         persistentVolumeClaim:
           claimName: pvc-trilium
-      - name: tz-config
-        hostPath:
-          path: /etc/timezone
-          type: File
-      - name: localtime-config
-        hostPath:
-          path: /etc/localtime
-          type: File
+      # - name: tz-config
+      #   hostPath:
+      #     path: /etc/timezone
+      #     type: File
+      # - name: localtime-config
+      #   hostPath:
+      #     path: /etc/localtime
+      #     type: File
 ---
 apiVersion: v1
 kind: Service
