@@ -199,33 +199,6 @@ k create secret generic bot-immich-pswd \
 
 - Set of interesting IT tools.
 
-
-### joplin
-- [GitHub](https://github.com/laurent22/joplin)
-- [values](https://artifacthub.io/packages/helm/rubxkube/joplin?modal=values)
-- [Helm Chart](https://github.com/RubxKube/charts/tree/main/charts/joplin)
-- Set up DB
-```sql
-CREATE DATABASE joplin;
-CREATE USER bot_joplin WITH PASSWORD 'pswd';
-GRANT ALL PRIVILEGES ON DATABASE joplin TO bot_joplin;
-
--- I must connect to the db `joplin` with postgres (admin) user and run this!
-GRANT ALL ON SCHEMA public TO bot_joplin;
-```
-
-- sealed secret
-```shell
-export PUBLICKEY="sealed-secrets-public.crt"
-
-k create secret generic bot-joplin-pswd \
-  --namespace joplin \
-  --dry-run=client \
-  --from-literal=password=foo -o json \
-  | kubeseal --cert "./${PUBLICKEY}" \
-  > /home/github/gru-ops/gitops/manifests/joplin/bot_joplin_pswd.yaml
-```
-
 ### jupyter
 
 - [docs](https://z2jh.jupyter.org/en/stable/jupyterhub/installation.html)
@@ -474,7 +447,36 @@ k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-se
 - https://github.com/Stirling-Tools/Stirling-PDF/blob/main/Version-groups.md
 - https://github.com/Stirling-Tools/Stirling-PDF?tab=readme-ov-file
 
+### Trillium
+- [Docker](https://github.com/TriliumNext/Trilium/blob/main/docs/User%20Guide/User%20Guide/Installation%20&%20Setup/Server%20Installation/1.%20Installing%20the%20server/Using%20Docker.md)
+
 ## Archive
+
+### joplin
+- [GitHub](https://github.com/laurent22/joplin)
+- [values](https://artifacthub.io/packages/helm/rubxkube/joplin?modal=values)
+- [Helm Chart](https://github.com/RubxKube/charts/tree/main/charts/joplin)
+- Set up DB
+```sql
+CREATE DATABASE joplin;
+CREATE USER bot_joplin WITH PASSWORD 'pswd';
+GRANT ALL PRIVILEGES ON DATABASE joplin TO bot_joplin;
+
+-- I must connect to the db `joplin` with postgres (admin) user and run this!
+GRANT ALL ON SCHEMA public TO bot_joplin;
+```
+
+- sealed secret
+```shell
+export PUBLICKEY="sealed-secrets-public.crt"
+
+k create secret generic bot-joplin-pswd \
+  --namespace joplin \
+  --dry-run=client \
+  --from-literal=password=foo -o json \
+  | kubeseal --cert "./${PUBLICKEY}" \
+  > /home/github/gru-ops/gitops/manifests/joplin/bot_joplin_pswd.yaml
+```
 
 ### NFS
 
