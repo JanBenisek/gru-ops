@@ -38,7 +38,7 @@ resources:
   - metabase.yaml
   # - collabora.yaml
   - nextcloud.yaml
-  - joplin.yaml
+  # - joplin.yaml
   - immich-cnpg.yaml
   - immich-cluster.yaml
   # - immich-app.yaml
