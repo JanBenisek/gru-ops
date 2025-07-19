@@ -3,5 +3,6 @@ kind: Kustomization
 namespace: trillium
 resources:
   - namespace.yaml
-  - trillium.yaml
+  - release.yaml
+  - repository.yaml
   - pvc-trillium.yaml

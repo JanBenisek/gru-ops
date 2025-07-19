@@ -43,7 +43,7 @@ resources:
   # - immich-app.yaml
   - k8up-crds.yaml
   - k8up.yaml
-  # - trillium.yaml
+  - trillium.yaml
 configMapGenerator:
   - name: gru-values
     envs:

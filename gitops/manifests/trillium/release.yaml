@@ -1,0 +1,70 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: trillium
+  namespace: trillium
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: trilium
+      version: "1.3.0"
+      sourceRef:
+        kind: HelmRepository
+        name: trilium
+        namespace: trilium
+      interval: 12h
+  values:
+    # Docker image
+    controllers:
+      main:
+        containers:
+          trilium:
+            image:
+              repository: triliumnext/notes
+              tag: v0.92.4
+              pullPolicy: IfNotPresent
+            env:
+              key: "value"
+
+    persistence:
+      data:
+        enabled: true
+        type: persistentVolumeClaim
+        existingClaim: "pvc-trillium"
+
+    # This is used to modify the config.ini of the Trilium instance
+    configini:
+      general:
+        instanceName: ""
+        # Disable authentication to Trilium? (if you're running it on a private network, or have authentication handled by another component)
+        noAuthentication: true # TODO: review
+        # Disable backups of the database?
+        noBackup: true # TODO review
+      network:
+        host: "0.0.0.0"
+        port: 8080
+        https: false
+        certPath: ""
+        keyPath: ""
+        trustedReverseProxy: true
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-prod"
+          kubernetes.io/ingress.class: "nginx"
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+          nginx.ingress.kubernetes.io/proxy-connect-timeout: "900"
+          nginx.ingress.kubernetes.io/proxy-send-timeout: "900"
+          nginx.ingress.kubernetes.io/proxy-read-timeout: "900"
+          nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "900"
+        hosts:
+         - host: trillium.${DOMAIN_NAME}
+           paths:
+             - path: "/api/v1"
+        tls:
+          - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+            hosts:
+              - "trillium.${DOMAIN_NAME}"
+    
