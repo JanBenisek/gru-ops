@@ -1,8 +1,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: trillium
-  namespace: trillium
+  name: trilium
+  namespace: trilium
 spec:
   interval: 30m
   chart:
@@ -31,7 +31,7 @@ spec:
       data:
         enabled: true
         type: persistentVolumeClaim
-        existingClaim: "pvc-trillium"
+        existingClaim: "pvc-trilium"
 
     # This is used to modify the config.ini of the Trilium instance
     configini:
@@ -60,11 +60,11 @@ spec:
           nginx.ingress.kubernetes.io/proxy-read-timeout: "900"
           nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "900"
         hosts:
-         - host: trillium.${DOMAIN_NAME}
+         - host: trilium.${DOMAIN_NAME}
            paths:
              - path: "/api/v1"
         tls:
           - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
             hosts:
-              - "trillium.${DOMAIN_NAME}"
+              - "trilium.${DOMAIN_NAME}"
     

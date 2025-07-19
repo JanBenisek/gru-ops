@@ -1,10 +1,10 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: trillium
+  name: trilium
   namespace: flux-system
 spec:
-  path: ./gitops/manifests/trillium
+  path: ./gitops/manifests/trilium
   interval: 15m
   prune: true
   timeout: 10m
@@ -24,5 +24,5 @@ spec:
   # healthChecks:
   #   - apiVersion: apps/v1
   #     kind: Deployment
-  #     name: trillium
-  #     namespace: trillium
+  #     name: trilium
+  #     namespace: trilium

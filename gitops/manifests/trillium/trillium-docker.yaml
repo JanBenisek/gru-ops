@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: trillium
-  namespace: trillium
+  name: trilium
+  namespace: trilium
   labels:
-    app: trillium
-    app.kubernetes.io/name: trillium
+    app: trilium
+    app.kubernetes.io/name: trilium
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: trillium
+      app: trilium
   template:
     metadata:
       labels:
-        app: trillium
-        app.kubernetes.io/name: trillium
+        app: trilium
+        app.kubernetes.io/name: trilium
     spec:
       containers:
-      - name: trillium
+      - name: trilium
         image: triliumnext/notes:v0.95.0
         imagePullPolicy: Always
         ports:
@@ -34,7 +34,7 @@ spec:
             memory: "2Gi"  
             cpu: "1" 
         volumeMounts:
-        - name: trillium-data
+        - name: trilium-data
           mountPath: /home/node/trilium-data
         - name: tz-config
           mountPath: /etc/timezone
@@ -43,9 +43,9 @@ spec:
           mountPath: /etc/localtime
           readOnly: true
       volumes:
-      - name: trillium-data
+      - name: trilium-data
         persistentVolumeClaim:
-          claimName: trillium-data
+          claimName: trilium-data
       - name: tz-config
         hostPath:
           path: /etc/timezone
@@ -58,13 +58,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: trillium
-  namespace: trillium
+  name: trilium
+  namespace: trilium
   labels:
-    app.kubernetes.io/name: trillium
+    app.kubernetes.io/name: trilium
 spec:
   selector:
-    app: trillium
+    app: trilium
   ports:
   - name: http
     port: 80 # we talk to 80
@@ -75,7 +75,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: trillium
+  name: trilium
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     kubernetes.io/ingress.class: "nginx"
@@ -88,17 +88,17 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: trillium.${DOMAIN_NAME}
+  - host: trilium.${DOMAIN_NAME}
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: trillium
+            name: trilium
             port:
               number: 80
   tls:
   - hosts:
-      - trillium.${DOMAIN_NAME}
+      - trilium.${DOMAIN_NAME}
     secretName: letsencrypt-wildcard-cert-pengiuns.com-production

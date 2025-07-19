@@ -120,12 +120,12 @@ data:
             description: So pretty!
             namespace: immich
             app: immich
-        - Trillium:
-            icon: trillium.png
-            href: https://trillium.pengiuns.com
+        - Trilium:
+            icon: trilium.png
+            href: https://trilium.pengiuns.com
             description: Document it!
-            namespace: trillium
-            app: trillium
+            namespace: trilium
+            app: trilium
 
     - Fun:
         - Hiker:

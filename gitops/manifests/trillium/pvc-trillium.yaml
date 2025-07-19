@@ -1,8 +1,8 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: pvc-trillium
-  namespace: trillium
+  name: pvc-trilium
+  namespace: trilium
 spec:
   storageClassName: local-hostpath-kevin
   accessModes:
