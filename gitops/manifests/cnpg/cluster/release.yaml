@@ -4,17 +4,25 @@ metadata:
   name: cnpg
   namespace: cnpg
 spec:
+  resources: 
+    requests:
+      memory: "2Gi"  
+      cpu: "200m"      
+    limits:
+      memory: "3Gi"  
+      cpu: "500m"
+
+  monitoring:
+    # -- Whether to enable monitoring
+    enabled: true
+
   instances: 1
   imageName: "tensorchord/vchord-suite:pg17-20250901"
   imagePullPolicy: Always
   storage:
-    size: 5Gi # required, but we’ll override with PVC below
     pvcTemplate:
       spec:
         volumeName: pvc-cnpg-cluster
-        resources:
-          requests:
-            storage: 5Gi # Do I need it twice?
   bootstrap:
     initdb:
       database: immich # CREATE DATABASE immich;
@@ -33,24 +41,14 @@ spec:
   managed:
     services:
       disabledDefaultServices: ["ro", "r"]
-    roles:
-      - name: myuser
-        superuser: false
-        createdb: true
-        login: true
-        passwordSecret:
-          name: myuser-secret
-    resources: 
-      requests:
-        memory: "2Gi"  
-        cpu: "200m"      
-      limits:
-        memory: "3Gi"  
-        cpu: "500m"
-    
-    monitoring:
-      # -- Whether to enable monitoring
-      enabled: true
+    # Just in case :) 
+    # roles:
+    #   - name: myuser
+    #     superuser: false
+    #     createdb: true
+    #     login: true
+    #     passwordSecret:
+    #       name: myuser-secret
 
   serviceTemplates:
   # Cluster creates automatically 
