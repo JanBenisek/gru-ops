@@ -50,13 +50,13 @@ k create secret generic cloudflare-api-token \
 export PUBLICKEY="sealed-secrets-public.crt"
 
 k create secret generic bot-immich-pswd \
-  --namespace immich \
+  --namespace cnpg \
   --type=kubernetes.io/basic-auth \
   --from-literal=username=bot_immich \
-  --from-literal=password=<secret> \
+  --from-literal=password=<pswd>\
   --dry-run=client -o json \
   | kubeseal --cert "./${PUBLICKEY}" \
-  > /home/github/gru-ops/gitops/manifests/immich/cnpg/bot_immich_pswd.yaml
+  > /home/github/gru-ops/gitops/manifests/cnpg/cluster/bot_immich_pswd.yaml
 ```
 ```shell
 export PUBLICKEY="sealed-secrets-public.crt"
@@ -188,10 +188,6 @@ kubectl create secret generic basic-auth \
 - [Docs](https://immich.app/docs/install/kubernetes/)
 - [Helm](https://github.com/immich-app/immich-charts/blob/main/README.md)
 - [Chart Repo](https://artifacthub.io/packages/helm/immich/immich)
-
-
-
-
 
 
 ### ingress-nginx
