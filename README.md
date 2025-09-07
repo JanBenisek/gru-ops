@@ -37,14 +37,11 @@ k create secret generic cloudflare-api-token \
   - [VectorChord Github](https://github.com/tensorchord/VectorChord/)
 
 - I went with `Cluster` deployment, seems easier.
-  - Not all values are in `values.yaml` (see the link below)
+  - [Values - crds](https://artifacthub.io/packages/helm/cloudnative-pg/cloudnative-pg)
+  - [Values - cluster](https://artifacthub.io/packages/helm/cloudnative-pg/cluster)
   - [Docs](https://cloudnative-pg.io/documentation/1.24/installation_upgrade/)
   - [CloudNative Chart](https://github.com/cloudnative-pg/charts)
   - [Getting Started](https://github.com/cloudnative-pg/charts/blob/main/charts/cluster/docs/Getting%20Started.md)
-  - [Values](https://github.com/cloudnative-pg/charts/blob/main/charts/cluster/values.yaml)
-  - [Values](https://artifacthub.io/packages/helm/cloudnative-pg/cluster)
-- crds:
-  - [values](https://artifacthub.io/packages/helm/cloudnative-pg/cloudnative-pg)
 - Immich related
   - [example](https://gist.github.com/kabakaev/1d8fa31d4e7fa8134c968101fa88d200)
 
