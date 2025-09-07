@@ -25,5 +25,5 @@ spec:
   # healthChecks:
   #   - apiVersion: apps/v1
   #     kind: Deployment
-  #     name: hub
-  #     namespace: jupyter
+  #     name: cnpg-operator-cloudnative-pg
+  #     namespace: cnpg
