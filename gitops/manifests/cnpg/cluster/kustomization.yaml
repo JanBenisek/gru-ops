@@ -3,7 +3,5 @@ kind: Kustomization
 namespace: cnpg
 resources:
   - bot_immich_pswd.yaml
-  # - config-init-sql.yaml
-  # - pvc-cnpg-config.yaml
   - release.yaml
   - superuser-pswd.yaml

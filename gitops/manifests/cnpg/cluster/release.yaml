@@ -27,15 +27,16 @@ spec:
     size: 5Gi
     storageClass: local-hostpath-kevin
 
-  initdb:
-    database: immich # CREATE DATABASE immich;
-    owner: bot_immich # CREATE ROLE bot_immich; --will be owner
-    secret:
-      name: bot-immich-pswd
-    postInitSQL:
-      - "CREATE EXTENSION IF NOT EXISTS vchord;"
-      - "CREATE EXTENSION IF NOT EXISTS pg_tokenizer;"
-      - "CREATE EXTENSION IF NOT EXISTS vchord_bm25;"
+  bootstrap:
+    initdb:
+      database: immich # CREATE DATABASE immich;
+      owner: bot_immich # CREATE ROLE bot_immich; --will be owner
+      secret:
+        name: bot-immich-pswd
+      postInitSQL:
+        - "CREATE EXTENSION IF NOT EXISTS vchord;"
+        - "CREATE EXTENSION IF NOT EXISTS pg_tokenizer;"
+        - "CREATE EXTENSION IF NOT EXISTS vchord_bm25;"
   managed:
     services:
       disabledDefaultServices: ["ro", "r"]
