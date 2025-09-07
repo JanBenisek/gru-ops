@@ -192,7 +192,7 @@ kubectl create secret generic basic-auth \
 ```shell
 export PUBLICKEY="sealed-secrets-public.crt"
 
-k create secret generic superuser-pswd \
+k create secret generic bot-immich-pswd \
   --namespace immich \
   --type=kubernetes.io/basic-auth \
   --from-literal=username=bot_immich \
