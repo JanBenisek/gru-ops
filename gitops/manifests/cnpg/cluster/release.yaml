@@ -21,7 +21,7 @@ spec:
   # monitoring:
   #   enabled: true
   # imageName: "tensorchord/vchord-suite:pg17-20250901"
-  imageName: "ghcr.io/tensorchord/cloudnative-vectorchord:16-0.4.2"
+  imageName: "ghcr.io/tensorchord/cloudnative-vectorchord:16-0.4.2" # TODO: figure out which version
   imagePullPolicy: Always
 
   storage:
@@ -35,6 +35,7 @@ spec:
       secret:
         name: bot-immich-pswd
       postInitSQL:
+        - "CREATE EXTENSION IF NOT EXISTS vector;"
         - "CREATE EXTENSION IF NOT EXISTS vchord;"
         - "CREATE EXTENSION IF NOT EXISTS pg_tokenizer;"
         - "CREATE EXTENSION IF NOT EXISTS vchord_bm25;"
