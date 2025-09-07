@@ -6,6 +6,8 @@ metadata:
 spec:
   instances: 1
   imageName: ghcr.io/cloudnative-pg/postgresql:17
+  # imageName: "tensorchord/vchord-postgres:pg17-v0.4.3"
+  # imagePullPolicy: Always
   storage:
     size: 1Gi # required, but we’ll override with PVC below
     pvcTemplate:
@@ -26,6 +28,8 @@ spec:
       #       name: myuser-init-sql
       #       key: init.sql
   managed:
+    services:
+      disabledDefaultServices: ["ro", "r"]
     roles:
       - name: myuser
         superuser: false
@@ -33,6 +37,17 @@ spec:
         login: true
         passwordSecret:
           name: myuser-secret
+    resources: 
+      requests:
+        memory: "2Gi"  
+        cpu: "200m"      
+      limits:
+        memory: "3Gi"  
+        cpu: "500m"
+    
+    monitoring:
+      # -- Whether to enable monitoring
+      enabled: true
 
   serviceTemplates:
   # Cluster creates automatically 
