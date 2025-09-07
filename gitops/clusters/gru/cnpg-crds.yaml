@@ -4,7 +4,7 @@ metadata:
   name: cnpg-crds
   namespace: flux-system
 spec:
-  path: ./gitops/manifests/cnpg/cluster
+  path: ./gitops/manifests/cnpg/crds
   interval: 15m
   prune: true 
   timeout: 20m 
