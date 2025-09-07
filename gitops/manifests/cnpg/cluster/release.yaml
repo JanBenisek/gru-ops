@@ -24,6 +24,10 @@ spec:
   imageName: "ghcr.io/tensorchord/cloudnative-vectorchord:16-0.4.2" # TODO: figure out which version
   imagePullPolicy: Always
 
+  postgresql:
+    shared_preload_libraries:
+      - "vchord"
+
   storage:
     size: 5Gi
     storageClass: local-hostpath-kevin
