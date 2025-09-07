@@ -70,7 +70,11 @@ k create secret generic superuser-pswd \
   | kubeseal --cert "./${PUBLICKEY}" \
   > /home/github/gru-ops/gitops/manifests/cnpg/cluster/superuser-pswd.yaml
 ```
-
+- use db
+```shell
+psql -h 192.168.178.190 -p 5432 -U postgres -d postgres
+psql -h vchord-postgres.pengiuns.com -p 5432 -U bot_immich -d immich
+```
 
 
 ### Collabora

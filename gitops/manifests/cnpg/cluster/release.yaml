@@ -8,6 +8,8 @@ spec:
   
   superuserSecret:
     name: superuser-pswd
+  
+  enableSuperuserAccess: true
     
   resources: 
     requests:
