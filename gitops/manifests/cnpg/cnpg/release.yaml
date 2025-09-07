@@ -1,0 +1,52 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cnpg
+  namespace: cnpg
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:17
+  storage:
+    size: 1Gi # required, but we’ll override with PVC below
+    pvcTemplate:
+      spec:
+        volumeName: pvc-cnpg-cluster
+        resources:
+          requests:
+            storage: 5Gi # Do I need it twice?
+  bootstrap:
+    initdb:
+      database: mydb
+      owner: myuser
+      secret:
+        name: myuser-secret
+      # TODO: Add later
+      # postInitSQL:
+      #   - configMapRef:
+      #       name: myuser-init-sql
+      #       key: init.sql
+  managed:
+    roles:
+      - name: myuser
+        superuser: false
+        createdb: true
+        login: true
+        passwordSecret:
+          name: myuser-secret
+
+  serviceTemplates:
+  # Cluster creates automatically 
+  # my-postgres-rw → service for writes (primary)
+  # my-postgres-ro → service for reads (replicas, if any)
+  # my-postgres → headless service (all instances)
+    - metadata:
+        name: my-postgres-rw
+        annotations:
+          external-dns.alpha.kubernetes.io/hostname: postgresql.${DOMAIN_NAME}
+      spec:
+        type: LoadBalancer
+        loadBalancerIP: 192.168.178.190 # pick from `k get ipaddresspool -A`
+        ports:
+          - name: postgresql
+            port: 5432
+            targetPort: 5432

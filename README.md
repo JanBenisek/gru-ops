@@ -32,7 +32,7 @@ k create secret generic cloudflare-api-token \
   > /Users/janbenisek/GithubRepos/gru-ops/gitops/manifests/cert-manager/secrets/cloudflare-api-token.yaml
 ```
 
-## cnpg
+### cnpg
 - Because immich needs `VectorChord` extension which is too hard to install in bitnami chart.
   - [VectorChord Github](https://github.com/tensorchord/VectorChord/)
 

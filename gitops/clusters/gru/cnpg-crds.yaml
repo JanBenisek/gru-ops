@@ -1,17 +1,15 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: immich-cluster
+  name: cnpg
   namespace: flux-system
 spec:
-  path: ./gitops/manifests/immich/cluster
+  path: ./gitops/manifests/cnpg/crds
   interval: 15m
   prune: true 
   timeout: 20m 
   validation: server
   dependsOn:
-    - name: immich-cnpg
-      namespace: flux-system
     - name: external-dns
       namespace: flux-system
     - name: openebs

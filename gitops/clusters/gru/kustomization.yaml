@@ -38,12 +38,13 @@ resources:
   - metabase.yaml
   # - collabora.yaml
   - nextcloud.yaml
-  - immich-cnpg.yaml
-  - immich-cluster.yaml
+  # - immich-cnpg.yaml
+  # - immich-cluster.yaml
   # - immich-app.yaml
   - k8up-crds.yaml
   - k8up.yaml
   - trilium.yaml
+  - cnpg-crds.yaml
 configMapGenerator:
   - name: gru-values
     envs:
