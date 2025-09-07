@@ -6,5 +6,3 @@ resources:
   # - config-init-sql.yaml
   - pvc-cnpg-config.yaml
   - release.yaml
-  - secret-cnpg.yaml
-  - secret-cnpg.yaml
