@@ -6,6 +6,6 @@ metadata:
 
 data:
   init.sql: |
-    -- Extensions
-    
+    select 'bello';
+
 

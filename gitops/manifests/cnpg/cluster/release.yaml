@@ -25,10 +25,10 @@ spec:
         - vchord
         - pg_tokenizer
         - vchord_bm25
-      # TODO: Add later
+      # Kept just in case
       # postInitSQL:
       #   - configMapRef:
-      #       name: myuser-init-sql
+      #       name: config-init-sql
       #       key: init.sql
   managed:
     services:
