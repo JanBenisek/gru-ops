@@ -50,9 +50,19 @@ spec:
     #     passwordSecret:
     #       name: myuser-secret
 
-  service:
-    primary:
-      type: LoadBalancer
-      loadBalancerIP: 192.168.178.190 # pick from `k get ipaddresspool -A`
-      annotations:
-        external-dns.alpha.kubernetes.io/hostname: vchord-postgres.${DOMAIN_NAME}
+  managed:
+    services:
+      additional:
+        - selectorType: rw
+          serviceTemplate:
+            metadata:
+              name: cnpg-rw-lb
+              annotations:
+                external-dns.alpha.kubernetes.io/hostname: vchord-postgres.${DOMAIN_NAME}
+            spec:
+              type: LoadBalancer
+              loadBalancerIP: 192.168.178.190 # pick from `k get ipaddresspool -A`
+              ports:
+                - name: postgresql
+                  port: 5432
+                  targetPort: 5432
