@@ -43,7 +43,7 @@ resources:
   - trilium.yaml
   - cnpg-crds.yaml
   - cnpg-cluster.yaml
-  - immich.yaml
+  # - immich.yaml
 configMapGenerator:
   - name: gru-values
     envs:
