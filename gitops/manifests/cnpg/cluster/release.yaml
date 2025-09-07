@@ -4,6 +4,11 @@ metadata:
   name: cnpg
   namespace: cnpg
 spec:
+  instances: 1
+  
+  superuserSecret:
+    name: superuser-pswd
+    
   resources: 
     requests:
       memory: "2Gi"  
@@ -15,8 +20,6 @@ spec:
   # Why not working?
   # monitoring:
   #   enabled: true
-
-  instances: 1
   imageName: "tensorchord/vchord-suite:pg17-20250901"
   imagePullPolicy: Always
 
@@ -24,19 +27,15 @@ spec:
     size: 5Gi
     storageClass: local-hostpath-kevin
 
-  bootstrap:
-    # TODO: Enable once all is working
-    superuserSecret:
-      name: superuser-pswd
-    initdb:
-      database: immich # CREATE DATABASE immich;
-      owner: bot_immich # CREATE ROLE bot_immich; --will be owner
-      secret:
-        name: bot-immich-pswd
-      postInitSQL:
-        - "CREATE EXTENSION IF NOT EXISTS vchord;"
-        - "CREATE EXTENSION IF NOT EXISTS pg_tokenizer;"
-        - "CREATE EXTENSION IF NOT EXISTS vchord_bm25;"
+  initdb:
+    database: immich # CREATE DATABASE immich;
+    owner: bot_immich # CREATE ROLE bot_immich; --will be owner
+    secret:
+      name: bot-immich-pswd
+    postInitSQL:
+      - "CREATE EXTENSION IF NOT EXISTS vchord;"
+      - "CREATE EXTENSION IF NOT EXISTS pg_tokenizer;"
+      - "CREATE EXTENSION IF NOT EXISTS vchord_bm25;"
   managed:
     services:
       disabledDefaultServices: ["ro", "r"]

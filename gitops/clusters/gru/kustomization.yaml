@@ -42,7 +42,7 @@ resources:
   - k8up.yaml
   - trilium.yaml
   - cnpg-crds.yaml
-  # - cnpg-cluster.yaml
+  - cnpg-cluster.yaml
   # - immich.yaml
 configMapGenerator:
   - name: gru-values

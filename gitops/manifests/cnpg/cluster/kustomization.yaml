@@ -6,4 +6,4 @@ resources:
   # - config-init-sql.yaml
   # - pvc-cnpg-config.yaml
   - release.yaml
-  # - superuser-pswd.yaml
+  - superuser-pswd.yaml
