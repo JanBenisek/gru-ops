@@ -3,14 +3,14 @@
   "apiVersion": "bitnami.com/v1alpha1",
   "metadata": {
     "name": "bot-immich-pswd",
-    "namespace": "immich",
+    "namespace": "cnpg",
     "creationTimestamp": null
   },
   "spec": {
     "template": {
       "metadata": {
         "name": "bot-immich-pswd",
-        "namespace": "immich",
+        "namespace": "cnpg",
         "creationTimestamp": null
       },
       "type": "kubernetes.io/basic-auth"

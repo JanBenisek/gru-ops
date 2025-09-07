@@ -5,11 +5,10 @@ metadata:
   namespace: cnpg
 spec:
   instances: 1
-  imageName: ghcr.io/cloudnative-pg/postgresql:17
-  # imageName: "tensorchord/vchord-postgres:pg17-v0.4.3"
-  # imagePullPolicy: Always
+  imageName: "tensorchord/vchord-suite:pg17-20250901"
+  imagePullPolicy: Always
   storage:
-    size: 1Gi # required, but we’ll override with PVC below
+    size: 5Gi # required, but we’ll override with PVC below
     pvcTemplate:
       spec:
         volumeName: pvc-cnpg-cluster
@@ -18,10 +17,14 @@ spec:
             storage: 5Gi # Do I need it twice?
   bootstrap:
     initdb:
-      database: mydb
-      owner: myuser
+      database: immich # CREATE DATABASE immich;
+      owner: bot_immich # CREATE ROLE bot_immich; --will be owner
       secret:
-        name: myuser-secret
+        name: bot-immich-pswd
+      extensions:
+        - vchord
+        - pg_tokenizer
+        - vchord_bm25
       # TODO: Add later
       # postInitSQL:
       #   - configMapRef:
@@ -57,7 +60,7 @@ spec:
     - metadata:
         name: my-postgres-rw
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: postgresql.${DOMAIN_NAME}
+          external-dns.alpha.kubernetes.io/hostname: vchord-postgres.${DOMAIN_NAME}
       spec:
         type: LoadBalancer
         loadBalancerIP: 192.168.178.190 # pick from `k get ipaddresspool -A`

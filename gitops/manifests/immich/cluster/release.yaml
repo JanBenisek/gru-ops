@@ -64,6 +64,10 @@ spec:
           owner: bot_immitch
           # secret:
           #   name: bot-immich-pswd 
+          extensions:
+            - vchord
+            - pg_tokenizer
+            - vchord_bm25
           postInitSQL:
             - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
 

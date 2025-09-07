@@ -6,5 +6,6 @@ metadata:
 
 data:
   init.sql: |
-    CREATE SCHEMA IF NOT EXISTS my_schema AUTHORIZATION myuser;
-    GRANT ALL PRIVILEGES ON SCHEMA my_schema TO myuser;
+    -- Extensions
+    
+
