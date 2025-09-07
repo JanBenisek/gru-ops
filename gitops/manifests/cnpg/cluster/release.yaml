@@ -24,6 +24,9 @@ spec:
       spec:
         volumeName: pvc-cnpg-cluster
   bootstrap:
+    # TODO: Enable once all is working
+    # superuserSecret:
+    #   name: cnpg-superuser
     initdb:
       database: immich # CREATE DATABASE immich;
       owner: bot_immich # CREATE ROLE bot_immich; --will be owner
