@@ -189,6 +189,19 @@ kubectl create secret generic basic-auth \
 - [Helm](https://github.com/immich-app/immich-charts/blob/main/README.md)
 - [Chart Repo](https://artifacthub.io/packages/helm/immich/immich)
 
+```shell
+export PUBLICKEY="sealed-secrets-public.crt"
+
+k create secret generic superuser-pswd \
+  --namespace immich \
+  --type=kubernetes.io/basic-auth \
+  --from-literal=username=bot_immich \
+  --from-literal=password=<pswd>\
+  --dry-run=client -o json \
+  | kubeseal --cert "./${PUBLICKEY}" \
+  > /home/github/gru-ops/gitops/manifests/immich/bot_immich_pswd.yaml
+```
+
 
 ### ingress-nginx
 
