@@ -24,7 +24,7 @@ spec:
       spec:
         volumeName: pvc-cnpg-cluster
   bootstrap:
-    TODO: Enable once all is working
+    # TODO: Enable once all is working
     superuserSecret:
       name: superuser-pswd
     initdb:
@@ -44,17 +44,6 @@ spec:
   managed:
     services:
       disabledDefaultServices: ["ro", "r"]
-    # Just in case :) 
-    # roles:
-    #   - name: myuser
-    #     superuser: false
-    #     createdb: true
-    #     login: true
-    #     passwordSecret:
-    #       name: myuser-secret
-
-  managed:
-    services:
       additional:
         - selectorType: rw
           serviceTemplate:
@@ -69,3 +58,11 @@ spec:
                 - name: postgresql
                   port: 5432
                   targetPort: 5432
+    # Just in case :) 
+    # roles:
+    #   - name: myuser
+    #     superuser: false
+    #     createdb: true
+    #     login: true
+    #     passwordSecret:
+    #       name: myuser-secret
