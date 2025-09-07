@@ -2,14 +2,14 @@
   "kind": "SealedSecret",
   "apiVersion": "bitnami.com/v1alpha1",
   "metadata": {
-    "name": "superuser-pswd",
+    "name": "bot-immich-pswd",
     "namespace": "immich",
     "creationTimestamp": null
   },
   "spec": {
     "template": {
       "metadata": {
-        "name": "superuser-pswd",
+        "name": "bot-immich-pswd",
         "namespace": "immich",
         "creationTimestamp": null
       },

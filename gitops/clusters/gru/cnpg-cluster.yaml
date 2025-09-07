@@ -23,7 +23,7 @@ spec:
     substituteFrom:
     - kind: ConfigMap
       name: gru-values
-  # TODO: enable later
+  # Nothing here :/
   # healthChecks:
   #   - apiVersion: apps/v1
   #     kind: Deployment

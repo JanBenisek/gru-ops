@@ -21,9 +21,8 @@ spec:
     substituteFrom:
     - kind: ConfigMap
       name: gru-values
-  # TODO: enable later
-  # healthChecks:
-  #   - apiVersion: apps/v1
-  #     kind: Deployment
-  #     name: cnpg-operator-cloudnative-pg
-  #     namespace: cnpg
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: cnpg-operator-cloudnative-pg
+      namespace: cnpg
