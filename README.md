@@ -48,7 +48,7 @@ k create secret generic cloudflare-api-token \
   - [example](https://gist.github.com/kabakaev/1d8fa31d4e7fa8134c968101fa88d200)
 - It creates super user automatically
 
-- sealed secret
+- sealed secrets
 ```shell
 export PUBLICKEY="sealed-secrets-public.crt"
 
@@ -60,6 +60,18 @@ k create secret generic bot-immich-pswd \
   --dry-run=client -o json \
   | kubeseal --cert "./${PUBLICKEY}" \
   > /home/github/gru-ops/gitops/manifests/immich/cnpg/bot_immich_pswd.yaml
+```
+```shell
+export PUBLICKEY="sealed-secrets-public.crt"
+
+k create secret generic superuser-pswd \
+  --namespace cnpg \
+  --type=kubernetes.io/basic-auth \
+  --from-literal=username=postgres \
+  --from-literal=password=<pswd> \
+  --dry-run=client -o json \
+  | kubeseal --cert "./${PUBLICKEY}" \
+  > /home/github/gru-ops/gitops/manifests/cnpg/cluster/superuser-pswd.yaml
 ```
 
 
