@@ -20,7 +20,8 @@ spec:
   # Why not working?
   # monitoring:
   #   enabled: true
-  imageName: "tensorchord/vchord-suite:pg17-20250901"
+  # imageName: "tensorchord/vchord-suite:pg17-20250901"
+  imageName: "ghcr.io/tensorchord/cloudnative-vectorchord:16-0.4.2"
   imagePullPolicy: Always
 
   storage:
