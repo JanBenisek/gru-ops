@@ -35,7 +35,7 @@ spec:
       # IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
 
     image:
-      # ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
+      # ghcr.io/immich-app/immich-server:v1.140.1
       # tag: v1.119.0
       tag: v1.140.1
 
