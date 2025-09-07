@@ -12,17 +12,18 @@ spec:
       memory: "3Gi"  
       cpu: "500m"
 
-  monitoring:
-    # -- Whether to enable monitoring
-    enabled: true
+  # Why not working?
+  # monitoring:
+  #   enabled: true
 
   instances: 1
   imageName: "tensorchord/vchord-suite:pg17-20250901"
   imagePullPolicy: Always
+
   storage:
-    pvcTemplate:
-      spec:
-        volumeName: pvc-cnpg-cluster
+    size: 5Gi
+    storageClass: local-hostpath-kevin
+
   bootstrap:
     # TODO: Enable once all is working
     superuserSecret:
@@ -32,15 +33,10 @@ spec:
       owner: bot_immich # CREATE ROLE bot_immich; --will be owner
       secret:
         name: bot-immich-pswd
-      extensions:
-        - vchord
-        - pg_tokenizer
-        - vchord_bm25
-      # Kept just in case
-      # postInitSQL:
-      #   - configMapRef:
-      #       name: config-init-sql
-      #       key: init.sql
+      postInitSQL:
+        - "CREATE EXTENSION IF NOT EXISTS vchord;"
+        - "CREATE EXTENSION IF NOT EXISTS pg_tokenizer;"
+        - "CREATE EXTENSION IF NOT EXISTS vchord_bm25;"
   managed:
     services:
       disabledDefaultServices: ["ro", "r"]
