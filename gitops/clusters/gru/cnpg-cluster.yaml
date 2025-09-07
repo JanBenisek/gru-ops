@@ -14,6 +14,8 @@ spec:
       namespace: flux-system
     - name: openebs
       namespace: flux-system
+    - name: cnpg-crds
+      namespace: flux-system
   sourceRef:
     kind: GitRepository
     name: flux-system
