@@ -19,9 +19,6 @@ spec:
       memory: "3Gi"  
       cpu: "500m"
 
-  # Why not working?
-  monitoring:
-    enabled: true
   imageName: "ghcr.io/tensorchord/cloudnative-vectorchord:16-0.4.3"
   imagePullPolicy: Always
 
