@@ -36,13 +36,12 @@ spec:
 
     image:
       # ghcr.io/immich-app/immich-server:v1.140.1
-      # tag: v1.119.0
       tag: v1.140.1
 
     immich:
       metrics:
         # TODO: Enable metrics
-        enabled: false
+        enabled: true
       persistence:
         # Main data store for all photos shared between different components.
         library:
@@ -79,7 +78,6 @@ spec:
           annotations:
             kubernetes.io/ingress.class: "nginx"
             cert-manager.io/cluster-issuer: "letsencrypt-prod"
-            # proxy-body-size is set to 0 to remove the body limit on file uploads
             nginx.ingress.kubernetes.io/proxy-body-size: "0"
           hosts:
             - host: immich.${DOMAIN_NAME}
@@ -91,4 +89,17 @@ spec:
                 - immich.${DOMAIN_NAME}
 
     machine-learning:
-      enabled: false # to be reviewed
+      enabled: true 
+      image:
+        repository: ghcr.io/immich-app/immich-machine-learning
+        pullPolicy: IfNotPresent
+      env:
+        TRANSFORMERS_CACHE: /cache
+      persistence:
+        cache:
+          enabled: true
+          size: 10Gi
+          # Optional: Set this to pvc to avoid downloading the ML models every start.
+          type: emptyDir
+          accessMode: ReadWriteMany
+          storageClass: local-hostpath-kevin

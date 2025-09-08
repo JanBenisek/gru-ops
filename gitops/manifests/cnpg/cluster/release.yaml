@@ -20,10 +20,9 @@ spec:
       cpu: "500m"
 
   # Why not working?
-  # monitoring:
-  #   enabled: true
-  # imageName: "tensorchord/vchord-suite:pg17-20250901"
-  imageName: "ghcr.io/tensorchord/cloudnative-vectorchord:16-0.4.2" # TODO: figure out which version
+  monitoring:
+    enabled: true
+  imageName: "ghcr.io/tensorchord/cloudnative-vectorchord:16-0.4.3"
   imagePullPolicy: Always
 
   postgresql:
@@ -41,9 +40,28 @@ spec:
       secret:
         name: bot-immich-pswd
       postInitSQL:
+        # Extensions
         - "CREATE EXTENSION IF NOT EXISTS vector;"
         - "CREATE EXTENSION IF NOT EXISTS vchord;"
+        - "CREATE EXTENSION IF NOT EXISTS earthdistance;"
+        # DB - metabase
+        - "CREATE DATABASE metabase OWNER bot_metabase;"
+        - "GRANT ALL PRIVILEGES ON DATABASE metabase TO bot_metabase;"
+        # DB - production
+        - "CREATE DATABASE prod OWNER bot_jerry;"
+        - "GRANT ALL PRIVILEGES ON DATABASE prod TO bot_jerry;"
   managed:
+    roles:
+      - name: bot_metabase
+        createdb: true
+        login: true
+        passwordSecret:
+          name: bot-metabase-pswd
+      - name: bot_jerry
+        createdb: true
+        login: true
+        passwordSecret:
+          name: bot-jerry-pswd
     services:
       disabledDefaultServices: ["ro", "r"]
       additional:
@@ -60,11 +78,3 @@ spec:
                 - name: postgresql
                   port: 5432
                   targetPort: 5432
-    # Just in case :) 
-    # roles:
-    #   - name: myuser
-    #     superuser: false
-    #     createdb: true
-    #     login: true
-    #     passwordSecret:
-    #       name: myuser-secret
