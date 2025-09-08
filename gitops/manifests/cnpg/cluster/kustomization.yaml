@@ -4,5 +4,6 @@ namespace: cnpg
 resources:
   - bot_immich_pswd.yaml
   - bot_metabase_pswd.yaml
+  - bot_jerry_pswd.yaml
   - release.yaml
   - superuser-pswd.yaml
