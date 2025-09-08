@@ -14,10 +14,10 @@ spec:
   resources: 
     requests:
       memory: "2Gi"  
-      cpu: "200m"      
+      cpu: "500m"      
     limits:
-      memory: "3Gi"  
-      cpu: "500m"
+      memory: "6Gi"  
+      cpu: "1000m"
 
   imageName: "ghcr.io/tensorchord/cloudnative-vectorchord:16-0.4.3"
   imagePullPolicy: Always

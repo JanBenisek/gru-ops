@@ -69,6 +69,13 @@ spec:
     # Immich components
     server:
       enabled: true
+      resources:
+        requests:
+          cpu: "1"
+          memory: "6Gi"
+        limits:
+          cpu: "2"
+          memory: "10Gi"
       image:
         repository: ghcr.io/immich-app/immich-server
         pullPolicy: IfNotPresent
@@ -90,6 +97,13 @@ spec:
 
     machine-learning:
       enabled: true 
+      resources:
+        requests:
+          cpu: "1"
+          memory: "6Gi"
+        limits:
+          cpu: "2"
+          memory: "10Gi"
       image:
         repository: ghcr.io/immich-app/immich-machine-learning
         pullPolicy: IfNotPresent
