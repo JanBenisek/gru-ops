@@ -3,5 +3,6 @@ kind: Kustomization
 namespace: cnpg
 resources:
   - bot_immich_pswd.yaml
+  - bot_metabase_pswd.yaml
   - release.yaml
   - superuser-pswd.yaml

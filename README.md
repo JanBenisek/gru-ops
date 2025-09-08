@@ -70,6 +70,19 @@ k create secret generic superuser-pswd \
   | kubeseal --cert "./${PUBLICKEY}" \
   > /home/github/gru-ops/gitops/manifests/cnpg/cluster/superuser-pswd.yaml
 ```
+- Jerry
+```shell
+export PUBLICKEY="sealed-secrets-public.crt"
+
+k create secret generic bot-jerry-pswd \
+  --namespace cnpg \
+  --type=kubernetes.io/basic-auth \
+  --from-literal=username=bot_jerry \
+  --from-literal=password=<pswd>\
+  --dry-run=client -o json \
+  | kubeseal --cert "./${PUBLICKEY}" \
+  > /home/github/gru-ops/gitops/manifests/cnpg/cluster/bot_jerry_pswd.yaml
+```
 - use db
 ```shell
 psql -h 192.168.178.190 -p 5432 -U postgres -d postgres
