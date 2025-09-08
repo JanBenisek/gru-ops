@@ -71,7 +71,7 @@ spec:
       enabled: true
       resources:
         requests:
-          cpu: "1"
+          cpu: "200m"
           memory: "6Gi"
         limits:
           cpu: "2"
@@ -99,7 +99,7 @@ spec:
       enabled: true 
       resources:
         requests:
-          cpu: "1"
+          cpu: "200"
           memory: "6Gi"
         limits:
           cpu: "2"
