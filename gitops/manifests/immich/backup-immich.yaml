@@ -1,10 +1,10 @@
 apiVersion: k8up.io/v1
 kind: Backup
 metadata:
-  name: backup-hetzner
-  namespace: k8up
+  name: immich-backup-manual
+  namespace: immich
 spec:
-  labelSelectors: # TODO: maybe?
+  labelSelectors:
     - matchExpressions:
       - key: back-me-up
         operator: Exists
@@ -21,3 +21,12 @@ spec:
     repoPasswordSecretRef:
       name: restic-credentials
       key: password
+  podSecurityContext:
+    runAsUser: 0
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "100m"
+    limits:
+      memory: "1Gi"
+      cpu: "500m"

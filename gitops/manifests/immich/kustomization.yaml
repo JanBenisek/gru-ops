@@ -7,4 +7,8 @@ resources:
   - pvc-immich.yaml
   - release.yaml
   - repository.yaml
+  # DELETE
+  - hetzner-credentials.yaml
+  - restic-credentials.yaml
+  - backup-immich.yaml
 
