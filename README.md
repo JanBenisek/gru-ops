@@ -310,7 +310,7 @@ k create secret generic hetzner-credentials \
   > /home/github/gru-ops/gitops/manifests/k8up/hetzner-credentials.yaml
 
 k create secret generic restic-credentials \
-  --namespace k8up \
+  --namespace immich \
   --dry-run=client \
   --from-literal=password=foo -o json \
   | kubeseal --cert "./${PUBLICKEY}" \
