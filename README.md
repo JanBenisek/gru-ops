@@ -447,6 +447,7 @@ k create secret generic psql-secrets \
 
 - [Helm Chart](https://artifacthub.io/packages/helm/emberstack/reflector)
 - [GitHub](https://github.com/emberstack/kubernetes-reflector)
+- Note that it copies secrets and configmaps, not sealed secrets (those get copied as secrets)
 
 ### sealed secrets
 
