@@ -4,6 +4,6 @@ metadata:
   name: reflector
   namespace: reflector
 spec:
-  type: helm
+  type: oci
   interval: 5m0s
-  url: https://emberstack.github.io/helm-charts
+  url: oci://ghcr.io/emberstack/helm-charts
