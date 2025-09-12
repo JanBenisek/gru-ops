@@ -11,7 +11,7 @@ spec:
       version: "9.1.31"
       sourceRef:
         kind: HelmRepository
-        name: emberstack
+        name: reflector
         namespace: reflector
   values:
     # Default values for reflector.
