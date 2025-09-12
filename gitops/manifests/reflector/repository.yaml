@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: emberstack
-  namespace: reflector-system
+  namespace: reflector
 spec:
   type: helm
   interval: 5m0s
