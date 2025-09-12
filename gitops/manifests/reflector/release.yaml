@@ -41,7 +41,7 @@ spec:
 
     configuration:
       logging:
-        minimumLevel: Information
+        minimumLevel: Debug # Trace, Debug, Information
       watcher:
         timeout: ""
       kubernetes:
