@@ -32,7 +32,7 @@ spec:
     fullnameOverride: ""
 
     cron:
-      enabled: false
+      enabled: true
       schedule: "*/15 * * * *"
       activeDeadlineSeconds: 600
       securityContext:
