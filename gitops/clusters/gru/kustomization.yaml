@@ -16,7 +16,7 @@ resources:
   - docker-registry.yaml
   - cloudflare-secrets.yaml
   - cloudflare.yaml
-  - reflector.yaml
+  # - reflector.yaml
   # Apps
   - hiker.yaml
   - stirling.yaml
