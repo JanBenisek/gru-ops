@@ -108,7 +108,7 @@ spec:
         cpu: 100m
         memory: 256Mi
       requests:
-        cpu: 500m
+        cpu: 50m
         memory: 128Mi
 
     autoscaling:
