@@ -441,6 +441,13 @@ k create secret generic psql-secrets \
   > /home/github/gru-ops/gitops/manifests/postgresql/psql_secrets.yaml
 ```
 
+### reflector
+
+> Copy secrets/configmaps from one namespce to another
+
+- [Helm Chart](https://artifacthub.io/packages/helm/emberstack/reflector)
+- [GitHub](https://github.com/emberstack/kubernetes-reflector)
+
 ### sealed secrets
 
 - Create my own keys. Pod needs to be rebooted

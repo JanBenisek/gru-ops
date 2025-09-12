@@ -8,7 +8,7 @@ resources:
   - release.yaml
   - repository.yaml
   # DELETE
-  - hetzner-credentials.yaml
+  # - hetzner-credentials.yaml
   - restic-credentials.yaml
   - backup-immich.yaml
 
