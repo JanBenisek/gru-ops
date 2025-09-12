@@ -11,7 +11,12 @@
       "metadata": {
         "name": "bot-immich-pswd",
         "namespace": "cnpg",
-        "creationTimestamp": null
+        "creationTimestamp": null,
+        "annotations": {
+          "reflector.v1.k8s.emberstack.com/reflection-allowed": "true",
+          "reflector.v1.k8s.emberstack.com/reflection-auto-enabled": "true",
+          "reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces": "immich"
+        }
       },
       "type": "kubernetes.io/basic-auth"
     },
