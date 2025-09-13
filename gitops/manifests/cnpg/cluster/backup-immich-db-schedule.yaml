@@ -4,6 +4,8 @@ metadata:
   name: backup-immich-db-schedule
   namespace: cnpg
 spec:
+  podConfigRef:
+    name: backup-env-config
   backend:
     s3:
       endpoint: https://hel1.your-objectstorage.com
@@ -21,28 +23,6 @@ spec:
     schedule: "0 2 * * *" # runs daily at 2am
     failedJobsHistoryLimit: 2
     successfulJobsHistoryLimit: 2
-    podTemplate:
-      spec:
-        containers:
-          - name: backup
-            env:
-              - name: POSTGRES_USER
-                valueFrom:
-                  secretKeyRef:
-                    name: bot-immich-pswd
-                    key: username
-              - name: POSTGRES_PASSWORD
-                valueFrom:
-                  secretKeyRef:
-                    name: bot-immich-pswd
-                    key: password
-              - name: POSTGRES_DB
-                value: immich
-              - name: PGHOST
-                value: cnpg-rw-lb.cnpg.svc.cluster.local # or vchord-postgres.pengiuns.com
-              - name: PGPORT
-                value: "5432"
-        restartPolicy: Never
     # optional
     # promURL: https://prometheus-io-instance:8443
   check:

@@ -5,7 +5,7 @@ metadata:
   namespace: cnpg
   annotations:
     k8up.io/backupcommand: >-
-      sh -c 'pg_dump --clean'
+      sh -c 'PGUSER="$PGUSER" PGPASSWORD="$PGPASSWORD" PGDATABASE="$PGDATABASE" pg_dump --clean --host="$PGHOST" --port="$PGPORT"'
     k8up.io/file-extension: .sql
 spec:
   instances: 1

@@ -3,10 +3,8 @@ apiVersion: v1
 metadata:
   name: pvc-immich
   namespace: immich
-  # labels:
-  #   back-me-up: "true" # k label pvc pvc-immich back-me-up=true -n immich
   annotations:
-    k8up.io/backup: "true" #  somehow does not work, k annotate pvc pvc-immich k8up.io/backup=true
+    k8up.io/backup: "true" # k annotate pvc pvc-immich k8up.io/backup=true
 spec:
   storageClassName: local-hostpath-kevin
   accessModes:

@@ -9,3 +9,4 @@ resources:
   - superuser-pswd.yaml
   # Backup
   - backup-immich-db-schedule.yaml
+  - backup-pod-config.yaml
