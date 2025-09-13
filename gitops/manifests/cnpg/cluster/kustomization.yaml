@@ -7,6 +7,7 @@ resources:
   - bot_jerry_pswd.yaml
   - release.yaml
   - superuser-pswd.yaml
-  # Backup
+  # Backup related
   - backup-immich-db-schedule.yaml
   - backup-pod-config-immich-db.yaml
+  - cron-annotator.yaml
