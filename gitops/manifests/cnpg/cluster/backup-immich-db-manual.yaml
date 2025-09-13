@@ -1,0 +1,22 @@
+apiVersion: k8up.io/v1
+kind: Backup
+metadata:
+  name: backup-immich-db-manual
+  namespace: cnpg
+spec:
+  podConfigRef:
+    name: backup-env-config
+  backend:
+    s3:
+      endpoint: https://hel1.your-objectstorage.com
+      bucket: pengiunsbackup
+      prefix: postgres/immich
+      accessKeyIDSecretRef:
+        name: hetzner-credentials
+        key: username
+      secretAccessKeySecretRef:
+        name: hetzner-credentials
+        key: password
+    repoPasswordSecretRef:
+      name: restic-credentials
+      key: password

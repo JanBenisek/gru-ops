@@ -10,6 +10,7 @@ spec:
     s3:
       endpoint: https://hel1.your-objectstorage.com
       bucket: pengiunsbackup
+      prefix: postgres/immich
       accessKeyIDSecretRef:
         name: hetzner-credentials
         key: username
