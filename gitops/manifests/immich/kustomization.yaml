@@ -6,4 +6,6 @@ resources:
   - pvc-immich.yaml
   - release.yaml
   - repository.yaml
-
+  # Backups
+  - backup-immich-manual.yaml
+  - backup-immich-schedule.yaml

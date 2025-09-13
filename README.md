@@ -295,6 +295,7 @@ bob:$6$hashed...:18599:0:99999:7:::
 - [Repo](https://github.com/k8up-io/k8up)
 - [Values](https://github.com/k8up-io/k8up/tree/master/charts/k8up)
 - Created Hetzner Bucket
+- Backup definitions should live in namespace where they do the backup, they need access tp PVCs, secrets etc.
 
 - Secrets
 ```shell
