@@ -342,13 +342,19 @@ k create secret generic restic-credentials \
 export AWS_ACCESS_KEY_ID="RYH6OMTZVDF0D0UR4B4X"
 export AWS_SECRET_ACCESS_KEY="9fsn9RCiHHqXd9kB2R7gkcH0rCtte6p3oKXujh6o"
 export RESTIC_REPOSITORY="s3:https://hel1.your-objectstorage.com/pengiunsbackup/postgres/immich/manual/"
-export RESTIC_PASSWORD="timeless-damaging-reassure-yous"
+export RESTIC_PASSWORD="<>"
 
 # see snapshots
 restic snapshots
 
-# Restor latest
+# Restoer latest
 restic restore latest --target ./restore
+
+# Remove snapshot
+restic forget 6b8e2fba
+
+# Prunes removed snapshots
+restic prune
 ```
 
 ## metabase
