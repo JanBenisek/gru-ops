@@ -8,7 +8,8 @@ spec:
   template:
     spec:
       containers:
-        - env:
+        - name: backup # can be anything
+          env:
             - name: PGPASSWORD
               valueFrom:
                 secretKeyRef:
