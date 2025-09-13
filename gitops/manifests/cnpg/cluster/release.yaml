@@ -3,6 +3,7 @@ kind: Cluster
 metadata:
   name: cnpg
   namespace: cnpg
+  # Does not add it to the pod where k8up needs it :(
   # annotations:
   #   k8up.io/backupcommand: >-
   #     sh -c 'PGDATABASE=immich pg_dump --clean'

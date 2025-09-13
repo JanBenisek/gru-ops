@@ -16,16 +16,18 @@ spec:
           serviceAccountName: annotate-cnpg
           containers:
             - name: annotator
-              image: registry.k8s.io/kubectl:latest
+              image: busybox:1.36
               command:
                 - /bin/sh
                 - -c
                 - |
+                  wget -qO /usr/local/bin/kubectl https://dl.k8s.io/release/v1.30.0/bin/linux/amd64/kubectl
+                  chmod +x /usr/local/bin/kubectl
                   kubectl annotate pod cnpg-1 \
                     k8up.io/backupcommand="sh -c 'PGDATABASE=immich pg_dump --clean'" \
                     k8up.io/file-extension=".sql" \
                     --overwrite -n cnpg
-          restartPolicy: OnFailure
+                    restartPolicy: OnFailure
 ---
 apiVersion: v1
 kind: ServiceAccount
