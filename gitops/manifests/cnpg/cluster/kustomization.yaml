@@ -7,3 +7,5 @@ resources:
   - bot_jerry_pswd.yaml
   - release.yaml
   - superuser-pswd.yaml
+  # Backup
+  - backup-immich-db-schedule.yaml

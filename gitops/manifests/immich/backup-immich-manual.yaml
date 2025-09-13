@@ -4,7 +4,8 @@ metadata:
   name: immich-backup-manual
   namespace: immich
 spec:
-  # labelSelectors: # I think it does not work without this
+  # Another option to select, but not needed
+  # labelSelectors:
   #   - matchExpressions:
   #     - key: back-me-up
   #       operator: Exists

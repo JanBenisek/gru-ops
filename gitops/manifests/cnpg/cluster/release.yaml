@@ -3,6 +3,10 @@ kind: Cluster
 metadata:
   name: cnpg
   namespace: cnpg
+  annotations:
+    k8up.io/backupcommand: >-
+      sh -c 'pg_dump --clean'
+    k8up.io/file-extension: .sql
 spec:
   instances: 1
   

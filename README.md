@@ -88,6 +88,10 @@ k create secret generic bot-jerry-pswd \
 psql -h 192.168.178.190 -p 5432 -U postgres -d postgres
 psql -h vchord-postgres.pengiuns.com -p 5432 -U bot_immich -d immich
 ```
+- pg_dump
+```shell
+PGHOST=vchord-postgres.pengiuns.com PGPORT=5432 PGDATABASE=immich PGUSER=bot_immich PGPASSWORD=<pswd> pg_dump --clean > backup.sql
+```
 
 
 ### Collabora
@@ -296,6 +300,7 @@ bob:$6$hashed...:18599:0:99999:7:::
 - [Values](https://github.com/k8up-io/k8up/tree/master/charts/k8up)
 - Created Hetzner Bucket
 - Backup definitions should live in namespace where they do the backup, they need access tp PVCs, secrets etc.
+- [Check Success](https://docs.k8up.io/k8up/2.12/how-tos/check-status.html)
 
 - Secrets
 ```shell
