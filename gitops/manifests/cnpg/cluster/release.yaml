@@ -53,10 +53,10 @@ spec:
         # DB - production
         - "CREATE DATABASE prod OWNER bot_jerry;"
         - "GRANT ALL PRIVILEGES ON DATABASE prod TO bot_jerry;"
-      annotations:
-        k8up.io/backupcommand: >-
-          sh -c 'PGDATABASE=immich pg_dump --clean'
-        k8up.io/file-extension: .sql
+    annotations:
+      k8up.io/backupcommand: >-
+        sh -c 'PGDATABASE=immich pg_dump --clean'
+      k8up.io/file-extension: .sql
 
   managed:
     roles:
