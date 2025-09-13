@@ -332,11 +332,20 @@ k create secret generic restic-credentials \
   | kubeseal --cert "./${PUBLICKEY}" \
   > /home/github/gru-ops/gitops/manifests/k8up/restic-credentials.yaml
 ```
-- Trigger Schedule manually
+### Restore backup
+- Bunch of docs on how to do it on k8s
+- Manually:
 ```shell
-k get cronjobs -n cnpg
-k create job --from=cronjob/immich-backup-db-schedule-backup immich-backup-now -n cnpg
+export AWS_ACCESS_KEY_ID="RYH6OMTZVDF0D0UR4B4X"
+export AWS_SECRET_ACCESS_KEY="9fsn9RCiHHqXd9kB2R7gkcH0rCtte6p3oKXujh6o"
+export RESTIC_REPOSITORY="s3:https://hel1.your-objectstorage.com/pengiunsbackup/postgres/immich/manual/"
+export RESTIC_PASSWORD="timeless-damaging-reassure-yous"
 
+# see snapshots
+restic snapshots
+
+# Restor latest
+restic restore latest --target ./restore
 ```
 
 ## metabase

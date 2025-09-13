@@ -22,6 +22,7 @@ spec:
     failedJobsHistoryLimit: 2
     successfulJobsHistoryLimit: 2
     # optional - enable later, needs prometheus pushgateway
+    # https://github.com/prometheus-community/helm-charts/issues/2030#issuecomment-1585471558
     # promURL: https://prometheus-io-instance:8443
   check:
     schedule: '0 1 * * 1' # runs every monday, validates integrity of backup
