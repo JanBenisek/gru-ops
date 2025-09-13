@@ -102,6 +102,9 @@ k get cluster cnpg -n cnpg -o yaml | grep k8up.io
 ```shell
 k annotate pod cnpg-1 \
   k8up.io/backupcommand="sh -c 'PGUSER=\"\$PGUSER\" PGPASSWORD=\"\$PGPASSWORD\" PGDATABASE=\"\$PGDATABASE\" pg_dump --clean --host=\"\$PGHOST\" --port=\"\$PGPORT\"'" --overwrite
+
+k annotate pod cnpg-1 \
+  k8up.io/backupcommand="sh -c 'PGUSER=bot_immich PGPASSWORD=squeals-dispatch-fussy-seaside PGDATABASE=immich pg_dump --clean --host=vchord-postgres.pengiuns.com --port=5432" --overwrite
 ```
 
 ### Collabora
@@ -337,7 +340,7 @@ k create secret generic restic-credentials \
 - Manually:
 ```shell
 export AWS_ACCESS_KEY_ID="RYH6OMTZVDF0D0UR4B4X"
-export AWS_SECRET_ACCESS_KEY=""
+export AWS_SECRET_ACCESS_KEY="9fsn9RCiHHqXd9kB2R7gkcH0rCtte6p3oKXujh6o"
 export RESTIC_REPOSITORY="s3:https://hel1.your-objectstorage.com/pengiunsbackup/postgres/immich/manual/"
 export RESTIC_PASSWORD="timeless-damaging-reassure-yous"
 
