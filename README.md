@@ -100,12 +100,13 @@ k get cluster cnpg -n cnpg -o yaml | grep k8up.io
 ```
 - or maybe mabyally?
 ```shell
-k annotate pod cnpg-1 \
-  k8up.io/backupcommand="sh -c 'PGUSER=\"\$PGUSER\" PGPASSWORD=\"\$PGPASSWORD\" PGDATABASE=\"\$PGDATABASE\" pg_dump --clean --host=\"\$PGHOST\" --port=\"\$PGPORT\"'" --overwrite
+# Remove annotation
+k annotate pod cnpg-1 k8up.io/backupcommand-
 
-k annotate pod cnpg-1 \
-  k8up.io/backupcommand="sh -c 'PGUSER=bot_immich PGPASSWORD=squeals-dispatch-fussy-seaside PGDATABASE=immich pg_dump --clean --host=vchord-postgres.pengiuns.com --port=5432" --overwrite
+# Add annotation
+k annotate pod cnpg-1 k8up.io/backupcommand="sh -c 'PGDATABASE=immich pg_dump --clean'" --overwrite
 ```
+
 
 ### Collabora
 - [GitHub](https://github.com/CollaboraOnline/online)
