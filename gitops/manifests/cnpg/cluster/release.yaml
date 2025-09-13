@@ -11,7 +11,7 @@ metadata:
     # sh -c 'PGUSER=bot_immich PGPASSWORD=squeals-dispatch-fussy-seaside PGDATABASE=immich pg_dump --clean'
 
     k8up.io/backupcommand: >-
-      sh -c 'PGUSER=bot_immich PGPASSWORD="$PGPASSWORD" PGDATABASE=immich pg_dump --clean'
+      sh -c 'PGUSER="$PGUSER" PGPASSWORD="$PGPASSWORD" PGDATABASE=immich pg_dump --clean'
     k8up.io/file-extension: .sql
 spec:
   instances: 1
