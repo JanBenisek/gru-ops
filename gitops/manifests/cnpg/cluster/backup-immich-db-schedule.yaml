@@ -2,7 +2,7 @@ apiVersion: k8up.io/v1
 kind: Schedule
 metadata:
   name: immich-backup-db-schedule
-  namespace: immich
+  namespace: cnpg
 spec:
   backend:
     s3:
