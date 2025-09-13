@@ -322,6 +322,12 @@ k create secret generic restic-credentials \
   | kubeseal --cert "./${PUBLICKEY}" \
   > /home/github/gru-ops/gitops/manifests/k8up/restic-credentials.yaml
 ```
+- Trigger Schedule manually
+```shell
+k get cronjobs -n cnpg
+k create job --from=cronjob/immich-backup-db-schedule-backup immich-backup-now -n cnpg
+
+```
 
 ## metabase
 
