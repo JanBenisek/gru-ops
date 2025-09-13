@@ -27,7 +27,7 @@ spec:
                     k8up.io/backupcommand="sh -c 'PGDATABASE=immich pg_dump --clean'" \
                     k8up.io/file-extension=".sql" \
                     --overwrite -n cnpg
-                    restartPolicy: OnFailure
+          restartPolicy: OnFailure
 ---
 apiVersion: v1
 kind: ServiceAccount
