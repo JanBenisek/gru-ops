@@ -504,11 +504,6 @@ k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-se
   - https://geek-cookbook.funkypenguin.co.nz/kubernetes/sealed-secrets/
   - https://github.com/bitnami-labs/sealed-secrets/blob/main/docs/bring-your-own-certificates.md
 
-### secret-replicator
-
-- [] the library for secret replication has been archived, find a replacement
-- it looks for `contains` secrets to replicate
-
 ### stirling
 
 - set up some configs and use FAT version
@@ -569,6 +564,10 @@ k create secret generic bot-joplin-pswd \
   - RayJob: When you just need to run a single job and don’t need a persistent cluster.
   - RayService: When you want to deploy a long-running, scalable service like an AI inference API.
 
+### secret-replicator
+
+- [] the library for secret replication has been archived, find a replacement
+- it looks for `contains` secrets to replicate
 
 ### vllm
 
