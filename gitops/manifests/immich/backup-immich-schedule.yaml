@@ -1,9 +1,13 @@
 apiVersion: k8up.io/v1
 kind: Schedule
 metadata:
-  name: schedule-hetzner
-  namespace: k8up
+  name: immich-backup-schedule
+  namespace: immich
 spec:
+  labelSelectors: # I think it does not work without this
+    - matchExpressions:
+      - key: back-me-up
+        operator: Exists
   backend:
     s3:
       endpoint: https://hel1.your-objectstorage.com

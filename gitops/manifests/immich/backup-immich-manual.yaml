@@ -4,10 +4,10 @@ metadata:
   name: immich-backup-manual
   namespace: immich
 spec:
-  labelSelectors:
-    - matchExpressions:
-      - key: back-me-up
-        operator: Exists
+  # labelSelectors: # I think it does not work without this
+  #   - matchExpressions:
+  #     - key: back-me-up
+  #       operator: Exists
   backend:
     s3:
       endpoint: https://hel1.your-objectstorage.com
