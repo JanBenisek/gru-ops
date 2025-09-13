@@ -4,6 +4,10 @@ kind: PodConfig
 metadata:
   name: backup-env-config-immich-db
   namespace: cnpg
+  annotations:
+    k8up.io/backupcommand: >-
+      sh -c 'PGDATABASE=immich pg_dump --clean'
+    k8up.io/file-extension: .sql
 spec:
   template:
     spec:
