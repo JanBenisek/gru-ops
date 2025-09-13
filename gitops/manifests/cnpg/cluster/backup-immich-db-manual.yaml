@@ -5,12 +5,11 @@ metadata:
   namespace: cnpg
 spec:
   podConfigRef:
-    name: backup-env-config
+    name: backup-env-config-immich-db
   backend:
     s3:
       endpoint: https://hel1.your-objectstorage.com
-      bucket: pengiunsbackup
-      prefix: postgres/immich/
+      bucket: pengiunsbackup/postgres/immich/manual/
       accessKeyIDSecretRef:
         name: hetzner-credentials
         key: username

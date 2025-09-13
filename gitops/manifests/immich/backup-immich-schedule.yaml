@@ -7,8 +7,7 @@ spec:
   backend:
     s3:
       endpoint: https://hel1.your-objectstorage.com
-      bucket: pengiunsbackup
-      prefix: immich/
+      bucket: pengiunsbackup/immich/schedule/
       accessKeyIDSecretRef:
         name: hetzner-credentials
         key: username
