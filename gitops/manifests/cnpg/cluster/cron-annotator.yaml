@@ -8,7 +8,7 @@ metadata:
   name: annotate-cnpg-1
   namespace: cnpg
 spec:
-  schedule: "*/10 * * * *"   # run every 10 minutes
+  schedule: "0 2 * * *"   # run daily at 2:00 AM
   jobTemplate:
     spec:
       template:
