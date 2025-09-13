@@ -21,12 +21,12 @@ spec:
     schedule: "0 2 * * *" # runs daily at 2am
     failedJobsHistoryLimit: 2
     successfulJobsHistoryLimit: 2
-    # optional
-    #promURL: https://prometheus-io-instance:8443
+    # optional - enable later, needs prometheus pushgateway
+    # promURL: https://prometheus-io-instance:8443
   check:
     schedule: '0 1 * * 1' # runs every monday, validates integrity of backup
-    # optional
-    #promURL: https://prometheus-io-instance:8443
+    # optional - enble later, needs prometheus pushgateway
+    # promURL: https://prometheus-io-instance:8443
   prune:
     schedule: '0 1 * * 0' #Every sunday at 1am, prunes based on retention policy
     retention:
