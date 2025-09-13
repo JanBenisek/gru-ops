@@ -8,22 +8,36 @@ spec:
   template:
     spec:
       containers:
-        - name: backup
-          env:
-            - name: PGUSER
-              valueFrom:
-                secretKeyRef:
-                  name: bot-immich-pswd
-                  key: username
+        - env:
             - name: PGPASSWORD
               valueFrom:
                 secretKeyRef:
                   name: bot-immich-pswd
                   key: password
-            - name: PGDATABASE
-              value: immich
-            - name: PGHOST
-              value: cnpg-rw-lb.cnpg.svc.cluster.local # or vchord-postgres.pengiuns.com
-            - name: PGPORT
-              value: "5432"
-      restartPolicy: Never
+            - name: PGUSER
+              value: bot_immich
+          securityContext:
+            allowPrivilegeEscalation: true
+
+# spec:
+#   template:
+#     spec:
+#       containers:
+#           env:
+#             - name: PGUSER
+#               valueFrom:
+#                 secretKeyRef:
+#                   name: bot-immich-pswd
+#                   key: username
+#             - name: PGPASSWORD
+#               valueFrom:
+#                 secretKeyRef:
+#                   name: bot-immich-pswd
+#                   key: password
+#             - name: PGDATABASE
+#               value: immich
+#             - name: PGHOST
+#               value: cnpg-rw-lb.cnpg.svc.cluster.local # or vchord-postgres.pengiuns.com
+#             - name: PGPORT
+#               value: "5432"
+#       restartPolicy: Never
