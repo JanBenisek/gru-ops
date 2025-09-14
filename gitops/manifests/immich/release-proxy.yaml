@@ -59,6 +59,8 @@ spec:
           nginx.ingress.kubernetes.io/backend-protocol: "HTTP" # not it expects HTTP from cloudflare
           nginx.ingress.kubernetes.io/proxy-redirect-from: "http://" # telling how to redirect
           nginx.ingress.kubernetes.io/proxy-redirect-to: "https://"
+          # disable /preview
+          nginx.ingress.kubernetes.io/server-snippet: "location ~* /preview { deny all; }"
         hosts:
           - host: immich-share.${DOMAIN_NAME}
             paths:
