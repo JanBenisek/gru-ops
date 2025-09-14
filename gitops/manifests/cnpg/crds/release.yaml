@@ -14,10 +14,3 @@ spec:
         name: cnpg
         namespace: cnpg
   values: {}
-    # operator:
-    #   config:
-    #     # STILL NOT WORKING :(
-    #     # https://cloudnative-pg.io/documentation/1.27/labels_annotations/#current-limitations
-    #     # https://github.com/cloudnative-pg/charts/issues/661
-    #     # https://cloudnative-pg.io/documentation/current/operator_conf/
-    #     INHERITED_ANNOTATIONS: "k8up.io/backupcommand,k8up.io/file-extension"

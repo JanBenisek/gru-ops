@@ -3,9 +3,6 @@ kind: Cluster
 metadata:
   name: cnpg
   namespace: cnpg
-  # Not inherited by default and limits only specific lables/annot
-  # https://cloudnative-pg.io/documentation/1.27/labels_annotations/
-  # https://github.com/cloudnative-pg/charts/issues/661
   annotations:
     k8up.io/backupcommand: >-
       sh -c 'PGDATABASE=immich pg_dump --clean'
