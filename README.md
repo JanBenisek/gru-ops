@@ -93,20 +93,6 @@ psql -h vchord-postgres.pengiuns.com -p 5432 -U bot_immich -d immich
 PGHOST=vchord-postgres.pengiuns.com PGPORT=5432 PGDATABASE=immich PGUSER=bot_immich PGPASSWORD=<pswd> pg_dump --clean > backup.sql
 ```
 
-- annotate:
-- This is on cluster resource level, not on the pod!
-```shell
-k get cluster cnpg -n cnpg -o yaml | grep k8up.io
-```
-- or maybe mabyally?
-```shell
-# Remove annotation
-k annotate pod cnpg-1 k8up.io/backupcommand-
-
-# Add annotation
-k annotate pod cnpg-1 k8up.io/backupcommand="sh -c 'PGDATABASE=immich pg_dump --clean'" --overwrite
-```
-
 
 ### Collabora
 - [GitHub](https://github.com/CollaboraOnline/online)
