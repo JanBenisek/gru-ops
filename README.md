@@ -205,6 +205,7 @@ kubectl create secret generic basic-auth \
 - [Docs](https://immich.app/docs/install/kubernetes/)
 - [Helm](https://github.com/immich-app/immich-charts/blob/main/README.md)
 - [Chart Repo](https://artifacthub.io/packages/helm/immich/immich)
+- [Proxy](https://github.com/alangrainger/immich-public-proxy)
 
 ```shell
 export PUBLICKEY="sealed-secrets-public.crt"
