@@ -120,6 +120,12 @@ data:
             description: So pretty!
             namespace: immich
             app: immich
+        - Immich Proxy:
+            icon: immich-public-proxy.png
+            href: https://immich-share.pengiuns.com
+            description: Gib!
+            namespace: immich
+            app: immich-proxy
         - Trilium:
             icon: trilium.png
             href: https://trilium.pengiuns.com

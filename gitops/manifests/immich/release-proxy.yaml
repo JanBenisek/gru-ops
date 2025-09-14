@@ -24,7 +24,7 @@ spec:
       pullPolicy: IfNotPresent
 
     env:
-      IMMICH_URL: http://immich-server:2283
+      IMMICH_URL: http://immich-server:2283 # from k get svc -n immich
 
     service:
       main:
