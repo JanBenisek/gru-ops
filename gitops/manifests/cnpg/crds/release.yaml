@@ -13,4 +13,7 @@ spec:
         kind: HelmRepository
         name: cnpg
         namespace: cnpg
-  values: {}
+  values:
+    operator:
+      config:
+        INHERITED_ANNOTATIONS: "k8up.io/backupcommand,k8up.io/file-extension"

@@ -3,11 +3,13 @@ kind: Cluster
 metadata:
   name: cnpg
   namespace: cnpg
-  # Does not add it to the pod where k8up needs it :(
-  # annotations:
-  #   k8up.io/backupcommand: >-
-  #     sh -c 'PGDATABASE=immich pg_dump --clean'
-  #   k8up.io/file-extension: .sql
+  # Not ingerited by default and limits only specific lables/annot
+  # https://cloudnative-pg.io/documentation/1.27/labels_annotations/
+  # https://github.com/cloudnative-pg/charts/issues/661
+  annotations:
+    k8up.io/backupcommand: >-
+      sh -c 'PGDATABASE=immich pg_dump --clean'
+    k8up.io/file-extension: .sql
 
 spec:
 

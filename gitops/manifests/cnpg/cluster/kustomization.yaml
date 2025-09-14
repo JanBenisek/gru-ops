@@ -10,4 +10,3 @@ resources:
   # Backup related
   - backup-immich-db-schedule.yaml
   - backup-pod-config-immich-db.yaml
-  - cron-annotator.yaml
