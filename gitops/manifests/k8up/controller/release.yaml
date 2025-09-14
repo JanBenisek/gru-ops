@@ -27,6 +27,8 @@ spec:
       tag: v2.12.0
 
     k8up:
+      # https://docs.k8up.io/k8up/2.12/references/operator-config-reference.html
+      # https://docs.k8up.io/k8up/2.12/how-tos/manage-pod-resources.html
       envVars:
         - name: BACKUP_SKIP_WITHOUT_ANNOTATION
           value: "true"
@@ -35,7 +37,7 @@ spec:
       globalResources:
         requests:
           # -- Global CPU resource requests applied to jobs. See [supported units][resource-units].
-          cpu: "200m"
+          cpu: "50m"
           # -- Global Memory resource requests applied to jobs. See [supported units][resource-units].
           memory: "1Gi"
         limits:
