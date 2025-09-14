@@ -8,19 +8,16 @@ spec:
   chart:
     spec:
       chart: cloudnative-pg
-      version: "0.24.0"
+      version: "0.26.0"
       sourceRef:
         kind: HelmRepository
         name: cnpg
         namespace: cnpg
   values:
-    config:
-      # STILL NOT WORKING :(
-      # https://cloudnative-pg.io/documentation/1.27/labels_annotations/#current-limitations
-      # https://github.com/cloudnative-pg/charts/issues/661
-      # https://cloudnative-pg.io/documentation/current/operator_conf/
-      INHERITED_ANNOTATIONS: "k8up.io/backupcommand,k8up.io/file-extension"
-    podAnnotations:
-      k8up.io/backupcommand: >-
-        sh -c 'PGDATABASE=immich pg_dump --clean'
-      k8up.io/file-extension: .sql
+    operator:
+      config:
+        # STILL NOT WORKING :(
+        # https://cloudnative-pg.io/documentation/1.27/labels_annotations/#current-limitations
+        # https://github.com/cloudnative-pg/charts/issues/661
+        # https://cloudnative-pg.io/documentation/current/operator_conf/
+        INHERITED_ANNOTATIONS: "k8up.io/backupcommand,k8up.io/file-extension"
