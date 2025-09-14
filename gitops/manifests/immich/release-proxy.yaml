@@ -25,6 +25,16 @@ spec:
 
     env:
       IMMICH_URL: http://immich-server:2283 # from k get svc -n immich
+      # https://github.com/alangrainger/immich-public-proxy/blob/main/app/config.jsont
+      CONFIG: |
+        {
+          "ipp": {
+            "singleImageGallery": true,
+            "downloadOriginalPhoto": false,
+            "allowDownloadAll": false,
+            "showHomePage": false
+          }
+        }
 
     service:
       main:

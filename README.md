@@ -600,3 +600,14 @@ docker run --rm \
              --model=meta-llama/Llama-3.2-1B-Instruct \
              --dtype=bfloat16
 ```
+
+
+# Album
+### Halyna
+https://immich-share.pengiuns.com/share/photo/0geTtoKlCBMqK658uumWcUKlZDbeCBG47h40ZEcnTCnskY65zDkEcljEpRqnyk3FN4M/556b905d-34ea-4ccd-a786-e3e320e219ff/preview?iv=1d16fde99b9b469e1982e9cc499dc2e0&cr=f957b753ef833a7af7f40473f79b7e335daecde6e6d261ef53456942f43ceb177e88b7ab7b1564e46fa1af8f59a0e8001f5296955c9c4f5db4d68e5d9f95a09c
+
+## Me
+https://immich-share.pengiuns.com/share/0geTtoKlCBMqK658uumWcUKlZDbeCBG47h40ZEcnTCnskY65zDkEcljEpRqnyk3FN4M
+
+## Original
+https://immich-share.pengiuns.com/share/0geTtoKlCBMqK658uumWcUKlZDbeCBG47h40ZEcnTCnskY65zDkEcljEpRqnyk3FN4M
