@@ -46,7 +46,7 @@ spec:
         # Extensions
         - "CREATE EXTENSION IF NOT EXISTS vector;"
         - "CREATE EXTENSION IF NOT EXISTS vchord;"
-        - "CREATE EXTENSION IF NOT EXISTS earthdistance;"
+        - "CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;"
         # DB - metabase
         - "CREATE DATABASE metabase OWNER bot_metabase;"
         - "GRANT ALL PRIVILEGES ON DATABASE metabase TO bot_metabase;"
