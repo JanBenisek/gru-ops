@@ -15,6 +15,10 @@ spec:
         namespace: ingress-nginx
       interval: 12h
   values: 
+    controller:
+      config:
+        enable-server-snippet: "true"
+
     resources:  # no limit on purpose
       requests:
         memory: "256Mi"  

@@ -62,7 +62,7 @@ spec:
           # disable /preview
           # nginx.ingress.kubernetes.io/server-snippet: "location ~* /preview { deny all; }"
           # nginx.ingress.kubernetes.io/configuration-snippet: 'if ($request_uri ~ "^.*/preview(\?.*)?$") { return 403; }'
-          # nginx.ingress.kubernetes.io/server-snippet: 'location ~* "^/share/photo/.*/preview" { return 403; }'
+          nginx.ingress.kubernetes.io/server-snippet: 'location ~* "^/share/photo/.*/preview" { return 403; }'
           # nginx.ingress.kubernetes.io/server-snippet: |
           #   location ~* ^/share/photo/[^/]+/[^/]+/preview$ {
           #       return 403;
