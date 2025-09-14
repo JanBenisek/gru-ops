@@ -60,7 +60,8 @@ spec:
           nginx.ingress.kubernetes.io/proxy-redirect-from: "http://" # telling how to redirect
           nginx.ingress.kubernetes.io/proxy-redirect-to: "https://"
           # disable /preview
-          nginx.ingress.kubernetes.io/configuration-snippet: 'if ($request_uri ~ "^.*/preview(\?.*)?$") { return 403; }'
+          nginx.ingress.kubernetes.io/configuration-snippet: 'if ($uri ~ "^/share/photo/.*/preview$") { return 403; }'
+
 
         hosts:
           - host: immich-share.${DOMAIN_NAME}
