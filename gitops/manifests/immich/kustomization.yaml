@@ -9,5 +9,5 @@ resources:
   - release-proxy.yaml
   - repository-proxy.yaml
   # Backups
-  - backup-immich-manual.yaml
+  # - backup-immich-manual.yaml
   - backup-immich-schedule.yaml

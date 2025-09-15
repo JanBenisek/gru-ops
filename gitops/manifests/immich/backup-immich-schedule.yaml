@@ -18,7 +18,7 @@ spec:
       name: restic-credentials
       key: password
   backup:
-    schedule: "0 2 * * *" # runs daily at 2am
+    schedule: "0 2 * * *" # runs daily at 2am, should run AFTER db backup
     failedJobsHistoryLimit: 2
     successfulJobsHistoryLimit: 2
     # optional - enable later, needs prometheus pushgateway

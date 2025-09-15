@@ -20,7 +20,7 @@ spec:
       name: restic-credentials
       key: password
   backup:
-    schedule: "0 2 * * *" # runs daily at 2am
+    schedule: "0 1 * * *" # runs daily at 1am should run BEFORE pvc backup
     failedJobsHistoryLimit: 2
     successfulJobsHistoryLimit: 2
     # optional
