@@ -330,6 +330,9 @@ k create secret generic restic-credentials \
 export AWS_ACCESS_KEY_ID="RYH6OMTZVDF0D0UR4B4X"
 export AWS_SECRET_ACCESS_KEY="9fsn9RCiHHqXd9kB2R7gkcH0rCtte6p3oKXujh6o"
 export RESTIC_REPOSITORY="s3:https://hel1.your-objectstorage.com/pengiunsbackup/postgres/immich/manual/"
+export RESTIC_REPOSITORY="s3:https://hel1.your-objectstorage.com/pengiunsbackup/postgres/immich/schedule/"
+export RESTIC_REPOSITORY="s3:https://hel1.your-objectstorage.com/pengiunsbackup/immich/schedule/"
+export RESTIC_REPOSITORY="s3:https://hel1.your-objectstorage.com/pengiunsbackup/immich/manual/"
 export RESTIC_PASSWORD="<>"
 
 # see snapshots
