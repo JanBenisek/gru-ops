@@ -17,7 +17,7 @@ spec:
   values: 
     controller:
       config:
-        enable-server-snippet: "true"
+        enable-server-snippet: "true" # experiment to filter paths on immich-proxy immich
 
     resources:  # no limit on purpose
       requests:
