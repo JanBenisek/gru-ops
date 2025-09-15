@@ -19,6 +19,8 @@ spec:
       allowSnippetAnnotations: "true" # experiment to filter paths on immich-proxy immich
       # config:
         # enable-server-snippet: "true" # experiment to filter paths on immich-proxy immich
+      config:
+        annotations-risk-level: Critical
 
     resources:  # no limit on purpose
       requests:
