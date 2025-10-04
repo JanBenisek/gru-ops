@@ -110,7 +110,7 @@ spec:
         pullPolicy: IfNotPresent
       env:
         TRANSFORMERS_CACHE: /cache
-        IMMICH_LOG_LEVEL: "verbose"
+        IMMICH_LOG_LEVEL: "debug"
       persistence:
         cache:
           enabled: true
