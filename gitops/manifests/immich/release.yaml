@@ -32,7 +32,8 @@ spec:
           secretKeyRef:
             name: bot-immich-pswd
             key: password
-      # IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
+      IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
+      IMMICH_LOG_LEVEL: "verbose"
 
     image:
       # ghcr.io/immich-app/immich-server:v1.140.1
@@ -109,6 +110,7 @@ spec:
         pullPolicy: IfNotPresent
       env:
         TRANSFORMERS_CACHE: /cache
+        IMMICH_LOG_LEVEL: "verbose"
       persistence:
         cache:
           enabled: true
