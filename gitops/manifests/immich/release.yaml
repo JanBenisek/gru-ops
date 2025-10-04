@@ -37,7 +37,7 @@ spec:
 
     image:
       # ghcr.io/immich-app/immich-server:v1.140.1
-      tag: v2.0.1
+      tag: v1.143.1 # v2.0.1
 
     immich:
       metrics:
