@@ -20,6 +20,21 @@ spec:
     #   allowSnippetAnnotations: "true"
     #   config:
     #     annotations-risk-level: Critical
+    controller:
+      config:
+        enable-access-log: "true"
+        log-format-upstream: >
+          {"time": "$time_iso8601",
+           "remote_addr": "$proxy_protocol_addr",
+           "x-forwarded-for": "$proxy_add_x_forwarded_for",
+           "method": "$request_method",
+           "uri": "$request_uri",
+           "status": "$status",
+           "bytes_sent": "$body_bytes_sent",
+           "referrer": "$http_referer",
+           "user_agent": "$http_user_agent",
+           "request_time": "$request_time",
+           "upstream_response_time": "$upstream_response_time"}
 
     resources:  # no limit on purpose
       requests:
