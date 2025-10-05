@@ -4,7 +4,7 @@ metadata:
   name: pvc-immich
   namespace: immich
   annotations:
-    k8up.io/backup: "true" # k annotate pvc pvc-immich k8up.io/backup=true
+    k8up.io/backup: "true"
 spec:
   storageClassName: local-hostpath-kevin
   accessModes:
