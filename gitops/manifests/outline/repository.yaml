@@ -1,7 +1,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: outline-repo
+  name: outline
   namespace: outline
 spec:
   interval: 30m
