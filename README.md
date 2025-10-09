@@ -437,6 +437,12 @@ curl https://ollama.pengiuns.com/api/ps
   - [main](https://github.com/openebs/openebs/blob/main/charts/values.yaml)
   - [mayastor](https://github.com/openebs/mayastor-extensions/blob/v2.7.1/chart/values.yaml)
 
+### outline
+
+- Knowledge management (like Notion)
+- [Helm](https://artifacthub.io/packages/helm/community-charts/outline)
+- [GitHub](https://github.com/outline/outline?tab=readme-ov-file)
+
 ### postgresql
 
 - [chart](https://artifacthub.io/packages/helm/bitnami/postgresql)

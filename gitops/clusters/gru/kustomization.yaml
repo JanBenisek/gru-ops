@@ -44,7 +44,7 @@ resources:
   - cnpg-crds.yaml
   - cnpg-cluster.yaml
   - immich.yaml
-  # - outline.yaml
+  - outline.yaml
 configMapGenerator:
   - name: gru-values
     envs:
