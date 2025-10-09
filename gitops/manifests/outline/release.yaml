@@ -56,6 +56,6 @@ spec:
     #   existingSecret: ""
     #   passwordSecretKey: "postgres-password"
 
-  minio:
-    # -- Enable minio
-    enabled: false
+    minio:
+      # -- Enable minio
+      enabled: false
