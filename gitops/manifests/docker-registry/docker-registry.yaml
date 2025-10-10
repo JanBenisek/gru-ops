@@ -85,7 +85,6 @@ metadata:
     app: docker-registry
     app.kubernetes.io/name: docker-registry
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/proxy-body-size: "0" #must-have
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "1000"

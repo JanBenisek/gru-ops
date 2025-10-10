@@ -75,7 +75,6 @@ spec:
       # -- Use appropriate annotations for your Ingress controller, e.g., for NGINX:
       # nginx.ingress.kubernetes.io/rewrite-target: /
       annotations:
-        cert-manager.io/cluster-issuer: "letsencrypt-prod"
         kubernetes.io/ingress.class: "nginx"
 
       host: chat.${DOMAIN_NAME}
