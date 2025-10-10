@@ -48,7 +48,7 @@ spec:
       enabled: false
 
     # externalPostgresql:
-    #   host: ""
+    #   host: "${POSTGRESQL_VCHORD_HOST}" 
     #   username: "postgres"
     #   password: ""
     #   port: 5432
