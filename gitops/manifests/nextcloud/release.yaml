@@ -35,6 +35,8 @@ spec:
         nginx.ingress.kubernetes.io/proxy-send-timeout: "900"
         nginx.ingress.kubernetes.io/proxy-read-timeout: "900"
         nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "900"
+        # Disable automatic cert-manager annotation - somehow it keeps adding it
+        cert-manager.io/cluster-issuer: ""
       
       tls:
         - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
