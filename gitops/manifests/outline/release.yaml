@@ -41,7 +41,7 @@ spec:
         memory: 128Mi
     
     redis:
-      enabled: false
+      enabled: true
 
     postgresql:
       enabled: false
