@@ -132,6 +132,12 @@ data:
             description: Document it!
             namespace: trilium
             app: trilium
+        - Outline:
+            icon: outline.png
+            href: https://outlinepengiuns.com
+            description: Document it!
+            namespace: outline
+            app: outline
 
     - Fun:
         - Hiker:
