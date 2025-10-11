@@ -51,7 +51,7 @@ spec:
 
     externalPostgresql:
       host: "${POSTGRESQL_VCHORD_HOST}" 
-      username: "bot_outine"
+      username: "bot_outline"
       password: ""
       port: 5432
       database: outline

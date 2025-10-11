@@ -134,7 +134,7 @@ data:
             app: trilium
         - Outline:
             icon: outline.png
-            href: https://outlinepengiuns.com
+            href: https://outline.pengiuns.com
             description: Document it!
             namespace: outline
             app: outline
