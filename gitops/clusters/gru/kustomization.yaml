@@ -12,7 +12,7 @@ resources:
   - certs.yaml #it takes a ~10m to set up and propagate, patience!
   - openebs.yaml
   - docker-registry.yaml
-  # - cloudflare.yaml
+  - cloudflare.yaml
   # Apps
   - hiker.yaml
   - stirling.yaml
