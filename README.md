@@ -164,6 +164,7 @@ curl -v -X DELETE https://docker-registry.pengiuns.com/v2/jupyter/manifests/sha2
 
 ### external-dns
 
+- [Helm](https://artifacthub.io/packages/helm/external-dns/external-dns)
 - Need to have cloudflare secret (sealed).
 - Follow the procedure in `sealed secrets`, then
 
