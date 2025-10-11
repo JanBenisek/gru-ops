@@ -31,12 +31,16 @@ spec:
       - ingress
     provider:
       name: cloudflare
-      cloudflare:
-        # If you reference a secret, this is the secret name
-        secretName: cloudflare-api-token # the key HAS TO BE `cloudflare_api_token`
-        # The internal field *in the secret* must be `cloudflare_api_token`
-        # (the chart expects that) 
-        proxied: false
+      proxied: false
+
+    env:
+      - name: CF_API_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare-api-key
+            key: cloudflare_api_token
+      # cloudflare:
+      #   secretName: cloudflare-api-token # the key HAS TO BE `cloudflare_api_token`
 
     registry: txt
 
