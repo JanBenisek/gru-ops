@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: external-dns
-      version: "0.19.0"
+      version: "1.19.0"
       sourceRef:
         kind: HelmRepository
         name: external-dns
@@ -29,10 +29,22 @@ spec:
       # - crd # TBD what's better
       - service
       - ingress
-    provider: cloudflare
-    cloudflare:
-      proxied: false 
-      secretName: "cloudflare-api-token" # the key HAS TO BE `cloudflare_api_token`
+    provider:
+      name: cloudflare
+      cloudflare:
+        # If you reference a secret, this is the secret name
+        secretName: cloudflare-api-token # the key HAS TO BE `cloudflare_api_token`
+        # The internal field *in the secret* must be `cloudflare_api_token`
+        # (the chart expects that) 
+        proxied: false
+
+    registry: txt
+
+    txtOwnerId: external-dns-gru
+
+    # available values are `create-only`, `sync`, & `upsert-only`.
+    policy: sync # mirrors dns records based on on txtOwnerId, (insert, update, delete)
+    
     resources:
       requests:
         memory: "128Mi"
