@@ -25,7 +25,7 @@ spec:
         fsGroup: 321 # owner of attached volume is group 321 
       containers:
         - name: sonarr
-          image: ghcr.io/hotio/sonarr:release-325c13b
+          image: ghcr.io/hotio/sonarr:release-4.0.15.2941
           securityContext:
             runAsUser: 0  # Temporary root for setup, not great, but does not work otherwise
             allowPrivilegeEscalation: true
