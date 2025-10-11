@@ -443,6 +443,27 @@ curl https://ollama.pengiuns.com/api/ps
 - [Helm](https://artifacthub.io/packages/helm/community-charts/outline)
 - [GitHub](https://github.com/outline/outline?tab=readme-ov-file)
 
+```sql
+create database outline;
+create user bot_outline with password 'unleash-hashtag-called';
+grant all privileges on database outline to bot_outline;
+alter database outline owner to bot_outline;
+alter role bot_outline createdb;
+```
+
+- sealed secret
+```shell
+export PUBLICKEY="sealed-secrets-public.crt"
+
+k create secret generic bot-outline-pswd \
+  --namespace cnpg \
+  --dry-run=client \
+  --from-literal=postgres-password='<pswd>' \
+  -o json \
+  | kubeseal --cert "./${PUBLICKEY}" \
+  > /home/github/gru-ops/gitops/manifests/cnpg/cluster/bot_outline_pswd.yaml
+```
+
 ### postgresql
 
 - [chart](https://artifacthub.io/packages/helm/bitnami/postgresql)

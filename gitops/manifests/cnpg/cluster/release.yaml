@@ -53,6 +53,9 @@ spec:
         # DB - production
         - "CREATE DATABASE prod OWNER bot_jerry;"
         - "GRANT ALL PRIVILEGES ON DATABASE prod TO bot_jerry;"
+        # DB - outline
+        - "CREATE DATABASE outline OWNER bot_outline;"
+        - "GRANT ALL PRIVILEGES ON DATABASE outline TO bot_outline;"
 
   managed:
     roles:

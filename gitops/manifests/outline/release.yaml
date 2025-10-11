@@ -46,14 +46,14 @@ spec:
     postgresql:
       enabled: false
 
-    # externalPostgresql:
-    #   host: "${POSTGRESQL_VCHORD_HOST}" 
-    #   username: "postgres"
-    #   password: ""
-    #   port: 5432
-    #   database: outline
-    #   existingSecret: ""
-    #   passwordSecretKey: "postgres-password"
+    externalPostgresql:
+      host: "${POSTGRESQL_VCHORD_HOST}" 
+      username: "bot_outine"
+      password: ""
+      port: 5432
+      database: outline
+      existingSecret: ""
+      passwordSecretKey: "postgres-password"
 
     minio:
       # -- Enable minio
