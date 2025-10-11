@@ -5,6 +5,7 @@ resources:
   - bot_immich_pswd.yaml
   - bot_metabase_pswd.yaml
   - bot_jerry_pswd.yaml
+  - bot_outline_pswd.yaml
   - release.yaml
   - superuser-pswd.yaml
   # Backup related

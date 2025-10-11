@@ -454,7 +454,7 @@ alter role bot_outline createdb;
 - sealed secret
 ```shell
 export PUBLICKEY="sealed-secrets-public.crt"
-
+# Note that I added the annotations after creation, automatically
 k create secret generic bot-outline-pswd \
   --namespace cnpg \
   --dry-run=client \
