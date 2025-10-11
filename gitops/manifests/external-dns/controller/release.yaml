@@ -38,7 +38,7 @@ spec:
         valueFrom:
           secretKeyRef:
             name: cloudflare-api-key
-            key: cloudflare_api_token
+            key: apiKey
       # cloudflare:
       #   secretName: cloudflare-api-token # the key HAS TO BE `cloudflare_api_token`
 
