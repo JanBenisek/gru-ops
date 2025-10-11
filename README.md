@@ -445,7 +445,7 @@ curl https://ollama.pengiuns.com/api/ps
 
 ```sql
 create database outline;
-create user bot_outline with password 'unleash-hashtag-called';
+create user bot_outline with password '<pswd>';
 grant all privileges on database outline to bot_outline;
 alter database outline owner to bot_outline;
 alter role bot_outline createdb;

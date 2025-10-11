@@ -52,7 +52,7 @@ spec:
       password: ""
       port: 5432
       database: outline
-      existingSecret: ""
+      existingSecret: "bot-outline-pswd"
       passwordSecretKey: "postgres-password"
 
     minio:
