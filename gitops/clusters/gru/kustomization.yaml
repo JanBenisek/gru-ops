@@ -6,16 +6,13 @@ resources:
   - metallb-crds.yaml
   - ingress-nginx.yaml
   - sealed-secrets.yaml
-  - external-dns-secrets.yaml
+  - reflector.yaml
   - external-dns.yaml
-  - cert-manager-secrets.yaml # might not be the best, let's review
   - cert-manager.yaml
   - certs.yaml #it takes a ~10m to set up and propagate, patience!
   - openebs.yaml
   - docker-registry.yaml
-  - cloudflare-secrets.yaml
   - cloudflare.yaml
-  - reflector.yaml
   # Apps
   - hiker.yaml
   - stirling.yaml

@@ -4,7 +4,7 @@ metadata:
   name: external-dns
   namespace: flux-system
 spec:
-  path: ./gitops/manifests/external-dns/controller
+  path: ./gitops/manifests/external-dns
   interval: 15m
   prune: true # remove any elements later removed from the above path
   timeout: 20m
@@ -13,7 +13,7 @@ spec:
       namespace: flux-system
     - name: sealed-secrets
       namespace: flux-system
-    - name: external-dns-secrets
+    - name: reflector
       namespace: flux-system
   sourceRef:
     kind: GitRepository

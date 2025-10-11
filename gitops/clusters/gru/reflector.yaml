@@ -11,8 +11,4 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  # healthChecks: # no deployment
-  #   - apiVersion: apps/v1
-  #     kind: Deployment
-  #     name: reflector
-  #     namespace: reflector
+  # no deployment
