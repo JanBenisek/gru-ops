@@ -17,6 +17,9 @@ spec:
   values:
     replicaCount: 1
 
+    logging:
+      level: debug # error, warn, info, http, verbose, debug and silly
+
     ingress:
       enabled: true 
       className: "nginx"
@@ -34,11 +37,11 @@ spec:
 
     resources:
       limits:
-        cpu: 200m
-        memory: 512Mi
+        cpu: 500m
+        memory: 1Gi
       requests:
         cpu: 100m
-        memory: 128Mi
+        memory: 512Mi
     
     redis:
       enabled: true
