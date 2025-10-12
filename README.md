@@ -374,8 +374,8 @@ export PUBLICKEY="sealed-secrets-public.crt"
 k create secret generic bot-metabase-pswd \
   --namespace cnpg \
   --dry-run=client \
-  --from-literal=bot_metabase_user=<pswd> -o json \
-  --from-literal=bot_metabase_pswd=<pswd> -o json \
+  --from-literal=username=bot_metabase -o json \
+  --from-literal=password=<pswd> -o json \
   | kubeseal --cert "./${PUBLICKEY}" \
   > /home/github/gru-ops/gitops/manifests/cnpg/cluster/bot_metabase_pswd.yaml
 ```
