@@ -56,8 +56,8 @@ spec:
       dbname: metabase
       # username: bot_metabase
       existingSecret: bot-metabase-pswd
-      existingSecretUsernameKey: bot_metabase_user
-      existingSecretPasswordKey: bot_metabase_pswd
+      existingSecretUsernameKey: username
+      existingSecretPasswordKey: password
     
     service:
       labels:
