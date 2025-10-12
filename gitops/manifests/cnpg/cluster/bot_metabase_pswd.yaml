@@ -11,8 +11,14 @@
       "metadata": {
         "name": "bot-metabase-pswd",
         "namespace": "cnpg",
-        "creationTimestamp": null
-      }
+        "creationTimestamp": null,
+        "annotations": {
+          "reflector.v1.k8s.emberstack.com/reflection-allowed": "true",
+          "reflector.v1.k8s.emberstack.com/reflection-auto-enabled": "true",
+          "reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces": "immich"
+        }
+      },
+      "type": "kubernetes.io/basic-auth"
     },
     "encryptedData": {
       "password": "AgAf4Wbr5uohCvPxdjWwsW8zDrL4FTSvdj+0A3qqUbHgI0EBFv5kUpUsIBjpl/NvWj0RFL7ayyxSGW+xBoIAgKrwzchtXfidxA2a0woPCN9s3C8KUsr7HVxVFWV+RTgYw4piH0UpUPelFO/BRJzw/stpkby0gSSLFvMvbHSSizVEnjdfhivE7FAL9jvfTj+gvXAh8tBJN2kP1euB2TWp0JpHQCrPUNgRmNfb6Aj6kUthKQG5Bv2Hz1bbMk0lltLVPwv8i4QNX7tytNxYhXoDy+qxREVDzvCJTPN/6rRveLb1LKLDoCOqcUVycHys+/kgQaFqq91WENKGuWImMCPe2La0p8yRqEmoUfOrIM+l9tmGKcBY/PYDyIh8ryKeGfCX300/y/H8pKLgOCx/rHNp+4Si+6oXH4c0hHlrCpiytcMSI5pUAAVPWz4TVi5s9IdjQpckblnKs4VUp4FtfLU7H4VAmVHnKFslBll0CcPO5FHo6SqzhvywHPxqXCcg2EG6gucLoonYKxt9dstPLevMJIhUVJgwcgHfM8I7Q7r39f1jICO2t/C0rY4a/D5HQImIcSIzBtQ4OZG1Y28X1qUBqaiXXwb/NKgwbLeaqNvytJUQ3HbTQm3S3VKXMn0tsFmqnLzIT+h9OuABps6VVoq2j0JcyjcQ5ZO/skZmp/mWUPU4CPXCHEU7xgkyNBxT26P2O4Dbc9/RtesY5Au/1aYm1hSCFxda1d5VoszflRg=",
