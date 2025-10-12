@@ -31,7 +31,6 @@ resources:
   - media-sonarr.yaml
   - media-bazarr.yaml
   - funnaiest.yaml
-  - postgresql.yaml
   - metabase.yaml
   # - collabora.yaml
   # - nextcloud.yaml

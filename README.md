@@ -374,6 +374,7 @@ export PUBLICKEY="sealed-secrets-public.crt"
 k create secret generic bot-metabase-pswd \
   --namespace cnpg \
   --dry-run=client \
+  --type=kubernetes.io/basic-auth \
   --from-literal=username=bot_metabase -o json \
   --from-literal=password=<pswd> -o json \
   | kubeseal --cert "./${PUBLICKEY}" \
