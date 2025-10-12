@@ -5,4 +5,3 @@ resources:
   - namespace.yaml
   - repository.yaml
   - release.yaml
-  - bot_metabase_pswd.yaml
