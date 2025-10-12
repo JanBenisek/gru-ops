@@ -51,7 +51,7 @@ spec:
     
     database:
       type: postgres
-      host: "${POSTGRESQL_HOST}" # POSTGRESQL_VCHORD_HOST
+      host: "${POSTGRESQL_VCHORD_HOST}"
       port: 5432
       dbname: metabase
       # username: bot_metabase

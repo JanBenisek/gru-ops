@@ -93,6 +93,13 @@ psql -h vchord-postgres.pengiuns.com -p 5432 -U bot_immich -d immich
 PGHOST=vchord-postgres.pengiuns.com PGPORT=5432 PGDATABASE=immich PGUSER=bot_immich PGPASSWORD=<pswd> pg_dump --clean > backup.sql
 ```
 
+```sql
+create database prod;
+create user bot_jerry with password '<pswd>';
+alter database prod owner to bot_jerry;
+grant all privileges on database prod to bot_jerry;
+```
+
 
 ### Collabora
 - [GitHub](https://github.com/CollaboraOnline/online)
