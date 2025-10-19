@@ -19,6 +19,10 @@ Let's add the commands later.
 
 ## Apps
 
+### Authelia
+
+- [Values](https://github.com/authelia/chartrepo/blob/master/charts/authelia/values.yaml)
+
 ### cert-manager
 
 - Need to have cloudflare secret
