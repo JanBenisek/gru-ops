@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: jellyfin
-      version: "2.3.0"
+      version: "2.4.0"
       sourceRef:
         kind: HelmRepository
         name: jellyfin
@@ -29,7 +29,7 @@ spec:
       # -- Container image repository for Jellyfin.
       repository: docker.io/jellyfin/jellyfin
       # -- Jellyfin container image tag. Leave empty to automatically use the Chart's app version.
-      tag: "10.10.7"
+      tag: ""
       # -- Image pull policy (Always, IfNotPresent, or Never).
       pullPolicy: IfNotPresent
 
