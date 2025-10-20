@@ -15,69 +15,58 @@ spec:
         namespace: authelia
       interval: 12h
   values:
-    # here
-    replicaCount: 1
-
     image:
       repository: authelia/authelia
       tag: latest
       pullPolicy: IfNotPresent
 
-    service:
-      type: ClusterIP
-      port: 9091
-
     ingress:
-      main:
-        enabled: true
-        annotations:
-          kubernetes.io/ingress.class: "nginx"
-          nginx.ingress.kubernetes.io/proxy-body-size: "0"
-        hosts:
-          - host: authelia.${DOMAIN_NAME}
+      enabled: true
+      className:
+      annotations: 'nginx'
+        kubernetes.io/ingress.class: "nginx"
+        nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      rulesOverride:
+        - host: authelia.${DOMAIN_NAME}
+          http:
             paths:
               - path: /
                 pathType: Prefix
-        tls:
-          - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
-            hosts:
-              - authelia.${DOMAIN_NAME}
-
-    authenticationBackend:
-      # using file backend for simplicity
-      file:
+                backend:
+                  service:
+                    name: authelia
+                    port:
+                      number: 9091
+      tls:
         enabled: true
-        path: /config/users_database.yml
+        secret: letsencrypt-wildcard-cert-pengiuns.com-production
+    
+    pod:
+      resources:
+        limits:
+          cpu: 200m
+          memory: 512MiB
+        requests:
+          cpu: 100m
+          memory: 256Mi
 
-    storage:
-      local:
-        enabled: true
-        persister:
-          enabled: false
-
-    config:
-      # minimal Authelia configuration
-      theme: default
+    configMap:
       log:
-        level: info
-      server:
-        host: 0.0.0.0
-        port: 9091
-      authentication_backend:
-        file:
-          path: /config/users_database.yml
-      session:
-        name: authelia_session
-        timeout: 3600
-        domain: example.com
-      regulatory:
-        deny_disposable_email: false
-      # NOTE: you will likely need to configure your own ldap or oauth backend for production
+        level: 'debug'
 
-    resources:
-      limits:
-        cpu: 200m
-        memory: 512MiB
-      requests:
-        cpu: 100m
-        memory: 256Mi
+      storage:
+        local:
+          enabled: false
+        postgres:
+          enabled: false
+          deploy: false
+          address: 'tcp://postgres.databases.svc.cluster.local:5432'
+          database: 'authelia'
+          schema: 'public'
+          username: 'authelia'
+          password:
+            secret_name: ~
+            value: ''
+
+    persistence:
+      enabled: false
