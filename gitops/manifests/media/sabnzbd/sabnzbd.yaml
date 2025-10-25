@@ -48,6 +48,8 @@ spec:
               value: "8080/tcp,8080/udp"
             - name: TZ
               value: "Etc/UTC" # Timezone
+            - name: SAB_HOST_WHITELIST
+              value: "sabnzbd.${DOMAIN_NAME},sabnzbd,localhost,127.0.0.1"
           resources:
             requests:
               memory: "512Mi"  
