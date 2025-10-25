@@ -50,6 +50,10 @@ spec:
               value: "Etc/UTC" # Timezone
             - name: SAB_HOST_WHITELIST
               value: "sabnzbd.pengiuns.com"
+            - name: HOST_WHITELIST
+              value: "sabnzbd.pengiuns.com"
+            - name: SAB_DISABLE_HOSTNAME_CHECK
+              value: "1"
           resources:
             requests:
               memory: "512Mi"  
