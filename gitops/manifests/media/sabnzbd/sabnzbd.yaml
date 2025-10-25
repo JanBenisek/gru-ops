@@ -52,8 +52,8 @@ spec:
               value: "sabnzbd.pengiuns.com"
             - name: HOST_WHITELIST
               value: "sabnzbd.pengiuns.com"
-            - name: SAB_DISABLE_HOSTNAME_CHECK
-              value: "1"
+            # - name: SAB_DISABLE_HOSTNAME_CHECK
+            #   value: "1"
           resources:
             requests:
               memory: "512Mi"  
