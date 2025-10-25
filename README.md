@@ -366,6 +366,9 @@ restic prune
 
 - [Containers](https://hotio.dev/containers/base/)
 
+### sabnzbd
+- Subscribed to eweka
+
 ## metabase
 
 - [values](https://github.com/pmint93/helm-charts/tree/master/charts/metabase)
