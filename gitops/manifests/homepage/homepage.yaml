@@ -196,6 +196,12 @@ data:
             description: Subtitles
             namespace: media
             app: bazarr
+        - SABnzbd:
+            icon: sabnzbd.png
+            href: https://sabnzbd.pengiuns.com
+            description: Usenet client
+            namespace: media
+            app: bazarr
     
     - Experiments:
       - Router:
