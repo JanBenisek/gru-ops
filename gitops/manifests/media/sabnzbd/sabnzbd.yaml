@@ -49,7 +49,7 @@ spec:
             - name: TZ
               value: "Etc/UTC" # Timezone
             - name: SAB_HOST_WHITELIST
-              value: "sabnzbd.${DOMAIN_NAME}"
+              value: "https://sabnzbd.${DOMAIN_NAME}"
           resources:
             requests:
               memory: "512Mi"  

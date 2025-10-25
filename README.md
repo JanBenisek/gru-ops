@@ -368,6 +368,7 @@ restic prune
 
 ### sabnzbd
 - Subscribed to eweka
+- [NZBFinder](https://nzbfinder.ws/profile) - free tier
 
 ## metabase
 
