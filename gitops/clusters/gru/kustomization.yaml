@@ -29,7 +29,7 @@ resources:
   - media-prowlarr.yaml
   - media-qbittorrent.yaml
   - media-radarr.yaml
-  # - media-sabnzbd.yaml
+  - media-sabnzbd.yaml
   - media-sonarr.yaml
   - media-bazarr.yaml
   - funnaiest.yaml
