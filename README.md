@@ -367,8 +367,13 @@ restic prune
 - [Containers](https://hotio.dev/containers/base/)
 
 ### sabnzbd
-- Subscribed to eweka
-- [NZBFinder](https://nzbfinder.ws/profile) - free tier
+- [Eweka](https://www.eweka.nl/en/usenet_toegang/specificaties) - Provider.
+  - Like qBitTorrent but not P2P, distributed servers, like archives. AKA provider.
+  - Gives access to UseNet, need to pay ~ 6-10EUR/Month
+- Sabnzbd - client that downloads, like qBitTorrent. I give it my creds from Eweka
+- [NZBFinder](https://nzbfinder.ws/profile) - Used through indexer, like PirateBay.
+  - indexer - free tier or 15EUR/yr
+  - I got 5000 api calls and downloads
 
 ## metabase
 
