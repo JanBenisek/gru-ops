@@ -6,6 +6,42 @@ My tiny homelab
 
 Let's add the commands later.
 
+### Renew expired certs
+
+- Check validity:
+```shell
+# in ~/.talos
+t config info
+
+# in ~/.kube
+k config view --raw -o jsonpath='{.users[0].user.client-certificate-data}' \
+| base64 -d \
+| openssl x509 -text -noout
+```
+
+- Renew:
+  - [GitHub Issue](https://github.com/siderolabs/talos/discussions/9457)
+```shell
+# Extracts certs
+yq -r .machine.ca.crt controlplane.yaml | base64 -d > ca.crt
+yq -r .machine.ca.key controlplane.yaml | base64 -d > ca.key
+
+# Generate fresh credentials
+talosctl gen key --name admin
+talosctl gen csr --key admin.key --ip 192.168.178.39
+talosctl gen crt --ca ca --csr admin.csr --name admin --hours 8760
+
+# Replace it in talosconfig
+yq eval '
+  .contexts.gru.ca = "'"$(base64 -b0 -i ca.crt)"'" |
+  .contexts.gru.crt = "'"$(base64 -b0 -i admin.crt)"'" |
+  .contexts.gru.key = "'"$(base64 -b0 -i admin.key)"'"
+' -i ~/.talos/config
+
+# regenerate .kube
+t kubeconfig ~/.kube/config -n kevin --force
+```
+
 ## Flux
 
 - [] some pods, like hiker, are not removed when removed from here and reconciled
@@ -367,13 +403,15 @@ restic prune
 - [Containers](https://hotio.dev/containers/base/)
 
 ### sabnzbd
-- [Eweka](https://www.eweka.nl/en/usenet_toegang/specificaties) - Provider.
+- [NewsHosting](https://controlpanel.newshosting.com/customer/index.php) - Provider.
   - Like qBitTorrent but not P2P, distributed servers, like archives. AKA provider.
-  - Gives access to UseNet, need to pay ~ 6-10EUR/Month
-- Sabnzbd - client that downloads, like qBitTorrent. I give it my creds from Eweka
-- [NZBFinder](https://nzbfinder.ws/profile) - Used through indexer, like PirateBay.
-  - indexer - free tier or 15EUR/yr
-  - I got 5000 api calls and downloads
+  - Gives access to UseNet, paid
+- Sabnzbd - client that downloads, like qBitTorrent. I give it my creds from NewsHosting
+- [NZBPlanet](https://nzbplanet.net/profile#api_rss) - Used through indexer, like PirateBay.
+  - indexer - bought for 1yr (11/2026) for 12EUR, VIP
+  - I got 5000 api calls / day and unlimited downloads
+  - I am also keeping the second [NZBFinder](https://nzbfinder.ws/profile)
+    - but it has only 5000 limit to api calls and downloads
 
 ## metabase
 
