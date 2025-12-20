@@ -38,14 +38,18 @@ metadata:
     argocd.argoproj.io/sync-wave: "5"
 spec:
   project: gru
-  source:
-    chart: metallb
-    repoURL: https://metallb.github.io/metallb
-    targetRevision: 0.15.2  
-    helm:
-      releaseName: metallb
-      valueFiles:
-        - values.yaml
+  sources:
+    - chart: metallb
+      repoURL: https://metallb.github.io/metallb
+      targetRevision: 0.15.2  
+      helm:
+        releaseName: metallb
+        valueFiles:
+          - $values/values.yaml
+    - repoURL: https://github.com/JanBenisek/gru-ops.git
+      targetRevision: main
+      path: argocd/gru/infra/prod/metallb
+      ref: values
   destination:
     server: "https://kubernetes.default.svc"
     namespace: metallb
