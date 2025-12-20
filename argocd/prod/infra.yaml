@@ -14,6 +14,7 @@ spec:
     # kustomize: {}
     directory:
       recurse: true # otherwise we need kustomize: {}, TBD
+      # exclude: "**/external-dns.yaml" # to exlude stuff
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
