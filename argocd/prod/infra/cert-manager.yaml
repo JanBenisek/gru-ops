@@ -8,13 +8,21 @@ metadata:
 spec:
   project: gru
   sources:
-    - path: .
-      repoURL: oci://quay.io/jetstack/cert-manager
+    # OCI chart source (cert-manager Helm chart)
+    - repoURL: oci://quay.io/jetstack
+      chart: cert-manager
       targetRevision: v1.19.2
       helm:
         releaseName: cert-manager
         valueFiles:
           - $values/argocd/manifests/prod/infra/cert-manager/values.yaml
+    # - path: .
+    #   repoURL: oci://quay.io/jetstack/cert-manager
+    #   targetRevision: v1.19.2
+    #   helm:
+    #     releaseName: cert-manager
+    #     valueFiles:
+    #       - $values/argocd/manifests/prod/infra/cert-manager/values.yaml
     - repoURL: https://github.com/JanBenisek/gru-ops.git
       targetRevision: main
       path: argocd/manifests/prod/infra/cert-manager

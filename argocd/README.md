@@ -11,3 +11,5 @@ k apply -f argocd/project.yaml
 # Apply the app-of-apps pattern
 k apply -f argocd/root-app.yaml
 ```
+
+- ArgoCD, when using OCI, needs to register a repo
