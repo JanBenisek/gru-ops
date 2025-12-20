@@ -11,7 +11,7 @@ spec:
     targetRevision: 6.0.0
     helm:
       valueFiles:
-      - $values/values.yaml
+      - $values/argocd/manifests/prod/apps/podinfo/values.yaml
   - repoURL: https://github.com/JanBenisek/gru-ops.git
     targetRevision: main
     path: argocd/manifests/prod/apps/podinfo

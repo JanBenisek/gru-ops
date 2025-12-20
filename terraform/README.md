@@ -30,3 +30,39 @@ t upgrade -n stuart --image ghcr.io/siderolabs/installer:v1.10.4
 # k8s update (can be worker or master)
 t -n kevin upgrade-k8s --to "1.34.2"
 ```
+
+### Renew expired certs
+
+- Check validity:
+```shell
+# in ~/.talos
+t config info
+
+# in ~/.kube
+k config view --raw -o jsonpath='{.users[0].user.client-certificate-data}' \
+| base64 -d \
+| openssl x509 -text -noout
+```
+
+- Renew:
+  - [GitHub Issue](https://github.com/siderolabs/talos/discussions/9457)
+```shell
+# Extracts certs
+yq -r .machine.ca.crt controlplane.yaml | base64 -d > ca.crt
+yq -r .machine.ca.key controlplane.yaml | base64 -d > ca.key
+
+# Generate fresh credentials
+talosctl gen key --name admin
+talosctl gen csr --key admin.key --ip 192.168.178.39
+talosctl gen crt --ca ca --csr admin.csr --name admin --hours 8760
+
+# Replace it in talosconfig
+yq eval '
+  .contexts.gru.ca = "'"$(base64 -b0 -i ca.crt)"'" |
+  .contexts.gru.crt = "'"$(base64 -b0 -i admin.crt)"'" |
+  .contexts.gru.key = "'"$(base64 -b0 -i admin.key)"'"
+' -i ~/.talos/config
+
+# regenerate .kube
+t kubeconfig ~/.kube/config -n kevin --force
+```

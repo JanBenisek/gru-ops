@@ -436,9 +436,6 @@ k create secret generic bot-metabase-pswd \
   > /home/github/gru-ops/gitops/manifests/cnpg/cluster/bot_metabase_pswd.yaml
 ```
 
-### metallb
-
-- Load Balancer, pay attention to DHCP range!
 
 ### monitoring
 
