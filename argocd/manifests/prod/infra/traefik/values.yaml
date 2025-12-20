@@ -29,19 +29,19 @@ resources:
     cpu: "10m"
 
 service:
-  type: LoadBalancer
+  type: ClusterIP #LoadBalancer
   ports:
     web:
       port: 80
     websecure:
       port: 443
-    traefik:        # Dashboard service port
+    traefik:   
       port: 9000
 
 dashboard:
   enabled: true
-  # ingress:
-  #   enabled: true
+  ingress:
+    enabled: false # TODO; true
   #   hosts:
   #     - host: traefik.example.com   # replace with your domain
   #       paths:
