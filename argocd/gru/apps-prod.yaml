@@ -11,7 +11,7 @@ spec:
     repoURL: https://github.com/JanBenisek/gru-ops.git
     targetRevision: main
     path: argocd/gru/apps/prod
-    kustomize: {}
+    # kustomize: {}
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
