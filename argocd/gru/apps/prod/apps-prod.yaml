@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apps-prod
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  project: gru
+  source:
+    repoURL: https://github.com/JanBenisek/gruops.git
+    targetRevision: main
+    path: argocd/gru/apps/prod
+    kustomize: {}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true # delete also orphaned resources
+      selfHeal: true # autocorrect drift

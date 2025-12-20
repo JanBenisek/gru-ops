@@ -30,13 +30,3 @@ t upgrade -n stuart --image ghcr.io/siderolabs/installer:v1.10.4
 # k8s update (can be worker or master)
 t -n kevin upgrade-k8s --to "1.34.2"
 ```
-
-## Flux
-```shell
-flux bootstrap github \
-  --owner=JanBenisek \
-  --repository=gru-ops \
-  --branch=main \
-  --path=./gitops/clusters/gru \
-  --personal
-```
