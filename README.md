@@ -563,34 +563,6 @@ k create secret generic psql-secrets \
   > /home/github/gru-ops/gitops/manifests/postgresql/psql_secrets.yaml
 ```
 
-### reflector
-
-> Copy secrets/configmaps from one namespce to another
-
-- [Helm Chart](https://artifacthub.io/packages/helm/emberstack/reflector)
-- [GitHub](https://github.com/emberstack/kubernetes-reflector)
-- Note that it copies secrets and configmaps, not sealed secrets (those get copied as secrets)
-
-### sealed secrets
-
-- Create my own keys. Pod needs to be rebooted
-
-```shell
-export PRIVATEKEY="sealed-secrets-private.key"
-export PUBLICKEY="sealed-secrets-public.crt"
-export NAMESPACE="sealed-secrets"
-export SECRETNAME="my-sealed-secrets-certs"
-
--- valid for 2yrs
-openssl req -x509 -days 730 -nodes -newkey rsa:4096 -keyout "$PRIVATEKEY" -out "$PUBLICKEY" -subj "/CN=sealed-secret/O=sealed-secret"
-
-k -n "$NAMESPACE" create secret tls "$SECRETNAME" --cert="$PUBLICKEY" --key="$PRIVATEKEY"
-k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-secrets-key=active
-```
-
-- readings
-  - https://geek-cookbook.funkypenguin.co.nz/kubernetes/sealed-secrets/
-  - https://github.com/bitnami-labs/sealed-secrets/blob/main/docs/bring-your-own-certificates.md
 
 ### stirling
 
