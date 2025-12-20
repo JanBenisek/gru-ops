@@ -4,22 +4,23 @@ metadata:
   name: metallb
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "5"  
+    argocd.argoproj.io/sync-wave: "5"
 spec:
   project: gru
   source:
-    repoURL: https://metallb.github.io/metallb 
-    chart: metallb
-    targetRevision: 0.14.5                     
+    repoURL: https://github.com/JanBenisek/gru-ops.git   # Git repo with values.yaml
+    targetRevision: main
+    path: argocd/gru/infra/prod/metallb                 # folder in Git containing metallb.yaml & values.yaml
     helm:
+      chart: metallb                                    # chart name
+      version: 0.14.5                                   # chart version
+      repoURL: https://metallb.github.io/metallb        # PUBLIC Helm repo
       valueFiles:
-        - values.yaml                          
+        - values.yaml                                   # relative to `path` in Git
   destination:
     server: https://kubernetes.default.svc
-    namespace: metallb
+    namespace: metallb-system
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-
-
