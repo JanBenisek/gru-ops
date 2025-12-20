@@ -8,9 +8,9 @@ metadata:
 spec:
   project: gru
   sources:
-    - chart: cert-manager
-      repoURL: oci://quay.io/jetstack
-      targetRevision: 1.19.2
+    - path: .
+      repoURL: oci://quay.io/jetstack/cert-manager
+      targetRevision: v1.19.2
       helm:
         releaseName: cert-manager
         valueFiles:

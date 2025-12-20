@@ -2,7 +2,7 @@
 
 ## Bootstrap
 ```sh
-# Install CRDs
+# Install CRDs (also use to update)
 k apply -k argocd/bootstrap
 
 # Apply project (make more gitopsy later)
