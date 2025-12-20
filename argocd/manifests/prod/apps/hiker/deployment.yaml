@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hiker
+  namespace: hiker
+  labels:
+    app: hiker
+    app.kubernetes.io/name: hiker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hiker
+  template:
+    metadata:
+      labels:
+        app: hiker
+        app.kubernetes.io/name: hiker
+    # should not be needed, keeping as an example
+    # affinity:
+    #     nodeAffinity:
+    #       requiredDuringSchedulingIgnoredDuringExecution:
+    #         nodeSelectorTerms:
+    #           - matchExpressions:
+    #               - key: kubernetes.io/hostname  # might be needed for EBS? 
+    #                 operator: In 
+    #                 values:
+    #                   - kevin
+    spec:
+      containers:
+      - name: hiker
+        image: ghcr.io/janbenisek/swisshikefinder:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080 # internal port for the app
+        resources: # added by me
+          requests:
+            memory: "128Mi"  
+            cpu: "10m"      
+          limits:
+            memory: "256Mi"  
+            cpu: "100m"    
+        # volumeMounts:
+        # - mountPath: /mnt/store # dir inside container where the app will write
+        #   name: local-storage # link to the volume name in volumes
+      # volumes:
+      #   - name: local-storage
+      #     persistentVolumeClaim:
+      #       claimName: pvc-hiker # connects it to PVC

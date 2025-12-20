@@ -4,7 +4,7 @@ metadata:
   name: external-dns
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-wave: "20" # deps on traefik, sealed-secrets, reflector
 spec:
   project: gru
   sources:

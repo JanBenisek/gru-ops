@@ -59,18 +59,6 @@ t kubeconfig ~/.kube/config -n kevin --force
 
 - [Values](https://github.com/authelia/chartrepo/blob/master/charts/authelia/values.yaml)
 
-### cert-manager
-
-- Need to have cloudflare secret
-
-```shell
-k create secret generic cloudflare-api-token \
-  --namespace cert-manager \
-  --dry-run=client \
-  --from-literal=cloudflare_api_token=<SECRET> -o json \
-  | kubeseal --cert "./${PUBLICKEY}" \
-  > /Users/janbenisek/GithubRepos/gru-ops/gitops/manifests/cert-manager/secrets/cloudflare-api-token.yaml
-```
 
 ### cnpg
 - Because immich needs `VectorChord` extension which is too hard to install in bitnami chart.

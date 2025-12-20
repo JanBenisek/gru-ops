@@ -2,7 +2,14 @@
 
 My tiny homelab
 
-## Applications
+## Infra
+### Let's Encrypt
+
+> Cert manager
+
+- [Docs](https://cert-manager.io/docs/installation/helm/)
+- [Helm Chart](https://artifacthub.io/packages/helm/cert-manager/cert-manager)
+- Needs cloudflare API token! Should be replicated first.
 
 ### External-DNS
 
@@ -70,3 +77,8 @@ k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-se
 - [Helm Chart](https://artifacthub.io/packages/helm/traefik/traefik)
 - [API & Dashboard](https://doc.traefik.io/traefik/reference/install-configuration/api-dashboard/)
   - **TODO**: Correct access to the Dashboard, now just `ClusterIP` on 9000, port-forward
+
+## Apps
+
+### Hiker
+> Fun project

@@ -1,22 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: apps-prod
+  name: hiker
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "20"
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   project: gru
   source:
     repoURL: https://github.com/JanBenisek/gru-ops.git
     targetRevision: main
-    path: argocd/prod/apps
-    directory:
-      recurse: true # otherwise we need kustomize: {}, TBD
+    path: argocd/manifests/prod/apps/hiker
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: hiker
   syncPolicy:
     automated:
-      prune: true # delete also orphaned resources
-      selfHeal: true # autocorrect drift
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
