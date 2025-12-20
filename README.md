@@ -209,23 +209,6 @@ curl -v -X DELETE https://docker-registry.pengiuns.com/v2/jupyter/manifests/sha2
   - Images are stored in `/var/lib/registry/docker/registry/v2`
 
 
-### external-dns
-
-- [Helm](https://artifacthub.io/packages/helm/external-dns/external-dns)
-- [Cloudflare](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/cloudflare.md)
-- [Github](https://github.com/kubernetes-sigs/external-dns/blob/master/charts/external-dns/README.md)
-- Need to have cloudflare secret (sealed).
-- Follow the procedure in `sealed secrets`, then
-
-```shell
-k create secret generic cloudflare-api-token \
-  --namespace external-dns \
-  --dry-run=client \
-  --from-literal=apiKey=DVzmh9hcRb_l9pmZrvXpPWFP7Ym67EP3yXqJX8n8 -o json \
-  | kubeseal --cert "./${PUBLICKEY}" \
-  > /Users/janbenisek/GithubRepos/gru-ops/gitops/manifests/external-dns/secrets/cloudflare-api-token.yaml
-```
-
 ## funnaiest
 - Fun LLM app to test cloudflare tunnel
 - Also experimenting with auth

@@ -1,0 +1,27 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "cloudflare-api-token",
+    "namespace": "external-dns",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "cloudflare-api-token",
+        "namespace": "external-dns",
+        "creationTimestamp": null,
+        "annotations": {
+          "reflector.v1.k8s.emberstack.com/reflection-allowed": "true",
+          "reflector.v1.k8s.emberstack.com/reflection-auto-enabled": "true",
+          "reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces": "cert-manager"
+        }
+      },
+      "data": null
+    },
+    "encryptedData": {
+      "apiKey": "AgCUaCALH8xpfdFxvqL5GK3FI4WFza9qh/52FbyRgTFPq1AXtnLYZSr89RuV9yIIzgMnNUHdyWqikfwjBo814nJcZzvDnTXArRjNByGutRQRslz8AEaMoi0KUhim6KtawAuAh+sGzAd/ptlOzfeM9Bru67MlAWd1utvMfJCJvwbv5z9L+bESTciIbdZK6JKJox3xDc456xODsva21iOj+s8b4/H14cLq3Gm5AwumT9BXi1Vb1uy3T5jo5vn8WiDUi1APZHDZwF93Mah04haparjbli35QSnmABAp5WCMn5QMFJVmggODDEzj2DA74FWhiLqCWkJqn2r63oa+WTjUQ0c1rqCyLRWWfu0qBvGsVgsylz3/UxwRz6qSVt+NNRFZlcGchsVgPf3LDd0+RQbQajlTvnwr04ZUUoSwPZ0uJjAxDdPlcUu8OSvDmB+/KJ06lIPNgLjM2vlJhBxXC//cT4SHGEQXgNJSsk8vKQEN4zLE9Rk82aQCDsadACqQNVwYOiFvSzu9ygZpjBSa3nbzW/xl/zGDKvUNNxhhS26W4yWEYFogkaiE3+2yoRc1sHAp8LFTQxfGEaM3ktBOHyDSPr1mNKsaqSHC+14wXjsCopwghL7vCIx5IXgWeWrj7dlMdwx7UAoxIMlY953eWMcaLFpB3WJX7AvwO8VzjG6VFGqfls3tBYNDNjbAzxHFrdU8T2kkUZSpVQg/R44T96CgNJM9S7XyQmIOtO7peqNLdZZnhMofQoc2mm9T"
+    }
+  }
+}
