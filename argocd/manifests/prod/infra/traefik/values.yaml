@@ -29,7 +29,7 @@ resources:
     cpu: "10m"
 
 service:
-  type: ClusterIP #LoadBalancer
+  type: LoadBalancer
   ports:
     web:
       port: 80
