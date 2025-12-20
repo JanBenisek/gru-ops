@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: reflector
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  project: gru
+  sources:
+    - chart: reflector
+      repoURL: https://emberstack.github.io/helm-charts
+      targetRevision: 9.1.45
+      helm:
+        releaseName: reflector
+        valueFiles:
+          - $values/argocd/manifests/prod/infra/reflector/values.yaml
+    - repoURL: https://github.com/JanBenisek/gru-ops.git
+      targetRevision: main
+      path: argocd/manifests/prod/infra/reflector
+      ref: values
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: reflector
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

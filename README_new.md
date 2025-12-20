@@ -12,5 +12,8 @@ My tiny homelab
 
 - [Helm Chart](https://artifacthub.io/packages/helm/traefik/traefik)
 - [API & Dashboard](https://doc.traefik.io/traefik/reference/install-configuration/api-dashboard/)
-  - **TODO**: Correct access to the Dashboard
-  - Dashboard available at `9000`
+  - **TODO**: Correct access to the Dashboard, now just `ClusterIP` on 9000, port-forward
+
+## Reflector
+
+- [Helm Chart](https://artifacthub.io/packages/helm/emberstack/reflector)

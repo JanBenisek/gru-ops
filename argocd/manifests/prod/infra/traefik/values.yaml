@@ -38,6 +38,10 @@ service:
     traefik:   
       port: 9000
 
+api:
+  dashboard: true
+  insecure: true
+
 dashboard:
   enabled: true
   ingress:
