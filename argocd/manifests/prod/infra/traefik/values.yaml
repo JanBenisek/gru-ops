@@ -40,15 +40,15 @@ service:
 
 dashboard:
   enabled: true
-  ingress:
-    enabled: true
-    hosts:
-      - host: traefik.example.com   # replace with your domain
-        paths:
-          - path: /
-            pathType: Prefix
-    annotations:
-      kubernetes.io/ingress.class: traefik
-      traefik.ingress.kubernetes.io/auth-type: basic
-      traefik.ingress.kubernetes.io/auth-secret: traefik-dashboard-auth
-      traefik.ingress.kubernetes.io/auth-realm: "Traefik Dashboard"
+  # ingress:
+  #   enabled: true
+  #   hosts:
+  #     - host: traefik.example.com   # replace with your domain
+  #       paths:
+  #         - path: /
+  #           pathType: Prefix
+  #   annotations:
+  #     kubernetes.io/ingress.class: traefik
+  #     traefik.ingress.kubernetes.io/auth-type: basic
+  #     traefik.ingress.kubernetes.io/auth-secret: traefik-dashboard-auth
+  #     traefik.ingress.kubernetes.io/auth-realm: "Traefik Dashboard"
