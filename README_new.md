@@ -3,6 +3,7 @@
 My tiny homelab
 
 - TODO
+  - overlay boostrap (base/ and overlay/ to add ingress)
   - distributed storage
   - certs and domains
   - fix traefik
