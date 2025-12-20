@@ -1,0 +1,40 @@
+
+values:
+  logLevel: debug
+  image:
+    pullPolicy: Always
+  domainFilters:
+  - "pengiuns.com"
+  # - "swisshikefinder.com"
+  # - "funnaiest.com"
+  sources:
+    # - crd # TBD what's better
+    - service
+    - ingress
+  provider:
+    name: cloudflare
+    proxied: false
+
+  env:
+    - name: CF_API_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: cloudflare-api-token
+          key: apiKey
+    # cloudflare:
+    #   secretName: cloudflare-api-token # the key HAS TO BE `cloudflare_api_token`
+
+  registry: txt
+
+  txtOwnerId: external-dns-gru
+
+  # available values are `create-only`, `sync`, & `upsert-only`.
+  policy: sync # mirrors dns records based on on txtOwnerId, (insert, update, delete)
+  
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "10m"
+    limits:
+      memory: "256Mi"
+
