@@ -28,7 +28,12 @@
 
 
 
-
+# Seems like this needs to be outside /metallb, because:
+# 1. infra-prod finds and deploys metallb.yaml (creating the Application)
+# 2. The metallb application tries to manage itself
+# The metallb application is configured to watch the directory argocd/gru/infra/prod/metallb. Since metallb.yaml (the
+#  Application definition itself) is located in that same directory, the metallb application sees its own definition
+# file and tries to deploy it.
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -45,10 +50,10 @@ spec:
       helm:
         releaseName: metallb
         valueFiles:
-          - $values/argocd/gru/infra/prod/metallb/values.yaml
+          - $values/values.yaml
     - repoURL: https://github.com/JanBenisek/gru-ops.git
       targetRevision: main
-      path: argocd/gru/infra/prod/metallb
+      path: argocd/manifests/prod/infra/metallb
       ref: values
   destination:
     server: "https://kubernetes.default.svc"
