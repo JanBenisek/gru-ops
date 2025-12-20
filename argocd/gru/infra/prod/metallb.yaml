@@ -1,0 +1,86 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: metallb
+#   namespace: argocd
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "5"
+# spec:
+#   project: gru
+#   source:
+#     repoURL: https://github.com/JanBenisek/gru-ops.git   # Git repo with values.yaml
+#     targetRevision: main
+#     path: argocd/gru/infra/prod/metallb                 # folder in Git containing metallb.yaml & values.yaml
+#     helm:
+#       chart: metallb                                    # chart name
+#       version: 0.14.5                                   # chart version
+#       repoURL: https://metallb.github.io/metallb        # PUBLIC Helm repo
+#       valueFiles:
+#         - values.yaml                                   # relative to `path` in Git
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: metallb-system
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+
+
+
+
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  project: gru
+  sources:
+    - chart: metallb
+      repoURL: https://metallb.github.io/metallb
+      targetRevision: 0.15.2  
+      helm:
+        releaseName: metallb
+        valueFiles:
+          - $values/argocd/gru/infra/prod/metallb/values.yaml
+    - repoURL: https://github.com/JanBenisek/gru-ops.git
+      targetRevision: main
+      path: argocd/gru/infra/prod/metallb
+      ref: values
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: metallb
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
+        pod-security.kubernetes.io/audit: privileged
+        pod-security.kubernetes.io/warn: privileged
+
+
+  # project: gru
+  # source:
+  #   repoURL: https://github.com/JanBenisek/gru-ops.git   # Git repo with values.yaml
+  #   targetRevision: main
+  #   path: argocd/gru/infra/prod/metallb                 # folder in Git containing metallb.yaml & values.yaml
+  #   helm:
+  #     chart: metallb                                    # chart name
+  #     version: 0.15.1                                   # chart version
+  #     repoURL: https://metallb.github.io/metallb        # PUBLIC Helm repo
+  #     valueFiles:
+  #       - values.yaml                                   # relative to `path` in Git
+  # destination:
+  #   server: https://kubernetes.default.svc
+  #   namespace: metallb-system
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true
