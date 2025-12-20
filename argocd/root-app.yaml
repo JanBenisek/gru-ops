@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/JanBenisek/gru-ops.git
     targetRevision: main
-    path: argocd/gru
+    path: argocd/prod
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd
