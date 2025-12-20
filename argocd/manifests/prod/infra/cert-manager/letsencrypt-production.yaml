@@ -1,0 +1,27 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+  namespace: letsencrypt-wildcard-cert
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: benisekj@gmail.com
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    solvers:
+    - selector:
+        dnsZones:
+          - "pengiuns.com"
+          - "swisshikefinder.com" 
+          - "funnaiest.com"
+      dns01:
+        cloudflare:
+          email: benisekj@gmail.com
+          apiTokenSecretRef:
+            name: cloudflare-api-token
+            key: apiKey
+

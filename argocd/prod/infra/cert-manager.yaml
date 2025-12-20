@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+spec:
+  project: gru
+  sources:
+    - chart: cert-manager
+      repoURL: oci://quay.io/jetstack
+      targetRevision: 1.19.2
+      helm:
+        releaseName: cert-manager
+        valueFiles:
+          - $values/argocd/manifests/prod/infra/cert-manager/values.yaml
+    - repoURL: https://github.com/JanBenisek/gru-ops.git
+      targetRevision: main
+      path: argocd/manifests/prod/infra/cert-manager
+      ref: values
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: cert-manager
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
