@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/JanBenisek/gru-ops.git
     targetRevision: main
-    path: argocd/gru/apps/prod
+    path: argocd/prod/apps
     directory:
       recurse: true # otherwise we need kustomize: {}, TBD
   destination:
