@@ -1,27 +1,27 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: metallb
+  name: traefik
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "5"
 spec:
   project: gru
   sources:
-    - chart: metallb
-      repoURL: https://metallb.github.io/metallb
-      targetRevision: 0.15.2  
+    - chart: traefik
+      repoURL: https://helm.traefik.io/traefik
+      targetRevision: 38.0.1
       helm:
-        releaseName: metallb
+        releaseName: traefik
         valueFiles:
-          - $values/argocd/manifests/prod/infra/metallb/values.yaml
+          - $values/argocd/manifests/prod/infra/traefik/values.yaml
     - repoURL: https://github.com/JanBenisek/gru-ops.git
       targetRevision: main
-      path: argocd/manifests/prod/infra/metallb
+      path: argocd/manifests/prod/infra/traefik
       ref: values
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: metallb
+    namespace: traefik
   syncPolicy:
     automated:
       prune: true
