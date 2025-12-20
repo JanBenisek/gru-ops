@@ -12,6 +12,8 @@ spec:
     targetRevision: main
     path: argocd/gru/infra/prod
     # kustomize: {}
+    directory:
+      recurse: true # otherwise we need kustomize: {}, TBD
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
