@@ -5,7 +5,6 @@ namespace: argocd
 
 resources:
   - namespace.yaml
-  - repo-quay-jetstack.yaml # we need to enable OCI for infra apps
   - https://github.com/argoproj/argo-cd/manifests/cluster-install?ref=v3.2.2
 
 secretGenerator:
