@@ -90,4 +90,7 @@ k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-se
 ## Apps
 
 ### Hiker
+
 > Fun project
+
+- Port-forward from 8080
