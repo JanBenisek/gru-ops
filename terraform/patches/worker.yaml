@@ -1,0 +1,33 @@
+debug: false
+persist: true
+
+machine:
+  type: worker
+
+  kubelet:
+    image: ${kubelet_image}
+    extraMounts:
+        - destination: /var/mnt/storage
+          type: bind 
+          source: /var/mnt/storage
+          options:
+            - bind
+            - rshared
+            - rw
+
+  network:
+    hostname: ${hostname} 
+
+  disks:
+    - device: /dev/sda 
+      partitions:
+        - mountpoint: /var/mnt/storage
+
+  install:
+    disk: /dev/nvme0n1 
+    image: ${talos_installer_image}
+    wipe: true
+
+  features:
+    hostDNS:
+      enabled: true

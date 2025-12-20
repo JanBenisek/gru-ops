@@ -1,2 +1,14 @@
-# GitHub actions binaries
-bin/
+.env
+secrets.auto.tfvars
+*.lock.info
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Talos
+*.iso
+talosconfig
+kubeconfig
