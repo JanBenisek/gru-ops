@@ -14,7 +14,7 @@ secretGenerator:
       - .argocd_env # has GITHUB_TOKEN
     literals:
       - type=git
-      - url=https://github.com/JanBenisek/gruops.git
+      - url=https://github.com/JanBenisek/gru-ops.git
       - username=JanBenisek
 
 generatorOptions:

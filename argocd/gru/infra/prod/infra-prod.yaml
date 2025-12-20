@@ -8,7 +8,7 @@ metadata:
 spec:
   project: gru
   source:
-    repoURL: https://github.com/JanBenisek/gruops.git
+    repoURL: https://github.com/JanBenisek/gru-ops.git
     targetRevision: main
     path: argocd/gru/infra/prod
     kustomize: {}
