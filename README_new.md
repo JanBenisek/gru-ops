@@ -2,6 +2,15 @@
 
 My tiny homelab
 
+- TODO
+  - distributed storage
+  - certs and domains
+  - fix traefik
+  - NAS
+  - grafana
+  - docker registry
+  - jellyfin & co
+
 ## Infra
 ### Let's Encrypt
 
