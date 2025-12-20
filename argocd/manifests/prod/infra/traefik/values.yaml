@@ -10,6 +10,8 @@ entryPoints:
     address: ":80"
   websecure:
     address: ":443"
+  traefik:
+    address: ":9000"   # Dashboard entrypoint
 
 log:
   level: INFO
@@ -33,3 +35,20 @@ service:
       port: 80
     websecure:
       port: 443
+    traefik:        # Dashboard service port
+      port: 9000
+
+dashboard:
+  enabled: true
+  ingress:
+    enabled: true
+    hosts:
+      - host: traefik.example.com   # replace with your domain
+        paths:
+          - path: /
+            pathType: Prefix
+    annotations:
+      kubernetes.io/ingress.class: traefik
+      traefik.ingress.kubernetes.io/auth-type: basic
+      traefik.ingress.kubernetes.io/auth-secret: traefik-dashboard-auth
+      traefik.ingress.kubernetes.io/auth-realm: "Traefik Dashboard"
