@@ -10,11 +10,22 @@ resources:
 secretGenerator:
   - name: github-repo
     namespace: argocd
+    envs:
+      - .argocd_env # has GITHUB_TOKEN
     literals:
       - type=git
       - url=https://github.com/JanBenisek/gruops.git
       - username=JanBenisek
-      - password=${GITHUB_TOKEN}
 
 generatorOptions:
   disableNameSuffixHash: true
+
+patches:
+  - target:
+      kind: Secret
+      name: github-repo
+    patch: |-
+      - op: add
+        path: /metadata/labels
+        value:
+          argocd.argoproj.io/secret-type: repository

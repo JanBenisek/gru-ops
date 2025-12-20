@@ -1,4 +1,5 @@
 .env
+.argocd_env
 secrets.auto.tfvars
 *.lock.info
 
