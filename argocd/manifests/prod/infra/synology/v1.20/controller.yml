@@ -163,8 +163,6 @@ spec:
           env:
             - name: CSI_ENDPOINT
               value: unix:///var/lib/csi/sockets/pluginproxy/csi.sock
-            # - name: PATH
-            #   value: "/host/run/extensions/bin:/usr/sbin:/usr/bin:/sbin:/bin"
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: socket-dir

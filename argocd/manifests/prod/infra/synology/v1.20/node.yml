@@ -129,6 +129,10 @@ spec:
               mountPath: /host
             - name: device-dir
               mountPath: /dev
+            - name: extensions
+              mountPath: /run/extensions
+              readOnly: true
+            
       volumes:
         - name: kubelet-dir
           hostPath:
@@ -152,4 +156,8 @@ spec:
         - name: device-dir
           hostPath:
             path: /dev
+            type: Directory
+        - name: extensions # NEW
+          hostPath:
+            path: /run/extensions
             type: Directory
