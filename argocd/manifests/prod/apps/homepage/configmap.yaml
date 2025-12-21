@@ -43,6 +43,12 @@ data:
               href: https://www.notion.so/Homelab-074c94b564de4cb7b57de7a7f60e0e1b
   services.yaml: |
     - Vercajk:
+        - ArgoCD:
+            icon: argocd.png
+            href: https://argocd.pengiuns.com
+            description: Octopus.
+            namespace: argocd 
+            app: grafana
         - Grafana:
             icon: grafana.png
             href: https://grafana.pengiuns.com
@@ -63,6 +69,10 @@ data:
             icon: wireguard.png
             href: https://wg.pengiuns.com
             description: Everday I'm tunellin'
+        - Storage:
+            icon: synology.png
+            href: http://192.168.178.96:5000/
+            description: HOARD!!!
 
     - Tools:
         - IT-Tools:

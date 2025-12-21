@@ -3,12 +3,11 @@
 My tiny homelab
 
 - TODO
-  - overlay boostrap (base/ and overlay/ to add ingress)
+  - deploy nas
+  - deploy mediaa
   - distributed storage
-  - certs and domains
-  - fix traefik
-  - NAS
-  - grafana
+  - traefik UI & dashboard
+  - grafana & victoriametrics
   - docker registry
   - jellyfin & co
 
@@ -79,6 +78,38 @@ k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-se
 - readings
   - https://geek-cookbook.funkypenguin.co.nz/kubernetes/sealed-secrets/
   - https://github.com/bitnami-labs/sealed-secrets/blob/main/docs/bring-your-own-certificates.md
+
+### Synology
+
+- [Guide](https://docs.siderolabs.com/kubernetes-guides/csi/synology-csi)
+- Create user with admin access
+- Create Storage Pool and Volume (recommended 1 big, can apply fine-grained permission, backup and encryption)
+- Clone repo
+```shell
+git clone https://github.com/zebernst/synology-csi-talos.git
+```
+- Create configurationb in `config/`
+```yaml
+clients:
+- host: 192.168.178.96  # ipv4 address or domain of the DSM
+  port: 5000            # port for connecting to the DSM
+  https: false          # set this true to use https. you need to specify the port to DSM HTTPS port as well
+  username: bot_k8s     # username
+  password: <PSWD>      # password
+```
+- Create sealed secret
+```shell
+export PUBLICKEY="sealed-secrets-public.crt"
+
+k create secret generic client-info-secret \
+  --namespace synology-csi \
+  --dry-run=client \
+  -o yaml \
+  --from-file=config.yaml=/Users/janbenisek/github/synology-csi-talos/config/config.yaml \
+  | kubeseal --cert "./${PUBLICKEY}" \
+  > /Users/janbenisek/github/gru-ops/argocd/manifests/prod/infra/synology/client-info-secret.yaml
+```
+
 
 ### Traefik
 
