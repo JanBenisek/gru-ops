@@ -18,6 +18,7 @@ tf state rm 'talos_machine_configuration_apply.worker_config_apply[0]'
 - I ended up using custom image with extensions
 - [Factory](https://factory.talos.dev/)
 - [Extensions](https://github.com/siderolabs/extensions)
+  - [More details](https://a-cup-of.coffee/blog/talos-ext/)
 - Inspect with 
 ```shell
 t get extensions -n kevin`
