@@ -82,34 +82,30 @@ k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-se
 ### Synology
 
 - [Guide](https://docs.siderolabs.com/kubernetes-guides/csi/synology-csi)
+- [Repo](https://github.com/zebernst/synology-csi-talos)
+- I just copied the content, let's see if there is a better way later.
+
+#### Installation
 - Create user with admin access
 - Create Storage Pool and Volume (recommended 1 big, can apply fine-grained permission, backup and encryption)
-- Clone repo
-```shell
-git clone https://github.com/zebernst/synology-csi-talos.git
-```
-- Create configurationb in `config/`
-```yaml
-clients:
-- host: 192.168.178.96  # ipv4 address or domain of the DSM
-  port: 5000            # port for connecting to the DSM
-  https: false          # set this true to use https. you need to specify the port to DSM HTTPS port as well
-  username: bot_k8s     # username
-  password: <PSWD>      # password
-```
 - Create sealed secret
 ```shell
 export PUBLICKEY="sealed-secrets-public.crt"
 
-k create secret generic client-info-secret \
+k create secret generic client-info \
   --namespace synology-csi \
   --dry-run=client \
   -o yaml \
-  --from-file=config.yaml=/Users/janbenisek/github/synology-csi-talos/config/config.yaml \
+  --from-file=client-info.yaml=/Users/janbenisek/github/gru-ops/aux/synology-client-info.yaml \
   | kubeseal --cert "./${PUBLICKEY}" \
-  > /Users/janbenisek/github/gru-ops/argocd/manifests/prod/infra/synology/client-info-secret.yaml
+  > /Users/janbenisek/github/gru-ops/argocd/manifests/prod/infra/synology/client-info.yaml
 ```
-
+- Build the image, make it public on GitHub
+```shell
+REGISTRY_NAME=ghcr.io/janbenise
+make docker-build
+# ghcr.io/janbenisek/synology-csi:v1.2.1
+```
 
 ### Traefik
 
