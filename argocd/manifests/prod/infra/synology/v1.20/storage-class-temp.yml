@@ -7,9 +7,9 @@ metadata:
   name: synology-storage-temp
 provisioner: csi.san.synology.com
 parameters:
-  # fsType: 'ext4'
+  fsType: 'ext4'
   # csi.storage.k8s.io/fstype: 'ext4'
   dsm: '192.168.178.96'
-  location: 'temp'
+  location: '/volume1'
 reclaimPolicy: Delete
 allowVolumeExpansion: true
