@@ -9,6 +9,6 @@ provisioner: csi.san.synology.com
 parameters:
   fsType: 'ext4'
   dsm: '192.168.178.96'
-  location: '/volume1/media'
+  location: 'media'
 reclaimPolicy: Retain # kept afrer removing PVC, must manually delete LUNs 
 allowVolumeExpansion: true

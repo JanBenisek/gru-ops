@@ -9,6 +9,6 @@ provisioner: csi.san.synology.com
 parameters:
   fsType: 'ext4'
   dsm: '192.168.178.96'
-  location: '/volume1/temp'
+  location: 'temp'
 reclaimPolicy: Delete
 allowVolumeExpansion: true
