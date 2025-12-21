@@ -3,6 +3,7 @@ kind: PersistentVolume
 metadata:
   name: pv-hiker
 spec:
+  storageClassName: synology-storage-nfs
   capacity:
     storage: 1Gi
   accessModes:
