@@ -28,6 +28,8 @@ machine:
   install:
     disk: /dev/nvme0n1 
     image: ${talos_installer_image}
+
+
     wipe: true
 
   features:
