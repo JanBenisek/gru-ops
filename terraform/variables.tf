@@ -31,7 +31,7 @@ variable "talos_version" {
 variable "talos_image" {
   description = "Talos version to use for secrets and configuration"
   type        = string
-  default     = "factory.talos.dev/metal-installer/446d7bb4b23caecb9134bcab115e52d55af742da8e04760817f6a31997dc32d9:v1.11.6"
+  default     = "factory.talos.dev/metal-installer/5a0d85f0683f3cfe1eddb883e8b9943e651c4a1e644570001dc315ecb3310225:v1.11.6"
 }
 
 variable "k8s_version" {

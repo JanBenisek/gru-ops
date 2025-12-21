@@ -110,6 +110,10 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
+            # NEW
+            - name: PATH
+              value: "/host/run/extensions/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
           volumeMounts:
             - name: kubelet-dir
               mountPath: /var/lib/kubelet

@@ -13,13 +13,6 @@ My tiny homelab
   - jellyfin & co
 
 ## Infra
-### Let's Encrypt
-
-> Cert manager
-
-- [Docs](https://cert-manager.io/docs/installation/helm/)
-- [Helm Chart](https://artifacthub.io/packages/helm/cert-manager/cert-manager)
-- Needs cloudflare API token! Should be replicated first.
 
 ### External-DNS
 
@@ -41,6 +34,18 @@ My tiny homelab
     "reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces": "cert-manager"
   }
 ```
+
+### Let's Encrypt
+
+> Cert manager
+
+- [Docs](https://cert-manager.io/docs/installation/helm/)
+- [Helm Chart](https://artifacthub.io/packages/helm/cert-manager/cert-manager)
+- Needs cloudflare API token! Should be replicated first.
+
+### Longhorn
+
+- [Talos install](https://phin3has.blog/posts/talos-longhorn/)
 
 ### Metallb
 
@@ -84,6 +89,7 @@ k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-se
 
 - [Guide](https://docs.siderolabs.com/kubernetes-guides/csi/synology-csi)
 - [Repo](https://github.com/zebernst/synology-csi-talos)
+- [Talos how-to](https://github.com/QuadmanSWE/synology-csi-talos)
 - I just copied the content, let's see if there is a better way later.
 
 #### Installation

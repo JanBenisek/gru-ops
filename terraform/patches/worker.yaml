@@ -4,6 +4,15 @@ persist: true
 machine:
   type: worker
 
+  kernel:
+    modules:
+      - name: btrfs
+      - name: iscsi_tcp
+      - name: libiscsi_tcp
+      - name: scsi_transport_iscsi
+      - name: dm_multipath
+      - name: overlay
+
   kubelet:
     image: ${kubelet_image}
     extraMounts:

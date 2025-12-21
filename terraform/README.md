@@ -18,13 +18,15 @@ tf state rm 'talos_machine_configuration_apply.worker_config_apply[0]'
 - I ended up using custom image with extensions
 - [Factory](https://factory.talos.dev/)
 - [Extensions](https://github.com/siderolabs/extensions)
+- Inspect with `talosctl get extensions -n kevin`
 ```yaml
+# These should be in the image now
 customization:
-    systemExtensions:
-        officialExtensions:
-            - siderolabs/btrfs
-            - siderolabs/iscsi-tools
-# Your image schematic ID is: 446d7bb4b23caecb9134bcab115e52d55af742da8e04760817f6a31997dc32d9
+  systemExtensions:
+    officialExtensions:
+      - siderolabs/btrfs
+      - siderolabs/iscsi-tools
+      - siderolabs/util-linux-tools
 ```
 
 - Replace talosconfig
@@ -35,10 +37,10 @@ t config merge ./talosconfig
 - Update (not possible through `tf` now)
 ```shell
 # master
-t upgrade -n kevin --image factory.talos.dev/metal-installer/446d7bb4b23caecb9134bcab115e52d55af742da8e04760817f6a31997dc32d9:v1.11.6
+t upgrade -n kevin --image factory.talos.dev/metal-installer/5a0d85f0683f3cfe1eddb883e8b9943e651c4a1e644570001dc315ecb3310225:v1.11.6
 
 # workers
-t upgrade -n stuart --image factory.talos.dev/metal-installer/446d7bb4b23caecb9134bcab115e52d55af742da8e04760817f6a31997dc32d9:v1.11.6
+t upgrade -n stuart --image factory.talos.dev/metal-installer/5a0d85f0683f3cfe1eddb883e8b9943e651c4a1e644570001dc315ecb3310225:v1.11.6
 
 # k8s update (can be worker or master)
 t -n kevin upgrade-k8s --to "1.34.2"
