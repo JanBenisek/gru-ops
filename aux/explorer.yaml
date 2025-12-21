@@ -12,10 +12,10 @@ spec:
         - -c
         - |
           apt update && apt install -y vim && sleep infinity
-  #     volumeMounts:
-  #       - name: mydata
-  #         mountPath: /mnt/data
-  # volumes:
-  #   - name: mydata
-  #     persistentVolumeClaim:
-  #       claimName: pvc-hiker
+      volumeMounts:
+        - name: mydata
+          mountPath: /mnt/data
+  volumes:
+    - name: mydata
+      persistentVolumeClaim:
+        claimName: pvc-hiker

@@ -21,7 +21,7 @@ tf state rm 'talos_machine_configuration_apply.worker_config_apply[0]'
   - [More details](https://a-cup-of.coffee/blog/talos-ext/)
 - Inspect with 
 ```shell
-t get extensions -n kevin`
+t get extensions -n kevin
 t ls /usr/local/lib/containers/iscsid -n kevin
 t -n kevin ls /usr/local
 ```
