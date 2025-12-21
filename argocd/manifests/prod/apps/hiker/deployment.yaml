@@ -40,10 +40,10 @@ spec:
           limits:
             memory: "256Mi"  
             cpu: "100m"    
-        # volumeMounts:
-        # - mountPath: /mnt/store # dir inside container where the app will write
-        #   name: local-storage # link to the volume name in volumes
-      # volumes:
-      #   - name: local-storage
-      #     persistentVolumeClaim:
-      #       claimName: pvc-hiker # connects it to PVC
+        volumeMounts:
+        - mountPath: /mnt/store # dir inside container where the app will write
+          name: local-storage # link to the volume name in volumes
+      volumes:
+        - name: local-storage
+          persistentVolumeClaim:
+            claimName: pvc-hiker # connects it to PVC

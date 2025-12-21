@@ -106,6 +106,7 @@ REGISTRY_NAME=ghcr.io/janbenise
 make docker-build
 # ghcr.io/janbenisek/synology-csi:v1.2.1
 ```
+- Prefer RWO only for iSCI LUNs, possible to use RWX for NFS/SMB (shared storage).
 
 ### Traefik
 
