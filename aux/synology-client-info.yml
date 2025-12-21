@@ -1,6 +1,6 @@
 clients:
-- host: 192.168.178.96  # ipv4 address or domain of the DSM
-  port: 5000            # port for connecting to the DSM
-  https: false          # set this true to use https. you need to specify the port to DSM HTTPS port as well
-  username: bot_k8s     # username
-  password: <PSWD>      # password
+- host: 192.168.178.96  
+  port: 5000
+  https: false
+  username: bot_k8s
+  password: <PWD>
