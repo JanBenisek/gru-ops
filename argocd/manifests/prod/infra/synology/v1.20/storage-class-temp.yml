@@ -8,7 +8,7 @@ metadata:
 provisioner: csi.san.synology.com
 parameters:
   # fsType: 'ext4'
-  csi.storage.k8s.io/fstype: 'ext4'
+  # csi.storage.k8s.io/fstype: 'ext4'
   dsm: '192.168.178.96'
   location: 'temp'
 reclaimPolicy: Delete
