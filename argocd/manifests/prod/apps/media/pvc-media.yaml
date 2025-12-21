@@ -6,9 +6,9 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
-  storageClassName: synology-storage-media
+  storageClassName: synology-storage-nfs
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Ti
+      storage: 960Gi
