@@ -101,7 +101,7 @@ spec:
             - --endpoint=$(CSI_ENDPOINT)
             - --client-info
             - /etc/synology/client-info.yml
-            - --log-level=info
+            - --log-level=debug
             - --chroot-dir=/host
           env:
             - name: CSI_ENDPOINT

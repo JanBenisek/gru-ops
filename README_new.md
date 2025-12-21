@@ -110,6 +110,10 @@ make docker-build
 ```
 - `LUN` = Logical Storage Number, basic block in Synology (many inside volume). This is what k8s is asking to create.
 - Prefer RWO only for iSCI LUNs, possible to use RWX for NFS/SMB (shared storage).
+- Test connectivity
+```
+ curl -k "https://192.168.178.96:5001/webapi/auth.cgi?api=SYNO.API.Auth&version=7&method=login&account=bot_k8s&passwd=<PSWD>&session=Core&format=sid"
+```
 
 ### Traefik
 
