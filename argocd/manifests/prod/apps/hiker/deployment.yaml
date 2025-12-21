@@ -43,7 +43,13 @@ spec:
         volumeMounts:
         - mountPath: /mnt/store # dir inside container where the app will write
           name: local-storage # link to the volume name in volumes
+        volumeMounts:
+        - mountPath: /mnt/store2 # dir inside container where the app will write
+          name: my-own # link to the volume name in volumes
       volumes:
         - name: local-storage
           persistentVolumeClaim:
             claimName: pvc-hiker # connects it to PVC
+        - name: my-own
+          persistentVolumeClaim:
+            claimName: pvc2-hiker # connects it to PVC
