@@ -161,9 +161,9 @@ spec:
             - /etc/synology/client-info.yml
             - --log-level=debug
             # Patch from https://github.com/siderolabs/talos/issues/11469
-            - --chroot-dir=/host
+            # - --chroot-dir=/host
             # - '--iscsiadm-path=/usr/local/sbin/iscsiadm'
-            - '--iscsiadm-path=/host/run/extensions/bin/iscsiadm'
+            # - '--iscsiadm-path=/host/run/extensions/bin/iscsiadm'
           env:
             - name: CSI_ENDPOINT
               value: unix:///var/lib/csi/sockets/pluginproxy/csi.sock
