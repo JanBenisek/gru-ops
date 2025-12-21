@@ -88,7 +88,7 @@ k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-se
 #### Installation
 - Create user with admin access
 - Create Storage Pool and Volume (recommended 1 big, can apply fine-grained permission, backup and encryption)
-- Create sealed secret
+- Create sealed secret, !!! MUST BE `client-info.yml` !!!
 ```shell
 export PUBLICKEY="sealed-secrets-public.crt"
 

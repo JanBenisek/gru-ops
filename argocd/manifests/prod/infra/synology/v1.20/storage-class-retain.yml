@@ -9,5 +9,8 @@ parameters:
   fsType: 'ext4'
   dsm: '192.168.178.96'
   location: '/volume1'
-reclaimPolicy: Retain
+reclaimPolicy: Retain # kept afrer removing PVC, must manually delete LUNs 
 allowVolumeExpansion: true
+
+# LUN = Logical Storage Number, basic block in Synology (many inside volume)
+# That is what k8s asks to create
