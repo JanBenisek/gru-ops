@@ -18,7 +18,12 @@ tf state rm 'talos_machine_configuration_apply.worker_config_apply[0]'
 - I ended up using custom image with extensions
 - [Factory](https://factory.talos.dev/)
 - [Extensions](https://github.com/siderolabs/extensions)
-- Inspect with `talosctl get extensions -n kevin`
+- Inspect with 
+```shell
+t get extensions -n kevin`
+t ls /usr/local/lib/containers/iscsid -n kevin
+```
+- Output
 ```yaml
 # These should be in the image now
 customization:
