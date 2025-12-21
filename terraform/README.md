@@ -23,6 +23,7 @@ tf state rm 'talos_machine_configuration_apply.worker_config_apply[0]'
 ```shell
 t get extensions -n kevin`
 t ls /usr/local/lib/containers/iscsid -n kevin
+t -n kevin ls /usr/local
 ```
 - Output
 ```yaml
