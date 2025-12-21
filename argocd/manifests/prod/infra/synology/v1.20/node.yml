@@ -105,8 +105,9 @@ spec:
             # Patch from https://github.com/siderolabs/talos/issues/11469
             - '--chroot-dir=/host'
             # - '--iscsiadm-path=/usr/local/sbin/iscsiadm'
-            # - '--iscsiadm-path=/host/run/extensions/bin/iscsiadm'
-            - '--iscsiadm-path=/run/extensions/bin/iscsiadm'
+            # - '--iscsiadm-path=/host/run/extensions/bin/iscsiadm' # NOPE
+            # - '--iscsiadm-path=/run/extensions/bin/iscsiadm' # NOPE
+            - '--iscsiadm-path=/host/usr/lib/extensions/iscsi-tools/bin/iscsiadm'
           env:
             - name: CSI_ENDPOINT
               value: unix://csi/csi.sock
@@ -129,9 +130,9 @@ spec:
               mountPath: /host
             - name: device-dir
               mountPath: /dev
-            - name: extensions
-              mountPath: /run/extensions
-              readOnly: true
+            # - name: extensions
+            #   mountPath: /run/extensions
+            #   readOnly: true
             
       volumes:
         - name: kubelet-dir
@@ -157,7 +158,7 @@ spec:
           hostPath:
             path: /dev
             type: Directory
-        - name: extensions # NEW
-          hostPath:
-            path: /run/extensions
-            # type: Directory
+        # - name: extensions # NEW
+        #   hostPath:
+        #     path: /run/extensions
+        #     # type: Directory
