@@ -4,7 +4,7 @@ metadata:
   name: pvc-hiker
   namespace: hiker
 spec:
-  storageClassName: syno-storage-delete
+  storageClassName: syno-storage-temp
   accessModes:
     - ReadWriteOnce
   resources:

@@ -3,6 +3,7 @@
 My tiny homelab
 
 - TODO
+  - traefik ingress!!!
   - deploy nas
   - deploy mediaa
   - distributed storage
@@ -106,6 +107,7 @@ REGISTRY_NAME=ghcr.io/janbenise
 make docker-build
 # ghcr.io/janbenisek/synology-csi:v1.2.1
 ```
+- `LUN` = Logical Storage Number, basic block in Synology (many inside volume). This is what k8s is asking to create.
 - Prefer RWO only for iSCI LUNs, possible to use RWX for NFS/SMB (shared storage).
 
 ### Traefik

@@ -3,12 +3,16 @@ kind: ServiceAccount
 metadata:
   name: csi-node-sa
   namespace: synology-csi
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
 
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: synology-csi-node-role
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
 rules:
   - apiGroups: [""]
     resources: ["secrets"]
@@ -32,6 +36,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: synology-csi-node-role
   namespace: synology-csi
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
 subjects:
   - kind: ServiceAccount
     name: csi-node-sa
@@ -47,6 +53,8 @@ apiVersion: apps/v1
 metadata:
   name: synology-csi-node
   namespace: synology-csi
+  annotations:
+    argocd.argoproj.io/sync-wave: "30"
 spec:
   selector:
     matchLabels:

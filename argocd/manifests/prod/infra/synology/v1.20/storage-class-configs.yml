@@ -4,11 +4,11 @@ metadata:
   annotations:
     storageclass.kubernetes.io/is-default-class: "false"
     argocd.argoproj.io/sync-wave: "40"
-  name: syno-storage-retain
+  name: synology-storage-configs
 provisioner: csi.san.synology.com
 parameters:
   fsType: 'ext4'
   dsm: '192.168.178.96'
-  location: '/volume1'
-reclaimPolicy: Retain 
+  location: '/volume1/configs'
+reclaimPolicy: Retain # kept afrer removing PVC, must manually delete LUNs 
 allowVolumeExpansion: true

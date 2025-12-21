@@ -1,0 +1,113 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarr
+  namespace: media
+  labels:
+    app: sonarr
+    app.kubernetes.io/name: sonarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sonarr
+  template:
+    metadata:
+      labels:
+        app: sonarr
+        app.kubernetes.io/name: sonarr
+    spec:
+      securityContext:
+        runAsUser: 326  #all processes in the pod run with user ID 321
+        runAsGroup: 321  # same but for groups
+        fsGroup: 321 # owner of attached volume is group 321 
+      containers:
+        - name: sonarr
+          image: ghcr.io/hotio/sonarr:release-4.0.15.2941
+          securityContext:
+            runAsUser: 0  # Temporary root for setup, not great, but does not work otherwise
+            allowPrivilegeEscalation: true
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8989 
+          env:
+            - name: PUID
+              # Process User ID - under which user will the containers processes run
+              # Files inside the container belong to that user
+              value: "326" 
+            - name: PGID
+              # Similar to the above. Sonarr can modify files that belong to a specific group
+              value: "321"   
+            - name: UMASK
+              # Default privileges. 002 is 775 = full access to user and group
+              # and read/execute only to others
+              value: "002" 
+            - name: TZ
+              value: "Etc/UTC" # Timezone
+          resources:
+            requests:
+              memory: "512Mi"  
+              cpu: "50m"      
+            limits:
+              memory: "1G"  
+              cpu: "200m"
+          volumeMounts:
+            - mountPath: /config  
+              name: config-storage
+            - mountPath: /data 
+              name: media-storage
+      volumes:
+        - name: config-storage
+          persistentVolumeClaim:
+            claimName: pvc-sonarr-config # PVC for config storage
+        - name: media-storage
+          persistentVolumeClaim:
+            claimName: pvc-media   # PVC for data storage
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sonarr
+  namespace: media
+  labels:
+    app.kubernetes.io/name: sonarr
+spec:
+  selector:
+    app: sonarr
+  ports:
+  - name: http
+    port: 80 # we talk to this
+    protocol: TCP
+    targetPort: 8989 # app listens here
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sonarr
+  labels:
+    app: sonarr
+    app.kubernetes.io/name: sonarr
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    # nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+    # nginx.ingress.kubernetes.io/proxy-connect-timeout: "1000"
+    # nginx.ingress.kubernetes.io/proxy-send-timeout: "1000"
+    # nginx.ingress.kubernetes.io/proxy-read-timeout: "100"
+    # nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "1000"
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: sonarr.pengiuns.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: sonarr
+            port:
+              number: 80
+  tls:
+  - hosts:
+      - sonarr.pengiuns.com
+    secretName: letsencrypt-wildcard-cert-pengiuns.com-production
