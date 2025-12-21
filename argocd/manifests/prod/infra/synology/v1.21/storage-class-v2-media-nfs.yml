@@ -7,7 +7,7 @@ metadata:
 provisioner: nfs.csi.k8s.io
 parameters:
   server: 192.168.178.96         
-  share: /volume2    
+  share: /volume1/temp 
   readOnly: "false"              
 reclaimPolicy: Retain            
 allowVolumeExpansion: true
