@@ -90,6 +90,7 @@ k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-se
 - Create user with admin access
 - Create Storage Pool and Volume (recommended 1 big, can apply fine-grained permission, backup and encryption)
 - Create sealed secret, !!! MUST BE `client-info.yml` and `client-info-secret` !!!
+  - Good to give it wave number afterwards
 ```shell
 export PUBLICKEY="sealed-secrets-public.crt"
 
@@ -97,9 +98,9 @@ k create secret generic client-info-secret \
   --namespace synology-csi \
   --dry-run=client \
   -o yaml \
-  --from-file=client-info.yaml=/Users/janbenisek/github/gru-ops/aux/synology-client-info.yaml \
+  --from-file=client-info.yml=/Users/janbenisek/github/gru-ops/aux/synology-client-info.yml \
   | kubeseal --cert "./${PUBLICKEY}" \
-  > /Users/janbenisek/github/gru-ops/argocd/manifests/prod/infra/synology/client-info.yaml
+  > /Users/janbenisek/github/gru-ops/argocd/manifests/prod/infra/synology/client-info.yml
 ```
 - Build the image, make it public on GitHub
 ```shell
