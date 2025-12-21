@@ -1,0 +1,25 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "client-info-secret",
+    "namespace": "synology-csi",
+    "creationTimestamp": null,
+    "annotations": {
+      "argocd.argoproj.io/sync-wave": "10"
+    }
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "client-info-secret",
+        "namespace": "synology-csi",
+        "creationTimestamp": null
+      },
+      "data": null
+    },
+    "encryptedData": {
+      "client-info.yml": "AgCsXONOIoSPdo3GCpraKQ9WB/HmbuVhwSl0X2pIvOUz9U4lQ+9eX+8w1I/jbVvl71gpqIrdTWOotIhNC0yF3gUWxQYdbw1kDND3YCp3WxCKVGMO5SEedoI9vQyVIWUqvfGS5xSqNZhmRwDJOkMg51HSYgtg4y01Bb9MQstxr834t5oSaK5t7X1hmhQ04bQb7ZuWrcdPTrAE33QW0rlUdQNAMdZt4G9Srg33UJUyswZ8eV9I/kHk9DBvQb8I/myGR0CUwAmFlDtOMPgaG2+FJKtR/hJ0CMIWZCGDJRYfPf/p6mfrQTygM2uwcY60E4SKuoGZlLVzS4XkL0kcYehkXndP7bCYdVNKIrmcVOoiP5pZC8ovkY0q9vQQ9geBpNhkcjESB4xv39FU9ao9A9ryCpWUE8AAs540ThgPXqstuhwtDDRLJVpQhPUWOCKufVsVWnGL8NK/z+SN+dhd8Lw+sD65wJRJWbdCFWlx8vdKNZFmBDbbIKtzMGtEAZVqss0BQIAzWjUeDlgRrZ0QsxWwUlKWPtkwNXQxdMVn7LmPI8lAocN9oerMrH9TTG2QGRwFF12AHdButzayRYlPGFzzGYtsXr/+PmsVV6ThwUxFVvuNBzXwzuqYR1wlfk01ZWQGKm4NWrzvaPvLjMRbsg5mJw/d7RZiQx+UL5Ww7aC3ts37dLDUqRbq89+3aUJdwxEp3u1+PYRe6POEVHgDmRiXfWY8d/VVqwzUskvPturClN6qk47a0dk78PbNN6PgoPKRCKwrAgs7o9xgbtUymEKXLJUC8/pX4Nv4J7jE328lO/o4TIKpbrVERrDGVuIX7LGuMF+j+MOaWaWjir3NthmBOO9+cznEpGWndZ192S1hwCA1JdHIFXnP5ZpxEOPhxiG806fY+7xyLHP+5dElSFUtcOAvwbTQL5QAGSnvqLHG/CFrc+n0QM/u+CvPSEvkX5e+rZqRNtHkf/SokVsKjKuVgNe1GJSOCvNH5yoExvhiKeRMgev0P8N5vKj6ksDtYmLRmRxQW1qafcuJFvMiAVOpNHJFtN9jiUmh/AXLIEqWL+1982bLvDKmf6VDmS5MMLALNgr2FWr6h0wWSH5ZB1iByi4j"
+    }
+  }
+}
