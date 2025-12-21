@@ -2,16 +2,6 @@
 
 My tiny homelab
 
-- TODO
-  - traefik ingress!!!
-  - deploy nas
-  - deploy mediaa
-  - distributed storage
-  - traefik UI & dashboard
-  - grafana & victoriametrics
-  - docker registry
-  - jellyfin & co
-
 ## Infra
 
 ### External-DNS

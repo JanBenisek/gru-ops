@@ -6,7 +6,7 @@ metadata:
 spec:
   storageClassName: synology-storage-nfs
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 1Gi

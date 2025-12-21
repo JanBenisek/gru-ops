@@ -21,5 +21,3 @@ mountOptions:
   - noatime # do not update the file’s "last access time" on read operations
   - nodiratime # same as noatime, but specifically for directories.
   - nolock  # disables locking, should be fine for media
-
-
