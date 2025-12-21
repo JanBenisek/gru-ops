@@ -5,7 +5,7 @@
     "name": "client-info-secret",
     "namespace": "synology-csi",
     "creationTimestamp": null,
-    "annotations": {
+     "annotations": {
       "argocd.argoproj.io/sync-wave": "10"
     }
   },
@@ -19,7 +19,7 @@
       "data": null
     },
     "encryptedData": {
-      "client-info.yml": "AgBAhfJ3QY3ceYaoPP8/BpZnZAzqFTxr/Swz0OQ31y6Fb9DCnykSWwnSHTQd9p9HvQ4gqDL+JYSP7q8dL2eO7UqfHmn+D92HQyUxWPSXf3aI0y44XD1yxw+rY7zjWf7IBzU/XE6abGhObw3cPg1Q/bQ5oZwS9+ZbxTEXY+cAWbXGXOAfzlgRrLZTu8a6w8eo0elm+++tT/TrvJ6GXeDCd/Dx4CKvJ82dyMph1FBT+tT1eOtC6uonEjHcVfG7SO/B6Y4YxSyGZK1ME9hq3y/kt26GoqSfNSB720kavG9DC80lwEqilioTkqmbzvemloSXgsSDDAEl7fiKktfO+nW8VpRjBOVncm9pUsUF9xHHk3wYjQLbf7oI0vq1JkJefcIgy6grz4PqADxFpeNkWYGZkh/f9ppCQO0LA9NWvoo/HjaNDsDwv2zKpWG+Eo33nn0nPN0M2y2gQ9DkVjqzlhTOsuiTi0n87gEDtOLppzzJfICAHMI2lek3WR6PGU1jlI+LgRaykaYIL7cCCRdr1wsKGgCnHiD3xwIShiCylHl8/v2TbOhoGqDDkhcG0pFd/rO/Qpj3R/UATotcJEslPHxptR+wKYF07gTNWaSYKNuiVgqv7rFp0OxVB2/dlOCDVc1Le5AkT9C1j3Vh4PmIWsrecODRYZIoUWQy1Lj+CRRp7nQ8S9AajvhLLPxuVEobYLjjY4g04/O34hYWnwvwt6ancW0aykmnQ7R+0qWfQd8KVr3RHNYt+dq86ZpAlyE7w3WzUaNb4fFf+Is+XUfCgTk6g8ri6BKTeuTi0PIhPBbfbs3bVjUwG/RQ6HVU7JLDDc6l3+OjAyTfIgHpj0sGQ5uv0tlreQ=="
+      "client-info.yml": "AgAEcYfjcUnrIlyS3wZdBEL4t0McFMPmeJP6l3+EOdTLUj0LEkGE3OaidtulpccOej4WnCg2ylBA5KKw7/JYGI4/NdNWJX0UuLsIE98dsHoUXDkCXUVVihMltviaPI4qXSYl7ooQWQrr4MkCafHe61O5D7+hDnUQggk3FHG/6H8iOnVqz6Up3Oudh6xYsXXRapooZDNLqLheOowzIsiBT0JX1VaqVZfT0HnOR/sT2EdUD8vlSJELqClZjkmvBshozJE0JnZFUztKQpr1R8MeSGXNyJbk3fyl9FF+i9ceq9XLtnL884LGEaX25bJSk77xj8bWiFezf2NO6zdjw/HLLL0SGFVaGmWYC+WbsBmClBeIYMPC+FU6Yx7gA2dufrVeTkIAjzMVzGU8BCOKkR88g27y/RNyxLqyEGkQF1LiMBGAIZJltMELg5ccE495Qv1Js2RucHdoyL6VBv1kxZANTWmkx1qz5eMS38bIgLlIJ394uotGjQgDl7cSfRDWyOJpfvzTgLAQjG2s03raUuRyV28Om9EegHTojEHhI5Q8mpDOhrk3maRyZoUiJfDcs/iRCj7mzebXSK4o9slV7C4Sh69d8WdWbp8aAm92BCp96nh//+eAUxfIzy2Qu6TwOEJWgIQrM62/dgftzgu/C8s/PJTAkTLj7NcrVp7InNRlpiHyOcWLKcxXEnwu5kQCqpTcX+5i77/LDXA+sHPb1CyNc+huWHYPOhqLnCLLxafP2Z4Q+TFiF9ssCShATYpyih/9u7+GOk7aekOc1ib2EhK9rVSFQnhv6nBPEqI7egzU8qVo/NOGDwoOr4FLM7mzdRPVs9dao/8y8AAUxtVMjMTjTi2J"
     }
   }
 }

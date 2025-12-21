@@ -1,6 +1,6 @@
 clients:
 - host: 192.168.178.96  
-  port: 5000
-  https: false
+  port: 5001
+  https: true
   username: bot_k8s
-  password: <PWD>
+  password: PWD
