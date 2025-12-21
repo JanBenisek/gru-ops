@@ -12,5 +12,5 @@ spec:
     - ReadWriteMany
   nfs:
     server: 192.168.178.96
-    path: /volume1/pvc-hiker   # created manually by ssh into synology
+    path: /volume1/temp  # created manually by ssh into synology
   persistentVolumeReclaimPolicy: Delete
