@@ -89,11 +89,11 @@ k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-se
 #### Installation
 - Create user with admin access
 - Create Storage Pool and Volume (recommended 1 big, can apply fine-grained permission, backup and encryption)
-- Create sealed secret, !!! MUST BE `client-info.yml` !!!
+- Create sealed secret, !!! MUST BE `client-info.yml` and `client-info-secret` !!!
 ```shell
 export PUBLICKEY="sealed-secrets-public.crt"
 
-k create secret generic client-info \
+k create secret generic client-info-secret \
   --namespace synology-csi \
   --dry-run=client \
   -o yaml \
