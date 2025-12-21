@@ -160,4 +160,4 @@ spec:
         - name: extensions # NEW
           hostPath:
             path: /run/extensions
-            type: Directory
+            # type: Directory
