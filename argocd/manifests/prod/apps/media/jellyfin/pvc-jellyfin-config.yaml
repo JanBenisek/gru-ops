@@ -4,9 +4,9 @@ metadata:
   name: pvc-jellyfin-config
   namespace: media
 spec:
-  storageClassName: synology-storage-configs
+  storageClassName: synology-storage-apps
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 256Mi
+      storage: 5Gi

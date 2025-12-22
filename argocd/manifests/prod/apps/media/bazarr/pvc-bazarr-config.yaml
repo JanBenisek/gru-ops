@@ -4,7 +4,7 @@ metadata:
   name: pvc-bazarr-config
   namespace: media
 spec:
-  storageClassName: synology-storage-configs
+  storageClassName: synology-storage-apps
   accessModes:
     - ReadWriteOnce
   resources:

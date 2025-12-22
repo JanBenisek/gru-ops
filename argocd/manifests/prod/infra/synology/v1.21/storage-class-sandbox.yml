@@ -4,7 +4,7 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: synology-storage-media
+  name: synology-storage-sandbox
   annotations:
     storageclass.kubernetes.io/is-default-class: "false" 
 provisioner: nfs.csi.k8s.io # should be in talos by default
