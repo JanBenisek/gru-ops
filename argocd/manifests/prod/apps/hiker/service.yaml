@@ -5,6 +5,8 @@ metadata:
   namespace: hiker
   labels:
     app.kubernetes.io/name: hiker
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   selector:
     app: hiker

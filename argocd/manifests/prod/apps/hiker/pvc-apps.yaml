@@ -4,7 +4,7 @@ metadata:
   name: pvc-apps
   namespace: hiker
   annotations:
-    argocd.argoproj.io/sync-wave: "20"
+    argocd.argoproj.io/sync-wave: "30"
 spec:
   storageClassName: synology-storage-apps
   accessModes:

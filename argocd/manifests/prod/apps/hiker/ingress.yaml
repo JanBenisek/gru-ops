@@ -39,6 +39,7 @@ metadata:
     app.kubernetes.io/name: hiker
   annotations:
     kubernetes.io/ingress.class: "traefik"
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   ingressClassName: traefik
   rules:

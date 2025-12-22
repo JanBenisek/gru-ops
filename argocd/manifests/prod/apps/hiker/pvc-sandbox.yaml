@@ -4,7 +4,7 @@ metadata:
   name: pvc-sandbox
   namespace: hiker
   annotations:
-    argocd.argoproj.io/sync-wave: "20"
+    argocd.argoproj.io/sync-wave: "30"
 spec:
   storageClassName: synology-storage-sandbox
   accessModes:
@@ -12,5 +12,5 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  # volumeName: pv-hiker # this is static definition, dynamic creates PV automatically, which seems recommended
+  volumeName: pv-sandbox # this is static definition, dynamic creates PV automatically, which seems recommended
   # Keep it as an example now!
