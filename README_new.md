@@ -4,6 +4,11 @@ My tiny homelab
 
 ## Infra
 
+### CSI-NFS-driver
+> To interact with my Synology NFS
+
+- [Helm Chart](https://github.com/kubernetes-csi/csi-driver-nfs/tree/master/charts)
+
 ### External-DNS
 
 - [Helm](https://artifacthub.io/packages/helm/external-dns/external-dns)
