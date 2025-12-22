@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: pvc2-hiker
+  name: pvc-apps
   namespace: hiker
   annotations:
     argocd.argoproj.io/sync-wave: "20"

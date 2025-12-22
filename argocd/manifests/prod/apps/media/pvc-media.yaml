@@ -6,9 +6,9 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
-  storageClassName: synology-storage-nfs
+  storageClassName: synology-storage-media
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
-      storage: 960Gi
+      storage: 1Ti # Just a logical limit, can write more, current max limit is 3.6Ti
