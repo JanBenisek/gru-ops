@@ -11,7 +11,7 @@ parameters:
   fsType: 'ext4'
   dsm: '192.168.178.96'
   location: '/volume1'
-  #   thinProvision: "true"        # lets me allocate more logical storage than the physical storage actually available
-  #   spaceReclamation: "true"     # enable automatic space reclamation
+  thinProvision: "true"        # lets me allocate more logical storage than the physical storage actually available
+  spaceReclamation: "true"     # enable automatic space reclamation
 reclaimPolicy: Retain
 allowVolumeExpansion: true
