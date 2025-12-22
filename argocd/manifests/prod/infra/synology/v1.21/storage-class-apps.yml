@@ -1,0 +1,17 @@
+# LUN storage for applications, configs, logs etc...
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
+    argocd.argoproj.io/sync-wave: "40"
+  name: synology-storage-apps
+provisioner: csi.san.synology.com
+parameters:
+  fsType: 'ext4'
+  dsm: '192.168.178.96'
+  location: '/volume1'
+  #   thinProvision: "true"        # lets me allocate more logical storage than the physical storage actually available
+  #   spaceReclamation: "true"     # enable automatic space reclamation
+reclaimPolicy: Retain
+allowVolumeExpansion: true

@@ -6,11 +6,11 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "20"
 spec:
-  storageClassName: synology-storage-nfs
+  storageClassName: synology-storage-sandbox
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
-  volumeName: pv-hiker # this is static definition, dynamic creates PV automatically, which seems recommended
+  # volumeName: pv-hiker # this is static definition, dynamic creates PV automatically, which seems recommended
   # Keep it as an example now!

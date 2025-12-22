@@ -41,15 +41,15 @@ spec:
             memory: "256Mi"  
             cpu: "100m"    
         volumeMounts:
-        - mountPath: /mnt/store # dir inside container where the app will write
-          name: local-storage # link to the volume name in volumes
+        - mountPath: /mnt/sandbox # dir inside container where the app will write
+          name: storage-sandbox # link to the volume name in volumes
         volumeMounts:
-        - mountPath: /mnt/store2 # dir inside container where the app will write
-          name: my-own # link to the volume name in volumes
+        - mountPath: /mnt/apps # dir inside container where the app will write
+          name: storage-apps # link to the volume name in volumes
       volumes:
-        - name: local-storage
+        - name: storage-sandbox
           persistentVolumeClaim:
-            claimName: pvc-hiker # connects it to PVC
-        - name: my-own
+            claimName: pvc-sandbox # connects it to PVC
+        - name: storage-apps
           persistentVolumeClaim:
-            claimName: pvc2-hiker # connects it to PVC
+            claimName: pvc-apps # connects it to PVC

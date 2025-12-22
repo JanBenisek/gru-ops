@@ -1,17 +1,16 @@
+# NFS shared folder for media - shows, movies
 # Needs enabled NFS service in Synology & Permissions
 # Needs Shared Folder
-# Note the export path
-# The driver nfs.csi.k8s.io should be in Talos by default
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: synology-storage-nfs
+  name: synology-storage-media
   annotations:
     storageclass.kubernetes.io/is-default-class: "false" 
-provisioner: nfs.csi.k8s.io
+provisioner: nfs.csi.k8s.io # should be in talos by default
 parameters:
   server: 192.168.178.96         
-  share: /volume1/temp 
+  share: /volume1/media # Not sure if define here or in PV
   readOnly: "false"              
 reclaimPolicy: Retain            
 allowVolumeExpansion: true
