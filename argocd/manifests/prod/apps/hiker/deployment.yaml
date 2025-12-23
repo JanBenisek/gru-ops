@@ -51,7 +51,7 @@ spec:
       volumes:
         - name: storage-sandbox
           persistentVolumeClaim:
-            claimName: pvc-sandbox # connects it to PVC
+            claimName: pvc-sandbox # synology-storage-sandbox, NFS at /volume1/sandbox
         - name: storage-apps
           persistentVolumeClaim:
-            claimName: pvc-apps # connects it to PVC
+            claimName: pvc-apps # LUN at /volume1
