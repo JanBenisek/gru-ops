@@ -1,27 +1,27 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: argocd
-  namespace: argocd
-  labels:
-    app.kubernetes.io/name: argocd
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    # traefik.ingress.kubernetes.io/redirect-entry-point: https
-spec:
-  ingressClassName: traefik
-  rules:
-    - host: argocd.pengiuns.com
-      http:
-        paths:
-          - path: "/"
-            pathType: Prefix
-            backend:
-              service:
-                name: argocd-server 
-                port:
-                  number: 80 #443
-  tls:
-    - hosts:
-        - argocd.pengiuns.com
-      secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: argocd
+#   namespace: argocd
+#   labels:
+#     app.kubernetes.io/name: argocd
+#   annotations:
+#     kubernetes.io/ingress.class: "traefik"
+#     # traefik.ingress.kubernetes.io/redirect-entry-point: https
+# spec:
+#   ingressClassName: traefik
+#   rules:
+#     - host: argocd.pengiuns.com
+#       http:
+#         paths:
+#           - path: "/"
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: argocd-server 
+#                 port:
+#                   number: 80 #443
+#   tls:
+#     - hosts:
+#         - argocd.pengiuns.com
+#       secretName: letsencrypt-wildcard-cert-pengiuns.com-production
