@@ -45,7 +45,6 @@ spec:
         volumeMounts:
         - mountPath: /mnt/sandbox # dir inside container where the app will write
           name: storage-sandbox # link to the volume name in volumes
-        volumeMounts:
         - mountPath: /mnt/apps # dir inside container where the app will write
           name: storage-apps # link to the volume name in volumes
       volumes:
@@ -54,4 +53,4 @@ spec:
             claimName: pvc-sandbox # synology-storage-sandbox, NFS at /volume1/sandbox
         - name: storage-apps
           persistentVolumeClaim:
-            claimName: pvc-apps # LUN at /volume1
+            claimName: pvc-apps # LUN at /volume1, works!
