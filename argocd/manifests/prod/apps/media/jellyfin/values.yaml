@@ -42,10 +42,11 @@ podSecurityContext: {}
   # fsGroup: 2000
 
 # -- Security context for the container.
-securityContext:
-  runAsUser: 325   # Jellyfin's user ID
-  runAsGroup: 321   # needs to match the others
-  fsGroup: 321      # Ensures group ownership of files is enforced
+# CHANGED RECENTLY
+# securityContext:
+#   runAsUser: 325   # Jellyfin's user ID
+#   runAsGroup: 321   # needs to match the others
+#   fsGroup: 321      # Ensures group ownership of files is enforced
   # capabilities:
   #   drop:
   #   - ALL
@@ -167,12 +168,11 @@ jellyfin:
   # -- Additional arguments for the entrypoint command.
   args: []
   # -- Additional environment variables for the container.
-  env:
-  - name: PUID
-    # value: "325" # Jellyfin's user ID; does not need to match Radarr's
-    value: "1000" # Jellyfin's user ID; does not need to match Radarr's
-  - name: PGID
-    value: "321" # Match others
+  # env:
+  # - name: PUID
+  #   # value: "325" # Jellyfin's user ID; does not need to match Radarr's
+  # - name: PGID
+  #   value: "321" # Match others
 
 persistence:
   config:
@@ -234,19 +234,7 @@ metrics:
     targetLabels: []
 
 # -- additional init containers to run inside the pod.
-# extraInitContainers: []
-extraInitContainers:
-  - name: fix-permissions
-    image: busybox:latest
-    command:
-      - sh
-      - -c
-      - "chown -R 325:321 /config"
-    securityContext:
-      runAsUser: 0
-    volumeMounts:
-      - name: config
-        mountPath: /config
+extraInitContainers: []
   
 # -- additional sidecar containers to run inside the pod.
 extraContainers: []
