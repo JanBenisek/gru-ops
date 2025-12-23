@@ -10,8 +10,7 @@ metadata:
 provisioner: nfs.csi.k8s.io # should be in talos by default
 parameters:
   server: 192.168.178.96         
-  share: /volume1/media # Not sure if define here or in PV
-  readOnly: "false"              
+  share: /volume1/media # Not sure if define here or in PV           
 reclaimPolicy: Retain            
 allowVolumeExpansion: true
 volumeBindingMode: Immediate 
