@@ -170,6 +170,7 @@ jellyfin:
   env:
   - name: PUID
     value: "325" # Jellyfin's user ID; does not need to match Radarr's
+    value: "1000" # Jellyfin's user ID; does not need to match Radarr's
   - name: PGID
     value: "321" # Match others
 
