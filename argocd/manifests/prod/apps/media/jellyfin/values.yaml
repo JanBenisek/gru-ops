@@ -182,9 +182,9 @@ persistence:
     # -- Custom annotations to be added to the PVC
     annotations: {}
     # -- If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner.
-    storageClass: 'synology-storage-apps'
+    storageClass: ''
     ## -- Use an existing PVC for this mount
-    # existingClaim: pvc-jellyfin-config
+    existingClaim: pvc-jellyfin-config
   media:
     # -- set to false to use emptyDir
     enabled: false
