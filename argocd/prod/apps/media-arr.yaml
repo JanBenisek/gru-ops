@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application # Review, maybe ApplicationSet?
+metadata:
+  name: media-arr
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "20" # must be after jellyfin that has pvc-media
+spec:
+  project: gru
+  sources:
+  # arr
+  - repoURL: https://github.com/JanBenisek/gru-ops.git
+    targetRevision: main
+    path: argocd/manifests/prod/apps/media/arr
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: media
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
