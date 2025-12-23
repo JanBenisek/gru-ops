@@ -1,12 +1,12 @@
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: pvc-jellyfin-config
-  namespace: media
-spec:
-  storageClassName: synology-storage-apps
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
+# kind: PersistentVolumeClaim
+# apiVersion: v1
+# metadata:
+#   name: pvc-jellyfin-config
+#   namespace: media
+# spec:
+#   storageClassName: synology-storage-apps
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 5Gi

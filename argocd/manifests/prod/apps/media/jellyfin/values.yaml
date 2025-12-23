@@ -180,22 +180,22 @@ values:
       # -- set to false to use emptyDir
       enabled: true
       accessMode: ReadWriteOnce
-      size: 5Gi
+      size: 6Gi
       # -- Custom annotations to be added to the PVC
       annotations: {}
       # -- If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner.
-      storageClass: ''
+      storageClass: 'synology-storage-apps'
       ## -- Use an existing PVC for this mount
-      existingClaim: pvc-jellyfin-config
+      # existingClaim: pvc-jellyfin-config
     media:
       # -- set to false to use emptyDir
       enabled: false
       accessMode: ReadWriteOnce
-      size: 25Gi
+      size: 50Gi
       # -- Custom annotations to be added to the PVC
       annotations: {}
       # -- If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner.
-      storageClass: ''
+      storageClass: 'synology-storage-media'
       ## -- Use an existing PVC for this mount
       existingClaim: pvc-media
 
