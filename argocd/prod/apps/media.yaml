@@ -18,6 +18,9 @@ spec:
     targetRevision: main
     path: argocd/manifests/prod/apps/media/jellyfin
     ref: values
+  - repoURL: https://github.com/JanBenisek/gru-ops.git
+    targetRevision: main
+    path: argocd/manifests/prod/apps/media
     directory:
       recurse: true
   destination:
