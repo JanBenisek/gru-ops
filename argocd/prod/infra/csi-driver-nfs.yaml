@@ -19,6 +19,8 @@ spec:
       targetRevision: main
       path: argocd/manifests/prod/infra/csi-driver-nfs
       ref: values
+      directory:
+        recurse: true
   destination:
     server: "https://kubernetes.default.svc"
     namespace: csi-driver-nfs
