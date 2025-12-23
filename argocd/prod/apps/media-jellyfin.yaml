@@ -19,6 +19,8 @@ spec:
     targetRevision: main
     path: argocd/manifests/prod/apps/media/jellyfin
     ref: values
+    directory:
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
     namespace: media
