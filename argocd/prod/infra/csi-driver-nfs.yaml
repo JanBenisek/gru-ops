@@ -9,7 +9,7 @@ spec:
   project: gru
   sources:
     - chart: csi-driver-nfs
-      repoURL: https://kubernetes-sigs.github.io/csi-driver-nfs/
+      repoURL: https://kubernetes-sigs.github.io/charts
       targetRevision: 4.12.1
       helm:
         releaseName: csi-driver-nfs
