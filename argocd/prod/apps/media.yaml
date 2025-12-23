@@ -1,31 +1,31 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: media
-#   namespace: argocd
-#   annotations:
-#     argocd.argoproj.io/sync-wave: "10"
-# spec:
-#   project: gru
-#   sources:
-#   - repoURL: https://jellyfin.github.io/jellyfin-helm
-#     chart: jellyfin
-#     targetRevision: "2.4.0"
-#     helm:
-#       valueFiles:
-#       - $values/argocd/manifests/prod/apps/media/jellyfin/values.yaml
-#   - repoURL: https://github.com/JanBenisek/gru-ops.git
-#     targetRevision: main
-#     path: argocd/manifests/prod/apps/media/jellyfin
-#     ref: values
-#     directory:
-#       recurse: true
-#   destination:
-#     server: https://kubernetes.default.svc
-#     namespace: media
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#     syncOptions:
-#     - CreateNamespace=true
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: media
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  project: gru
+  sources:
+  - repoURL: https://jellyfin.github.io/jellyfin-helm
+    chart: jellyfin
+    targetRevision: "2.4.0"
+    helm:
+      valueFiles:
+      - $values/argocd/manifests/prod/apps/media/jellyfin/values.yaml
+  - repoURL: https://github.com/JanBenisek/gru-ops.git
+    targetRevision: main
+    path: argocd/manifests/prod/apps/media/jellyfin
+    ref: values
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: media
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
