@@ -4,6 +4,7 @@ metadata:
   name: synology-iscsi-snapshot
   annotations:
     storageclass.kubernetes.io/is-default-class: "false"
+    argocd.argoproj.io/sync-wave: "40"
 driver: csi.san.synology.com
 deletionPolicy: Delete
 parameters:

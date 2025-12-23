@@ -6,7 +6,10 @@ kind: StorageClass
 metadata:
   name: synology-storage-sandbox
   annotations:
-    storageclass.kubernetes.io/is-default-class: "false" 
+    storageclass.kubernetes.io/is-default-class: "false"
+    argocd.argoproj.io/sync-wave: "40" 
+  annotations:
+    argocd.argoproj.io/sync-wave: "30"
 provisioner: nfs.csi.k8s.io # should be in talos by default
 parameters:
   server: 192.168.178.96         

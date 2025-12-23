@@ -3,12 +3,16 @@ kind: ServiceAccount
 metadata:
   name: csi-snapshotter-sa
   namespace: synology-csi
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
 
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: synology-csi-snapshotter-role
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
 rules:
   - apiGroups: [""]
     resources: ["events"]
@@ -29,6 +33,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: synology-csi-snapshotter-role
   namespace: synology-csi
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
 subjects:
   - kind: ServiceAccount
     name: csi-snapshotter-sa
@@ -44,6 +50,8 @@ apiVersion: apps/v1
 metadata:
   name: synology-csi-snapshotter
   namespace: synology-csi
+  annotations:
+    argocd.argoproj.io/sync-wave: "30"
 spec:
   serviceName: "synology-csi-snapshotter"
   replicas: 1
