@@ -1,4 +1,8 @@
-# Extra roles
+# Extra roles to prevent
+# "Failed to watch" err="failed to list *v1.VolumeAttributesClass: volumeattributesclasses.storage.k8s.io is forbidden: User \"system:servicea │
+#│ ccount:csi-driver-nfs:csi-nfs-controller-sa\" cannot list resource \"volumeattributesclasses\" in API group \"storage.k8s.io\" at the cluster scope" logger="UnhandledError" reflector="k8s.io/client-go │
+#│ /informers/factory.go:160" type="*v1.VolumeAttributesClass"                                                                                                                                              │
+#│ csi-resizer E1223 07:00:17.397730       1 reflector.go:205] 
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
