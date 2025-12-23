@@ -233,7 +233,19 @@ metrics:
     targetLabels: []
 
 # -- additional init containers to run inside the pod.
-extraInitContainers: []
+# extraInitContainers: []
+extraInitContainers:
+  - name: fix-permissions
+    image: busybox:latest
+    command:
+      - sh
+      - -c
+      - "chown -R 325:321 /config"
+    securityContext:
+      runAsUser: 0
+    volumeMounts:
+      - name: config
+        mountPath: /config
   
 # -- additional sidecar containers to run inside the pod.
 extraContainers: []
