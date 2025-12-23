@@ -1,0 +1,22 @@
+# Extra roles
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: nfs-csi-volumeattributesclass
+rules:
+- apiGroups: ["storage.k8s.io"]
+  resources: ["volumeattributesclasses"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: nfs-csi-volumeattributesclass
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: nfs-csi-volumeattributesclass
+subjects:
+- kind: ServiceAccount
+  name: csi-nfs-controller-sa
+  namespace: csi-driver-nfs
