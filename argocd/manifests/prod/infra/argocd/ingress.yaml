@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1
+apiVersion: networking.k8s.io/v1]
 kind: Ingress
 metadata:
   name: argocd
@@ -11,7 +11,11 @@ metadata:
     # tells traefik which entrypoint to use (line 36)
     # it terminates HTTPS using port 443 - otherwise it goes to 80 and and 
     # Argo tries to reroute, causing 307 redirect loop
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure # tells
+    # Because ArgoCD enforces HTTPS
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    # curl -vk -H "Host: argocd.pengiuns.com" https://192.168.178.100/
+    # curl -vk -L -H "Host: argocd.pengiuns.com" http://192.168.178.100
+    external-dns.alpha.kubernetes.io/hostname: argocd.pengiuns.com
 
 spec:
   ingressClassName: traefik
