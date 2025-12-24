@@ -8,5 +8,5 @@ metadata:
 spec:
   addresses:
     - 192.168.178.100-192.168.178.250
-    # FYI it I don't see the range in `netstat -rn``, it will not work
+    # FYI it I don't see the range in `netstat -rn`, it will not work
     # must be in my DHCP range which is 192.168.178.

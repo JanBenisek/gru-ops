@@ -8,6 +8,11 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "traefik"
     # traefik.ingress.kubernetes.io/redirect-entry-point: https
+    # tells traefik which entrypoint to use (line 36)
+    # it terminates HTTPS using port 443 - otherwise it goes to 80 and and 
+    # Argo tries to reroute, causing 307 redirect loop
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure # tells
+
 spec:
   ingressClassName: traefik
   rules:
@@ -20,7 +25,9 @@ spec:
               service:
                 name: argocd-server 
                 port:
-                  number: 80 #443
+                  number: 80
+                  # Argo exposes 8080 (HTTP) and 8083 (TLS).
+                  # 80 is http, 443 is https
   tls:
     - hosts:
         - argocd.pengiuns.com
