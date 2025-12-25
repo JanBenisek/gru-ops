@@ -5,6 +5,7 @@ metadata:
   namespace: media
 spec:
   storageClassName: synology-storage-apps
+  volumeName: pvc-da088831-31e2-4557-a4c0-8f7b70b1f3ba
   accessModes:
     - ReadWriteOnce
   resources:
