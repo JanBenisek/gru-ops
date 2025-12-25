@@ -1,5 +1,7 @@
 {
-  "extends": ["config:base"],
+  "extends": [
+    "config:recommended"
+  ],
   "timezone": "UTC",
   "prConcurrentLimit": 5,
   "prHourlyLimit": 2,
@@ -10,14 +12,22 @@
   ],
   "packageRules": [
     {
-      "matchDatasources": ["docker"],
-      "matchPackagePatterns": [".*"],
-      "groupName": "Docker image updates"
+      "matchDatasources": [
+        "docker"
+      ],
+      "groupName": "Docker image updates",
+      "matchPackageNames": [
+        "/.*/"
+      ]
     },
     {
-      "matchDatasources": ["helm"],
-      "matchPackagePatterns": [".*"],
-      "groupName": "Helm chart updates"
+      "matchDatasources": [
+        "helm"
+      ],
+      "groupName": "Helm chart updates",
+      "matchPackageNames": [
+        "/.*/"
+      ]
     }
   ]
 }
