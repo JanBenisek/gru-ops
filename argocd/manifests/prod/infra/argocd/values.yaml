@@ -1,0 +1,22 @@
+server:
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+
+    annotations:
+      kubernetes.io/ingress.class: traefik
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      external-dns.alpha.kubernetes.io/hostname: argocd.pengiuns.com
+
+    hosts:
+      - argocd.pengiuns.com
+
+    paths:
+      - /
+
+    pathType: Prefix
+
+    tls:
+      - hosts:
+          - argocd.pengiuns.com
+        secretName: letsencrypt-wildcard-cert-pengiuns.com-production

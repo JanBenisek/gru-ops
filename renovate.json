@@ -1,0 +1,23 @@
+{
+  "extends": ["config:base"],
+  "timezone": "UTC",
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "automerge": false,
+  "includePaths": [
+    "argocd/manifests/**",
+    "argocd/prod/**"
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchPackagePatterns": [".*"],
+      "groupName": "Docker image updates"
+    },
+    {
+      "matchDatasources": ["helm"],
+      "matchPackagePatterns": [".*"],
+      "groupName": "Helm chart updates"
+    }
+  ]
+}

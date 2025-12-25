@@ -1,5 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
+# kind: StatefulSet # Should be this, with volumeClaimTemplates
 metadata:
   name: radarr
   namespace: media
@@ -8,6 +9,9 @@ metadata:
     app.kubernetes.io/name: radarr
 spec:
   replicas: 1
+  # persistentVolumeClaimRetentionPolicy:
+  #   whenScaled: Delete
+  #   whenDeleted: Retain
   selector:
     matchLabels:
       app: radarr
