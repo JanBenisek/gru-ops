@@ -1,6 +1,11 @@
 dex:
   enabled: false # disable
 
+configs:
+  params:
+    server.insecure: true   # <-- This tells ArgoCD server to trust the ingress TLS termination
+
+
 controller:
   replicas: 1
 
