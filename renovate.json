@@ -10,24 +10,24 @@
     "argocd/manifests/**",
     "argocd/prod/**"
   ],
+  "enabledManagers": [
+    "kubernetes",
+    "argocd",
+    "helm-values",
+    "regex"
+  ],
   "packageRules": [
     {
       "matchDatasources": [
         "docker"
       ],
-      "groupName": "Docker image updates",
-      "matchPackageNames": [
-        "/.*/"
-      ]
+      "groupName": "Docker image updates"
     },
     {
       "matchDatasources": [
         "helm"
       ],
-      "groupName": "Helm chart updates",
-      "matchPackageNames": [
-        "/.*/"
-      ]
+      "groupName": "Helm chart updates"
     }
   ]
 }
