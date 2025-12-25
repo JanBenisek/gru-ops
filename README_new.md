@@ -47,18 +47,31 @@ My tiny homelab
 
 - [Containers](https://hotio.dev/containers/base/)
 
+#### Bazarr
+> Subtitles
+
+- Add Radarr
+
 #### Prowlarr
 
 > Indexer
 - Setup
   1. Add new indexer (nzbplanet for example, `https://api.nzbplanet.net`)
   2. Connect Prowlarr to Radarr: Generate API key in Radarr, add url `https://radarr. ...`
+  3. Same for Sonarr
 
 #### Radarr
 
 > Movies
 - Setup
   3. Radarr needs to send request to Download. Add download client: `sabnzbd.media.svc.cluster.local`, port 80, API key from Sabnzbd.
+  3. Create folder in `data/` and adjust permissions `mkdir movies && chown -R 329:hotio movies`
+
+### Sonarr
+
+> Shows
+
+- Setup - same as Radarr
 
 #### sabnzbd
 
@@ -79,6 +92,7 @@ My tiny homelab
 
 - Setup
   0. Add primary Usenet Provider (when setting up Sabnzbd) `news.newshosting.com`
+  0. Change Dowloads folder: `/data/Downloads/complete`, same for incomplete
 
 ### Metallb
 
