@@ -5,7 +5,7 @@ metadata:
   namespace: media
 spec:
   storageClassName: synology-storage-apps
-  volumeName: pvc-1f71c5bc-f659-4310-8fb7-46c346420f05  # Points to your Sonarr data
+  volumeName: pvc-1f71c5bc-f659-4310-8fb7-46c346420f05
   accessModes:
     - ReadWriteOnce
   resources:
