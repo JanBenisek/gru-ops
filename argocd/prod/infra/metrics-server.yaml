@@ -16,7 +16,7 @@ spec:
       recurse: true
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: reflector
+    namespace: metrics-server
   syncPolicy:
     automated:
       prune: true
