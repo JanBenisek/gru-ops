@@ -7,6 +7,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   storageClassName: synology-storage-media
+  volumeName: pvc-49291478-8164-4a41-b729-8903ab727423
   accessModes:
     - ReadWriteMany
   resources:
