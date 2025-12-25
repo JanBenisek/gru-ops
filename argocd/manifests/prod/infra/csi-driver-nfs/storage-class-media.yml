@@ -1,6 +1,6 @@
 # NFS shared folder for media - shows, movies
 # Needs enabled NFS service in Synology & Permissions
-# Needs Shared Folder
+# Needs Shared Folder and allowed NFS permissions
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:

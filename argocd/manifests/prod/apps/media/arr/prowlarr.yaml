@@ -26,6 +26,8 @@ spec:
           image: ghcr.io/hotio/prowlarr:release-2.1.5.5216
           securityContext:
             runAsUser: 0  # Temporary root for setup, not great, but does not work otherwise
+            runAsGroup: 321 # also needed here
+            fsGroup: 321 # also needed here
             allowPrivilegeEscalation: true
           imagePullPolicy: Always
           ports:

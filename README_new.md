@@ -46,6 +46,7 @@ My tiny homelab
 ### Media
 
 - [Containers](https://hotio.dev/containers/base/)
+- ! Needs correct permissions in Synology: Shared folder - NSF permission!
 
 #### Bazarr
 > Subtitles
