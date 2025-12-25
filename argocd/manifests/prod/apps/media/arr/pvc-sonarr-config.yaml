@@ -6,6 +6,7 @@ metadata:
 spec:
   storageClassName: synology-storage-apps
   volumeName: pvc-1f71c5bc-f659-4310-8fb7-46c346420f05
+  # k patch pv pvc-1f71c5bc-f659-4310-8fb7-46c346420f05 -p '{"spec":{"claimRef": null}}'
   accessModes:
     - ReadWriteOnce
   resources:
