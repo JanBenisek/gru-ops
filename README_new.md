@@ -48,6 +48,12 @@ My tiny homelab
 
 - Load Balancer, pay attention to DHCP range!
 
+### Metrics
+
+> Enable metrics in Talos
+
+- [Docs](https://docs.siderolabs.com/kubernetes-guides/monitoring-and-observability/deploy-metrics-server)
+
 ### Reflector
 
 > Copy secrets/configmaps from one namespce to another
