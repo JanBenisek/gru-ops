@@ -112,6 +112,12 @@ My tiny homelab
 ```shell
 k apply -f https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
 k apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+# skip certs validation
+k edit deployment metrics-server -n kube-system
+# add to containers.args
+# - --kubelet-insecure-tls
+# - --kubelet-preferred-address-types=InternalIP
 ```
 ### Reflector
 
