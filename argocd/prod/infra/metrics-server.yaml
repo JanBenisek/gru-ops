@@ -3,7 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: metrics-server
-  namespace: default
+  namespace: metrics-server
   annotations:
     argocd.argoproj.io/sync-wave: "10" # no deps
 spec:
