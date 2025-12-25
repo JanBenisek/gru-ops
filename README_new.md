@@ -51,7 +51,9 @@ My tiny homelab
 #### Bazarr
 > Subtitles
 
-- Add Radarr
+- Setup
+  3. Add subtitles providers
+  3. Add Radarr/Sonarr: `sonarr.media.svc.cluster.local`, port 80.
 
 #### Prowlarr
 
@@ -106,7 +108,11 @@ My tiny homelab
 > Enable metrics in Talos
 
 - [Docs](https://docs.siderolabs.com/kubernetes-guides/monitoring-and-observability/deploy-metrics-server)
-
+- Somehow could not apply through Argo, running manually for now
+```shell
+k apply -f https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
+k apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+```
 ### Reflector
 
 > Copy secrets/configmaps from one namespce to another
