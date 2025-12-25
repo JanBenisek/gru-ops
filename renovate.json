@@ -14,7 +14,7 @@
     "kubernetes",
     "argocd",
     "helm-values",
-    "regex"
+    "custom.regex"
   ],
   "packageRules": [
     {
