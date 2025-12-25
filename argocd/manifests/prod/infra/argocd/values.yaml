@@ -1,3 +1,15 @@
+dex:
+  enabled: false # disable
+
+controller:
+  replicas: 1
+
+repoServer:
+  replicas: 1
+
+applicationSet:
+  replicas: 1
+
 server:
   ingress:
     enabled: true

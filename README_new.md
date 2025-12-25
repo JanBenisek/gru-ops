@@ -4,6 +4,8 @@ My tiny homelab
 
 ## Infra
 
+- [Rennovate](https://developer.mend.io/github/JanBenisek)
+
 ### CSI-NFS-driver
 > To interact with my Synology NFS
 
