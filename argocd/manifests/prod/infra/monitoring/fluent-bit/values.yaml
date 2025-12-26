@@ -1,0 +1,27 @@
+serviceAccount:
+  create: true
+  name: fluent-bit
+
+# Input: collect logs from all pods
+inputs:
+  tail:
+    enabled: true
+    path: /var/log/containers/*.log
+    parser: docker
+    multiline:
+      enabled: true
+      firstLine: '^\d{4}-\d{2}-\d{2}' # optional, adjust if multiline logs
+
+# Output: send to Loki
+outputs:
+  loki:
+    enabled: true
+    host: loki.monitoring.svc.cluster.local  # <--- use namespace in FQDN
+    port: 3100
+    labels:
+      job: kubernetes-logs
+      namespace: '${namespace}'
+      pod: '${pod}'
+    tenantID: ""      # optional
+    autoKubernetesLabels: true
+    lineFormat: json  # ensures structured logs

@@ -44,6 +44,20 @@ My tiny homelab
 
 - [Talos install](https://phin3has.blog/posts/talos-longhorn/)
 
+### Monitoring
+
+#### Loki
+
+- [Helm chart](https://artifacthub.io/packages/helm/grafana/loki)
+
+#### Fluent-bit
+
+- [Helm](https://artifacthub.io/packages/helm/fluent/fluent-bit)
+- [Values](https://github.com/fluent/helm-charts/blob/main/charts/fluent-bit/values.yaml)
+
+#### Grafana
+
+## Apps
 
 ### Media
 

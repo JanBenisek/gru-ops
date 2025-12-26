@@ -1,0 +1,57 @@
+
+grafana:
+  enabled: true
+  adminPassword: admin
+  plugins:
+    - yesoreyeram-infinity-datasource
+  grafana.ini:
+    users:
+      auto_assign_org_role: Admin
+      default_theme: light
+    server:
+      root_url: https://grafana.pengiuns.com
+    auth.basic:
+      enabled: false
+    # new stuff, experiment with kuberay grafana embedding
+    security:
+      allow_embedding: true
+    auth.anonymous:
+      enabled: true
+      org_role: Viewer
+  persistence:
+    type: pvc
+    enabled: true
+    storageClassName: synology-storage-apps
+    accessModes:
+      - ReadWriteOnce
+    size: 5Gi
+  additionalDataSources: # Enable later? But then need dependsOn
+    - name: Loki
+      type: loki
+      url: http://loki:3100 # it listens to 3100 (see k describe)
+      access: direct
+      basicAuth: false
+      isDefault: false
+  ingress:
+    enabled: true 
+    ingressClassName: traefik
+    annotations:
+      kubernetes.io/ingress.class: "traefik"
+    hosts:
+      - grafana.pengiuns.com
+    tls:
+      - hosts:
+          - grafana.pengiuns.com
+        secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+# prometheus:
+#   prometheusSpec:
+#     storageSpec:
+#       volumeClaimTemplate:
+#         spec:
+#           storageClassName: local-hostpath-kevin
+#           accessModes: ["ReadWriteOnce"]
+#           resources:
+#             requests:
+#               storage: 5Gi
+#     retentionSize: 5GB
+#     retention: 90d
