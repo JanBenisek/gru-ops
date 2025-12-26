@@ -1,0 +1,51 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: monitoring
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          # - name: prometheus
+          #   chartRepo: https://prometheus-community.github.io/helm-charts
+          #   chartVersion: 25.8.0
+          # - name: grafana
+          #   chartRepo: https://grafana.github.io/helm-charts
+          #   chartVersion: 7.3.6
+          - name: loki
+            chartRepo: https://grafana.github.io/helm-charts
+            chartVersion: 6.49.0
+  template:
+    metadata:
+      name: '{{name}}'
+      annotations:
+        argocd.argoproj.io/sync-wave: "40"
+    spec:
+      project: gru
+      sources:
+        - chart: '{{name}}'
+          repoURL: '{{chartRepo}}'
+          targetRevision: '{{chartVersion}}'
+          helm:
+            releaseName: '{{name}}'
+            valueFiles:
+              - $values/argocd/manifests/prod/infra/{{name}}/values.yaml
+        - repoURL: https://github.com/JanBenisek/gru-ops.git
+          targetRevision: main
+          path: argocd/manifests/prod/infra/{{name}}
+          ref: values
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{name}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true'
+        managedNamespaceMetadata:
+          labels:
+            pod-security.kubernetes.io/enforce: privileged
+            pod-security.kubernetes.io/audit: privileged
+            pod-security.kubernetes.io/warn: privileged
