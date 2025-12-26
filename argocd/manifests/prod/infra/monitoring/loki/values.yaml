@@ -1,5 +1,4 @@
 
-deploymentMode: SimpleScalable
 loki:
   auth_enabled: false
 
@@ -43,6 +42,9 @@ loki:
   limits_config:
       allow_structured_metadata: true
       volume_enabled: true
+
+  deploymentMode: SimpleScalable
+  
 minio:
   enabled: true
 deploymentMode: SingleBinary
