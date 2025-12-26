@@ -4,5 +4,7 @@ resources:
 
 patchesStrategicMerge:
   - patch-server-insecure.yaml
-  - patch-disable-dex.yaml
-  - patch-disable-dex-service.yaml
+
+patches:
+  - path: patch-disable-dex.yaml
+  - path: patch-disable-dex-service.yaml
