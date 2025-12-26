@@ -1,13 +1,24 @@
+# apiVersion: kustomize.config.k8s.io/v1beta1
+# kind: Kustomization
+
+# resources:
+#   - ingress.yaml
+#   - https://github.com/argoproj/argo-cd/manifests/cluster-install?ref=v3.2.2
+
+# patches:
+#   - path: patch-server-insecure.yaml
+#   - path: patch-disable-dex.yaml
+#   - path: patch-disable-dex-service.yaml
+
+
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
-namespace: argocd
 
 resources:
   - ingress.yaml
   - https://github.com/argoproj/argo-cd/manifests/cluster-install?ref=v3.2.2
 
-patches:
-  - path: patch-server-insecure.yaml
-  - path: patch-disable-dex.yaml
-  - path: patch-disable-dex-service.yaml
+patchesStrategicMerge:
+  - patch-server-insecure.yaml
+  - patch-disable-dex.yaml
+  - patch-disable-dex-service.yaml
