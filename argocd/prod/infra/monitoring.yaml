@@ -30,10 +30,10 @@ spec:
           helm:
             releaseName: '{{name}}'
             valueFiles:
-              - $values/argocd/manifests/prod/infra/{{name}}/values.yaml
+              - $values/argocd/manifests/prod/infra/monitoring/{{name}}/values.yaml
         - repoURL: https://github.com/JanBenisek/gru-ops.git
           targetRevision: main
-          path: argocd/manifests/prod/infra/{{name}}
+          path: argocd/manifests/prod/infra/monitoring/{{name}}
           ref: values
       destination:
         server: https://kubernetes.default.svc
