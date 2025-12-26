@@ -43,15 +43,19 @@ grafana:
       - hosts:
           - grafana.pengiuns.com
         secretName: letsencrypt-wildcard-cert-pengiuns.com-production
-# prometheus:
-#   prometheusSpec:
-#     storageSpec:
-#       volumeClaimTemplate:
-#         spec:
-#           storageClassName: local-hostpath-kevin
-#           accessModes: ["ReadWriteOnce"]
-#           resources:
-#             requests:
-#               storage: 5Gi
-#     retentionSize: 5GB
-#     retention: 90d
+# Install CRDs with the chart
+crds:
+  enabled: true
+
+prometheus:
+  prometheusSpec:
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: synology-storage-apps
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 5Gi
+    retentionSize: 4GB
+    retention: 30d
