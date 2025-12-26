@@ -51,7 +51,7 @@ singleBinary:
   persistence:
     enabled: true
     size: 4Gi
-    storageClassName: "synology-storage-apps" 
+    storageClass: "synology-storage-apps" 
   affinity: {} # otherwise rules prohibiting some nodes
   
 
