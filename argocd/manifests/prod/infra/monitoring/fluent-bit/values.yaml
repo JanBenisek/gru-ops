@@ -1,5 +1,9 @@
 kind: DaemonSet
 
+logLevel: info
+flush: 1
+metricsPort: 2020
+
 serviceAccount:
   create: true
 
