@@ -1,38 +1,38 @@
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: argocd
-#   namespace: argocd
-#   labels:
-#     app.kubernetes.io/name: argocd
-#   annotations:
-#     kubernetes.io/ingress.class: "traefik"
-#     # traefik.ingress.kubernetes.io/redirect-entry-point: https
-#     # tells traefik which entrypoint to use (line 36)
-#     # it terminates HTTPS using port 443 - otherwise it goes to 80 and and 
-#     # Argo tries to reroute, causing 307 redirect loop
-#     # Because ArgoCD enforces HTTPS
-#     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-#     # curl -vk -H "Host: argocd.pengiuns.com" https://192.168.178.100/
-#     # curl -vk -L -H "Host: argocd.pengiuns.com" http://192.168.178.100
-#     external-dns.alpha.kubernetes.io/hostname: argocd.pengiuns.com
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    # traefik.ingress.kubernetes.io/redirect-entry-point: https
+    # tells traefik which entrypoint to use (line 36)
+    # it terminates HTTPS using port 443 - otherwise it goes to 80 and and 
+    # Argo tries to reroute, causing 307 redirect loop
+    # Because ArgoCD enforces HTTPS
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    # curl -vk -H "Host: argocd.pengiuns.com" https://192.168.178.100/
+    # curl -vk -L -H "Host: argocd.pengiuns.com" http://192.168.178.100
+    external-dns.alpha.kubernetes.io/hostname: argocd.pengiuns.com
 
-# spec:
-#   ingressClassName: traefik
-#   rules:
-#     - host: argocd.pengiuns.com
-#       http:
-#         paths:
-#           - path: "/"
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: argocd-server 
-#                 port:
-#                   number: 80
-#                   # Argo exposes 8080 (HTTP) and 8083 (TLS).
-#                   # 80 is http, 443 is https
-#   tls:
-#     - hosts:
-#         - argocd.pengiuns.com
-#       secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: argocd.pengiuns.com
+      http:
+        paths:
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server 
+                port:
+                  number: 80
+                  # Argo exposes 8080 (HTTP) and 8083 (TLS).
+                  # 80 is http, 443 is https
+  tls:
+    - hosts:
+        - argocd.pengiuns.com
+      secretName: letsencrypt-wildcard-cert-pengiuns.com-production
