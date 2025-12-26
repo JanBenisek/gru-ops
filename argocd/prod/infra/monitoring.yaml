@@ -37,7 +37,7 @@ spec:
           ref: values
       destination:
         server: https://kubernetes.default.svc
-        namespace: monitoring
+        namespace: monitoring # had to create manually
       syncPolicy:
         automated:
           prune: true
