@@ -11,8 +11,8 @@
 #   - path: patch-disable-dex-service.yaml
 
 
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
+# apiVersion: kustomize.config.k8s.io/v1beta1
+# kind: Kustomization
 
 resources:
   - ingress.yaml
