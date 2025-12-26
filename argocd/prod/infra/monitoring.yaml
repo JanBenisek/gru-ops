@@ -31,6 +31,7 @@ spec:
             releaseName: '{{name}}'
             valueFiles:
               - $values/argocd/manifests/prod/infra/monitoring/{{name}}/values.yaml
+            version: v3
         - repoURL: https://github.com/JanBenisek/gru-ops.git
           targetRevision: main
           path: argocd/manifests/prod/infra/monitoring/{{name}}
