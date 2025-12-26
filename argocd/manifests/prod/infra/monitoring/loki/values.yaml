@@ -1,6 +1,5 @@
 deploymentMode: SingleBinary
 
-
 loki:
   auth_enabled: false
 
