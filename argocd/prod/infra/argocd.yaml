@@ -9,8 +9,6 @@ spec:
     repoURL: https://github.com/JanBenisek/gru-ops.git
     targetRevision: main
     path: argocd/manifests/prod/infra/argocd
-    directory:
-      recurse: true
     # - chart: argo-cd
     #   repoURL: https://argoproj.github.io/argo-helm
     #   targetRevision: 9.2.1
