@@ -24,7 +24,6 @@ spec:
       cpu: "200m"      
     limits:
       memory: "6Gi"  
-      cpu: "1000m"
 
   imageName: "ghcr.io/tensorchord/cloudnative-vectorchord:18.0-0.5.3" # pg / vchord version
   imagePullPolicy: Always
@@ -39,10 +38,10 @@ spec:
 
   bootstrap:
     initdb:
-      database: immich # CREATE DATABASE immich;
-      owner: bot_immich # CREATE ROLE bot_immich; --will be owner
-      secret:
-        name: bot-immich-pswd
+      # database: immich # CREATE DATABASE immich;
+      # owner: bot_immich # CREATE ROLE bot_immich; --will be owner
+      # secret:
+      #   name: bot-immich-pswd
       postInitSQL:
         # Extensions
         - "CREATE EXTENSION IF NOT EXISTS vector;"
