@@ -34,8 +34,8 @@ spec:
       - "vchord"
 
   storage:
-    size: 5Gi
-    storageClass: local-hostpath-kevin
+    size: 20Gi
+    storageClass: synology-storage-apps
 
   bootstrap:
     initdb:
