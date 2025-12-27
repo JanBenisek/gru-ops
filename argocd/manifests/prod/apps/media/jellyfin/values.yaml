@@ -114,10 +114,10 @@ ingress:
 # -- Resource requests and limits for the Jellyfin container.
 resources: 
   limits:
-    memory: "5Gi"
+    memory: "15Gi"
   requests:
     cpu: "500m"
-    memory: "10Gi"
+    memory: "5Gi"
   
 
 # -- Configure liveness probe for Jellyfin.
