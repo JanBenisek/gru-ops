@@ -48,14 +48,39 @@ My tiny homelab
 
 #### Loki
 
+> Collects and stores logs from apps. Stored in PVC, pod per node.
+
 - [Helm chart](https://artifacthub.io/packages/helm/grafana/loki)
+- Deployed as Single Binary - all services run in a single pod (as opposed to ingestor/querier being individual)
+- Storage
+  - `export-0(1)-loki-minio-0` - stores logs using minIO, two just in case
+  - `storage-loki-0` - storage for loki (cache, index files, ...)
 
-#### Fluent-bit
+#### Prometheus
 
-- [Helm](https://artifacthub.io/packages/helm/fluent/fluent-bit)
-- [Values](https://github.com/fluent/helm-charts/blob/main/charts/fluent-bit/values.yaml)
+> Collects and stores metrics from apps. Stored in PVC, pod per node.
+
+- Storage
+  - `prometheus-kube-prometheus ...` - time series metrics
 
 #### Grafana
+
+> Visualise logs and metrics.
+
+- Storage
+  - `kube-prometheus-stack-grafana` - stores users, dashboards etc
+
+### PostreSQL
+
+> Using cloudnative-pg with vchord extension, v18.
+
+- Create secrets:
+```shell
+./aux/seal-secret.sh bot-immich-pswd cnpg username=bot_immich prod/infra/cnpg password=PWD
+./aux/seal-secret.sh bot-jerry-pswd cnpg username=bot_jerry prod/infra/cnpg password=PWD
+./aux/seal-secret.sh bot-metabase-pswd cnpg username=bot_metabase prod/infra/cnpg password=PWD
+./aux/seal-secret.sh superuser-pswd cnpg username=postgres prod/infra/cnpg password=PWD
+```
 
 ## Apps
 

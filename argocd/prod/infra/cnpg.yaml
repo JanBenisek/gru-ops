@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cnpg
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  project: gru
+  sources:
+    # CRDs
+    - chart: cloudnative-pg
+      repoURL: https://cloudnative-pg.github.io/charts
+      targetRevision: "0.26.0"
+      helm:
+        releaseName: cnpg-operator
+        values: {}
+    # Actual cluster
+    - repoURL: https://github.com/JanBenisek/gru-ops.git
+      targetRevision: main
+      path: argocd/manifests/prod/infra/cnpg
+      directory:
+        recurse: true
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: cnpg
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - SkipDryRunOnMissingResource=true
