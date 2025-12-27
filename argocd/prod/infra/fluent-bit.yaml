@@ -34,6 +34,11 @@ spec:
         pod-security.kubernetes.io/enforce: privileged
         pod-security.kubernetes.io/audit: privileged
         pod-security.kubernetes.io/warn: privileged
+  ignoreDifferences:
+    - group: apps
+      kind: DaemonSet
+      jsonPointers:
+        - /spec/template/spec/volumes
 
 #helm install fluent-bit fluent/fluent-bit \
 #  --namespace fluent-bit \
