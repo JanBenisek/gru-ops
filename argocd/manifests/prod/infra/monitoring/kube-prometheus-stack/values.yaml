@@ -26,6 +26,11 @@ grafana:
       - ReadWriteOnce
     size: 5Gi
   additionalDataSources: # Enable later? But then need dependsOn
+    - name: Prometheus
+      type: prometheus
+      url: http://kube-prometheus-stack-prometheus:9090
+      access: proxy
+      isDefault: true
     - name: Loki
       type: loki
       url: http://loki:3100 # it listens to 3100 (see k describe)
