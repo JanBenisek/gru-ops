@@ -35,10 +35,15 @@ spec:
         pod-security.kubernetes.io/audit: privileged
         pod-security.kubernetes.io/warn: privileged
   ignoreDifferences:
-    - group: apps
-      kind: DaemonSet
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRole
       jsonPointers:
-        - /spec/template/spec/volumes
+        - /rules
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRoleBinding
+      jsonPointers:
+        - /subjects
+        - /roleRef
 
 #helm install fluent-bit fluent/fluent-bit \
 #  --namespace fluent-bit \
