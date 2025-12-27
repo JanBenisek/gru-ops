@@ -14,7 +14,6 @@ spec:
       targetRevision: "0.26.0"
       helm:
         releaseName: cnpg-operator
-        values: {}
     # Actual cluster
     - repoURL: https://github.com/JanBenisek/gru-ops.git
       targetRevision: main
