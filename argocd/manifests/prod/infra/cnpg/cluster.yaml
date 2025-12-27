@@ -49,14 +49,14 @@ spec:
         - "CREATE EXTENSION IF NOT EXISTS vchord;"
         - "CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;"
         # DB - metabase
-        - "CREATE DATABASE metabase OWNER bot_metabase;"
-        - "GRANT ALL PRIVILEGES ON DATABASE metabase TO bot_metabase;"
+        # - "CREATE DATABASE metabase OWNER bot_metabase;"
+        # - "GRANT ALL PRIVILEGES ON DATABASE metabase TO bot_metabase;"
         # DB - production
-        - "CREATE DATABASE prod OWNER bot_jerry;"
-        - "GRANT ALL PRIVILEGES ON DATABASE prod TO bot_jerry;"
+        # - "CREATE DATABASE prod OWNER bot_jerry;"
+        # - "GRANT ALL PRIVILEGES ON DATABASE prod TO bot_jerry;"
         # DB - outline
-        - "CREATE DATABASE outline OWNER bot_outline;"
-        - "GRANT ALL PRIVILEGES ON DATABASE outline TO bot_outline;"
+        # - "CREATE DATABASE outline OWNER bot_outline;"
+        #- "GRANT ALL PRIVILEGES ON DATABASE outline TO bot_outline;"
 
   managed:
     roles:
