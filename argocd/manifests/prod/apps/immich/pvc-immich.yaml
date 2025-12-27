@@ -12,5 +12,4 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  # volumeName: pv-sandbox # this is static definition, dynamic creates PV automatically, which seems recommended
-  # Keep it as an example now!
+  volumeName: pv-immich # this is static definition, dynamic creates PV automatically, which seems recommended
