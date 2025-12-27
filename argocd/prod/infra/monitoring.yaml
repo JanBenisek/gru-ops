@@ -45,8 +45,10 @@ spec:
           prune: true
           selfHeal: true
         syncOptions:
+          # https://github.com/argoproj/argo-cd/issues/11269
           - CreateNamespace=true
           - Replace=true
+          - ServerSideApply=true
         managedNamespaceMetadata:
           labels:
             pod-security.kubernetes.io/enforce: privileged
