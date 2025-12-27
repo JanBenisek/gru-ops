@@ -206,7 +206,7 @@ make docker-build
 
 > Photo management
 
-- Enable OCI
+- Enable OCI registry:
 ```shell
 argocd repo add ghcr.io/immich-app/immich-charts \
   --type helm \
