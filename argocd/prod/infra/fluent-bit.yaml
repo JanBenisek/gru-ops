@@ -1,46 +1,46 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: fluent-bit
-#   namespace: argocd
-#   annotations:
-#     argocd.argoproj.io/sync-wave: "10"
-# spec:
-#   project: gru
-#   sources:
-#     - chart: fluent-bit
-#       repoURL: https://fluent.github.io/helm-charts
-#       targetRevision: 0.54.0
-#       helm:
-#         version: v3
-#         releaseName: fluent-bit
-#         valueFiles:
-#           - $values/argocd/manifests/prod/infra/monitoring/fluent-bit/values.yaml
-#     - repoURL: https://github.com/JanBenisek/gru-ops.git
-#       targetRevision: main
-#       path: argocd/manifests/prod/infra/monitoring/fluent-bit
-#       ref: values
-#   destination:
-#     server: "https://kubernetes.default.svc"
-#     namespace: fluent-bit
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#     syncOptions:
-#       - CreateNamespace=true
-#     managedNamespaceMetadata:
-#       labels:
-#         pod-security.kubernetes.io/enforce: privileged
-#         pod-security.kubernetes.io/audit: privileged
-#         pod-security.kubernetes.io/warn: privileged
-#   ignoreDifferences:
-#     - group: apps
-#       kind: DaemonSet
-#       jsonPointers:
-#         - /spec/template/spec/volumes
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: fluent-bit
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  project: gru
+  sources:
+    - chart: fluent-bit
+      repoURL: https://fluent.github.io/helm-charts
+      targetRevision: 0.54.0
+      helm:
+        version: v3
+        releaseName: fluent-bit
+        valueFiles:
+          - $values/argocd/manifests/prod/infra/monitoring/fluent-bit/values.yaml
+    - repoURL: https://github.com/JanBenisek/gru-ops.git
+      targetRevision: main
+      path: argocd/manifests/prod/infra/monitoring/fluent-bit
+      ref: values
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: fluent-bit
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
+        pod-security.kubernetes.io/audit: privileged
+        pod-security.kubernetes.io/warn: privileged
+  ignoreDifferences:
+    - group: apps
+      kind: DaemonSet
+      jsonPointers:
+        - /spec/template/spec/volumes
 
-# #helm install fluent-bit fluent/fluent-bit \
-# #  --namespace fluent-bit \
-# #  --create-namespace \
-# #  -f /Users/janbenisek/github/gru-ops/argocd/manifests/prod/infra/monitoring/fluent-bit/values.yaml
+#helm install fluent-bit fluent/fluent-bit \
+#  --namespace fluent-bit \
+#  --create-namespace \
+#  -f /Users/janbenisek/github/gru-ops/argocd/manifests/prod/infra/monitoring/fluent-bit/values.yaml
