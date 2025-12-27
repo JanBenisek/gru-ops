@@ -57,7 +57,7 @@ spec:
         # - "CREATE DATABASE outline OWNER bot_outline;"
         #- "GRANT ALL PRIVILEGES ON DATABASE outline TO bot_outline;"
 
-  # managed:
+  managed:
   #   roles:
   #     - name: bot_metabase
   #       createdb: true
