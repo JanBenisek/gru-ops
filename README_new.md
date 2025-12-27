@@ -86,7 +86,7 @@ My tiny homelab
 - Immich related
   - [example](https://gist.github.com/kabakaev/1d8fa31d4e7fa8134c968101fa88d200)
 
-- Created secrets:
+- Created secrets and don't forget annotations!
 ```shell
 ./aux/seal-secret.sh bot-immich-pswd cnpg username=bot_immich prod/infra/cnpg password=PWD
 ./aux/seal-secret.sh bot-jerry-pswd cnpg username=bot_jerry prod/infra/cnpg password=PWD
@@ -131,6 +131,10 @@ k edit deployment metrics-server -n kube-system
 - [Helm Chart](https://artifacthub.io/packages/helm/emberstack/reflector)
 - [GitHub](https://github.com/emberstack/kubernetes-reflector)
 - Note that it copies secrets and configmaps, not sealed secrets (those get copied as secrets)
+- Trigger reflector Job:
+```shell
+k create job --from=cronjob/reflector reflector-manual-$(date +%s) -n reflector
+```
 
 ### Sealed-Secrets
 
