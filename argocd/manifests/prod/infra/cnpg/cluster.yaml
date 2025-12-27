@@ -80,7 +80,7 @@ spec:
                 external-dns.alpha.kubernetes.io/hostname: vchord-postgres.pengiuns.com
             spec:
               type: LoadBalancer
-              loadBalancerIP: 192.168.178.191 # pick from `k get ipaddresspool -A`
+              loadBalancerIP: 192.168.178.190 # pick from `k get ipaddresspool -A`
               ports:
                 - name: postgresql
                   port: 5432
