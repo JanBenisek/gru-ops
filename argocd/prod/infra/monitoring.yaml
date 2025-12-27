@@ -7,7 +7,7 @@ spec:
   generators:
     - list:
         elements:
-          # - name: fluent-bit
+          # - name: fluent-bit # could not make it work, try later
           #   chartRepo: https://fluent.github.io/helm-charts
           #   chartVersion: 0.54.0
           - name: kube-prometheus-stack
