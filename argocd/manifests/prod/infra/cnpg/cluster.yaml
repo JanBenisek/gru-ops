@@ -58,17 +58,17 @@ spec:
         #- "GRANT ALL PRIVILEGES ON DATABASE outline TO bot_outline;"
 
   managed:
-  #   roles:
-  #     - name: bot_metabase
-  #       createdb: true
-  #       login: true
-  #       passwordSecret:
-  #         name: bot-metabase-pswd
-  #     - name: bot_jerry
-  #       createdb: true
-  #       login: true
-  #       passwordSecret:
-  #         name: bot-jerry-pswd
+    # roles:
+    #   - name: bot_metabase
+    #     createdb: true
+    #     login: true
+    #     passwordSecret:
+    #       name: bot-metabase-pswd
+    #   - name: bot_jerry
+    #     createdb: true
+    #     login: true
+    #     passwordSecret:
+    #       name: bot-jerry-pswd
     services:
       disabledDefaultServices: ["ro", "r"]
       additional:
