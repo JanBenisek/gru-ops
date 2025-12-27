@@ -1,0 +1,26 @@
+# NFS shared folder for media - shows, movies
+# Needs enabled NFS service in Synology & Permissions
+# Needs Shared Folder and allowed NFS permissions
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: synology-storage-photos
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false" 
+    argocd.argoproj.io/sync-wave: "40"
+provisioner: nfs.csi.k8s.io # should be in talos by default
+parameters:
+  server: 192.168.178.96         
+  share: /volume1/photos
+reclaimPolicy: Retain            
+allowVolumeExpansion: true
+volumeBindingMode: Immediate 
+mountOptions:
+  - nfsvers=4.1 # version to use, must match with what is in Synology UI   
+  - rsize=1048576 # max bytes in single read, 1MiB
+  - wsize=1048576 # max bytes in write read, 1MiB
+  - timeo=600 # timeout before retry
+  - retrans=2 # times we retry after time out before giving up
+  - noatime # do not update the file’s "last access time" on read operations
+  - nodiratime # same as noatime, but specifically for directories.
+  - nolock  # disables locking, should be fine for media

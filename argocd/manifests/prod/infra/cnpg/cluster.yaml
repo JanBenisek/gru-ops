@@ -38,37 +38,13 @@ spec:
 
   bootstrap:
     initdb:
-      # database: immich # CREATE DATABASE immich;
-      # owner: bot_immich # CREATE ROLE bot_immich; --will be owner
-      # secret:
-      #   name: bot-immich-pswd
       postInitSQL:
         # Extensions
         - "CREATE EXTENSION IF NOT EXISTS vector;"
         - "CREATE EXTENSION IF NOT EXISTS vchord;"
         - "CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;"
-        # DB - metabase
-        # - "CREATE DATABASE metabase OWNER bot_metabase;"
-        # - "GRANT ALL PRIVILEGES ON DATABASE metabase TO bot_metabase;"
-        # DB - production
-        # - "CREATE DATABASE prod OWNER bot_jerry;"
-        # - "GRANT ALL PRIVILEGES ON DATABASE prod TO bot_jerry;"
-        # DB - outline
-        # - "CREATE DATABASE outline OWNER bot_outline;"
-        #- "GRANT ALL PRIVILEGES ON DATABASE outline TO bot_outline;"
 
   managed:
-    # roles:
-    #   - name: bot_metabase
-    #     createdb: true
-    #     login: true
-    #     passwordSecret:
-    #       name: bot-metabase-pswd
-    #   - name: bot_jerry
-    #     createdb: true
-    #     login: true
-    #     passwordSecret:
-    #       name: bot-jerry-pswd
     services:
       disabledDefaultServices: ["ro", "r"]
       additional:

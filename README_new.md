@@ -74,69 +74,33 @@ My tiny homelab
 
 > Using cloudnative-pg with vchord extension, v18.
 
-- Create secrets:
+- Because immich needs `VectorChord` extension which is too hard to install in bitnami chart.
+  - [VectorChord Github](https://github.com/tensorchord/VectorChord/)
+
+- I went with `Cluster` deployment, seems easier.
+  - [Values - crds](https://artifacthub.io/packages/helm/cloudnative-pg/cloudnative-pg)
+  - [Values - cluster](https://artifacthub.io/packages/helm/cloudnative-pg/cluster)
+  - [Docs](https://cloudnative-pg.io/documentation/1.24/installation_upgrade/)
+  - [CloudNative Chart](https://github.com/cloudnative-pg/charts)
+  - [Getting Started](https://github.com/cloudnative-pg/charts/blob/main/charts/cluster/docs/Getting%20Started.md)
+- Immich related
+  - [example](https://gist.github.com/kabakaev/1d8fa31d4e7fa8134c968101fa88d200)
+
+- Created secrets:
 ```shell
 ./aux/seal-secret.sh bot-immich-pswd cnpg username=bot_immich prod/infra/cnpg password=PWD
 ./aux/seal-secret.sh bot-jerry-pswd cnpg username=bot_jerry prod/infra/cnpg password=PWD
 ./aux/seal-secret.sh bot-metabase-pswd cnpg username=bot_metabase prod/infra/cnpg password=PWD
 ./aux/seal-secret.sh superuser-pswd cnpg username=postgres prod/infra/cnpg password=PWD
 ```
-
-## Apps
-
-### Media
-
-- [Containers](https://hotio.dev/containers/base/)
-- ! Needs correct permissions in Synology: Shared folder - NSF permission!
-
-#### Bazarr
-> Subtitles
-
-- Setup
-  3. Add subtitles providers
-  3. Add Radarr/Sonarr: `sonarr.media.svc.cluster.local`, port 80.
-
-#### Prowlarr
-
-> Indexer
-- Setup
-  1. Add new indexer (nzbplanet for example, `https://api.nzbplanet.net`)
-  2. Connect Prowlarr to Radarr: Generate API key in Radarr, add url `https://radarr. ...`
-  3. Same for Sonarr
-
-#### Radarr
-
-> Movies
-- Setup
-  3. Radarr needs to send request to Download. Add download client: `sabnzbd.media.svc.cluster.local`, port 80, API key from Sabnzbd.
-  3. Create folder in `data/` and adjust permissions `mkdir movies && chown -R 329:hotio movies`
-
-### Sonarr
-
-> Shows
-
-- Setup - same as Radarr
-
-#### sabnzbd
-
-> Usenet access
-
-- [NewsHosting](https://controlpanel.newshosting.com/customer/index.php) - Provider.
-  - Like qBitTorrent but not P2P, distributed servers, like archives. AKA provider.
-  - Gives access to UseNet, paid
-  - Primary Usenet Provider (when setting up Sabnzbd)
-    - `news.newshosting.com`
-- Sabnzbd - client that downloads, like qBitTorrent. I give it my creds from NewsHosting
-- [NZBPlanet](https://nzbplanet.net/profile#api_rss) - Used through indexer, like PirateBay.
-  - indexer - bought for 1yr (11/2026) for 12EUR, VIP
-  - I got 5000 api calls / day and unlimited downloads
-  - I am also keeping the second [NZBFinder](https://nzbfinder.ws/profile)
-    - but it has only 5000 limit to api calls and downloads
-  - API: `api.nzbplanet.net`
-
-- Setup
-  0. Add primary Usenet Provider (when setting up Sabnzbd) `news.newshosting.com`
-  0. Change Dowloads folder: `/data/Downloads/complete`, same for incomplete
+- Set up DB
+```sql
+-- Prod DB with bot_jerry
+create database prod;
+create user bot_jerry with password 'PWD';
+alter database prod owner to bot_jerry;
+grant all privileges on database prod to bot_jerry;
+```
 
 ### Metallb
 
@@ -238,6 +202,85 @@ make docker-build
 
 ## Apps
 
+### Immich
+
+> Photo management
+
+- Set up DB:
+```sql
+-- Immich with bot_immich
+create database immich;
+create user bot_immich with password 'squeals-dispatch-fussy-seaside';
+alter database immich owner to bot_immich;
+grant all privileges on database immich to bot_immich;
+```
+
+### Media
+
+- [Containers](https://hotio.dev/containers/base/)
+- ! Needs correct permissions in Synology: Shared folder - NSF permission!
+
+#### Bazarr
+> Subtitles
+
+- Setup
+  3. Add subtitles providers
+  3. Add Radarr/Sonarr: `sonarr.media.svc.cluster.local`, port 80.
+
+#### Prowlarr
+
+> Indexer
+- Setup
+  1. Add new indexer (nzbplanet for example, `https://api.nzbplanet.net`)
+  2. Connect Prowlarr to Radarr: Generate API key in Radarr, add url `https://radarr. ...`
+  3. Same for Sonarr
+
+#### Radarr
+
+> Movies
+- Setup
+  3. Radarr needs to send request to Download. Add download client: `sabnzbd.media.svc.cluster.local`, port 80, API key from Sabnzbd.
+  3. Create folder in `data/` and adjust permissions `mkdir movies && chown -R 329:hotio movies`
+
+### Sonarr
+
+> Shows
+
+- Setup - same as Radarr
+
+#### sabnzbd
+
+> Usenet access
+
+- [NewsHosting](https://controlpanel.newshosting.com/customer/index.php) - Provider.
+  - Like qBitTorrent but not P2P, distributed servers, like archives. AKA provider.
+  - Gives access to UseNet, paid
+  - Primary Usenet Provider (when setting up Sabnzbd)
+    - `news.newshosting.com`
+- Sabnzbd - client that downloads, like qBitTorrent. I give it my creds from NewsHosting
+- [NZBPlanet](https://nzbplanet.net/profile#api_rss) - Used through indexer, like PirateBay.
+  - indexer - bought for 1yr (11/2026) for 12EUR, VIP
+  - I got 5000 api calls / day and unlimited downloads
+  - I am also keeping the second [NZBFinder](https://nzbfinder.ws/profile)
+    - but it has only 5000 limit to api calls and downloads
+  - API: `api.nzbplanet.net`
+
+- Setup
+  0. Add primary Usenet Provider (when setting up Sabnzbd) `news.newshosting.com`
+  0. Change Dowloads folder: `/data/Downloads/complete`, same for incomplete
+
+### Metabase
+
+> Dashboards
+
+- Set up DB
+```sql
+-- Metabase with bot_metabase
+create database metabase;
+create user bot_metabase with password 'PWD';
+alter database metabase owner to bot_metabase;
+grant all privileges on database metabase to bot_metabase;
+```
 ### Hiker
 
 > Fun project
