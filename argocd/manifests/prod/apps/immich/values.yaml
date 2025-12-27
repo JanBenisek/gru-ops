@@ -1,29 +1,23 @@
-
 ## This chart relies on the common library chart from bjw-s
-## You can find it at https://github.com/bjw-s-labs/helm-charts/tree/923ef40a39520979c98f354ea23963ee54f54433/charts/library/common
+## You can find it at https://github.com/bjw-s-labs/helm-charts/tree/common-4.3.0/charts/library/common
 ## Refer there for more detail about the supported values
 
 # These entries are shared between all the Immich components
 
-env:
-  REDIS_HOSTNAME: '{{ printf "%s-redis-master" .Release.Name }}'
-  DB_HOSTNAME: vchord-postgres.pengiuns.com
-  DB_USERNAME: "bot_immich"
-  DB_DATABASE_NAME: "immich"
-  # -- You should provide your own secret outside of this helm-chart and use `postgresql.global.postgresql.auth.existingSecret` to provide credentials to the postgresql instance
-  DB_PASSWORD:
-    valueFrom:
-      secretKeyRef:
-        name: bot-immich-pswd
-        key: password
-  IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
-  IMMICH_LOG_LEVEL: "debug"
-
-image:
-  tag: v2.0.1 
+controllers:
+  main:
+    containers:
+      main:
+        image:
+          tag: v2.0.0
+        env:
+          REDIS_HOSTNAME: '{{ printf "%s-valkey" .Release.Name }}'
+          IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
+          # Add the env vars to connect to your database here.
 
 immich:
   metrics:
+    # Enabling this will create the service monitors needed to monitor immich with the prometheus operator
     enabled: true
   persistence:
     # Main data store for all photos shared between different components.
@@ -41,60 +35,91 @@ immich:
     # storageTemplate:
     #   enabled: true
     #   template: "{{y}}/{{y}}-{{MM}}-{{dd}}/{{filename}}"
+  # Sets the resource Kind to store configuration in. Must be either ConfigMap or Secret.
+  configurationKind: ConfigMap
 
 # Dependencies
-redis:
-  enabled: true
-  architecture: standalone
-  auth:
-    enabled: false
+
+valkey:
+  enabled: false
+  controllers:
+    main:
+      containers:
+        main:
+          image:
+            repository: docker.io/valkey/valkey
+            tag: 9.0-alpine@sha256:1be494495248d53e3558b198a1c704e6b559d5e99fe4c926e14a8ad24d76c6fa
+            pullPolicy: IfNotPresent
+  persistence:
+    data:
+      enabled: true
+      size: 1Gi
+      # Optional: Set this to persistentVolumeClaim to keep job queues persistent
+      type: emptyDir
+      accessMode: ReadWriteOnce
+      # storageClass: your-class
 
 # Immich components
+
 server:
   enabled: true
+
   resources:
     requests:
       cpu: "200m"
       memory: "6Gi"
     limits:
       memory: "10Gi"
-  image:
-    repository: ghcr.io/immich-app/immich-server
-    pullPolicy: IfNotPresent
+
+  controllers:
+    main:
+      containers:
+        main:
+          image:
+            repository: ghcr.io/immich-app/immich-server
+            pullPolicy: IfNotPresent
   ingress:
     main:
       enabled: true
-      annotations:
-        kubernetes.io/ingress.class: "nginx"
-        nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      # annotations:
+        # Change for traefik!
+        # proxy-body-size is set to 0 to remove the body limit on file uploads
+        # nginx.ingress.kubernetes.io/proxy-body-size: "0"
       hosts:
         - host: immich.pengiuns.com
           paths:
             - path: "/"
+              service:
+                identifier: main
       tls:
         - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
           hosts:
             - immich.pengiuns.com
 
 machine-learning:
-  enabled: true 
+  enabled: true
   resources:
     requests:
       cpu: "200m"
       memory: "6Gi"
     limits:
       memory: "10Gi"
-  image:
-    repository: ghcr.io/immich-app/immich-machine-learning
-    pullPolicy: IfNotPresent
-  env:
-    TRANSFORMERS_CACHE: /cache
-    IMMICH_LOG_LEVEL: "debug"
+  controllers:
+    main:
+      containers:
+        main:
+          image:
+            repository: ghcr.io/immich-app/immich-machine-learning
+            pullPolicy: IfNotPresent
+          env:
+            TRANSFORMERS_CACHE: /cache
+            HF_XET_CACHE: /cache/huggingface-xet
+            MPLCONFIGDIR: /cache/matplotlib-config
   persistence:
     cache:
       enabled: true
       size: 10Gi
-      # Optional: Set this to pvc to avoid downloading the ML models every start.
+      # Optional: Set this to persistentVolumeClaim to avoid downloading the ML models every start.
       type: emptyDir
       accessMode: ReadWriteMany
-      storageClass: synology-storage-apps
+      storageClass: synology-storage-sandbox

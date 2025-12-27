@@ -8,8 +8,10 @@ metadata:
 spec:
   project: gru
   sources:
-  - repoURL: ghcr.io/immich-app/immich-charts
-    chart: immich
+  
+  - chart: immich
+    # repoURL: oci://ghcr.io/immich-app/immich-charts
+    repoURL: ghcr.io/immich-app/immich-charts
     targetRevision: "0.10.3"
     helm:
       valueFiles:

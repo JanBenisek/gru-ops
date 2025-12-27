@@ -206,6 +206,13 @@ make docker-build
 
 > Photo management
 
+- Enable OCI
+```shell
+argocd repo add ghcr.io/immich-app/immich-charts \
+  --type helm \
+  --name immich-charts \
+  --enable-oci
+```
 - Set up DB:
 ```sql
 -- Immich with bot_immich
