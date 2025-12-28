@@ -8,7 +8,7 @@ metadata:
 spec:
   project: gru
   sources:
-    - chart: cloudflare
+    - chart: cloudflare/cloudflare-tunnel 
       repoURL: https://cloudflare.github.io/helm-charts
       targetRevision: "0.3.2"
       helm:
