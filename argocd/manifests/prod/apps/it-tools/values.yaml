@@ -1,0 +1,34 @@
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "10m"
+  limits:
+    memory: "256Mi"
+    cpu: "100m"
+controllers:
+  main:
+    containers:
+      app:
+        env:
+          TZ: "Europe/Zurich" #UTC
+persistence:
+  data:
+    enabled: false
+ingress:
+  main:
+    enabled: true
+    className: traefik
+    annotations:
+      kubernetes.io/ingress.class: "traefik"
+    hosts:
+      - host: it-tools.pengiuns.coms
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: main
+              port: http
+    tls:
+      - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+        hosts:
+          - it-tools.pengiuns.com

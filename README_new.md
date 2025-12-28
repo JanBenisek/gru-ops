@@ -206,6 +206,13 @@ make docker-build
 
 ## Apps
 
+### Hiker
+
+> Fun project
+
+- Port-forward from 8080
+
+
 ### Immich
 
 > Photo management
@@ -230,6 +237,12 @@ create extension vector;
 create extension vchord;
 create extension if not exists earthdistance cascade;
 ```
+
+### IT-Tools
+
+> Various tools
+
+- [Helm Chart](https://artifacthub.io/packages/helm/jeffresc/it-tools)
 
 ### Media
 
@@ -289,6 +302,7 @@ create extension if not exists earthdistance cascade;
 
 > Dashboards
 
+- [Helm Chart](https://artifacthub.io/packages/helm/pmint93/metabase)
 - Set up DB
 ```sql
 -- Metabase with bot_metabase
@@ -297,8 +311,9 @@ create user bot_metabase with password 'PWD';
 alter database metabase owner to bot_metabase;
 grant all privileges on database metabase to bot_metabase;
 ```
-### Hiker
 
-> Fun project
+### Stirling
 
-- Port-forward from 8080
+> PDF tools
+
+- [GitHub](https://github.com/Stirling-Tools/Stirling-PDF)
