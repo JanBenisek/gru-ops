@@ -8,11 +8,11 @@ metadata:
 spec:
   project: gru
   sources:
-    - chart: cloudflare/cloudflare-tunnel 
+    - chart: cloudflare-tunnel
       repoURL: https://cloudflare.github.io/helm-charts
       targetRevision: "0.3.2"
       helm:
-        releaseName: cloudflare-tunnel
+        releaseName: cloudflare
         valueFiles:
           - $values/argocd/manifests/prod/infra/cloudflare/values.yaml
     - repoURL: https://github.com/JanBenisek/gru-ops.git
