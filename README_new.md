@@ -12,6 +12,7 @@ My tiny homelab
 
 - [Helm Chart](https://github.com/cloudflare/helm-charts/tree/main/charts/cloudflare-tunnel)
 - [docs](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/)
+- [How-to](https://itnext.io/exposing-kubernetes-apps-to-the-internet-with-cloudflare-tunnel-ingress-controller-and-e30307c0fcb0)
 - There is `cloudflare-tunnel` (creates actual tunnel) and `cloudflare-tunnel-remote` (connects to existing tunnel)
 - Generate tunnelId
 ```shell
