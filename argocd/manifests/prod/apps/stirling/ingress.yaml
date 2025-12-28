@@ -12,7 +12,7 @@ metadata:
     # nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "900"
     
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   rules:
   - host: stirling.pengiuns.com
     http:
