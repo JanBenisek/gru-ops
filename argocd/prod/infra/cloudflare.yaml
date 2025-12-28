@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cloudflare
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  project: gru
+  sources:
+    - chart: cloudflare
+      repoURL: https://cloudflare.github.io/helm-charts
+      targetRevision: "0.3.2"
+      helm:
+        releaseName: cloudflare
+        valueFiles:
+          - $values/argocd/manifests/prod/infra/cloudflare/values.yaml
+    - repoURL: https://github.com/JanBenisek/gru-ops.git
+      targetRevision: main
+      path: argocd/manifests/prod/infra/cloudflare
+      ref: values
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: cloudflare
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

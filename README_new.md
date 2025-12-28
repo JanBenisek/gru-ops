@@ -6,6 +6,27 @@ My tiny homelab
 
 - [Rennovate](https://developer.mend.io/github/JanBenisek)
 
+### Cloudflare
+
+> Expose my services to the internet
+
+- [Helm Chart](https://github.com/cloudflare/helm-charts/tree/main/charts/cloudflare-tunnel)
+- [docs](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/)
+- There is `cloudflare-tunnel` (creates actual tunnel) and `cloudflare-tunnel-remote` (connects to existing tunnel)
+- Generate tunnelId
+```shell
+brew install cloudflare/cloudflare/cloudflared
+cloudflared login
+cloudflared tunnel create gru-ops-tunnel # note ID and creds
+
+# create secrets
+kubectl create secret generic cloudflare-tunel-credentials \
+  --from-file=credentials.json=/Users/janbenisek/.cloudflared/d65bf19e-11ed-4df3-81c1-b76923b14de4.json \
+  --namespace=cloudflare -o yaml \
+  | kubeseal --cert "/Users/janbenisek/github/gru-ops/aux/sealed-secrets-public.crt" -o yaml \
+  > /Users/janbenisek/github/gru-ops/argocd/manifests/prod/infra/cloudflare/cloudflare-tunel-credentials.yaml
+```
+
 ### CSI-NFS-driver
 > To interact with my Synology NFS
 
