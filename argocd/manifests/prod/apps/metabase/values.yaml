@@ -1,0 +1,47 @@
+image:
+  repository: metabase/metabase
+  tag: "v0.54.10.4"
+  pullPolicy: IfNotPresent
+
+monitoring:
+  enabled: true
+
+resources:
+  requests:
+    memory: "2Gi"
+    cpu: "200m"
+  limits:
+    memory: "3Gi"
+    cpu: "5000m"
+
+ingress:
+  enabled: true
+  hosts:
+    - "metabase.pengiuns.com"
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    # TODO: Replace by traefik
+    # nginx.ingress.kubernetes.io/proxy-body-size: 100m
+    # nginx.ingress.kubernetes.io/proxy-connect-timeout: 900
+    # nginx.ingress.kubernetes.io/proxy-send-timeout: 900
+    # nginx.ingress.kubernetes.io/proxy-read-timeout: 900
+    # nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: 900
+  
+  tls:
+    - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+      hosts:
+        - "metabase.pengiuns.com"
+
+database:
+  type: postgres
+  host: vchord-postgres.pengiuns.com
+  port: 5432
+  dbname: metabase
+  # username: bot_metabase
+  existingSecret: bot-metabase-pswd
+  existingSecretUsernameKey: username
+  existingSecretPasswordKey: password
+
+service:
+  labels:
+    app.kubernetes.io/name: "metabase"

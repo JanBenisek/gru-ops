@@ -224,6 +224,11 @@ create database immich;
 create user bot_immich with password 'squeals-dispatch-fussy-seaside';
 alter database immich owner to bot_immich;
 grant all privileges on database immich to bot_immich;
+
+-- log in with admin user to DB immich and run:
+create extension vector;
+create extension vchord;
+create extension if not exists earthdistance cascade;
 ```
 
 ### Media

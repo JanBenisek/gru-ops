@@ -36,13 +36,8 @@ spec:
     size: 20Gi
     storageClass: synology-storage-apps
 
-  bootstrap:
-    initdb:
-      postInitSQL:
-        # Extensions
-        - "CREATE EXTENSION IF NOT EXISTS vector;"
-        - "CREATE EXTENSION IF NOT EXISTS vchord;"
-        - "CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;"
+  # bootstrap:
+    # initdb:
 
   managed:
     services:
