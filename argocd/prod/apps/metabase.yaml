@@ -10,7 +10,7 @@ spec:
   sources:
   - repoURL: https://pmint93.github.io/helm-charts
     chart: metabase
-    targetRevision: "2.22.2"
+    targetRevision: "2.23.0"
     helm:
       valueFiles:
       - $values/argocd/manifests/prod/apps/metabase/values.yaml
