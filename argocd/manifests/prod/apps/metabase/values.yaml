@@ -1,6 +1,6 @@
 image:
   repository: metabase/metabase
-  tag: "v0.54.10.4"
+  tag: "v0.58.1.3"
   pullPolicy: IfNotPresent
 
 monitoring:
