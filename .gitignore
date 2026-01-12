@@ -1,3 +1,7 @@
+# OS files
+.DS_Store
+
+# envs and secrets
 .env
 .argocd_env
 secrets.auto.tfvars
