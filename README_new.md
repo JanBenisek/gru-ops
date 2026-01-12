@@ -264,7 +264,7 @@ create extension if not exists earthdistance cascade;
 
 > Various tools
 
-- [Helm Chart](https://artifacthub.io/packages/helm/jeffresc/it-tools)
+- [GitHub](https://github.com/CorentinTh/it-tools?tab=readme-ov-file)
 
 ### Media
 

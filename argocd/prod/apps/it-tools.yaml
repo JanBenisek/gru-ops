@@ -7,17 +7,10 @@ metadata:
     argocd.argoproj.io/sync-wave: "10"
 spec:
   project: gru
-  sources:
-  - repoURL: https://charts.plcnk.net
-    chart: it-tools
-    targetRevision: "2.1.2"
-    helm:
-      valueFiles:
-      - $values/argocd/manifests/prod/apps/it-tools/values.yaml
-  - repoURL: https://github.com/JanBenisek/gru-ops.git
+  source:
+    repoURL: https://github.com/JanBenisek/gru-ops.git
     targetRevision: main
     path: argocd/manifests/prod/apps/it-tools
-    ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: it-tools
