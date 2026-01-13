@@ -265,7 +265,7 @@ create extension if not exists earthdistance cascade;
 > External access to immich
 
 - [GitHub](https://github.com/alangrainger/immich-public-proxy)
-- [Helm]()
+- Add `immich-share.pengiuns.com` to Server Settings -> External Domain 
 
 ### IT-Tools
 
