@@ -260,6 +260,13 @@ create extension vchord;
 create extension if not exists earthdistance cascade;
 ```
 
+#### immich-proxy
+
+> External access to immich
+
+- [GitHub](https://github.com/alangrainger/immich-public-proxy)
+- [Helm]()
+
 ### IT-Tools
 
 > Various tools
