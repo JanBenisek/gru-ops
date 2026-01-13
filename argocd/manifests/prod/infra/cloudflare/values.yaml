@@ -32,7 +32,7 @@ image:
   repository: cloudflare/cloudflared
   pullPolicy: IfNotPresent
   # If supplied, this overrides "appVersion"
-  tag: ""
+  tag: "2025.11.1" # the Helm chart is not updated anymore, this is bit of a hack
 
 replicaCount: 2
 
