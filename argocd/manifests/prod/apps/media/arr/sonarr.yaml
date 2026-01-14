@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: StatefulSet # TODO: add volumeClaimTemplates
 metadata:
   name: sonarr
   namespace: media
@@ -20,7 +20,7 @@ spec:
   selector:
     matchLabels:
       app: sonarr
-      
+
   template:
     metadata:
       labels:
