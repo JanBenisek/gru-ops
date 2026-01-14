@@ -16,7 +16,7 @@ spec:
       - $values/argocd/manifests/prod/apps/immich/values.yaml
   - repoURL: https://bjw-s-labs.github.io/helm-charts
     chart: app-template
-    targetRevision: "4.6.0" # TODO: bump to 4.6.0
+    targetRevision: "4.6.0"
     helm:
       valueFiles:
       - $values/argocd/manifests/prod/apps/immich/proxy-values.yaml
