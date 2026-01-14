@@ -19,20 +19,20 @@
     "helm-values"
   ],
   "kubernetes": {
-    "managerFilePatterns": [
-      "/argocd/manifests/.+\\.ya?ml$/",
-      "/argocd/prod/.+\\.ya?ml$/"
+    "fileMatch": [
+      "argocd/manifests/.+\\.ya?ml$",
+      "argocd/prod/.+\\.ya?ml$"
     ]
   },
   "argocd": {
-    "managerFilePatterns": [
-      "/argocd/prod/.+\\.ya?ml$/"
+    "fileMatch": [
+      "argocd/prod/.+\\.ya?ml$"
     ]
   },
   "helm-values": {
-    "managerFilePatterns": [
-      "/argocd/manifests/.+/values\\.ya?ml$/",
-      "/argocd/prod/.+/values\\.ya?ml$/"
+    "fileMatch": [
+      "argocd/manifests/.+values\\.ya?ml$",
+      "argocd/prod/.+values\\.ya?ml$"
     ]
   },
   "packageRules": [
