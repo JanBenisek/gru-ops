@@ -23,7 +23,7 @@ spec:
         fsGroup: 321 # owner of attached volume is group 321 
       containers:
         - name: qbittorrent
-          image: ghcr.io/hotio/qbittorrent:release-5.1.2
+          image: ghcr.io/hotio/qbittorrent:release-5.1.4
           securityContext:
             runAsUser: 0  # Temporary root for setup, not great, but does not work otherwise
             allowPrivilegeEscalation: true
