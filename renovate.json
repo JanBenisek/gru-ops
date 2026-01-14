@@ -37,6 +37,12 @@
   },
   "packageRules": [
     {
+      "matchPackagePatterns": [
+        "^ghcr\\.io/hotio/"
+      ],
+      "versioning": "regex:^release-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(\\.(?<build>\\d+))?$"
+    },
+    {
       "matchDatasources": [
         "docker"
       ],
