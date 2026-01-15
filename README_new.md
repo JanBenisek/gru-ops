@@ -269,6 +269,37 @@ create extension if not exists earthdistance cascade;
 - Add `immich-share.pengiuns.com` to Server Settings -> External Domain 
 - `CNAME` record must have the `<tunnel ID>.cfargotunnel.com` in `target`.
 
+### ollama
+
+- LLMs!
+- [Helm](https://github.com/otwld/ollama-helm)
+- [Helm value](https://artifacthub.io/packages/helm/ollama-helm/ollama/0.67.0?modal=values)
+- [Github](https://github.com/ollama/ollama?tab=readme-ov-file)
+
+- Interact with the REST API:
+- [Docs](https://github.com/ollama/ollama/blob/main/docs/api.md)
+- [Models](https://ollama.com/library)
+
+```shell
+# chat
+curl https://ollama.pengiuns.com/api/chat -d '{"model": "llama3.2", "stream": true, "messages": [{ "role": "user", "content": "why is the sky blue?" }]}'
+
+# pull model
+curl https://ollama.pengiuns.com/api/pull -d '{"model": "gemma2"}'
+curl -L --insecure https://ollama.pengiuns.com/api/pull -d '{"model": "qwen3:1.7b"}'
+
+
+# remove model
+curl -X DELETE https://ollama.pengiuns.com/api/delete -d '{"model": "gemma2:latest"}'
+
+# list models
+curl https://ollama.pengiuns.com/api/tags
+
+# list running models
+curl https://ollama.pengiuns.com/api/ps
+```
+
+
 ### IT-Tools
 
 > Various tools
