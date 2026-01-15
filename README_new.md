@@ -228,6 +228,49 @@ make docker-build
 
 ## Apps
 
+### docker-registry
+
+- [Helm Chart](https://github.com/twuni/docker-registry.helm)
+- [Docker image](https://hub.docker.com/_/registry)
+- [Docs](https://distribution.github.io/distribution/)
+- interact with registry:
+  - [API](https://distribution.github.io/distribution/spec/api/)
+```shell
+curl -X GET https://docker-registry.pengiuns.com/v2/_catalog?n=1000
+curl -X GET https://docker-registry.pengiuns.com/v2/jupyter/tags/list
+
+# add image 
+docker tag vllm:cpu docker-registry.pengiuns.com/vllm:cpu
+docker push docker-registry.pengiuns.com/vllm:cpu
+
+# remove locally
+docker image remove docker-registry.pengiuns.com/vllm:cpu
+
+# pull again
+docker pull docker-registry.pengiuns.com/vllm:cpu
+
+# remove from storage
+curl -sS -H 'Accept: application/vnd.docker.distribution.manifest.v2+json' \
+-o /dev/null \
+-w '%header{Docker-Content-Digest}' \
+https://docker-registry.pengiuns.com/v2/jupyter/manifests/rust
+
+# Second option of the above does not work
+curl -sI -H "Accept: application/vnd.oci.image.index.v1+json" https://docker-registry.pengiuns.com/v2/jupyter/manifests/rust
+
+curl -v -X DELETE https://docker-registry.pengiuns.com/v2/jupyter/manifests/sha256:f8705bf78ad6519496337cc2a331d90e4ac84b3de2aef29e9223e9b9a776c127
+```
+- [Garbage Collection](https://distribution.github.io/distribution/about/garbage-collection/)
+  - in container: `registry garbage-collect -m /etc/docker/registry/config.yml --delete-untagged --dry-run`
+  - it removes blobs which stay around after removing image or tag
+- Useful
+  - https://kb.leaseweb.com/kb/kubernetes/kubernetes-deploying-a-docker-registry-on-kubernetes/
+  - https://medium.com/geekculture/deploying-docker-registry-on-kubernetes-3319622b8f32
+  - https://www.paulsblog.dev/how-to-install-a-private-docker-container-registry-in-kubernetes/
+  - Images are stored in `/var/lib/registry/docker/registry/v2`
+
+
+
 ## Funnaiest
 
 > Fun project

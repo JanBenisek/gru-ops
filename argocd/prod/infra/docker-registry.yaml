@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: registry
+  name: docker-registry
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "10"
@@ -10,10 +10,10 @@ spec:
   source:
     repoURL: https://github.com/JanBenisek/gru-ops.git
     targetRevision: main
-    path: argocd/manifests/prod/infra/registry
+    path: argocd/manifests/prod/infra/docker-registry
   destination:
     server: https://kubernetes.default.svc
-    namespace: registry
+    namespace: docker-registry
   syncPolicy:
     automated:
       prune: true
