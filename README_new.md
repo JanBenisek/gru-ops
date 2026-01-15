@@ -228,6 +228,12 @@ make docker-build
 
 ## Apps
 
+## Funnaiest
+
+> Fun project
+
+- Fun LLM app to test cloudflare tunnel, pants, auth etc
+
 ### Hiker
 
 > Fun project

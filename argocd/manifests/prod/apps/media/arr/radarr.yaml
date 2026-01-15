@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: StatefulSet # TODO: add volumeClaimTemplates
+kind: StatefulSet # MAYBE: add volumeClaimTemplates
 metadata:
   name: radarr
   namespace: media
@@ -9,6 +9,7 @@ metadata:
 spec:
   serviceName: radarr
   replicas: 1
+  # MAYBE 
   # persistentVolumeClaimRetentionPolicy:
   #   whenScaled: Delete
   #   whenDeleted: Retain

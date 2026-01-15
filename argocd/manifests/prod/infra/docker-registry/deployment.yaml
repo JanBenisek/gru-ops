@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: docker-registry
+  namespace: docker-registry
+  labels:
+    app: docker-registry
+    app.kubernetes.io/name: docker-registry
+spec:
+  ServiceName: docker-registry
+  replicas: 1
+
+  podManagementPolicy: OrderedReady
+
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: docker-registry
+  template:
+    metadata:
+      labels:
+        app: docker-registry
+    spec:
+      containers:
+      - name: docker-registry
+        image: registry:2.8
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000 # internal port for the app
+        resources: 
+          requests:
+            memory: "125Mi"  
+            cpu: "10m"      
+          limits:
+            memory: "256Mi"  
+            cpu: "200m"    
+        volumeMounts:
+          - name: registry-config
+            mountPath: /etc/docker/registry/config.yml
+            subPath: config.yml
+          - name: registry-data
+            mountPath: /var/lib/registry
+      volumes:
+        - name: registry-config
+          configMap:
+            name: docker-registry-config
+            items:
+              - key: config.yml
+                path: config.yml
+        - name: registry-data
+          persistentVolumeClaim:
+            claimName: pvc-docker-registry
