@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: funnaiest
+  namespace: funnaiest
+  labels:
+    app: funnaiest
+    app.kubernetes.io/name: funnaiest
+spec:
+  serviceName: funnaiest
+  replicas: 1
+
+  podManagementPolicy: OrderedReady
+
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
+
+  selector:
+    matchLabels:
+      app: funnaiest
+  template:
+    metadata:
+      labels:
+        app: funnaiest
+        app.kubernetes.io/name: funnaiest
+    spec:
+      containers:
+      - name: funnaiest
+        image: docker-registry.pengiuns.com/funnaiest:0.0.5
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9090 # internal port for the app
+        resources: # added by me
+          requests:
+            memory: "64Mi"  
+            cpu: "10m"      
+          limits:
+            memory: "128Mi"  
+            cpu: "100m"
