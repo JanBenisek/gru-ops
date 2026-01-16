@@ -21,6 +21,9 @@ spec:
       - name: docker-registry
         image: registry:3.0
         imagePullPolicy: Always
+        env:
+          - name: OTEL_SDK_DISABLED
+            value: "true"
         ports:
         - containerPort: 5000 # internal port for the app
         resources: 
