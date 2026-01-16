@@ -45,3 +45,6 @@ database:
 service:
   labels:
     app.kubernetes.io/name: "metabase"
+
+podLabels:
+  app.kubernetes.io/name: metabase
