@@ -275,7 +275,8 @@ curl -v -X DELETE https://docker-registry.pengiuns.com/v2/jupyter/manifests/sha2
 
 > Fun project
 
-- Fun LLM app to test cloudflare tunnel, pants, auth etc
+- Fun LLM app to test cloudflare tunnel, pants, auth etc.
+- To open it publicly, need to add to `CNAME` target `<tunnel id>.cfargotunnel.com`
 
 ### Hiker
 
