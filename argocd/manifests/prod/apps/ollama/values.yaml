@@ -9,20 +9,20 @@ ollama:
   models:
     pull:
       # better to download manually and then add here
-      - llama3.2:1b
-      - llama3.2:3b
-      - deepseek-r1:1.5b
-      - gemma3:1b
-      - gemma3:4b
-      - qwen3:0.6b
-      - qwen3:1.7b
-      - qwen3:4b
-      - ministral-3:3b
-      - qwen3-vl:4b
-      - phi3:3.8b
-      - phi4-mini:3.8b
-      - phi3.5:3.8b
-      - phi4-mini-reasoning:3.8b
+      # - llama3.2:1b
+      # - llama3.2:3b
+      # - deepseek-r1:1.5b
+      # - gemma3:1b
+      # - gemma3:4b
+      # - qwen3:0.6b
+      # - qwen3:1.7b
+      # - qwen3:4b
+      # - ministral-3:3b
+      # - qwen3-vl:4b
+      # - phi3:3.8b
+      # - phi4-mini:3.8b
+      # - phi3.5:3.8b
+      # - phi4-mini-reasoning:3.8b
 
 service:
   type: ClusterIP
@@ -112,7 +112,8 @@ persistentVolume:
   # Must match those of existing PV or dynamic provisioner
   # Ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
   accessModes:
-    - ReadWriteOnce
+    # - ReadWriteOnce
+    - ReadWriteMany
 
   # -- Ollama server data Persistent Volume annotations
   annotations: {}
@@ -131,7 +132,9 @@ persistentVolume:
   # If undefined (the default) or set to null, no storageClassName spec is
   # set, choosing the default provisioner.  (gp2 on AWS, standard on
   # GKE, AWS & OpenStack)
-  storageClass: "synology-storage-apps"
+  # storageClass: "synology-storage-apps"
+  storageClass: "synology-storage-sandbox" # RWX NAS to support scaling, let's see
+
 
   # -- Ollama server data Persistent Volume Binding Mode
   # If defined, volumeMode: <volumeMode>
