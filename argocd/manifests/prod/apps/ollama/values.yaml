@@ -163,7 +163,7 @@ lifecycle: {}
 # How to replace existing pods
 updateStrategy:
   # -- Deployment strategy can be "Recreate" or "RollingUpdate". Default is Recreate
-  type: "RollingUpdate"
+  type: "Recreate"
 
 # -- Topology Spread Constraints for pod assignment
 topologySpreadConstraints: {}
