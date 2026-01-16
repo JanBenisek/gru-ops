@@ -54,11 +54,11 @@ ingress:
 # ref: http://kubernetes.io/docs/user-guide/compute-resources/
 resources:
   requests:
-    memory: 10G
+    memory: 20G
     cpu: 1000m
 
   limits: 
-    memory: 20G
+    memory: 30G
 
 # Configure autoscaling
 autoscaling:
