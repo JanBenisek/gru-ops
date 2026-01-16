@@ -1,29 +1,29 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: ollama
-#   namespace: argocd
-#   annotations:
-#     argocd.argoproj.io/sync-wave: "10"
-# spec:
-#   project: gru
-#   sources:
-#   - repoURL: https://otwld.github.io/ollama-helm/
-#     chart: ollama
-#     targetRevision: "1.37.0"
-#     helm:
-#       valueFiles:
-#       - $values/argocd/manifests/prod/apps/ollama/values.yaml
-#   - repoURL: https://github.com/JanBenisek/gru-ops.git
-#     targetRevision: main
-#     path: argocd/manifests/prod/apps/ollama
-#     ref: values
-#   destination:
-#     server: https://kubernetes.default.svc
-#     namespace: ollama
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#     syncOptions:
-#     - CreateNamespace=true
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ollama
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  project: gru
+  sources:
+  - repoURL: https://otwld.github.io/ollama-helm/
+    chart: ollama
+    targetRevision: "1.37.0"
+    helm:
+      valueFiles:
+      - $values/argocd/manifests/prod/apps/ollama/values.yaml
+  - repoURL: https://github.com/JanBenisek/gru-ops.git
+    targetRevision: main
+    path: argocd/manifests/prod/apps/ollama
+    ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ollama
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
