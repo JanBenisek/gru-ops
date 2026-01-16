@@ -335,9 +335,12 @@ create extension if not exists earthdistance cascade;
 curl https://ollama.pengiuns.com/api/chat -d '{"model": "llama3.2", "stream": true, "messages": [{ "role": "user", "content": "why is the sky blue?" }]}'
 
 # pull model
-curl https://ollama.pengiuns.com/api/pull -d '{"model": "gemma2"}'
-curl -L --insecure https://ollama.pengiuns.com/api/pull -d '{"model": "qwen3:1.7b"}'
-
+curl https://ollama.pengiuns.com/api/pull -d '{"model": "llama3.2:1b", "model": "llama3.2:3b"}'
+curl https://ollama.pengiuns.com/api/pull -d '{"model": "deepseek-r1:1.5b"}'
+curl https://ollama.pengiuns.com/api/pull -d '{"model": "gemma3:1b", "model": "gemma3:4b"}'
+curl https://ollama.pengiuns.com/api/pull -d '{"model": "qwen3:0.6b", "model": "qwen3:1.7b", "model": "qwen3:4b", "model": "qwen3-vl:4b"}'
+curl https://ollama.pengiuns.com/api/pull -d '{"model": "qwen3:0.6b", "model": "ministral-3:3b", "model": "qwen3:4b"}'
+curl https://ollama.pengiuns.com/api/pull -d '{"model": "phi3:3.8b", "model": "phi4-mini:3.8b", "model": "phi3.5:3.8b", "model": "phi4-mini-reasoning:3.8b"}'
 
 # remove model
 curl -X DELETE https://ollama.pengiuns.com/api/delete -d '{"model": "gemma2:latest"}'
