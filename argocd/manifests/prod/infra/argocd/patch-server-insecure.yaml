@@ -3,4 +3,6 @@ kind: ConfigMap
 metadata:
   name: argocd-cmd-params-cm
 data:
-  server.insecure: "true"
+  server.insecure: "true" # Allow HTTP internally
+  url: https://argocd.pengiuns.com # External URL
+  server.baseHref: / # Tells ArgoCD to respect TLS termination at proxy
