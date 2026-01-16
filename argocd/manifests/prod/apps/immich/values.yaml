@@ -124,5 +124,6 @@ machine-learning:
       accessMode: ReadWriteMany
       storageClass: synology-storage-sandbox
 
-podLabels:
-  app.kubernetes.io/name: immich
+# Does not work
+# podLabels:
+#   app.kubernetes.io/name: immich
