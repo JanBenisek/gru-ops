@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: docker-registry
   namespace: docker-registry
@@ -8,14 +8,6 @@ metadata:
     app.kubernetes.io/name: docker-registry
 spec:
   ServiceName: docker-registry
-  replicas: 1
-
-  podManagementPolicy: OrderedReady
-
-  updateStrategy:
-    type: RollingUpdate
-    rollingUpdate:
-      partition: 0
   replicas: 1
   selector:
     matchLabels:
