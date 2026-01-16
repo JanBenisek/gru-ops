@@ -7,15 +7,16 @@ ollama:
     # -- Enable GPU integration
     enabled: false
   models:
-    # better to download manually and then add here
-    - llama3.2:1b
-    - llama3.2:3b
-    - deepseek-r1:1.5b
-    - gemma3:1b
-    - gemma3:4b
-    - qwen3:0.6b
-    - qwen3:1.7b
-    - qwen3:4b
+    pull:
+      # better to download manually and then add here
+      - llama3.2:1b
+      - llama3.2:3b
+      - deepseek-r1:1.5b
+      - gemma3:1b
+      - gemma3:4b
+      - qwen3:0.6b
+      - qwen3:1.7b
+      - qwen3:4b
 
 service:
   type: ClusterIP
