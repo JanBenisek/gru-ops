@@ -123,3 +123,6 @@ machine-learning:
       type: emptyDir
       accessMode: ReadWriteMany
       storageClass: synology-storage-sandbox
+
+podLabels:
+  app.kubernetes.io/name: immich
