@@ -30,7 +30,7 @@ spec:
               service:
                 name: argocd-server 
                 port:
-                  number: 443
+                  number: 80
                   # Argo exposes 8080 (HTTP) and 8083 (TLS).
                   # 80 is http, 443 is https
   tls:
