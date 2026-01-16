@@ -13,6 +13,7 @@ metadata:
     # Argo tries to reroute, causing 307 redirect loop
     # Because ArgoCD enforces HTTPS
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true" # experiment
     # curl -vk -H "Host: argocd.pengiuns.com" https://192.168.178.100/
     # curl -vk -L -H "Host: argocd.pengiuns.com" http://192.168.178.100
     external-dns.alpha.kubernetes.io/hostname: argocd.pengiuns.com
