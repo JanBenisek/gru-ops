@@ -432,3 +432,11 @@ grant all privileges on database metabase to bot_metabase;
 > PDF tools
 
 - [GitHub](https://github.com/Stirling-Tools/Stirling-PDF)
+
+### open-webui
+
+> Web interface for LLMs
+
+- [Github](https://github.com/open-webui/open-webui)
+- [Helm](https://artifacthub.io/packages/helm/open-webui/open-webui)
+- Needs `k label pod open-webui-0 app.kubernetes.io/name=open-webui -n open-webui` otherwise not seen by Homepage.
