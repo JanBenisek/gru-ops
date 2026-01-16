@@ -54,8 +54,8 @@ ingress:
 # ref: http://kubernetes.io/docs/user-guide/compute-resources/
 resources:
   requests:
-    memory: 20G
-    cpu: 1000m
+    memory: 1G
+    cpu: 100m
 
   limits: 
     memory: 30G
@@ -63,13 +63,13 @@ resources:
 # Configure autoscaling
 autoscaling:
   # -- Enable autoscaling
-  enabled: false
+  enabled: true
 
   # -- Number of minimum replicas
   minReplicas: 1
 
   # -- Number of maximum replicas
-  maxReplicas: 100
+  maxReplicas: 2
 
   # -- CPU usage to target replica
   targetCPUUtilizationPercentage: 80
