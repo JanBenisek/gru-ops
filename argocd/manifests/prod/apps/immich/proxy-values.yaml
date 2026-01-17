@@ -1,32 +1,6 @@
 global:
   nameOverride: immich-proxy
 
-# image:
-#   repository: alangrainger/immich-public-proxy
-#   tag: "1.14.3"
-#   pullPolicy: IfNotPresent
-
-# env:
-#   IMMICH_URL: http://immich-server:2283 # from k get svc -n immich
-#   # https://github.com/alangrainger/immich-public-proxy/blob/main/app/config.jsont
-#   CONFIG: |
-#     {
-#       "ipp": {
-#         "singleImageGallery": true,
-#         "downloadOriginalPhoto": false,
-#         "allowDownloadAll": false,
-#         "showHomePage": false
-#       }
-#     }
-
-
-# controllers:
-#   main:
-#     enabled: true
-#     containers:
-#       main:
-#         enabled: true
-
 controllers:
   main:
     enabled: true
@@ -59,8 +33,6 @@ service:
     type: ClusterIP
     ports:
       http:
-        # enabled: true # remove later
-        # primary: true # remove later
         port: 3000
         protocol: HTTP
 
