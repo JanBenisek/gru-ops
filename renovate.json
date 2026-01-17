@@ -49,6 +49,11 @@
       "allowedUpdateTypes": ["minor", "major"]
     },
     {
+      "matchDatasources": ["docker"],
+      "matchPackagePatterns": ["^docker-registry\\.pengiuns\\.com/"],
+      "enabled": false
+    },
+    {
       "matchDatasources": [
         "docker"
       ],
