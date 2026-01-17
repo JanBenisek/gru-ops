@@ -33,4 +33,11 @@ spec:
       - ServerSideApply=true
       - SkipDryRunOnMissingResource=true
 
-# pvc-82e16afb-0a1c-4da3-8d0d-5811e5a7098
+  # There is constant diff in these fields, seems ok, so ignoring
+  ignoreDifferences:
+    - group: ""
+      kind: Service
+      name: cnpg-rw-lb
+      jsonPointers:
+        - /spec/ports/0/protocol
+        - /spec/updateStrategy
