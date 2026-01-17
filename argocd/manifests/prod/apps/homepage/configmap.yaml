@@ -59,6 +59,8 @@ data:
             icon: traefik.png
             href: https://traefik.pengiuns.com
             description: Trafficking 
+            namespace: traefik 
+            app: traefik
         - Metabase:
             icon: metabase.png
             href: https://metabase.pengiuns.com
