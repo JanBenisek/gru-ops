@@ -43,6 +43,12 @@
       "versioning": "regex:^release-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(\\.(?<build>\\d+))?$"
     },
     {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["metabase/metabase"],
+      "versioning": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)$",
+      "allowedUpdateTypes": ["minor", "major"]
+    },
+    {
       "matchDatasources": [
         "docker"
       ],
