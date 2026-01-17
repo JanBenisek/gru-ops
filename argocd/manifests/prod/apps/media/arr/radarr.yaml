@@ -105,11 +105,10 @@ metadata:
     app.kubernetes.io/name: radarr
   annotations:
     kubernetes.io/ingress.class: "traefik"
-    # nginx.ingress.kubernetes.io/proxy-body-size: "10m"
-    # nginx.ingress.kubernetes.io/proxy-connect-timeout: "1000"
-    # nginx.ingress.kubernetes.io/proxy-send-timeout: "1000"
-    # nginx.ingress.kubernetes.io/proxy-read-timeout: "1000"
-    # nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "1000"
+   traefik.ingress.kubernetes.io/max-body-size: "10M"
+    traefik.ingress.kubernetes.io/readtimeout: "1000s"
+    traefik.ingress.kubernetes.io/writetimeout: "1000s"
+    traefik.ingress.kubernetes.io/idletimeout: "1000s"
 spec:
   ingressClassName: traefik
   rules:

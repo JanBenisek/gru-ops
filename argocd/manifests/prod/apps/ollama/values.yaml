@@ -37,8 +37,6 @@ ingress:
     traefik.ingress.kubernetes.io/readtimeout: "1000s"
     traefik.ingress.kubernetes.io/writetimeout: "1000s"
     traefik.ingress.kubernetes.io/idletimeout: "1000s"
-    
-
   hosts:
     - host: ollama.pengiuns.com
       paths:
