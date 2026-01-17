@@ -19,45 +19,60 @@
     "helm-values"
   ],
   "kubernetes": {
-    "fileMatch": [
-      "argocd/manifests/.+\\.ya?ml$",
-      "argocd/prod/.+\\.ya?ml$"
+    "managerFilePatterns": [
+      "/argocd/manifests/.+\\.ya?ml$/",
+      "/argocd/prod/.+\\.ya?ml$/"
     ]
   },
   "argocd": {
-    "fileMatch": [
-      "argocd/prod/.+\\.ya?ml$"
+    "managerFilePatterns": [
+      "/argocd/prod/.+\\.ya?ml$/"
     ]
   },
   "helm-values": {
-    "fileMatch": [
-      "argocd/manifests/.+values\\.ya?ml$",
-      "argocd/prod/.+values\\.ya?ml$"
+    "managerFilePatterns": [
+      "/argocd/manifests/.+values\\.ya?ml$/",
+      "/argocd/prod/.+values\\.ya?ml$/"
     ]
   },
   "packageRules": [
     {
-      "matchPackagePatterns": [
-        "^ghcr\\.io/hotio/"
-      ],
-      "versioning": "regex:^release-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(\\.(?<build>\\d+))?$"
+      "versioning": "regex:^release-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(\\.(?<build>\\d+))?$",
+      "matchPackageNames": [
+        "/^ghcr\\.io/hotio//"
+      ]
     },
     {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["metabase/metabase"],
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "metabase/metabase"
+      ],
       "versioning": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)$"
     },
-
     {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["metabase/metabase"],
-      "matchUpdateTypes": ["patch", "pin", "digest"],
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "metabase/metabase"
+      ],
+      "matchUpdateTypes": [
+        "patch",
+        "pin",
+        "digest"
+      ],
       "enabled": false
     },
     {
-      "matchDatasources": ["docker"],
-      "matchPackagePatterns": ["^docker-registry\\.pengiuns\\.com/"],
-      "enabled": false
+      "matchDatasources": [
+        "docker"
+      ],
+      "enabled": false,
+      "matchPackageNames": [
+        "/^docker-registry\\.pengiuns\\.com//"
+      ]
     },
     {
       "matchDatasources": [
