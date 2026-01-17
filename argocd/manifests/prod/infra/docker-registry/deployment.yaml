@@ -7,7 +7,6 @@ metadata:
     app: docker-registry
     app.kubernetes.io/name: docker-registry
 spec:
-  ServiceName: docker-registry
   replicas: 1
   selector:
     matchLabels:
