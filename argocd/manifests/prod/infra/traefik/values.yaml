@@ -30,12 +30,14 @@ resources:
 
 service:
   type: LoadBalancer
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: traefik.pengiuns.com
   ports:
     web:
       port: 80
     websecure:
       port: 443
-    traefik:   
+    traefik:
       port: 9000
 
 api:
@@ -45,9 +47,6 @@ api:
 ingressRoute:
   dashboard:
     enabled: true
-    annotations:
-      external-dns.alpha.kubernetes.io/hostname: traefik.pengiuns.com
-      external-dns.alpha.kubernetes.io/target: "192.168.178.100"
     entryPoints:
       - websecure
     matchRule: Host(`traefik.pengiuns.com`)
