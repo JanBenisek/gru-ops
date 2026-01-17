@@ -81,10 +81,8 @@ server:
   ingress:
     main:
       enabled: true
-      # annotations:
-        # Change for traefik!
-        # proxy-body-size is set to 0 to remove the body limit on file uploads
-        # nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      annotations:
+        traefik.ingress.kubernetes.io/max-body-size: "0"
       hosts:
         - host: immich.pengiuns.com
           paths:

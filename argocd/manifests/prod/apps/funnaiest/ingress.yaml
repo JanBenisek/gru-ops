@@ -6,7 +6,7 @@ metadata:
     app: funnaiest
     app.kubernetes.io/name: funnaiest
   annotations:
-    kubernetes.io/ingress.class: "traefik"
+    kubernetes.io/ingress.class: "traefik" # TODO: Update ingress to traefik annots
     # extra, see hiker readme
     # nginx.ingress.kubernetes.io/ssl-redirect: "false" # do not redirect HTTP to HTTPS
     # nginx.ingress.kubernetes.io/backend-protocol: "HTTP" # not it expects HTTP from cloudflare
