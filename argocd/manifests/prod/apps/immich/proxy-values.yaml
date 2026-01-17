@@ -31,10 +31,11 @@ service:
     primary: true
     type: ClusterIP
     ports:
-      - name: http
+      http:
+        # enabled: true # remove later
+        # primary: true # remove later
         port: 3000
-        targetPort: 3000
-        protocol: TCP
+        protocol: HTTP
 
 ingress:
   main:
