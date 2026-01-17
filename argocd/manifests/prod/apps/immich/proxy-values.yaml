@@ -19,6 +19,12 @@ env:
       }
     }
 
+
+controllers:
+  main:
+    enabled: true
+    ingressClass: traefik
+
 service:
   main:
     controller: main  
