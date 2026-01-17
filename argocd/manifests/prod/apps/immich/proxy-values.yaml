@@ -22,7 +22,10 @@ env:
 
 controllers:
   main:
-    enabled: true 
+    enabled: true
+    containers:
+      main:
+        enabled: true
 
 service:
   main:
