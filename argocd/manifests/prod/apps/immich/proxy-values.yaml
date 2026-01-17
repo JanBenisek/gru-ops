@@ -22,32 +22,19 @@ env:
 
 controllers:
   main:
-    enabled: true
-    # The chart uses services as containers for the controller
-    containers:
-      main:
-        enabled: true 
-        primary: true
-        type: ClusterIP
-        ports:
-          http:
-            enabled: true
-            primary: true
-            port: 3000
-            protocol: HTTP
+    enabled: true 
 
-# service:
-#   main:
-#     controller: main  
-#     enabled: true
-#     primary: true
-#     type: ClusterIP
-#     ports:
-#       http:
-#         enabled: true
-#         primary: true
-#         port: 3000
-#         protocol: HTTP
+service:
+  main:
+    controller: main  
+    enabled: true
+    primary: true
+    type: ClusterIP
+    ports:
+      - name: http
+        port: 3000
+        targetPort: 3000
+        protocol: TCP
 
 ingress:
   main:
