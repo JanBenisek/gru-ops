@@ -48,7 +48,7 @@ data:
             href: https://argocd.pengiuns.com
             description: Is it synced yet?
             namespace: argocd 
-            app: argocd
+            app: argocd-server
         - Grafana:
             icon: grafana.png
             href: https://grafana.pengiuns.com
@@ -106,25 +106,13 @@ data:
             href: https://immich.pengiuns.com
             description: So pretty!
             namespace: immich
-            app: immich
+            app: server
         - Immich Proxy:
             icon: immich-public-proxy.png
             href: https://immich-share.pengiuns.com
             description: Gib!
             namespace: immich
             app: immich-proxy
-        - Trilium:
-            icon: trilium.png
-            href: https://trilium.pengiuns.com
-            description: Document it!
-            namespace: trilium
-            app: trilium
-        - Outline:
-            icon: outline.png
-            href: https://outline.pengiuns.com
-            description: Document it!
-            namespace: outline
-            app: outline
 
     - Fun:
         - Hiker:
