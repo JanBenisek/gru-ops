@@ -40,8 +40,8 @@ spec:
           image: ghcr.io/hotio/radarr:release-6.0.4.10291
           securityContext:
             runAsUser: 0  # Temporary root for setup, not great, but does not work otherwise
-            # runAsGroup: 321 # also needed here
-            # fsGroup: 321 # also needed here
+            # runAsGroup: 321 # Remove later
+            # fsGroup: 321 # Remove later
             allowPrivilegeEscalation: true
           imagePullPolicy: Always
           ports:
