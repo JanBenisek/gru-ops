@@ -300,7 +300,7 @@ argocd repo add ghcr.io/immich-app/immich-charts \
 ```sql
 -- Immich with bot_immich
 create database immich;
-create user bot_immich with password 'squeals-dispatch-fussy-seaside';
+create user bot_immich with password 'pwd';
 alter database immich owner to bot_immich;
 grant all privileges on database immich to bot_immich;
 
