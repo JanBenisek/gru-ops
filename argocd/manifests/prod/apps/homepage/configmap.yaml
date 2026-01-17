@@ -46,9 +46,9 @@ data:
         - ArgoCD:
             icon: argo-cd.png
             href: https://argocd.pengiuns.com
-            description: Octopus.
+            description: Is it synced yet?
             namespace: argocd 
-            app: grafana
+            app: argocd
         - Grafana:
             icon: grafana.png
             href: https://grafana.pengiuns.com
