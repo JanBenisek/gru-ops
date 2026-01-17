@@ -42,22 +42,11 @@ api:
   dashboard: true
   insecure: false
 
-dashboard:
-  enabled: true
-  ingress:
+ingressRoute:
+  dashboard:
     enabled: true
-    className: traefik
-    annotations:
-      kubernetes.io/ingress.class: traefik
-      # traefik.ingress.kubernetes.io/auth-type: basic
-      # traefik.ingress.kubernetes.io/auth-secret: traefik-dashboard-auth
-      # traefik.ingress.kubernetes.io/auth-realm: "Traefik Dashboard"
-    hosts:
-      - host: traefik.pengiuns.com
-        paths:
-          - path: /
-            pathType: Prefix
+    entryPoints:
+      - traefik
+    matchRule: Host(`traefik.pengiuns.com`)
     tls:
-      - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
-        hosts:
-          - traefik.pengiuns.com
+      secretName: letsencrypt-wildcard-cert-pengiuns.com-production
