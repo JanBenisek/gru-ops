@@ -55,6 +55,10 @@ data:
             description: Them logs!
             namespace: monitoring 
             app: grafana
+        - Traefik:
+            icon: traefik.png
+            href: https://traefik.pengiuns.com
+            description: Trafficking 
         - Metabase:
             icon: metabase.png
             href: https://metabase.pengiuns.com
@@ -65,10 +69,6 @@ data:
             icon: proxmox.png
             href: https://192.168.178.40:8006
             description: VMs for everyone.
-        - Wireguard:
-            icon: wireguard.png
-            href: https://wg.pengiuns.com
-            description: Everday I'm tunellin'
         - Storage:
             icon: synology.png
             href: http://192.168.178.96:5000/
