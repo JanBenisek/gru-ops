@@ -45,8 +45,11 @@ api:
 ingressRoute:
   dashboard:
     enabled: true
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: traefik.pengiuns.com
+      external-dns.alpha.kubernetes.io/target: "192.168.178.100"
     entryPoints:
-      - web
+      - websecure
     matchRule: Host(`traefik.pengiuns.com`)
     tls:
       secretName: letsencrypt-wildcard-cert-pengiuns.com-production

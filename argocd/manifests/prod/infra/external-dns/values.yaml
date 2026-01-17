@@ -6,7 +6,7 @@ domainFilters:
 # - "swisshikefinder.com"
 # - "funnaiest.com"
 sources:
-  # - crd # TBD what's better
+  - crd
   - service
   - ingress
 provider:
