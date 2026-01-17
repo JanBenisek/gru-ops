@@ -46,7 +46,7 @@ ingressRoute:
   dashboard:
     enabled: true
     entryPoints:
-      - traefik
+      - web
     matchRule: Host(`traefik.pengiuns.com`)
     tls:
       secretName: letsencrypt-wildcard-cert-pengiuns.com-production
