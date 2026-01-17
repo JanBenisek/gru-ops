@@ -1,0 +1,23 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "bot-nextcloud-pswd",
+    "namespace": "nextcloud",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "bot-nextcloud-pswd",
+        "namespace": "nextcloud",
+        "creationTimestamp": null
+      },
+      "data": null
+    },
+    "encryptedData": {
+      "password": "AgAbO3o+ZK9wg9WEXjyC667PnB+b46jen4ZpY/Wv7mSL3dV9i2lpeqomnbZkHYZihug3Zn1VZDBfccMtGui2+PaoCFt/wxNPeRZ2/wzSdMhzs1v1nzoLGXH9xnjIJ9agVacAaj5PHUNR7wJMb8eJGv3mnOlBjZg9y/sbHRYlK0W5bHrXfB7WSqPNm/jeoRIdfi5tu8wY4YucWVRCwSfSXtJgArOwkvCGRq1J+Bhi7KJHfDfexr3Y9lPIdJ7892wyzyHeG9hyEU2E7Do6yebfJ2fP5BrYSJUpWjRTXu1H3EiS+D0QFNguZolyK4cjjW1Cd63hVP51Ktj6Jq3ITQCXnoDsa7d9CeVSfD6dB4LHEYe+EpHVA7lNkL4lnQoZbnG2yXbiu7Zb4qPqwHrLLzOWqJOIR88WSp7031IOBkY2MH+MboTKaioGPP1P+s67TiPt+LWBagWEB7c2uSWqfM9MtlaKEZI0IpDqSNf7b+XPWb5rBMEKVSFrm6ykwzkEM/DQeeP55PR2Wnl03DiDFH96MyQUILG3xHwGgbf7zd4P4b+u0XaC+HzYRvc/Srza6VRErcYtoAwZbYZn/o8466X4Mq0/lMWE0Hu5h6CdlFo9su6epmw9u2TCvnGOyD8T7uMIXNC5nmRON5qqhOpba0o32aB8MWx7pBv5Bg3nYHOJSbw90iiWroshX/S3QUvuATzn3IfwnhKF/a+2kmZiV/R/mwfZhGViweSXYvmmkv8=",
+      "username": "AgBLmBxHcDAAAtOx0JjO3+Kb1mbOfoOgdImJ+xUDXG8fPKUtp0/vS56+oS4HKqMVmZ8GjURTWoBV4CxEmPrFS9OMLkoaBGuKmjRBED4fa2l4DKkLGHEoNQbbMBSJEBNzh7RPwRGhFgkPwZhwqQvU51KiuP0BurNdtVGma2e49g4HN5Oj56vGrc/tUQYs8clMtBaFgC1Ygw4uxtH2faLHGarnheURGtwyrRidODsnJf6yLkHWZBTkme8iW8gbRYh0JxO+c0hcrXrTsukhrVi8+gZlocEOWmZq7XChIilsfKwvDIpyxHqoMSM7udcIA8ovRADjzqmmsoVGFo+qrk2IzaklzDwQQg95f2XLDMktuDclmqrttKV8I5RSQKLPQIMxWi26h/i9nchjuE6+hxGpdeh2QJvPtvx08q4Q1GpKlgPcJ6FHWvvvq6t4K35kjov+Mz1qccHXG0ohUZHMTtcmdbQLNBnrd/avvPm9KY5Q1aewi9xSt0pBuOKSa1RIZBjazLDRD7OV7wGKOsrtlznyTIJgIie3ebmdhV2RbseV0RUPJ2bIb93riq6W+v/Ag/B3ORJnn8mYvrOV6IEn/Yn27LtLtlL9sL068Zn3OQVxrMfI14+x6++gvF4trL2yTR2T0uFZk1CMU/UL3n0IWNtTgZduOAE8ZwzcECMPsZEP7IdPn6ck8wszUTIsVMshPkY4BMK6+g39Mk9NlCTis3D/"
+    }
+  }
+}
