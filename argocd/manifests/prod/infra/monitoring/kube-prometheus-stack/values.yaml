@@ -52,6 +52,11 @@ grafana:
 crds:
   enabled: true
 
+# Disable admission webhooks to avoid sync conflicts
+prometheusOperator:
+  admissionWebhooks:
+    enabled: false
+
 prometheus:
   prometheusSpec:
     # Allow Prometheus to discover ServiceMonitors across all namespaces without label restrictions
