@@ -139,6 +139,8 @@ curl -v -X DELETE https://docker-registry.pengiuns.com/v2/jupyter/manifests/sha2
 
 - Storage
   - `kube-prometheus-stack-grafana` - stores users, dashboards etc
+- [Fix annotations too long](https://www.arthurkoziel.com/fixing-argocd-crd-too-long-error/)
+
 
 #### Alloy
 
