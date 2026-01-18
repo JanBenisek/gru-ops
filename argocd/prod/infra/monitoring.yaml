@@ -19,7 +19,7 @@ spec:
             chartVersion: 6.49.0
           - name: alloy
             chartRepo: https://grafana.github.io/helm-charts
-            chartVersion: 0.13.1
+            chartVersion: 1.5.1
   template:
     metadata:
       name: '{{name}}'
