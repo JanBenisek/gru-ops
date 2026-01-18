@@ -63,7 +63,7 @@ crds:
 # Disable admission webhooks to avoid sync conflicts
 prometheusOperator:
   admissionWebhooks:
-    enabled: false
+    enabled: true
 
 prometheus:
   prometheusSpec:
