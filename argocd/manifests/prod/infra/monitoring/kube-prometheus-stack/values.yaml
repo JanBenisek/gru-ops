@@ -28,7 +28,7 @@ grafana:
       org_role: Viewer
   persistence:
     type: pvc
-    enabled: true
+    enabled: false # TODO: Turn back on
     storageClassName: synology-storage-apps
     accessModes:
       - ReadWriteOnce
