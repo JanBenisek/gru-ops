@@ -46,7 +46,7 @@ spec:
         syncOptions:
           # https://github.com/argoproj/argo-cd/issues/11269
           - CreateNamespace=true
-          - Replace=true
+          # - Replace=true  # Disabled: causes issues with immutable resources like bound PVCs
           # - ServerSideApply=true  # Disabled: causes CRD annotations to exceed 262144 bytes limit
         managedNamespaceMetadata:
           labels:
