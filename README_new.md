@@ -140,6 +140,19 @@ curl -v -X DELETE https://docker-registry.pengiuns.com/v2/jupyter/manifests/sha2
 - Storage
   - `kube-prometheus-stack-grafana` - stores users, dashboards etc
 
+#### Alloy
+
+> Logs and metrics collector
+
+- [Helm](https://artifacthub.io/packages/helm/grafana/alloy)
+- For any pod you want to collect metrics from, just add these annotations:
+```yaml
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8080"        # optional, defaults to pod port
+    prometheus.io/path: "/metrics"    # optional, defaults to /metrics
+```
+
 ### PostreSQL
 
 > Using cloudnative-pg with vchord extension, v18.

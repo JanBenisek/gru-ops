@@ -1,13 +1,17 @@
 alloy:
   configMap:
     content: |
-      // Discover Kubernetes pods
+      /********************************************
+       * Logs Collection
+       ********************************************/
+
+      // Discover Kubernetes pods for logs
       discovery.kubernetes "pods" {
         role = "pod"
       }
 
-      // Relabel to add useful metadata
-      discovery.relabel "pods" {
+      // Relabel to add useful metadata for logs
+      discovery.relabel "pod_logs" {
         targets = discovery.kubernetes.pods.targets
 
         rule {
@@ -33,7 +37,7 @@ alloy:
 
       // Scrape logs from pods
       loki.source.kubernetes "pods" {
-        targets    = discovery.relabel.pods.output
+        targets    = discovery.relabel.pod_logs.output
         forward_to = [loki.write.default.receiver]
       }
 
@@ -41,6 +45,81 @@ alloy:
       loki.write "default" {
         endpoint {
           url = "http://loki:3100/loki/api/v1/push"
+        }
+      }
+
+      /********************************************
+       * Metrics Collection
+       ********************************************/
+
+      // Discover Kubernetes pods for metrics
+      discovery.kubernetes "pod_metrics" {
+        role = "pod"
+      }
+
+      // Relabel to scrape metrics from pods with prometheus annotations
+      discovery.relabel "pod_metrics" {
+        targets = discovery.kubernetes.pod_metrics.targets
+
+        // Only scrape pods with prometheus.io/scrape annotation
+        rule {
+          source_labels = ["__meta_kubernetes_pod_annotation_prometheus_io_scrape"]
+          action        = "keep"
+          regex         = "true"
+        }
+
+        // Use custom scrape path if specified
+        rule {
+          source_labels = ["__meta_kubernetes_pod_annotation_prometheus_io_path"]
+          action        = "replace"
+          target_label  = "__metrics_path__"
+          regex         = "(.+)"
+        }
+
+        // Use custom port if specified
+        rule {
+          source_labels = ["__address__", "__meta_kubernetes_pod_annotation_prometheus_io_port"]
+          action        = "replace"
+          regex         = "([^:]+)(?::\\d+)?;(\\d+)"
+          replacement   = "$1:$2"
+          target_label  = "__address__"
+        }
+
+        // Add namespace label
+        rule {
+          source_labels = ["__meta_kubernetes_namespace"]
+          target_label  = "namespace"
+        }
+
+        // Add pod label
+        rule {
+          source_labels = ["__meta_kubernetes_pod_name"]
+          target_label  = "pod"
+        }
+
+        // Add container label
+        rule {
+          source_labels = ["__meta_kubernetes_pod_container_name"]
+          target_label  = "container"
+        }
+
+        // Add app label
+        rule {
+          source_labels = ["__meta_kubernetes_pod_label_app_kubernetes_io_name"]
+          target_label  = "app"
+        }
+      }
+
+      // Scrape metrics from pods
+      prometheus.scrape "pods" {
+        targets    = discovery.relabel.pod_metrics.output
+        forward_to = [prometheus.remote_write.default.receiver]
+      }
+
+      // Write metrics to Prometheus
+      prometheus.remote_write "default" {
+        endpoint {
+          url = "http://kube-prometheus-stack-prometheus:9090/api/v1/write"
         }
       }
 
