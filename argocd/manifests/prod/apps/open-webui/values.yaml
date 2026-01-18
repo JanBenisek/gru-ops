@@ -67,11 +67,8 @@ ingress:
     traefik.ingress.kubernetes.io/idletimeout: "1000s"
 
   host: chat.pengiuns.com
-  tls:
-  - hosts:
-    - chat.pengiuns.com
-    secretName: letsencrypt-wildcard-cert-pengiuns.com-production
-  existingSecret: ""
+  tls: true
+  existingSecret: "letsencrypt-wildcard-cert-pengiuns.com-production"
 persistence:
   enabled: true
   size: 2Gi
