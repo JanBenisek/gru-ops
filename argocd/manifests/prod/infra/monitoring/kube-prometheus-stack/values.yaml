@@ -64,6 +64,9 @@ crds:
 prometheusOperator:
   admissionWebhooks:
     enabled: false
+  # Remove TLS volume mount since webhooks are disabled
+  tlsProxy:
+    enabled: false
 
 prometheus:
   prometheusSpec:
