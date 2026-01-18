@@ -54,6 +54,16 @@ crds:
 
 prometheus:
   prometheusSpec:
+    # Allow Prometheus to discover ServiceMonitors across all namespaces without label restrictions
+    serviceMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelector: {}
+    serviceMonitorNamespaceSelector: {}
+
+    # Allow Prometheus to discover PodMonitors across all namespaces without label restrictions
+    podMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelector: {}
+    podMonitorNamespaceSelector: {}
+
     storageSpec:
       volumeClaimTemplate:
         spec:
