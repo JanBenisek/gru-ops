@@ -47,7 +47,7 @@ spec:
           # https://github.com/argoproj/argo-cd/issues/11269
           - CreateNamespace=true
           - Replace=true  # Disabled: causes issues with immutable resources like bound PVCs
-          # - ServerSideApply=true  # Disabled: causes CRD annotations to exceed 262144 bytes limit
+          - ServerSideApply=true  # Disabled: causes CRD annotations to exceed 262144 bytes limit
         managedNamespaceMetadata:
           labels:
             pod-security.kubernetes.io/enforce: privileged
