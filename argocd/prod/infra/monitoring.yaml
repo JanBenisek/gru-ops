@@ -7,10 +7,6 @@ spec:
   generators:
     - list:
         elements:
-          # - name: fluent-bit # could not make it work, try later
-          # https://github.com/argoproj/argo-helm/issues/507
-          #   chartRepo: https://fluent.github.io/helm-charts
-          #   chartVersion: 0.54.0
           - name: kube-prometheus-stack
             chartRepo: https://prometheus-community.github.io/helm-charts
             chartVersion: 70.0.2
@@ -51,7 +47,7 @@ spec:
           # https://github.com/argoproj/argo-cd/issues/11269
           - CreateNamespace=true
           - Replace=true
-          - ServerSideApply=true
+          # - ServerSideApply=true  # Disabled: causes CRD annotations to exceed 262144 bytes limit
         managedNamespaceMetadata:
           labels:
             pod-security.kubernetes.io/enforce: privileged
