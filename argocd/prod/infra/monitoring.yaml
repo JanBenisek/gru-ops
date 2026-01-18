@@ -1,59 +1,59 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: ApplicationSet
-# metadata:
-#   name: monitoring
-#   namespace: argocd
-# spec:
-#   generators:
-#     - list:
-#         elements:
-#           # - name: fluent-bit # could not make it work, try later
-#           # https://github.com/argoproj/argo-helm/issues/507
-#           #   chartRepo: https://fluent.github.io/helm-charts
-#           #   chartVersion: 0.54.0
-#           - name: kube-prometheus-stack
-#             chartRepo: https://prometheus-community.github.io/helm-charts
-#             chartVersion: 70.0.2
-#           - name: loki
-#             chartRepo: https://grafana.github.io/helm-charts
-#             chartVersion: 6.49.0
-#           - name: alloy
-#             chartRepo: https://grafana.github.io/helm-charts
-#             chartVersion: 1.5.1
-#   template:
-#     metadata:
-#       name: '{{name}}'
-#       annotations:
-#         argocd.argoproj.io/sync-wave: "40"
-#     spec:
-#       project: gru
-#       sources:
-#         - chart: '{{name}}'
-#           repoURL: '{{chartRepo}}'
-#           targetRevision: '{{chartVersion}}'
-#           helm:
-#             releaseName: '{{name}}'
-#             valueFiles:
-#               - $values/argocd/manifests/prod/infra/monitoring/{{name}}/values.yaml
-#             version: v3
-#         - repoURL: https://github.com/JanBenisek/gru-ops.git
-#           targetRevision: main
-#           path: argocd/manifests/prod/infra/monitoring/{{name}}
-#           ref: values
-#       destination:
-#         server: https://kubernetes.default.svc
-#         namespace: monitoring # had to create manually
-#       syncPolicy:
-#         automated:
-#           prune: true
-#           selfHeal: true
-#         syncOptions:
-#           # https://github.com/argoproj/argo-cd/issues/11269
-#           - CreateNamespace=true
-#           - Replace=true
-#           - ServerSideApply=true
-#         managedNamespaceMetadata:
-#           labels:
-#             pod-security.kubernetes.io/enforce: privileged
-#             pod-security.kubernetes.io/audit: privileged
-#             pod-security.kubernetes.io/warn: privileged
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: monitoring
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          # - name: fluent-bit # could not make it work, try later
+          # https://github.com/argoproj/argo-helm/issues/507
+          #   chartRepo: https://fluent.github.io/helm-charts
+          #   chartVersion: 0.54.0
+          - name: kube-prometheus-stack
+            chartRepo: https://prometheus-community.github.io/helm-charts
+            chartVersion: 70.0.2
+          - name: loki
+            chartRepo: https://grafana.github.io/helm-charts
+            chartVersion: 6.49.0
+          - name: alloy
+            chartRepo: https://grafana.github.io/helm-charts
+            chartVersion: 1.5.1
+  template:
+    metadata:
+      name: '{{name}}'
+      annotations:
+        argocd.argoproj.io/sync-wave: "40"
+    spec:
+      project: gru
+      sources:
+        - chart: '{{name}}'
+          repoURL: '{{chartRepo}}'
+          targetRevision: '{{chartVersion}}'
+          helm:
+            releaseName: '{{name}}'
+            valueFiles:
+              - $values/argocd/manifests/prod/infra/monitoring/{{name}}/values.yaml
+            version: v3
+        - repoURL: https://github.com/JanBenisek/gru-ops.git
+          targetRevision: main
+          path: argocd/manifests/prod/infra/monitoring/{{name}}
+          ref: values
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: monitoring # had to create manually
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          # https://github.com/argoproj/argo-cd/issues/11269
+          - CreateNamespace=true
+          - Replace=true
+          - ServerSideApply=true
+        managedNamespaceMetadata:
+          labels:
+            pod-security.kubernetes.io/enforce: privileged
+            pod-security.kubernetes.io/audit: privileged
+            pod-security.kubernetes.io/warn: privileged
