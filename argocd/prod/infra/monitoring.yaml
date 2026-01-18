@@ -17,6 +17,9 @@ spec:
           - name: loki
             chartRepo: https://grafana.github.io/helm-charts
             chartVersion: 6.49.0
+          - name: promtail
+            chartRepo: https://grafana.github.io/helm-charts
+            chartVersion: 6.16.6
   template:
     metadata:
       name: '{{name}}'
