@@ -44,14 +44,23 @@ alloy:
         }
       }
 
+  # Resource limits for Alloy container
+  resources:
+    limits:
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+  # Enable volume mounts for log access
+  mounts:
+    varlog: true
+    dockercontainers: true
+
 # Deploy as DaemonSet to collect logs from all nodes
 controller:
   type: "daemonset"
 
-# Resource limits
-resources:
-  limits:
-    memory: 256Mi
-  requests:
-    cpu: 100m
-    memory: 128Mi
+# Enable RBAC for Kubernetes log access
+rbac:
+  create: true
