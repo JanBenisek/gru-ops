@@ -64,6 +64,8 @@ crds:
 prometheusOperator:
   admissionWebhooks:
     enabled: true
+  tls:
+    enabled: true
 
 prometheus:
   prometheusSpec:
