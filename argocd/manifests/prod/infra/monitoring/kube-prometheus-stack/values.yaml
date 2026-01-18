@@ -4,6 +4,14 @@ grafana:
   adminPassword: admin
   plugins:
     - yesoreyeram-infinity-datasource
+
+  # Disable default datasource to avoid conflicts with additionalDataSources
+  defaultDashboardsEnabled: true
+  sidecar:
+    datasources:
+      enabled: true
+      defaultDatasourceEnabled: false  # Disable auto-created Prometheus datasource
+
   grafana.ini:
     users:
       auto_assign_org_role: Admin
