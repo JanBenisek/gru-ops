@@ -26,6 +26,10 @@ spec:
         app: libretranslate
         app.kubernetes.io/name: funnaiest
     spec:
+      securityContext:
+        runAsUser: 1032  # user inside container
+        runAsGroup: 1032 # group inside container
+        fsGroup: 1032
       containers:
       - name: libretranslate
         image: libretranslate/libretranslate:v1.8.2
