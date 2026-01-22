@@ -402,6 +402,8 @@ curl https://ollama.pengiuns.com/api/ps
 
 > Translate things
 
+- [Repo](https://github.com/LibreTranslate/LibreTranslate/blob/main/docker-compose.yml)
+
 - Run locally
 ```bash
 docker run -ti --rm \
