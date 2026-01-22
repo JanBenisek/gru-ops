@@ -49,4 +49,4 @@ spec:
       volumes:
         - name: libretranslate-models
           persistentVolumeClaim:
-            claimName: pvc-languages
+            claimName: pvc-libretranslate
