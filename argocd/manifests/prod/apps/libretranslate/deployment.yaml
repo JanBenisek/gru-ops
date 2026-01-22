@@ -34,7 +34,7 @@ spec:
         - containerPort: 5000 # internal port for the app
         env:
           - name: LT_LOAD_ONLY
-            value: "en,fr" 
+            value: "en,fr,cs,de,uk" 
           - name: LT_DEBUG
             value: "true"
           - name: METRICS

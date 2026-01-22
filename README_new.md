@@ -403,8 +403,13 @@ curl https://ollama.pengiuns.com/api/ps
 > Translate things
 
 - [Repo](https://github.com/LibreTranslate/LibreTranslate/blob/main/docker-compose.yml)
+- [Very old helm chart](https://github.com/LibreTranslate/helm-chart/tree/main/charts/libretranslate)
+- [Docs](https://docs.libretranslate.com/)
+- [Supported Languages](https://docs.libretranslate.com/guides/supported_languages/)
+- Simple deployment, maybe add more languages and improve the setup.
+- There is also an API endpoint.
 
-- Run locally
+- Test locally
 ```bash
 docker run -ti --rm \
   -p 8080:5000 \
