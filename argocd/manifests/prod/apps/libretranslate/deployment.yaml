@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: libretranslate
+  namespace: libretranslate
+  labels:
+    app: libretranslate
+    app.kubernetes.io/name: libretranslate
+spec:
+  serviceName: libretranslate
+  replicas: 1
+
+  podManagementPolicy: OrderedReady
+
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
+
+  selector:
+    matchLabels:
+      app: libretranslate
+  template:
+    metadata:
+      labels:
+        app: libretranslate
+        app.kubernetes.io/name: funnaiest
+    spec:
+      containers:
+      - name: libretranslate
+        image: libretranslate/libretranslate:v1.8.2
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000 # internal port for the app
+        env:
+          - name: LT_LOAD_ONLY
+            value: "en,fr" 
+          - name: METRICS
+            value: "true" 
+        resources:
+          requests:
+            memory: "64Mi"  
+            cpu: "10m"      
+          limits:
+            memory: "5Gi"  
+        volumeMounts:
+            - name: libretranslate-models
+              mountPath: /home/libretranslate/.local
+      volumes:
+        - name: libretranslate-models
+          persistentVolumeClaim:
+            claimName: pvc-languages
