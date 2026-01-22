@@ -89,6 +89,12 @@ data:
             description: PDF tools
             namespace: stirling
             app: stirling
+        - LibreTranslate:
+            icon: translate.png
+            href: https://libretranslate.pengiuns.com/?lang=en_GB
+            description: Was ist das?
+            namespace: libretranslate
+            app: libretranslate
         - JupyterHub:
             icon: jupyter.png
             href: https://jupyter.pengiuns.com
