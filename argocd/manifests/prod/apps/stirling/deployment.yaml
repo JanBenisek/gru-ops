@@ -18,7 +18,7 @@ spec:
         app.kubernetes.io/name: stirling
     spec:
       containers:
-      - name: nginx
+      - name: stirling
         # image: frooodle/s-pdf:2.3.1
         # image: frooodle/s-pdf:latest-ultra-lite
         image: frooodle/s-pdf:2.3.1-fat
