@@ -35,6 +35,8 @@ spec:
         env:
           - name: LT_LOAD_ONLY
             value: "en,fr" 
+          - name: LT_DEBUG
+            value: "true"
           - name: METRICS
             value: "true" 
         resources:
@@ -44,8 +46,8 @@ spec:
           limits:
             memory: "5Gi"  
         volumeMounts:
-            - name: libretranslate-models
-              mountPath: /home/libretranslate/.local
+          - name: libretranslate-models
+            mountPath: /home/libretranslate/.local/share/argos-translate
       volumes:
         - name: libretranslate-models
           persistentVolumeClaim:
