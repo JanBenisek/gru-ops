@@ -398,6 +398,19 @@ curl https://ollama.pengiuns.com/api/ps
 
 - [GitHub](https://github.com/CorentinTh/it-tools?tab=readme-ov-file)
 
+### Libretranslate
+
+> Translate things
+
+- Run locally
+```bash
+docker run -ti --rm \
+  -p 8080:5000 \
+  -e LT_LOAD_ONLY="en,es,fr" \
+  -v "$(pwd)/temp":/home/libretranslate/.local \
+  libretranslate/libretranslate
+```
+
 ### Media
 
 - [Containers](https://hotio.dev/containers/base/)
