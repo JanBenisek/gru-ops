@@ -304,6 +304,10 @@ make docker-build
 
 - Port-forward from 8080
 
+### homepage
+
+- Homepage for all tools [source](https://gethomepage.dev/).
+- [List of icons](https://github.com/walkxcode/dashboard-icons)
 
 ### Immich
 

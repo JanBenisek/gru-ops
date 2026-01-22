@@ -90,7 +90,7 @@ data:
             namespace: stirling
             app: stirling
         - LibreTranslate:
-            icon: translate.png
+            icon: libretranslate.png
             href: https://libretranslate.pengiuns.com/?lang=en_GB
             description: Was ist das?
             namespace: libretranslate
