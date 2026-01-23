@@ -24,7 +24,7 @@ spec:
     metadata:
       labels:
         app: libretranslate
-        app.kubernetes.io/name: funnaiest
+        app.kubernetes.io/name: libretranslate
     spec:
       securityContext:
         runAsUser: 1032  # user inside container

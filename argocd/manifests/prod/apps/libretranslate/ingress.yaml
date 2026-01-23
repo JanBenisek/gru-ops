@@ -23,7 +23,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: funnaiest
+            name: libretranslate
             port:
               number: 80
   tls:
