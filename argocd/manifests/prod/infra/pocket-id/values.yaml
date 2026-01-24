@@ -79,7 +79,7 @@ persistence:
     size: 10Gi
 
 ingress:
-  enabled: false
+  enabled: false # Handled by ingress route
   className: "traefik"
   annotations:
     kubernetes.io/ingress.class: "traefik"
