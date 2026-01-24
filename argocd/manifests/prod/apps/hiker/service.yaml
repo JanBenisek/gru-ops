@@ -14,7 +14,7 @@ spec:
   externalName: d65bf19e-11ed-4df3-81c1-b76923b14de4.cfargotunnel.com
   selector:
     app: hiker
-  type: ClusterIP
+  # type: ClusterIP
   # type: LoadBalancer
   # loadBalancerIP: 192.168.178.200 # fixed IP for cloudflare to reach it (also handy for debugging)
   ports:
