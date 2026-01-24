@@ -13,6 +13,8 @@ spec:
     # Without X-Forwarded-Proto, TinyAuth thinks request was HTTP (since Cloudflare terminates TLS)
     # This prevents "redirecting from HTTPS to HTTP" security warnings
     authRequestHeaders:
+      - Accept             # TinyAuth uses this to detect if request is from browser
+      - User-Agent         # TinyAuth uses this to detect if request is from browser
       - Cookie             # Session cookie for authentication state
       - X-Forwarded-Proto  # Tells TinyAuth original protocol was HTTPS
       - X-Forwarded-Host   # Original hostname (hiker.pengiuns.com)
