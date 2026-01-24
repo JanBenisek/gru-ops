@@ -62,7 +62,7 @@ spec:
           - name: PROVIDERS_POCKETID_USER_INFO_URL
             value: https://pocket-id.pengiuns.com/api/oidc/userinfo
           - name: PROVIDERS_POCKETID_REDIRECT_URL
-            value: https://tinyauth.pengiuns.com/oauth/callback/pocketid
+            value: https://tinyauth.pengiuns.com/api/oauth/callback/pocketid
           - name: PROVIDERS_POCKETID_SCOPES
             value: "openid email profile groups" # not sure what this is
           - name: PROVIDERS_POCKETID_NAME
