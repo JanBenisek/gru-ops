@@ -7,24 +7,27 @@ metadata:
   namespace: hiker
 spec:
   entryPoints:
-    - websecure
+    - web  # Using web (port 80) because Cloudflare Tunnel sends to traefik:80, not :443
+           # TLS termination happens at Cloudflare, so internal traffic is HTTP
   routes:
     - match: Host(`hiker.pengiuns.com`)
       kind: Rule
       middlewares:
         - name: tinyauth
+          namespace: hiker  # Explicitly specify namespace for cross-namespace middleware reference
       services:
         - name: hiker
           port: 80 # matches service port
-  tls:
-    secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+  # TLS not needed here - Cloudflare Tunnel already handles TLS termination
+  # tls:
+  #   secretName: letsencrypt-wildcard-cert-pengiuns.com-production
 
 
 # Step-by-step flow:
-# Browser → HTTPS request → Cloudflare Tunnel → Traefik entrypoint websecure
+# Browser → HTTPS request → Cloudflare (TLS termination) → Cloudflare Tunnel → Traefik entrypoint web (port 80)
 # Traefik checks IngressRoute rules:
 # Host matches hiker.pengiuns.com? ✅
 # Traefik applies middleware:
-# ForwardAuth → TinyAuth internal check
+# ForwardAuth → TinyAuth internal check (http://tinyauth.tinyauth.svc.cluster.local:3000/api/auth/traefik)
 # If allowed → Traefik forwards to service hiker port 80
-# TLS termination happens at Traefik (from secret) → encrypted traffic ends at Traefik
+# TLS termination happens at Cloudflare → internal k8s traffic is HTTP
