@@ -1,42 +1,27 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: funnaiest
-  labels:
-    app: funnaiest
-    app.kubernetes.io/name: funnaiest
-  annotations:
-    kubernetes.io/ingress.class: "traefik" # TODO: Update ingress to traefik annots
-    # extra, see hiker readme
-    # nginx.ingress.kubernetes.io/ssl-redirect: "false" # do not redirect HTTP to HTTPS
-    # nginx.ingress.kubernetes.io/backend-protocol: "HTTP" # not it expects HTTP from cloudflare
-    # nginx.ingress.kubernetes.io/proxy-redirect-from: "http://" # telling how to redirect
-    # nginx.ingress.kubernetes.io/proxy-redirect-to: "https://"
-    # basic auth
-    # nginx.ingress.kubernetes.io/auth-type: "basic"
-    # nginx.ingress.kubernetes.io/auth-secret: "basic-auth" # this is the name of the secret
-    # nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
-    # Extra stuff to block (I guess not needed now with the auth), first blocks automatically
-    # nginx.ingress.kubernetes.io/server-snippet: |
-    #   location ~* /(wp-admin|wp-includes|wp-content|wordpress|cms|site|sito)/ {
-    #     return 403;
-    #   }
-    # nginx.ingress.kubernetes.io/limit-connections: "1" # 1 concurrent connection per IP
-    # nginx.ingress.kubernetes.io/limit-rpm: "30" # max requests per minute
-spec:
-  ingressClassName: traefik
-  rules:
-  - host: funnaiest.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: funnaiest
-            port:
-              number: 80
-  tls:
-  - hosts:
-      - funnaiest.com
-    secretName: letsencrypt-funnaiest-com
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: funnaiest
+#   labels:
+#     app: funnaiest
+#     app.kubernetes.io/name: funnaiest
+#   annotations:
+#     kubernetes.io/ingress.class: "traefik" # TODO: Update ingress to traefik annots
+
+# spec:
+#   ingressClassName: traefik
+#   rules:
+#   - host: funnaiest.com
+#     http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: funnaiest
+#             port:
+#               number: 80
+#   tls:
+#   - hosts:
+#       - funnaiest.com
+#     secretName: letsencrypt-funnaiest-com
