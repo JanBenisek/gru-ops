@@ -13,22 +13,18 @@ entryPoints:
   traefik:
     address: ":9000"   # Dashboard entrypoint
 
-# Trust X-Forwarded-* headers from internal sources (Cloudflare Tunnel pods)
+# Trust X-Forwarded-* headers ONLY from Kubernetes pod network
 # Without this, Traefik ignores X-Forwarded-Proto from Cloudflare and TinyAuth thinks requests are HTTP
-# This allows TinyAuth to know the original request was HTTPS and redirect correctly
+# Security: Only trust pods in the cluster, not all private IPs (prevents header injection attacks)
 ports:
   web:
     forwardedHeaders:
       trustedIPs:
-        - 10.0.0.0/8      # Kubernetes pod network (includes Cloudflare Tunnel pods)
-        - 172.16.0.0/12   # Additional private IP ranges
-        - 192.168.0.0/16  # Local network range
+        - 10.244.0.0/16   # Kubernetes pod CIDR (Cloudflare Tunnel pods run here)
   websecure:
     forwardedHeaders:
       trustedIPs:
-        - 10.0.0.0/8
-        - 172.16.0.0/12
-        - 192.168.0.0/16
+        - 10.244.0.0/16   # Kubernetes pod CIDR
 
 log:
   level: INFO
