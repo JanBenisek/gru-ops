@@ -5,6 +5,8 @@ kind: IngressRoute
 metadata:
   name: hiker
   namespace: hiker
+  labels:
+    tinyauth.apps.hiker.oauth.groups: family
 spec:
   entryPoints:
     - web  # Using web (port 80) because Cloudflare Tunnel sends to traefik:80, not :443

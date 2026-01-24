@@ -50,9 +50,25 @@ spec:
           # Figure out later
           - name: BACKGROUND_IMAGE
             value: "https://raw.githubusercontent.com/JanBenisek/public-assets/main/zermatt.jpg"
-          # - name: RESOURCES_DIR
-          #   value: ""
-            
+          # Connecting it to Pocket ID
+          - name: PROVIDERS_POCKETID_CLIENT_ID
+            value: 407dd8c4-6fab-42e0-964c-fe2b9fbec361
+          - name: PROVIDERS_POCKETID_CLIENT_SECRET
+            value: IloYhhH1xYNokdeUTm0HLcAb6hyUtGII
+          - name: PROVIDERS_POCKETID_AUTH_URL
+            value: https://pocket-id.pengiuns.com/authorize
+          - name: PROVIDERS_POCKETID_TOKEN_URL
+            value: https://pocket-id.pengiuns.com/api/oidc/token
+          - name: PROVIDERS_POCKETID_USER_INFO_URL
+            value: https://pocket-id.pengiuns.com/api/oidc/userinfo
+          - name: PROVIDERS_POCKETID_REDIRECT_URL
+            value: https://pocket-id.pengiuns.com/oauth/callback/pocketid
+          - name: PROVIDERS_POCKETID_SCOPES
+            value: "openid email profile groups" # not sure what this is
+          - name: PROVIDERS_POCKETID_NAME
+            value: "Pocket ID"
+          - name: OAUTH_AUTO_REDIRECT
+            value: "pocketid"
         resources:
           requests:
             memory: "128Mi"  

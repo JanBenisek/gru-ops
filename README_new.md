@@ -155,7 +155,7 @@ curl -v -X DELETE https://docker-registry.pengiuns.com/v2/jupyter/manifests/sha2
     prometheus.io/path: "/metrics"    # optional, defaults to /metrics
 ```
 
-### PostreSQL
+### PostgreSQL
 
 > Using cloudnative-pg with vchord extension, v18.
 
@@ -209,6 +209,22 @@ k edit deployment metrics-server -n kube-system
 # - --kubelet-insecure-tls
 # - --kubelet-preferred-address-types=InternalIP
 ```
+
+### Pocket-ID
+
+> Identity provider
+
+- [Helm Chart](https://artifacthub.io/packages/helm/anza-labs/pocket-id?modal=values&path=pocketID)
+- [Tinyauth Integration](https://tinyauth.app/docs/guides/pocket-id/)
+
+```sql
+-- Prod DB with bot_jerry
+create database prod;
+create user bot_jerry with password 'PWD';
+alter database prod owner to bot_jerry;
+grant all privileges on database prod to bot_jerry;
+```
+
 ### Reflector
 
 > Copy secrets/configmaps from one namespce to another
