@@ -79,7 +79,7 @@ persistence:
     size: 10Gi
 
 ingress:
-  enabled: true
+  enabled: false
   className: "traefik"
   annotations:
     kubernetes.io/ingress.class: "traefik"
@@ -93,5 +93,17 @@ ingress:
   - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
     hosts:
       - pocket-id.pengiuns.com
+
+service:
+  # -- Service type.
+  type: ClusterIP
+  # -- Service port.
+  port: 80
+  # -- Annotations to add to the service.
+  annotations:
+    external-dns.alpha.kubernetes.io/ttl: "300"
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+    external-dns.alpha.kubernetes.io/hostname: pocket-id.pengiuns.com
+    external-dns.alpha.kubernetes.io/target: d65bf19e-11ed-4df3-81c1-b76923b14de4.cfargotunnel.com
 
 

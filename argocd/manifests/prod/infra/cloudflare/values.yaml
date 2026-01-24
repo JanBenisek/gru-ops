@@ -20,23 +20,23 @@ cloudflare:
     # Opening immich share
     - hostname: immich-share.pengiuns.com
       service: http://192.168.178.100
+    
     # Testing publicy opening a website
     - hostname: funnaiest.com
       service: http://traefik.traefik.svc.cluster.local:80 # But also works of course http://192.168.178.100
+    
     # TinyAuth login page
     - hostname: tinyauth.pengiuns.com
       service: http://tinyauth.tinyauth.svc.cluster.local:3000
+    
     # Hiker app (protected via TinyAuth middleware)
     - hostname: hiker.pengiuns.com
       service: http://traefik.traefik.svc.cluster.local:80
-    # The first rule proxies traffic to the httpbin sample service named web-server at port 80
-    # - hostname: tunnel.example.com
-    #  service: http://web-service:80
-    # This rule sends traffic to the built-in hello-world HTTP server. This can help debug connectivity
-    # issues. If hello.example.com resolves and tunnel.example.com does not, then the problem is
-    # in the connection from cloudflared to your local service, not from the internet to cloudflared.
-    # - hostname: hello.example.com
-    #   service: hello_world
+
+    # Pocket-ID
+    - hostname: pocket-id.pengiuns.com
+      service: http://traefik.traefik.svc.cluster.local:80
+
 
 image:
   repository: cloudflare/cloudflared
