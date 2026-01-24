@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pocket-id
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  project: gru
+  sources:
+    - chart: pocket-id
+      repoURL: https://anza-labs.github.io/charts
+      targetRevision: 1.7.3
+      helm:
+        releaseName: pocket-id
+        valueFiles:
+          - $values/argocd/manifests/prod/infra/pocket-id/values.yaml
+    - repoURL: https://github.com/JanBenisek/gru-ops.git
+      targetRevision: main
+      path: argocd/manifests/prod/infra/pocket-id
+      ref: values
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: pocket-id
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
