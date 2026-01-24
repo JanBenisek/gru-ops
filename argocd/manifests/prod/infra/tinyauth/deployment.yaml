@@ -47,8 +47,12 @@ spec:
             value: "300"  # Login Atimeout: 5 minutes (300 seconds)
           - name: APP_TITLE
             value: Bello!
+          # Figure out later
           - name: BACKGROUND_IMAGE
-            value: zermatt.jpg
+            value: "https://i0.wp.com/www.ourpassionfortravel.com/wp-content/uploads/2018/09/Grindelwald-Edits-23.jpg"
+          # - name: RESOURCES_DIR
+          #   value: ""
+            
         resources:
           requests:
             memory: "128Mi"  
