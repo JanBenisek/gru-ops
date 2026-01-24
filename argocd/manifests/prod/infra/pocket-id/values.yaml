@@ -23,13 +23,6 @@ database:
   #    - For postgres: postgres:// or postgresql://user:password@host:port/dbname
   connectionString: "file:data/pocket-id.db?_pragma=journal_mode(WAL)&_pragma=busy_timeout(2500)&_txlock=immediate"
 
-updateStrategy:
-  # -- The deployment strategy to use to replace existing pods with new ones. Options: "RollingUpdate" or "OnDelete".
-  type: RollingUpdate
-  rollingUpdate:
-    maxUnavailable: 100%
-    partition: 0
-
 pocketID:
   # Has image etc.
   resources:
