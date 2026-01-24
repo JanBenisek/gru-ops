@@ -19,8 +19,6 @@ env:
       secretKeyRef:
         name: cloudflare-api-token
         key: apiKey
-  # cloudflare:
-  #   secretName: cloudflare-api-token # the key HAS TO BE `cloudflare_api_token`
 
 registry: txt
 

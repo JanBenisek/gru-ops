@@ -287,6 +287,7 @@ make docker-build
 
 - [k8s guide](https://tinyauth.app/docs/community/kubernetes)
 - [Getting started](https://tinyauth.app/docs/getting-started)
+- [Configuration](https://tinyauth.app/docs/reference/configuration#general)
 
 ### Traefik
 

@@ -20,15 +20,12 @@ cloudflare:
     # Opening immich share
     - hostname: immich-share.pengiuns.com
       service: http://192.168.178.100
-    
     # Testing publicy opening a website
     - hostname: funnaiest.com
       service: http://192.168.178.100
-    
     # TinyAuth login page
     - hostname: tinyauth.pengiuns.com
       service: http://tinyauth.tinyauth.svc.cluster.local:3000
-    
     # Hiker app (protected via TinyAuth middleware)
     - hostname: hiker.pengiuns.com
       service: http://traefik.traefik.svc.cluster.local:80
