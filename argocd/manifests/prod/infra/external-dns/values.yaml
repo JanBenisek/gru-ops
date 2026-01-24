@@ -4,7 +4,7 @@ image:
 domainFilters:
 - "pengiuns.com"
 # - "swisshikefinder.com"
-# - "funnaiest.com"
+- "funnaiest.com"
 sources:
   # - crd # TBD what's better
   - service
