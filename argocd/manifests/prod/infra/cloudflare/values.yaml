@@ -22,7 +22,7 @@ cloudflare:
       service: http://192.168.178.100
     # Testing publicy opening a website
     - hostname: funnaiest.com
-      service: http://192.168.178.100
+      service: http://traefik.traefik.svc.cluster.local:80 # But also works of course http://192.168.178.100
     # TinyAuth login page
     - hostname: tinyauth.pengiuns.com
       service: http://tinyauth.tinyauth.svc.cluster.local:3000
