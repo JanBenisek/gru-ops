@@ -13,5 +13,5 @@ spec:
     services:
       - name: funnaiest
         port: 80
-  tls:
-    secretName: letsencrypt-funnaiest-com
+  # tls:
+  #   secretName: letsencrypt-funnaiest-com
