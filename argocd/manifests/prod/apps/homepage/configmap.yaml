@@ -61,6 +61,18 @@ data:
             description: Trafficking 
             namespace: traefik 
             app: traefik
+        - Tinyauth:
+            icon: tinyauth.png
+            href: https://tinyauth.pengiuns.com
+            description: Who dis? 
+            namespace: tinyauth 
+            app: tinyauth
+        - Pocket-ID:
+            icon: pocket-id.png
+            href: https://pocket-id.pengiuns.com
+            description: Hands where I can see them! 
+            namespace: pocket-id 
+            app: pocket-id
         - Metabase:
             icon: metabase.png
             href: https://metabase.pengiuns.com
