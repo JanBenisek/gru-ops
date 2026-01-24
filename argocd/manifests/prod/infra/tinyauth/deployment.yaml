@@ -39,14 +39,6 @@ spec:
             value: user:$$2a$$10$$UdLYoJ5lgPsC0RKqYH/jMua7zIn0g9kPqWmhYayJYLaZQ/FTmH2/u # Username is user and password is password
           - name: LOG_LEVEL
             value: debug
-        livenessProbe:
-          httpGet:
-            path: /api/healthcheck
-            port: 3000
-        readinessProbe:
-          httpGet:
-            path: /api/healthcheck
-            port: 3000
         resources: # added by me
           requests:
             memory: "128Mi"  
