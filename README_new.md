@@ -288,6 +288,17 @@ make docker-build
 - [k8s guide](https://tinyauth.app/docs/community/kubernetes)
 - [Getting started](https://tinyauth.app/docs/getting-started)
 - [Configuration](https://tinyauth.app/docs/reference/configuration#general)
+- It also supports persistence, omitting for now [Docker Compose example](https://github.com/steveiliop56/tinyauth/blob/main/docker-compose.example.yml).
+- It does not need ingress (quote from Claude)
+  - TinyAuth is accessed publicly via Cloudflare Tunnel (cloudflare/values.yaml)
+  - Cloudflare tunnel routes tinyauth.pengiuns.com directly to tinyauth service (not via Traefik)
+  - This Ingress was creating an A record pointing to 192.168.178.100 (local IP)
+  - The A record conflicts with the CNAME record created by Service external-dns annotations
+  - external-dns was discarding the correct CNAME and keeping the wrong A record
+  - Result: external users couldn't access tinyauth.pengiuns.com
+  - DNS is now managed by:
+    - Service annotations (service.yaml) create CNAME → d65bf19e...cfargotunnel.com
+    - Cloudflare tunnel config routes traffic → tinyauth.tinyauth.svc.cluster.local:3000
 
 ### Traefik
 
