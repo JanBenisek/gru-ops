@@ -5,6 +5,7 @@ metadata:
   namespace: funnaiest
 spec:
   entryPoints:
+    - web # needs both
     - websecure
   routes:
   - match: Host(`funnaiest.com`)
