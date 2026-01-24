@@ -281,6 +281,13 @@ make docker-build
  curl -k "https://192.168.178.96:5001/webapi/auth.cgi?api=SYNO.API.Auth&version=7&method=login&account=bot_k8s&passwd=<PSWD>&session=Core&format=sid"
 ```
 
+### Tinyauth
+
+> Authentication screen
+
+- [k8s guide](https://tinyauth.app/docs/community/kubernetes)
+- [Getting started](https://tinyauth.app/docs/getting-started)
+
 ### Traefik
 
 > Ingress controller
