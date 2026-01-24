@@ -48,7 +48,7 @@ spec:
           - name: APP_TITLE
             value: Bello!
           - name: BACKGROUND_IMAGE
-            value: https://drive.google.com/uc?id=1TwiZLUYY0DEc8sHFwVUEYCCKpcMPjDFe
+            value: zermatt.jpg
         resources:
           requests:
             memory: "128Mi"  
