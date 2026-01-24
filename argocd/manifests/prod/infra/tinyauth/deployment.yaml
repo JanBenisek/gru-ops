@@ -39,6 +39,10 @@ spec:
             value: user:$$2a$$10$$UdLYoJ5lgPsC0RKqYH/jMua7zIn0g9kPqWmhYayJYLaZQ/FTmH2/u # Username is user and password is password
           - name: LOG_LEVEL
             value: debug
+          - name: SESSION_EXPIRY
+            value: "86400"  # Session expires after 24 hours (86400 seconds)
+          - name: LOGIN_TIMEOUT
+            value: "300"  # Login timeout: 5 minutes (300 seconds)
         resources: # added by me
           requests:
             memory: "128Mi"  
