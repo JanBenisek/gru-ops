@@ -21,7 +21,7 @@ spec:
       - name: stirling
         # image: frooodle/s-pdf:2.3.1
         # image: frooodle/s-pdf:latest-ultra-lite
-        image: frooodle/s-pdf:2.3.1-fat
+        image: frooodle/s-pdf:2.4.0-fat
         # image: frooodle/s-pdf:2.3.1
         imagePullPolicy: Always
         ports:
