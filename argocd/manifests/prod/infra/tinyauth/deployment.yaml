@@ -42,7 +42,7 @@ spec:
           - name: SESSION_EXPIRY
             value: "86400"  # Session expires after 24 hours (86400 seconds)
           - name: LOGIN_TIMEOUT
-            value: "300"  # Login timeout: 5 minutes (300 seconds)
+            value: "300"  # Login Atimeout: 5 minutes (300 seconds)
         resources: # added by me
           requests:
             memory: "128Mi"  
