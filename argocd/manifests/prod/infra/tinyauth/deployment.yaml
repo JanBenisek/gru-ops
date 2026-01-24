@@ -45,6 +45,10 @@ spec:
             value: "86400"  # Session expires after 24 hours (86400 seconds)
           - name: LOGIN_TIMEOUT
             value: "300"  # Login Atimeout: 5 minutes (300 seconds)
+          - name: APP_TITLE
+            value: Bello!
+          - name: BACKGROUND_IMAGE
+            value: https://drive.google.com/file/d/1TwiZLUYY0DEc8sHFwVUEYCCKpcMPjDFe/view?usp=sharing
         resources:
           requests:
             memory: "128Mi"  
