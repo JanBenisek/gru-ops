@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: funnaiest
+  namespace: funnaiest
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`funnaiest.com`)
+    kind: Rule
+    services:
+      - name: funnaiest
+        port: 80
+  tls:
+    secretName: letsencrypt-funnaiest-com
