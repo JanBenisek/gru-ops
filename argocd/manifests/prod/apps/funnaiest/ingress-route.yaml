@@ -12,6 +12,6 @@ spec:
     kind: Rule
     services:
       - name: funnaiest
-        port: 9090
+        port: 80
   tls:
     secretName: letsencrypt-funnaiest-com
