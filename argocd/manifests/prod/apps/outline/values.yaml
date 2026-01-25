@@ -48,3 +48,16 @@ externalPostgresql:
 minio:
   # -- Enable minio
   enabled: false
+
+fileStorage:
+  mode: local
+  local:
+    rootDir: /var/lib/outline/data
+    persistence:
+      enabled: true
+      size: 20Gi
+      accessModes:
+        - ReadWriteOnce
+      storageClass: "synology-storage-apps"
+      # annotations:
+        # backup.kubernetes.io/enabled: "true"
