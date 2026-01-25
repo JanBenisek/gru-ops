@@ -110,7 +110,7 @@ data:
         - Outline:
             icon: outline.png
             href: https://outline.pengiuns.com
-            description: Document me like one of your french girls...
+            description: Document it or die!
             namespace: outline
             app: outline
         - JupyterHub:
