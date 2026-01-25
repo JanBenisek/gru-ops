@@ -437,6 +437,7 @@ curl https://ollama.pengiuns.com/api/ps
 - [Helm](https://artifacthub.io/packages/helm/community-charts/outline)
 - [GitHub](https://github.com/outline/outline?tab=readme-ov-file)
 - [Values](https://community-charts.github.io/docs/charts/outline/usage)
+- [Pocket-ID setup](https://pocket-id.org/docs/client-examples/outline)
 
 ```sql
 create database outline;

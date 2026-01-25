@@ -19,10 +19,6 @@ spec:
       targetRevision: main
       path: argocd/manifests/prod/infra/pocket-id
       ref: values
-    # Adding it again to see other files
-    # - repoURL: https://github.com/JanBenisek/gru-ops.git
-    #   targetRevision: main
-      path: argocd/manifests/prod/infra/pocket-id
   destination:
     server: "https://kubernetes.default.svc"
     namespace: pocket-id

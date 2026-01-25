@@ -37,6 +37,10 @@ cloudflare:
     - hostname: pocket-id.pengiuns.com
       service: http://traefik.traefik.svc.cluster.local:80
 
+    # Outline
+    - hostname: outline.pengiuns.com
+      service: http://traefik.traefik.svc.cluster.local:80
+
 
 image:
   repository: cloudflare/cloudflared

@@ -9,7 +9,17 @@ podAnnotations:
 
 extraEnvVars:
   NODE_ENV: "production"
-  TZ: ""Europe/Zurich""
+  TZ: "Europe/Zurich"
+  # Pocket-ID
+  OIDC_CLIENT_ID: "93fe5647-3be0-4960-966d-873bb00f2dff"
+  OIDC_CLIENT_SECRET: "Ov1tZW1BAJ7KCEbZ9KWFyBD750ooQMI1"
+  OIDC_AUTH_URI: "https://pocket-id.pengiuns.com/authorize"
+  OIDC_TOKEN_URI: "https://pocket-id.pengiuns.com/api/oidc/token"
+  OIDC_USERINFO_URI: "https://pocket-id.pengiuns.com/api/oidc/userinfo"
+  OIDC_LOGOUT_URI: "https://pocket-id.pengiuns.com/api/oidc/end-session"
+  OIDC_DISPLAY_NAME: "Pocket ID"
+  OIDC_USERNAME_CLAIM: "preferred_username"
+  OIDC_SCOPES: "openid profile email groups"
 
 replicaCount: 1
 strategy:
@@ -23,23 +33,7 @@ image:
   pullPolicy: IfNotPresent
 
 ingress:
-  enabled: true 
-  className: "traefik"
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/max-body-size: "50M"
-    traefik.ingress.kubernetes.io/readtimeout: "1000s"
-    traefik.ingress.kubernetes.io/writetimeout: "1000s"
-    traefik.ingress.kubernetes.io/idletimeout: "1000s"
-  hosts:
-    - host: "outline.pengiuns.com"
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls:
-    - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
-      hosts:
-        - "outline.pengiuns.com"
+  enabled: false 
 
 resources:
   limits:
