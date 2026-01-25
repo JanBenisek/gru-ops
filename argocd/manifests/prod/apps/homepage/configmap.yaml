@@ -107,6 +107,12 @@ data:
             description: Was ist das?
             namespace: libretranslate
             app: libretranslate
+        - Outline:
+            icon: outline.png
+            href: https://outline.pengiuns.com
+            description: Document me like one of your french girls...
+            namespace: outline
+            app: outline
         - JupyterHub:
             icon: jupyter.png
             href: https://jupyter.pengiuns.com

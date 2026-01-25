@@ -338,7 +338,7 @@ make docker-build
 
 - Port-forward from 8080
 
-### homepage
+### Homepage
 
 - Homepage for all tools [source](https://gethomepage.dev/).
 - [List of icons](https://github.com/walkxcode/dashboard-icons)
@@ -368,7 +368,7 @@ create extension vchord;
 create extension if not exists earthdistance cascade;
 ```
 
-#### immich-proxy
+#### Immich-proxy
 
 > External access to immich
 
@@ -427,6 +427,36 @@ curl https://ollama.pengiuns.com/api/tags
 
 # list running models
 curl https://ollama.pengiuns.com/api/ps
+```
+
+### Outline
+
+> Knowledge base
+
+- Knowledge management (like Notion)
+- [Helm](https://artifacthub.io/packages/helm/community-charts/outline)
+- [GitHub](https://github.com/outline/outline?tab=readme-ov-file)
+- [Values](https://community-charts.github.io/docs/charts/outline/usage)
+
+```sql
+create database outline;
+create user bot_outline with password '<pswd>';
+grant all privileges on database outline to bot_outline;
+alter database outline owner to bot_outline;
+alter role bot_outline createdb;
+```
+
+- Sealed secret
+```shell
+./aux/seal-secret.sh bot-outline-pswd cnpg password=PSWD prod/infra/cnpg
+```
+- I added the annotation
+```yaml
+"annotations": {
+  "reflector.v1.k8s.emberstack.com/reflection-allowed": "true",
+  "reflector.v1.k8s.emberstack.com/reflection-auto-enabled": "true",
+  "reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces": "outline"
+}
 ```
 
 

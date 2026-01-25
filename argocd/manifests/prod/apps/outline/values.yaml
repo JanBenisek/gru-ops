@@ -1,0 +1,50 @@
+replicaCount: 1
+
+logging:
+  level: debug # error, warn, info, http, verbose, debug and silly
+
+ingress:
+  enabled: true 
+  className: "traefik"
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/max-body-size: "50M"
+    traefik.ingress.kubernetes.io/readtimeout: "1000s"
+    traefik.ingress.kubernetes.io/writetimeout: "1000s"
+    traefik.ingress.kubernetes.io/idletimeout: "1000s"
+  hosts:
+    - host: "outline.pengiuns.com"
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+      hosts:
+        - "outline.pengiuns.com"
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 2Gi
+  requests:
+    cpu: 100m
+    memory: 512Mi
+
+redis:
+  enabled: true
+
+postgresql:
+  enabled: false
+
+externalPostgresql:
+  host: "vchord-postgres.pengiuns.com"
+  username: "bot_outline"
+  password: ""
+  port: 5432
+  database: outline
+  existingSecret: "bot-outline-pswd"
+  passwordSecretKey: "password"
+
+minio:
+  # -- Enable minio
+  enabled: false
