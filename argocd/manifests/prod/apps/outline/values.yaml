@@ -1,7 +1,26 @@
 replicaCount: 1
 
+url: "https://outline.pengiuns.com"
+defaultLanguage: en_US
+
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "3000"
+
+extraEnvVars:
+  NODE_ENV: "production"
+  TZ: ""Europe/Zurich""
+
+replicaCount: 1
+strategy:
+  type: RollingUpdate
+
 logging:
   level: debug # error, warn, info, http, verbose, debug and silly
+
+image:
+  repository: outlinewiki/outline
+  pullPolicy: IfNotPresent
 
 ingress:
   enabled: true 
