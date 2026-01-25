@@ -438,6 +438,7 @@ curl https://ollama.pengiuns.com/api/ps
 - [GitHub](https://github.com/outline/outline?tab=readme-ov-file)
 - [Values](https://community-charts.github.io/docs/charts/outline/usage)
 - [Pocket-ID setup](https://pocket-id.org/docs/client-examples/outline)
+  - Does not need tinyauth, already has auth baked in
 
 ```sql
 create database outline;

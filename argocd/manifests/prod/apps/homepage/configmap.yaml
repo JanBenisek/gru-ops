@@ -34,6 +34,9 @@ data:
         - Cloudflare:
             - icon: cloudflare.png
               href: https://dash.cloudflare.com/6f72e3a2bfcc7b774fdcecc770035336/home/domains
+        - Cloudflare Zero Trust:
+            - icon: cloudflare-zero-trust.png
+              href: https://one.dash.cloudflare.com/6f72e3a2bfcc7b774fdcecc770035336/networks/connectors
         - Hetzner:
             - icon: hetzner.png
               href: https://console.hetzner.com/projects
