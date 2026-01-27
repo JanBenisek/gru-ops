@@ -10,15 +10,13 @@ deployment:
 # Security: Only trust pods in the cluster, not all private IPs (prevents header injection attacks)
 ports:
   web:
-    http:
-      forwardedHeaders:
-        trustedIPs:
-          - 10.244.0.0/16   # Kubernetes pod CIDR (Cloudflare Tunnel pods run here)
+    forwardedHeaders:
+      trustedIPs:
+        - 10.244.0.0/16   # Kubernetes pod CIDR (Cloudflare Tunnel pods run here)
   websecure:
-    http:
-      forwardedHeaders:
-        trustedIPs:
-          - 10.244.0.0/16   # Kubernetes pod CIDR
+    forwardedHeaders:
+      trustedIPs:
+        - 10.244.0.0/16   # Kubernetes pod CIDR
   traefik:
     expose:
       default: true
