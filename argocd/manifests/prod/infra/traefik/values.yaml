@@ -5,36 +5,33 @@ global:
 deployment:
   replicas: 1
 
-entryPoints:
-  web:
-    address: ":80"
-  websecure:
-    address: ":443"
-  traefik:
-    address: ":9000"   # Dashboard entrypoint
-
 # Trust X-Forwarded-* headers ONLY from Kubernetes pod network
 # Without this, Traefik ignores X-Forwarded-Proto from Cloudflare and TinyAuth thinks requests are HTTP
 # Security: Only trust pods in the cluster, not all private IPs (prevents header injection attacks)
 ports:
   web:
-    forwardedHeaders:
-      trustedIPs:
-        - 10.244.0.0/16   # Kubernetes pod CIDR (Cloudflare Tunnel pods run here)
+    http:
+      forwardedHeaders:
+        trustedIPs:
+          - 10.244.0.0/16   # Kubernetes pod CIDR (Cloudflare Tunnel pods run here)
   websecure:
-    forwardedHeaders:
-      trustedIPs:
-        - 10.244.0.0/16   # Kubernetes pod CIDR
+    http:
+      forwardedHeaders:
+        trustedIPs:
+          - 10.244.0.0/16   # Kubernetes pod CIDR
+  traefik:
+    expose:
+      default: true
 
-log:
-  level: INFO
-  filePath: "/traefik.log"
-  format: json
-
-accessLog:
-  enabled: true
-  format: json
-  filePath: "/traefik-access.log"
+logs:
+  general:
+    level: INFO
+    filePath: "/traefik.log"
+    format: json
+  access:
+    enabled: true
+    format: json
+    filePath: "/traefik-access.log"
 
 resources:
   requests:
