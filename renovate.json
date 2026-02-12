@@ -37,6 +37,15 @@
   },
   "packageRules": [
     {
+      "matchDatasources": [
+        "helm"
+      ],
+      "matchPackageNames": [
+        "csi-driver-nfs"
+      ],
+      "enabled": false
+    },
+    {
       "versioning": "regex:^release-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(\\.(?<build>\\d+))?$",
       "matchPackageNames": [
         "/^ghcr\\.io/hotio//"
