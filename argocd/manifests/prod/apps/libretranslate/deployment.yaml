@@ -32,7 +32,7 @@ spec:
         fsGroup: 1032
       containers:
       - name: libretranslate
-        image: libretranslate/libretranslate:v1.8.4
+        image: libretranslate/libretranslate:v1.9.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5000 # internal port for the app
