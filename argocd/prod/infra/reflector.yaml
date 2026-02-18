@@ -10,7 +10,7 @@ spec:
   sources:
     - chart: reflector
       repoURL: https://emberstack.github.io/helm-charts
-      targetRevision: 10.0.8
+      targetRevision: 10.0.9
       helm:
         releaseName: reflector
         valueFiles:
