@@ -24,12 +24,10 @@ ports:
 logs:
   general:
     level: INFO
-    filePath: "/traefik.log"
     format: json
   access:
     enabled: true
     format: json
-    filePath: "/traefik-access.log"
 
 resources:
   requests:
