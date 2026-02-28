@@ -185,6 +185,7 @@ create database prod;
 create user bot_jerry with password 'PWD';
 alter database prod owner to bot_jerry;
 grant all privileges on database prod to bot_jerry;
+create extension fuzzystrmatch;
 ```
 
 ### Metallb
