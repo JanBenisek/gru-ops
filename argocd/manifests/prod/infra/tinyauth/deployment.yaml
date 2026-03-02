@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: tinyauth
-        image: ghcr.io/steveiliop56/tinyauth:v4
+        image: ghcr.io/steveiliop56/tinyauth:v5
         imagePullPolicy: Always
         ports:
           - containerPort: 3000
