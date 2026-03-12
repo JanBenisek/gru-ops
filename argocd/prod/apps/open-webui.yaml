@@ -10,7 +10,7 @@ spec:
   sources:
   - repoURL: https://helm.openwebui.com/
     chart: open-webui
-    targetRevision: "12.8.1"
+    targetRevision: "12.10.0"
     helm:
       valueFiles:
       - $values/argocd/manifests/prod/apps/open-webui/values.yaml
