@@ -172,6 +172,13 @@ restic prune
 restic check
 ```
 
+#### Delete objects
+```bash
+export AWS_ACCESS_KEY_ID=SECRET
+export AWS_SECRET_ACCESS_KEY=SECRET
+aws s3 rm s3://pengiunsbackup --recursive --endpoint-url https://hel1.your-objectstorage.com
+```
+
 ### Let's Encrypt
 
 > Cert manager
