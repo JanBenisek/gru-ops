@@ -114,7 +114,7 @@ curl -v -X DELETE https://docker-registry.pengiuns.com/v2/jupyter/manifests/sha2
 - Secrets
 ```shell
 # Hetzner
-./aux/seal-secret.sh hetzner-credentials k8up 'password=access-key' prod/infra/k8up/controller 'user=secret-key'
+./aux/seal-secret.sh hetzner-credentials k8up 'password=secret-key' prod/infra/k8up/controller 'user=access-key'
 
 # Restic
 RESTIC_PASSWORD=$(openssl rand -base64 32)
