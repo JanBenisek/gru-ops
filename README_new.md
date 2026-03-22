@@ -103,6 +103,7 @@ curl -v -X DELETE https://docker-registry.pengiuns.com/v2/jupyter/manifests/sha2
 ```
 
 ### k8up
+
 - Backup of PVs and DBs
 - [Repo](https://github.com/k8up-io/k8up)
 - [Values](https://github.com/k8up-io/k8up/tree/master/charts/k8up)
@@ -113,21 +114,11 @@ curl -v -X DELETE https://docker-registry.pengiuns.com/v2/jupyter/manifests/sha2
 - Secrets
 ```shell
 # Hetzner
-./aux/seal-secret.sh hetzner-credentials k8up 'password=PWD' prod/infra/k8up/controller 'user=u565059'
+./aux/seal-secret.sh hetzner-credentials k8up 'password=access-key' prod/infra/k8up/controller 'user=secret-key'
 
 # Restic
 RESTIC_PASSWORD=$(openssl rand -base64 32)
 ./aux/seal-secret.sh restic-credentials k8up 'password=PWD' prod/infra/k8up/controller
-```
-### Test connnection
-```shell
-# Test SFTP connection    
-sftp -i ~/.ssh/hetzner_storage_box -P 23 u565059@u565059.your-storagebox.de           
-                                                                                                                
-# Once connected, create the backup directory:                                                                 
-sftp> mkdir k8up-backups                                                                                       
-sftp> mkdir k8up-backups/immich                                                                                
-sftp> exit   
 ```
 
 - Trigger a backup job, example for Immich PVC backup
@@ -146,23 +137,18 @@ k describe backup immich-backup-manual -n immich
 ```
 
 
-### Restore backup - TBD
+#### Restore backup - TBD
 - Bunch of docs on how to do it on k8s
-- Manually with restic CLI:
+- Manually:
 
 ```shell
-# Set up authentication (Option 1: SSH key - recommended)
-export RESTIC_PASSWORD="your-restic-encryption-password"
-export RESTIC_REPOSITORY="sftp://u565059@u565059.your-storagebox.de:23/k8up-backups/postgres/immich"
-# Restic will use your SSH key from ~/.ssh/hetzner_storage_box or ~/.ssh/id_rsa
-
-# OR (Option 2: Password authentication)
-export RESTIC_PASSWORD="your-restic-encryption-password"
-export RESTIC_REPOSITORY="sftp://u565059:storage-box-password@u565059.your-storagebox.de:23/k8up-backups/postgres/immich"
-
-# Available repositories:
-# Immich DB:  sftp://u565059@u565059.your-storagebox.de:23/k8up-backups/postgres/immich
-# Immich PVC: sftp://u565059@u565059.your-storagebox.de:23/k8up-backups/immich
+export AWS_ACCESS_KEY_ID="RYH6OMTZVDF0D0UR4B4X"
+export AWS_SECRET_ACCESS_KEY="9fsn9RCiHHqXd9kB2R7gkcH0rCtte6p3oKXujh6o"
+export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/immich/manual/"
+export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/immich/scheduled/"
+export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/postgres/immich/scheduled/"
+export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/postgres/immich/manual/"
+export RESTIC_PASSWORD="<>"
 
 # List all snapshots
 restic snapshots

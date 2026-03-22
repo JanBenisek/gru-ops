@@ -5,15 +5,15 @@ metadata:
   namespace: immich
 spec:
   backend:
-    # Hetzner Storage Box via SFTP
-    # Format: sftp://username@server:23/path
-    # Port 23 is mandatory for Hetzner Storage Box
-    sftp:
-      url: sftp://u565059@u565059.your-storagebox.de:23/k8up-backups/immich
-      passwordSecretRef:
+    s3:
+      endpoint: https://fsn1.your-objectstorage.com
+      bucket: gru-k8up-backups/immich/scheduled/
+      accessKeyIDSecretRef:
+        name: hetzner-credentials
+        key: user
+      secretAccessKeySecretRef:
         name: hetzner-credentials
         key: password
-    # Restic encryption password
     repoPasswordSecretRef:
       name: restic-credentials
       key: password
