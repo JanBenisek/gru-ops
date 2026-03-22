@@ -13,7 +13,7 @@ spec:
       path: argocd/manifests/prod/infra/k8up/crds
     - chart: k8up
       repoURL: https://k8up-io.github.io/k8up
-      targetRevision: 4.8.4
+      targetRevision: 4.8.7
       helm:
         releaseName: k8up
         skipCrds: true
