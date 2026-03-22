@@ -102,6 +102,90 @@ curl -v -X DELETE https://docker-registry.pengiuns.com/v2/jupyter/manifests/sha2
   }
 ```
 
+### k8up
+- Backup of PVs and DBs
+- [Repo](https://github.com/k8up-io/k8up)
+- [Values](https://github.com/k8up-io/k8up/tree/master/charts/k8up)
+- Created Hetzner Storage Box manually (enable SSH and externaly reachable)
+- Backup definitions should live in namespace where they do the backup, they need access tp PVCs, secrets etc.
+- [Check Success](https://docs.k8up.io/k8up/2.12/how-tos/check-status.html)
+
+- Secrets
+```shell
+# Hetzner
+./aux/seal-secret.sh hetzner-credentials k8up 'password=PWD' prod/infra/k8up/controller 'user=u565059'
+
+# Restic
+RESTIC_PASSWORD=$(openssl rand -base64 32)
+./aux/seal-secret.sh restic-credentials k8up 'password=PWD' prod/infra/k8up/controller
+```
+### Test connnection
+```shell
+# Test SFTP connection    
+sftp -i ~/.ssh/hetzner_storage_box -P 23 u565059@u565059.your-storagebox.de           
+                                                                                                                
+# Once connected, create the backup directory:                                                                 
+sftp> mkdir k8up-backups                                                                                       
+sftp> mkdir k8up-backups/immich                                                                                
+sftp> exit   
+```
+
+- Trigger a backup job, example for Immich PVC backup
+```shell
+# Trigger the backup
+k apply -f argocd/manifests/prod/apps/immich/backup-immich-manual.yaml
+
+# Watch the backup progress
+k get backup -n immich -w
+
+# Check backup logs
+k logs -n immich -l job-name=immich-backup-manual -f
+
+# Check backup status
+k describe backup immich-backup-manual -n immich
+```
+
+
+### Restore backup - TBD
+- Bunch of docs on how to do it on k8s
+- Manually with restic CLI:
+
+```shell
+# Set up authentication (Option 1: SSH key - recommended)
+export RESTIC_PASSWORD="your-restic-encryption-password"
+export RESTIC_REPOSITORY="sftp://u565059@u565059.your-storagebox.de:23/k8up-backups/postgres/immich"
+# Restic will use your SSH key from ~/.ssh/hetzner_storage_box or ~/.ssh/id_rsa
+
+# OR (Option 2: Password authentication)
+export RESTIC_PASSWORD="your-restic-encryption-password"
+export RESTIC_REPOSITORY="sftp://u565059:storage-box-password@u565059.your-storagebox.de:23/k8up-backups/postgres/immich"
+
+# Available repositories:
+# Immich DB:  sftp://u565059@u565059.your-storagebox.de:23/k8up-backups/postgres/immich
+# Immich PVC: sftp://u565059@u565059.your-storagebox.de:23/k8up-backups/immich
+
+# List all snapshots
+restic snapshots
+
+# Show details of latest snapshot
+restic snapshots latest
+
+# Restore latest snapshot
+restic restore latest --target ./restore
+
+# Restore specific snapshot
+restic restore 6b8e2fba --target ./restore
+
+# Remove specific snapshot
+restic forget 6b8e2fba
+
+# Prune removed snapshots (frees disk space)
+restic prune
+
+# Check repository integrity
+restic check
+```
+
 ### Let's Encrypt
 
 > Cert manager

@@ -13,6 +13,11 @@ tf state list
 tf state rm 'talos_machine_configuration_apply.worker_config_apply[0]'
 ```
 
+## Hetzner
+
+- Using `Storage Box` that at the time of writing does not have terraform module.
+- Therefore, create manually and created k8s secret.
+
 ## Talos
 
 - I ended up using custom image with extensions

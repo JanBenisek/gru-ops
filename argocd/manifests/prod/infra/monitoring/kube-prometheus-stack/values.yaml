@@ -89,3 +89,10 @@ prometheus:
               storage: 5Gi
     retentionSize: 4GB
     retention: 30d
+
+# Prometheus Pushgateway for k8up backup metrics
+prometheus-pushgateway:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+    namespace: monitoring

@@ -1,0 +1,33 @@
+apiVersion: k8up.io/v1
+kind: Backup
+metadata:
+  name: immich-backup-manual
+  namespace: immich
+spec:
+  # Another option to select, but not needed
+  # labelSelectors:
+  #   - matchExpressions:
+  #     - key: back-me-up
+  #       operator: Exists
+  backend:
+    # Hetzner Storage Box via SFTP
+    # Format: sftp://username@server:23/path
+    # Port 23 is mandatory for Hetzner Storage Box
+    sftp:
+      url: sftp://u565059@u565059.your-storagebox.de:23/k8up-backups/immich
+      passwordSecretRef:
+        name: hetzner-credentials
+        key: password
+    # Restic encryption password
+    repoPasswordSecretRef:
+      name: restic-credentials
+      key: password
+  podSecurityContext:
+    runAsUser: 0
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "100m"
+    limits:
+      memory: "1Gi"
+      cpu: "500m"

@@ -4,9 +4,6 @@ metadata:
   name: cnpg
   namespace: cnpg
   annotations:
-    # k8up.io/backupcommand: >-
-    #   sh -c 'PGDATABASE=immich pg_dump --clean'
-    # k8up.io/file-extension: .sql
     argocd.argoproj.io/sync-wave: "20"
 
 spec:

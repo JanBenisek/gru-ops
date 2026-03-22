@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: k8up
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  project: gru
+  sources:
+    - repoURL: https://github.com/JanBenisek/gru-ops.git
+      targetRevision: main
+      path: argocd/manifests/prod/infra/k8up/crds
+    - chart: k8up
+      repoURL: https://k8up-io.github.io/k8up
+      targetRevision: 4.8.4
+      helm:
+        releaseName: k8up
+        skipCrds: true
+        valueFiles:
+          - $values/argocd/manifests/prod/infra/k8up/controller/values.yaml
+    - repoURL: https://github.com/JanBenisek/gru-ops.git
+      targetRevision: main
+      path: argocd/manifests/prod/infra/k8up/controller
+      ref: values
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: k8up
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - Replace=true
+      - ServerSideApply=true
