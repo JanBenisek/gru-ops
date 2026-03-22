@@ -23,10 +23,10 @@ spec:
     schedule: "0 1 * * *" # runs daily at 1am should run BEFORE pvc backup
     failedJobsHistoryLimit: 2
     successfulJobsHistoryLimit: 2
-    promURL: http://kube-prometheus-stack-prometheus-pushgateway.monitoring.svc.cluster.local:9091
+    # promURL: http://kube-prometheus-stack-prometheus-pushgateway.monitoring.svc.cluster.local:9091
   check:
     schedule: '0 1 * * 1' # runs every monday, validates integrity of backup
-    promURL: http://kube-prometheus-stack-prometheus-pushgateway.monitoring.svc.cluster.local:9091
+    # promURL: http://kube-prometheus-stack-prometheus-pushgateway.monitoring.svc.cluster.local:9091
   prune:
     schedule: '0 1 * * 0' #Every sunday at 1am, prunes based on retention policy
     retention:

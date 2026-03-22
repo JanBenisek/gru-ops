@@ -91,6 +91,7 @@ prometheus:
     retention: 30d
 
 # Prometheus Pushgateway for k8up backup metrics
+# TODO: not working
 prometheus-pushgateway:
   enabled: true
   serviceMonitor:
