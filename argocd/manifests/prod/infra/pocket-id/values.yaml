@@ -15,9 +15,6 @@ maxmindLicenseKey: ""
 host: "pocket-id.pengiuns.com"
 
 database:
-  # -- Database provider to use. Options: "sqlite" or "postgres".
-  provider: "sqlite"
-
   # -- Connection string for the database.
   #    - For sqlite: file:data/pocket-id.db?_pragma=journal_mode(WAL)&_pragma=busy_timeout(2500)&_txlock=immediate
   #    - For postgres: postgres:// or postgresql://user:password@host:port/dbname
@@ -25,10 +22,11 @@ database:
 
 updateStrategy:
   # -- The deployment strategy to use to replace existing pods with new ones. Options: "RollingUpdate" or "OnDelete".
+  # Using RollingUpdate with maxUnavailable to ensure only one instance runs (required for v2 database locking)
   type: RollingUpdate
-  # rollingUpdate:
-  #   maxUnavailable: 100%
-  #   partition: 0
+  rollingUpdate:
+    maxUnavailable: 1
+    partition: 0
     
 pocketID:
   # Has image etc.
@@ -73,10 +71,20 @@ config:
 
 secret:
   # -- Specifies whether a secret should be created.
-  create: true
+  create: false
   # -- Specifies name of a secret used to configure the pocket-id.
   # If not filled, uses full name.
   name: ""
+  # -- Environment variables stored in the secret
+  env:
+    # -- Encryption key for PocketID v2 (mandatory)
+    DATABASE_URL:
+      secretName: bot-pocketid-pswd
+      secretKey: DB_CONNECTION_STRING
+
+    ENCRYPTION_KEY:
+      secretName: pocket-id-encryption-key
+      secretKey: ENCRYPTION_KEY
 
 persistence:
   data:

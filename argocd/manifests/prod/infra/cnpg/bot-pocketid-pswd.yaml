@@ -1,0 +1,22 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "bot-pocketid-pswd",
+    "namespace": "cnpg",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "bot-pocketid-pswd",
+        "namespace": "cnpg",
+        "creationTimestamp": null
+      },
+      "data": null
+    },
+    "encryptedData": {
+      "DB_CONNECTION_STRING": "AgCshFjex9vDACxPIRLqaYcsvLJw1afZ3iCd1wPnd/i1iK7R5BUHywP0vKdVtPJrEyJbio9dekYgJoE8iNOr8CXc2UHWZj9HdAf8ji1t+KfDE+B5IhBoeqPbI66phxAEgmd1H2Zfm39GPThfeI5PpPgWNhS2ISmr3dIu7YLvJJSc56yGSBNg5RMZ6bY6dZgVh2uEP5h2MWD3/1M4wIwZIsQL1WoZPwlnshoC+Hcfg3myQmFIZMZrvjircVwxQ+AmlI87GeJL9x6qxcPYH4Rzca0rZqmbEp5oQ/+cE+/vdMRo8Zv2GAZshW4VLkLnjt7wfj/J5LiwQNJdF8I9O3vFVK/UDBqucSn1uqbqn8xvd1vD2GHmYXV/5RVMCgyGlwjRf1YgBzOcPJhGGblZ0NTeSi4spYITsx6XUyI59GGpU8HLPDDq6v+JIdMyav/ByzvtWNR+XAC6rKphf+Skytq/0asGVVRD8/8Y4xhxshpluBjk1p6sGY+COyl5wAx789y0Ec/ht/GNs1pKOJr57gXPjY2k2rFkNyVH/nhKf7WDg9xAoK06oVn37P99kwVUJ3jLJjJ1l6NfGQVKf6m35+doSZbsqrSRCYMSQJ3xxAmKZtAFLy/PevmXnhGM0S5AYl0no1pzi9+57iwoou7pEcnoLshI20I2eQq7gstYffWTzdDuHUE9jYt7LF51tLuo1QmXz+SQ0b8gfOxG84uYQwbUerP2WqrSyQme/DWTTXPpd9hDqNB4dqx28emaCoeGQDnfDrWPIUvu15z0wYt53i7u4ghmcTUll6DsTptfPRFz4yMlOVY07sRbawuEaO6cXb4H"
+    }
+  }
+}

@@ -257,6 +257,7 @@ echo "hello" | aws s3 cp - s3://gru-k8up-backups/test.txt --endpoint-url https:/
 ./aux/seal-secret.sh bot-jerry-pswd cnpg username=bot_jerry prod/infra/cnpg password=PWD
 ./aux/seal-secret.sh bot-metabase-pswd cnpg username=bot_metabase prod/infra/cnpg password=PWD
 ./aux/seal-secret.sh superuser-pswd cnpg username=postgres prod/infra/cnpg password=PWD
+./aux/seal-secret.sh bot-pocketid-pswd cnpg DB_CONNECTION_STRING=CONNSTR prod/infra/cnpg
 ```
 - Set up DB
 ```sql
@@ -299,11 +300,16 @@ k edit deployment metrics-server -n kube-system
 - [Tinyauth Integration](https://tinyauth.app/docs/guides/pocket-id/)
 
 ```sql
--- Prod DB with bot_jerry
-create database prod;
-create user bot_jerry with password 'PWD';
-alter database prod owner to bot_jerry;
-grant all privileges on database prod to bot_jerry;
+-- DB
+create database pocketid;
+create user bot_pocketid with password 'PWD';
+alter database pocketid owner to bot_pocketid;
+grant all privileges on database pocketid to bot_pocketid;I
+```
+
+- Secrets
+```bash
+./aux/seal-secret.sh pocket-id-encryption-key pocket-id ENCRYPTION_KEY=KEY prod/infra/pocket-id
 ```
 
 ### Reflector
