@@ -33,7 +33,7 @@ spec:
         ports:
           - containerPort: 3000
         env:
-          - name: TINYAUTH_APP_URL
+          - name: TINYAUTH_APPURL
             value: https://tinyauth.pengiuns.com
           # - name: USERS
             # htpasswd -nbB corgi ilovecorgi
@@ -41,31 +41,31 @@ spec:
             # value: user:$$2a$$10$$UdLYoJ5lgPsC0RKqYH/jMua7zIn0g9kPqWmhYayJYLaZQ/FTmH2/u # Username is user and password is password
           - name: TINYAUTH_LOG_LEVEL
             value: debug
-          - name: TINYAUTH_SESSION_EXPIRY
+          - name: TINYAUTH_AUTH_SESSIONEXPIRY
             value: "86400"  # Session expires after 24 hours (86400 seconds)
           - name: TINYAUTH_AUTH_LOGINTIMEOUT
             value: "300"  # Login Atimeout: 5 minutes (300 seconds)
-          - name: TINYAUTH_APP_TITLE
+          - name: TINYAUTH_UI_TITLE
             value: Bello!
           # Figure out later
-          - name: TINYAUTH_BACKGROUND_IMAGE
+          - name: TINYAUTH_UI_BACKGROUNDIMAGE
             value: "https://raw.githubusercontent.com/JanBenisek/public-assets/main/zermatt.jpg"
           # Connecting it to Pocket ID
-          - name: TINYAUTH_PROVIDERS_POCKETID_CLIENT_ID
+          - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_CLIENTID
             value: 407dd8c4-6fab-42e0-964c-fe2b9fbec361
-          - name: TINYAUTH_PROVIDERS_POCKETID_CLIENT_SECRET
+          - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_CLIENTSECRET
             value: IloYhhH1xYNokdeUTm0HLcAb6hyUtGII
-          - name: TINYAUTH_PROVIDERS_POCKETID_AUTH_URL
+          - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_AUTHURL
             value: https://pocket-id.pengiuns.com/authorize
-          - name: TINYAUTH_PROVIDERS_POCKETID_TOKEN_URL
+          - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_TOKENURL
             value: https://pocket-id.pengiuns.com/api/oidc/token
-          - name: TINYAUTH_PROVIDERS_POCKETID_USER_INFO_URL
+          - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_USERINFOURL
             value: https://pocket-id.pengiuns.com/api/oidc/userinfo
-          - name: TINYAUTH_PROVIDERS_POCKETID_REDIRECT_URL
+          - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_REDIRECTURL
             value: https://tinyauth.pengiuns.com/api/oauth/callback/pocketid
-          - name: TINYAUTH_PROVIDERS_POCKETID_SCOPES
+          - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_SCOPES
             value: "openid email profile groups" # not sure what this is
-          - name: TINYAUTH_PROVIDERS_POCKETID_NAME
+          - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_NAME
             value: "Pocket ID"
           - name: TINYAUTH_OAUTH_AUTOREDIRECT 
             value: "pocketid"
