@@ -16,9 +16,9 @@ host: "pocket-id.pengiuns.com"
 
 database:
   # -- Connection string for the database.
-  #    - For sqlite: file:data/pocket-id.db?_pragma=journal_mode(WAL)&_pragma=busy_timeout(2500)&_txlock=immediate
-  #    - For postgres: postgres:// or postgresql://user:password@host:port/dbname
-  connectionString: "file:data/pocket-id.db?_pragma=journal_mode(WAL)&_pragma=busy_timeout(2500)&_txlock=immediate"
+  # Using PostgreSQL connection from sealed secret (pocket-id) via DB_CONNECTION_STRING key
+  # The actual connection string is stored securely in the sealed secret
+  connectionString: ""
 
 updateStrategy:
   # -- The deployment strategy to use to replace existing pods with new ones. Options: "RollingUpdate" or "OnDelete".
@@ -71,20 +71,10 @@ config:
 
 secret:
   # -- Specifies whether a secret should be created.
+  # Using existing sealed secret that contains both ENCRYPTION_KEY and DB_CONNECTION_STRING
   create: false
   # -- Specifies name of a secret used to configure the pocket-id.
-  # If not filled, uses full name.
-  name: ""
-  # -- Environment variables stored in the secret
-  env:
-    # -- Encryption key for PocketID v2 (mandatory)
-    DATABASE_URL:
-      secretName: bot-pocketid-pswd
-      secretKey: DB_CONNECTION_STRING
-
-    ENCRYPTION_KEY:
-      secretName: pocket-id-encryption-key
-      secretKey: ENCRYPTION_KEY
+  name: "pocket-id"
 
 persistence:
   data:
