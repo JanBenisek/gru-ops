@@ -22,10 +22,10 @@ database:
 
 updateStrategy:
   # -- The deployment strategy to use to replace existing pods with new ones. Options: "RollingUpdate" or "OnDelete".
-  # Using RollingUpdate with maxUnavailable to ensure only one instance runs (required for v2 database locking)
+  # Using RollingUpdate (StatefulSets don't support maxUnavailable, only partition)
+  # Single instance is ensured by replicaCount: 1 (required for v2 database locking)
   type: RollingUpdate
   rollingUpdate:
-    maxUnavailable: "1"
     partition: 0
     
 pocketID:

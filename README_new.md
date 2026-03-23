@@ -310,8 +310,6 @@ grant all privileges on database pocketid to bot_pocketid;I
 - Secrets - somehow it needs both secrets in one, but I am also keeping the DB separate in cnpg
 ```bash
 ./aux/seal-secret.sh pocket-id pocket-id ENCRYPTION_KEY=KEY prod/infra/pocket-id DB_CONNECTION_STRING=CONNSTR
-
-
 ```
 
 ### Reflector
