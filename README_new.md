@@ -541,6 +541,7 @@ alter role bot_outline createdb;
 - Sealed secret
 ```shell
 ./aux/seal-secret.sh bot-outline-pswd cnpg password=PSWD prod/infra/cnpg
+./aux/seal-secret.sh outline-auto-generated-secret outline secret-key=SECRET prod/apps/outline utils-secret=SECRET
 ```
 - I added the annotation
 ```yaml
