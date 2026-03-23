@@ -52,9 +52,9 @@ spec:
             value: "https://raw.githubusercontent.com/JanBenisek/public-assets/main/zermatt.jpg"
           # Connecting it to Pocket ID
           - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_CLIENTID
-            value: 3e060ce4-af34-4630-8597-c85bd38900b8 # from UI Client ID
+            value: 4b93b989-ebb5-48cf-b8f2-d5d4efc1cf15 # from UI Client ID
           - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_CLIENTSECRET
-            value: S09oNFtecBsvhwX3szxoPDjHarBcSLIG # from UI Client Secret
+            value: MSyPNdcU45R3O1eAhVZyEIN7hwncD03U # from UI Client Secret
           - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_AUTHURL
             value: https://pocket-id.pengiuns.com/authorize
           - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_TOKENURL

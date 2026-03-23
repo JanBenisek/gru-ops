@@ -10,8 +10,8 @@ podAnnotations:
 extraEnvVars:
   NODE_ENV: "production"
   TZ: "Europe/Zurich"
-  OIDC_CLIENT_ID: "3e7b1310-83a2-457b-be87-406f7b03f077" # from OIDC Outline page in Pocket-ID
-  OIDC_CLIENT_SECRET: "cBpMC2k0e4RzaziurcQtpP6AAwOeWBHc" # from OIDC Outline page in Pocket-ID
+  OIDC_CLIENT_ID: "c6fa73ef-0846-4bcd-bb4e-f5e13b71b253" # from OIDC Outline page in Pocket-ID
+  OIDC_CLIENT_SECRET: "sbBCbtpjOI52CeS5qxxTrnqaSqSRRNEs" # from OIDC Outline page in Pocket-ID
   OIDC_AUTH_URI: "https://pocket-id.pengiuns.com/authorize"
   OIDC_TOKEN_URI: "https://pocket-id.pengiuns.com/api/oidc/token"
   OIDC_USERINFO_URI: "https://pocket-id.pengiuns.com/api/oidc/userinfo"
