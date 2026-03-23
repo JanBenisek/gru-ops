@@ -300,7 +300,7 @@ k edit deployment metrics-server -n kube-system
 - [Tinyauth Integration](https://tinyauth.app/docs/guides/pocket-id/)
 - Setup
   - go to https://pocket-id.pengiuns.com/signup/setup
-  
+
 
 ```sql
 -- DB
