@@ -29,6 +29,6 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - Replace=true
+      # - Replace=true # nope
       - ServerSideApply=true
       - SkipDryRunOnMissingResource=true
