@@ -298,6 +298,9 @@ k edit deployment metrics-server -n kube-system
 
 - [Helm Chart](https://artifacthub.io/packages/helm/anza-labs/pocket-id?modal=values&path=pocketID)
 - [Tinyauth Integration](https://tinyauth.app/docs/guides/pocket-id/)
+- Setup
+  - go to https://pocket-id.pengiuns.com/signup/setup
+  
 
 ```sql
 -- DB
