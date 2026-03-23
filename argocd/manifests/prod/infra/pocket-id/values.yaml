@@ -54,6 +54,9 @@ config:
   # If not filled, uses full name.
   name: ""
 
+  # -- Public URL where the application is accessed. Must match exactly how users access the app.
+  PUBLIC_APP_URL: "https://pocket-id.pengiuns.com"
+
   telemetry:
     # -- Enables OpenTelemetry tracing.
     tracingEnabled: false
@@ -62,7 +65,7 @@ config:
 
     # -- OpenTelemetry SDK environment variables.
     # https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/
-    otel: 
+    otel:
       OTEL_METRICS_EXPORTER: prometheus
 
   ui:
