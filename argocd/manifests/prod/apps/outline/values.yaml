@@ -11,8 +11,8 @@ extraEnvVars:
   NODE_ENV: "production"
   TZ: "Europe/Zurich"
   # Pocket-ID - using same client as Hiker/TinyAuth
-  OIDC_CLIENT_ID: "3e060ce4-af34-4630-8597-c85bd38900b8"
-  OIDC_CLIENT_SECRET: "S09oNFtecBsvhwX3szxoPDjHarBcSLIG"
+  OIDC_CLIENT_ID: "3e7b1310-83a2-457b-be87-406f7b03f077" # from OIDC Outline page in Pocket-ID
+  OIDC_CLIENT_SECRET: "cBpMC2k0e4RzaziurcQtpP6AAwOeWBHc" # from OIDC Outline page in Pocket-ID
   OIDC_AUTH_URI: "https://pocket-id.pengiuns.com/authorize"
   OIDC_TOKEN_URI: "https://pocket-id.pengiuns.com/api/oidc/token"
   OIDC_USERINFO_URI: "https://pocket-id.pengiuns.com/api/oidc/userinfo"
