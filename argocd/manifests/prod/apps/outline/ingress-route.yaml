@@ -6,7 +6,7 @@ metadata:
   name: outline
   namespace: outline
   labels:
-    tinyauth.apps.hiker.oauth.groups: family
+    tinyauth.apps.outline.oauth.groups: family
 spec:
   entryPoints:
     - web  # Using web (port 80) because Cloudflare Tunnel sends to traefik:80, not :443
