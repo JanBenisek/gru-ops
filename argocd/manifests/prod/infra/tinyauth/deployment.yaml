@@ -44,7 +44,7 @@ spec:
           - name: TINYAUTH_SESSION_EXPIRY
             value: "86400"  # Session expires after 24 hours (86400 seconds)
           - name: TINYAUTH_AUTH_LOGINTIMEOUT
-            value: 300  # Login Atimeout: 5 minutes (300 seconds)
+            value: "300"  # Login Atimeout: 5 minutes (300 seconds)
           - name: TINYAUTH_APP_TITLE
             value: Bello!
           # Figure out later
