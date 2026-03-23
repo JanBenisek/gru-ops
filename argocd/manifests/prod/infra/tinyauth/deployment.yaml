@@ -67,7 +67,7 @@ spec:
             value: "openid email profile groups" # not sure what this is
           - name: TINYAUTH_PROVIDERS_POCKETID_NAME
             value: "Pocket ID"
-          - name: TINYAUTH_OAUTH_AUTO_REDIRECT
+          - name: TINYAUTH_OAUTH_AUTOREDIRECT 
             value: "pocketid"
         resources:
           requests:
