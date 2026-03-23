@@ -1,0 +1,27 @@
+# Needed to pass db credentials as secrets
+apiVersion: k8up.io/v1
+kind: PodConfig
+metadata:
+  name: backup-env-config-pocketid-db
+  namespace: cnpg
+  annotations:
+    k8up.io/backupcommand: sh -c 'PGDATABASE=pocketid PGHOST=cnpg-rw pg_dump --clean'
+    k8up.io/file-extension: .sql
+spec:
+  template:
+    spec:
+      containers:
+        - name: backup
+          env:
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: bot-pocketid-pswd
+                  key: password
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: bot-pocketid-pswd
+                  key: username
+          securityContext:
+            allowPrivilegeEscalation: true

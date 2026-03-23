@@ -142,13 +142,13 @@ k describe backup immich-backup-manual -n immich
 - Manually:
 
 ```shell
-export AWS_ACCESS_KEY_ID="RYH6OMTZVDF0D0UR4B4X"
-export AWS_SECRET_ACCESS_KEY="9fsn9RCiHHqXd9kB2R7gkcH0rCtte6p3oKXujh6o"
+export AWS_ACCESS_KEY_ID="SECRET"
+export AWS_SECRET_ACCESS_KEY="SECRET"
 export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/immich/manual/"
 export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/immich/scheduled/"
 export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/postgres/immich/scheduled/"
 export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/postgres/immich/manual/"
-export RESTIC_PASSWORD="<>"
+export RESTIC_PASSWORD="PSWD"
 
 # List all snapshots
 restic snapshots
@@ -307,7 +307,7 @@ k edit deployment metrics-server -n kube-system
 create database pocketid;
 create user bot_pocketid with password 'PWD';
 alter database pocketid owner to bot_pocketid;
-grant all privileges on database pocketid to bot_pocketid;I
+grant all privileges on database pocketid to bot_pocketid;
 ```
 
 - Secrets - somehow it needs both secrets in one, but I am also keeping the DB separate in cnpg

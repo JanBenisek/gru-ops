@@ -1,11 +1,10 @@
 apiVersion: k8up.io/v1
-kind: Backup
+kind: Restore
 metadata:
-  name: backup-immich-db-manual
+  name: restore-immich-db
   namespace: cnpg
 spec:
-  podConfigRef:
-    name: backup-env-config-immich-db
+  snapshot: "44228812"
   backend:
     s3:
       endpoint: https://fsn1.your-objectstorage.com
@@ -19,3 +18,5 @@ spec:
     repoPasswordSecretRef:
       name: restic-credentials
       key: password
+  podConfigRef:
+    name: backup-env-config-immich-db
