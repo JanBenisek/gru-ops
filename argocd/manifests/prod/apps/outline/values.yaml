@@ -10,6 +10,9 @@ podAnnotations:
 extraEnvVars:
   NODE_ENV: "production"
   TZ: "Europe/Zurich"
+  # Pin these secrets to prevent regeneration - critical for user authentication
+  SECRET_KEY: "1181411ccadd4a8b2c0659c315a7e591cbe880d9a4f88d7cc65380d0139f3e75"
+  UTILS_SECRET: "77f7b0f9dff87afa2bdb7c6504902fb4f5f79bb25a4c11db1a3c52873a108ca8"
   # Pocket-ID
   OIDC_CLIENT_ID: "93fe5647-3be0-4960-966d-873bb00f2dff"
   OIDC_CLIENT_SECRET: "Ov1tZW1BAJ7KCEbZ9KWFyBD750ooQMI1"
@@ -59,12 +62,6 @@ redis:
 
 postgresql:
   enabled: false
-
-# Pin these secrets to prevent regeneration on deployment
-# These are critical - changing them will break existing user authentication
-secret:
-  secretKey: "1181411ccadd4a8b2c0659c315a7e591cbe880d9a4f88d7cc65380d0139f3e75"
-  utilsSecret: "77f7b0f9dff87afa2bdb7c6504902fb4f5f79bb25a4c11db1a3c52873a108ca8"
 
 externalPostgresql:
   host: "vchord-postgres.pengiuns.com"
