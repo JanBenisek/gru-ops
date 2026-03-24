@@ -8,10 +8,10 @@ domainFilters:
 # Based on what we create records in DNS
 # Sometimes I use regular ingress, but cloudflare tunnel apps
 #  I am using ingress route where I can controll it more.
-sources: 
-  # - crd # Keep commented out for now
+sources:
   - service
   - ingress # only check default k8s ingress, not from traefik
+  - traefik-proxy # Watch Traefik IngressRoute CRDs for DNS
 provider:
   name: cloudflare
   proxied: false

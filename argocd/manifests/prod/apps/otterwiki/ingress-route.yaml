@@ -7,6 +7,9 @@ metadata:
   namespace: otterwiki
   labels:
     tinyauth.apps.otterwiki.oauth.groups: family
+  annotations:
+    external-dns.alpha.kubernetes.io/target: d65bf19e-11ed-4df3-81c1-b76923b14de4.cfargotunnel.com
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
 spec:
   entryPoints:
     - web  # Using web (port 80) because Cloudflare Tunnel sends to traefik:80, not :443
