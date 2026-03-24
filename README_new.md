@@ -563,6 +563,12 @@ alter role bot_outline createdb;
 }
 ```
 
+### Otter Wiki
+
+- [Installation](https://otterwiki.com/Installation)
+- [Configuration](https://otterwiki.com/Configuration)
+- [Helm](https://github.com/redimp/otterwiki/blob/main/helm/README.md)
+
 
 ### IT-Tools
 
