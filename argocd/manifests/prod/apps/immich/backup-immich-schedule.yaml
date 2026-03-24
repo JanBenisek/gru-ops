@@ -7,7 +7,7 @@ spec:
   backend:
     s3:
       endpoint: https://fsn1.your-objectstorage.com
-      bucket: gru-k8up-backups/immich/scheduled/
+      bucket: gru-k8up-backups/pvc/immich/scheduled/
       accessKeyIDSecretRef:
         name: hetzner-credentials
         key: user

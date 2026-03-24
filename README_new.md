@@ -174,10 +174,10 @@ restic check
 #### Delete/List/Upload
  objects
 ```bash
-export AWS_ACCESS_KEY_ID=PSWD
-export AWS_SECRET_ACCESS_KEY=PSWD
-aws s3 rm s3://pengiunsbackup --recursive --endpoint-url https://hel1.your-objectstorage.com
-aws s3 ls s3://gru-k8up-backups --recursive --endpoint-url https://fsn1.your-objectstorage.com
+export AWS_ACCESS_KEY_ID=PWD
+export AWS_SECRET_ACCESS_KEY=PWD
+aws s3 ls s3://gru-k8up-backups/immich --recursive --endpoint-url https://fsn1.your-objectstorage.com
+aws s3 rm s3://gru-k8up-backups/postgres --recursive --endpoint-url https://fsn1.your-objectstorage.com
 echo "hello" | aws s3 cp - s3://gru-k8up-backups/test.txt --endpoint-url https://fsn1.your-objectstorage.com
 ```
 
