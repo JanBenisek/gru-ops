@@ -1,0 +1,30 @@
+apiVersion: k8up.io/v1
+kind: Schedule
+metadata:
+  name: pocket-id-backup-schedule
+  namespace: pocket-id
+spec:
+  backend:
+    s3:
+      endpoint: https://fsn1.your-objectstorage.com
+      bucket: gru-k8up-backups/pvc/pocket-id/scheduled/
+      accessKeyIDSecretRef:
+        name: hetzner-credentials
+        key: user
+      secretAccessKeySecretRef:
+        name: hetzner-credentials
+        key: password
+    repoPasswordSecretRef:
+      name: restic-credentials
+      key: password
+  backup:
+    schedule: "0 2 * * *" # runs daily at 2am
+    failedJobsHistoryLimit: 2
+    successfulJobsHistoryLimit: 2
+  check:
+    schedule: '0 1 * * 1' # runs every monday, validates integrity of backup
+  prune:
+    schedule: '0 1 * * 0' # every sunday at 1am, prunes based on retention policy
+    retention:
+      keepLast: 5 # keeps last 5 snapshots
+      keepDaily: 14 # one backup per day for 14 days

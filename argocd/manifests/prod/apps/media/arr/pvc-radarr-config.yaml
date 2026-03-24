@@ -3,6 +3,8 @@ apiVersion: v1
 metadata:
   name: pvc-radarr-config
   namespace: media
+  annotations:
+    k8up.io/backup: "true"
 spec:
   storageClassName: synology-storage-apps
   volumeName: pvc-d758942b-51e3-435b-bf4e-14b078539cec

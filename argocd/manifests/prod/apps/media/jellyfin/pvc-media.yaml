@@ -5,6 +5,7 @@ metadata:
   namespace: media
   annotations:
     argocd.argoproj.io/sync-wave: "1"
+    k8up.io/backup: "false"
 spec:
   storageClassName: synology-storage-media
   volumeName: pvc-49291478-8164-4a41-b729-8903ab727423

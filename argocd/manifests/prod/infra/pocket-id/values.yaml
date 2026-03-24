@@ -86,6 +86,8 @@ persistence:
     storageClass: "synology-storage-apps"
     accessMode: ReadWriteOnce
     size: 10Gi
+    annotations:
+      k8up.io/backup: "true"
 
 ingress:
   enabled: false # Handled by ingress route

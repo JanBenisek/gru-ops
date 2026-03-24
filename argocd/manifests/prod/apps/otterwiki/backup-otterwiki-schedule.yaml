@@ -1,0 +1,30 @@
+apiVersion: k8up.io/v1
+kind: Schedule
+metadata:
+  name: otterwiki-backup-schedule
+  namespace: otterwiki
+spec:
+  backend:
+    s3:
+      endpoint: https://fsn1.your-objectstorage.com
+      bucket: gru-k8up-backups/pvc/otterwiki/scheduled/
+      accessKeyIDSecretRef:
+        name: hetzner-credentials
+        key: user
+      secretAccessKeySecretRef:
+        name: hetzner-credentials
+        key: password
+    repoPasswordSecretRef:
+      name: restic-credentials
+      key: password
+  backup:
+    schedule: "0 4 * * *" # runs daily at 4am (offset from other backups)
+    failedJobsHistoryLimit: 2
+    successfulJobsHistoryLimit: 2
+  check:
+    schedule: '0 3 * * 1' # runs every monday at 3am, validates integrity of backup
+  prune:
+    schedule: '0 3 * * 0' # every sunday at 3am, prunes based on retention policy
+    retention:
+      keepLast: 5 # keeps last 5 snapshots
+      keepDaily: 14 # one backup per day for 14 days

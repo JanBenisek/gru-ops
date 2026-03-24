@@ -62,7 +62,8 @@ persistence:
   enabled: true
   size: 2Gi
   accessMode: ReadWriteOnce
-  annotations: {}
+  annotations:
+    k8up.io/backup: "true"
   storageClassName: "synology-storage-apps"
 
 nodeSelector: {}

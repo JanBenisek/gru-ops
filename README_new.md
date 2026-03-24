@@ -568,6 +568,7 @@ alter role bot_outline createdb;
 - [Installation](https://otterwiki.com/Installation)
 - [Configuration](https://otterwiki.com/Configuration)
 - [Helm](https://github.com/redimp/otterwiki/blob/main/helm/README.md)
+- [Alternatives](https://github.com/awesome-selfhosted/awesome-selfhosted?tab=readme-ov-file#wikis)
 
 
 ### IT-Tools

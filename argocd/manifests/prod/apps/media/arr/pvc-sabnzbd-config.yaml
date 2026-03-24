@@ -3,6 +3,8 @@ apiVersion: v1
 metadata:
   name: pvc-sabnzbd-config
   namespace: media
+  annotations:
+    k8up.io/backup: "true"
 spec:
   storageClassName: synology-storage-apps
   volumeName: pvc-da088831-31e2-4557-a4c0-8f7b70b1f3ba

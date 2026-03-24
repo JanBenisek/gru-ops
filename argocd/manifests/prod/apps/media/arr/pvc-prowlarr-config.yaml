@@ -3,6 +3,8 @@ apiVersion: v1
 metadata:
   name: pvc-prowlarr-config
   namespace: media
+  annotations:
+    k8up.io/backup: "true"
 spec:
   storageClassName: synology-storage-apps
   volumeName: pvc-5b09e37c-b3e7-4e55-afc4-45c2094bbc85
