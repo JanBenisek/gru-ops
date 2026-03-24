@@ -47,11 +47,9 @@ spec:
           key: password
       data:
         compression: gzip
-        encryption: AES256
         jobs: 2
       wal:
         compression: gzip
-        encryption: AES256
     retentionPolicy: "30d"
 
   managed:
