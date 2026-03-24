@@ -10,7 +10,7 @@ spec:
   sources:
   - repoURL: https://charts.otterwiki.com
     chart: otterwiki
-    targetRevision: "1.52.0"
+    targetRevision: "0.1.2"
     helm:
       valueFiles:
       - $values/argocd/manifests/prod/apps/otterwiki/values.yaml
