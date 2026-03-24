@@ -1,0 +1,35 @@
+# Use instead of Ingress
+# Each app requires one like this if I want to use Auth
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: otterwiki
+  namespace: otterwiki
+  labels:
+    tinyauth.apps.otterwiki.oauth.groups: family
+spec:
+  entryPoints:
+    - web  # Using web (port 80) because Cloudflare Tunnel sends to traefik:80, not :443
+           # TLS termination happens at Cloudflare, so internal traffic is HTTP
+  routes:
+    - match: Host(`otterwiki.pengiuns.com`)
+      kind: Rule
+      middlewares:
+        - name: tinyauth
+          namespace: otterwiki  # Explicitly specify namespace for cross-namespace middleware reference
+      services:
+        - name: otterwiki
+          port: 80 # matches service port
+  # TLS not needed here - Cloudflare Tunnel already handles TLS termination
+  # tls:
+  #   secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+
+
+# Step-by-step flow:
+# Browser → HTTPS request → Cloudflare (TLS termination) → Cloudflare Tunnel → Traefik entrypoint web (port 80)
+# Traefik checks IngressRoute rules:
+# Host matches hiker.pengiuns.com? ✅
+# Traefik applies middleware:
+# ForwardAuth → TinyAuth internal check (http://tinyauth.tinyauth.svc.cluster.local:3000/api/auth/traefik)
+# If allowed → Traefik forwards to service hiker port 80
+# TLS termination happens at Cloudflare → internal k8s traffic is HTTP

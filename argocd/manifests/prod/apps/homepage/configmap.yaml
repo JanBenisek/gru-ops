@@ -140,6 +140,12 @@ data:
             description: Gib!
             namespace: immich
             app: immich-proxy
+        - Otter Wiki:
+            icon: otter-wiki-dark.svg
+            href: https://otterwiki.pengiuns.com
+            description: Otter helps!
+            namespace: otterwiki
+            app: otterwiki
 
     - Fun:
         - Hiker:

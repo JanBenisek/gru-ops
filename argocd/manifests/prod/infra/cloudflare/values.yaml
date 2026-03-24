@@ -41,6 +41,10 @@ cloudflare:
     - hostname: outline.pengiuns.com
       service: http://traefik.traefik.svc.cluster.local:80
 
+    # OtterWiki (protected via TinyAuth middleware)
+    - hostname: otterwiki.pengiuns.com
+      service: http://traefik.traefik.svc.cluster.local:80
+
 
 image:
   repository: cloudflare/cloudflared
