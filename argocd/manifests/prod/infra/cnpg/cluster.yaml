@@ -32,6 +32,31 @@ spec:
   storage:
     size: 20Gi
     storageClass: synology-storage-apps
+# RESTORE FROM BACKUP
+# -> delete cluster (will also remove PVC), uncomment this, apply
+# -> once ok, comment this out (bootstrap and externalClusters)
+#   # Bootstrap from backup
+#   bootstrap:
+#     recovery:
+#       source: cnpg-backup
+#       # recoveryTarget:
+#       #   # Restore immediately (latest consistent state)
+#       #   targetImmediate: true
+#   # Reference to backup location
+#   externalClusters:
+#     - name: cnpg-backup
+#       barmanObjectStore:
+#         destinationPath: s3://gru-k8up-backups/barman/postgres/cnpg-cluster/
+#         endpointURL: https://fsn1.your-objectstorage.com
+#         s3Credentials:
+#           accessKeyId:
+#             name: hetzner-credentials
+#             key: user
+#           secretAccessKey:
+#             name: hetzner-credentials
+#             key: password
+#         wal:
+#           compression: gzip
 
   # Continuous backup to S3 using Barman
   backup:

@@ -234,7 +234,7 @@ echo "hello" | aws s3 cp - s3://gru-k8up-backups/test.txt --endpoint-url https:/
     prometheus.io/path: "/metrics"    # optional, defaults to /metrics
 ```
 
-### PostgreSQL
+### CNPG
 
 > Using cloudnative-pg with vchord extension, v18.
 
@@ -275,104 +275,9 @@ create extension fuzzystrmatch;
 - Includes base backups + WAL archiving for point-in-time recovery
 - Retention: 30 days
 - Schedule: Daily at 2am via ScheduledBackup
-
-**Check backup status**
-```shell
-# View cluster backup status
-kubectl describe cluster cnpg -n cnpg | grep -A 10 "Backup"
-
-# List all backups
-kubectl get backup -n cnpg
-
-# Check scheduled backup
-kubectl get scheduledbackup -n cnpg
-
-# View backup logs
-kubectl logs -n cnpg -l postgresql=cnpg --tail=100 | grep barman
-```
-
-**Trigger manual backup**
-```shell
-# Create on-demand backup
-kubectl apply -f - <<EOF
-apiVersion: postgresql.cnpg.io/v1
-kind: Backup
-metadata:
-  name: cnpg-manual-backup-$(date +%Y%m%d-%H%M%S)
-  namespace: cnpg
-spec:
-  cluster:
-    name: cnpg
-EOF
-
-# Watch backup progress
-kubectl get backup -n cnpg -w
-```
-
-**Restore from backup (Full Recovery)**
-```shell
-# 1. IMPORTANT: This creates a NEW cluster, does not restore in-place
-# 2. Edit cluster-recovery-example.yaml and change metadata.name to something unique
-# 3. Apply the recovery cluster
-kubectl apply -f argocd/manifests/prod/infra/cnpg/cluster-recovery-example.yaml
-
-# 4. Watch recovery progress
-kubectl get cluster cnpg-restored -n cnpg -w
-
-# 5. Check recovery status
-kubectl describe cluster cnpg-restored -n cnpg
-
-# 6. Once ready, update your apps to point to the new cluster
-# Update connection strings from cnpg-rw to cnpg-restored-rw
-```
-
-**Point-in-Time Recovery (PITR)**
-```shell
-# Restore to specific timestamp (edit cluster-recovery-example.yaml)
-# Uncomment the targetTime line and set your desired timestamp:
-#
-# bootstrap:
-#   recovery:
-#     source: cnpg-backup
-#     recoveryTarget:
-#       targetTime: "2026-03-24 14:30:00.00000+00"
-
-# Then apply as above
-kubectl apply -f argocd/manifests/prod/infra/cnpg/cluster-recovery-example.yaml
-```
-
-**Restore single database (2-step process)**
-```shell
-# Since Barman backs up the entire cluster, you need to:
-
-# 1. Restore entire cluster to temporary location
-kubectl apply -f argocd/manifests/prod/infra/cnpg/cluster-recovery-example.yaml
-
-# 2. Wait for recovery to complete
-kubectl wait --for=condition=Ready cluster/cnpg-restored -n cnpg --timeout=300s
-
-# 3. Extract just the database you need
-kubectl exec -n cnpg cnpg-restored-1 -- pg_dump -U postgres metabase > metabase-restore.sql
-
-# 4. Restore to production cluster
-kubectl exec -i -n cnpg cnpg-1 -- psql -U postgres metabase < metabase-restore.sql
-
-# 5. Clean up temporary cluster
-kubectl delete cluster cnpg-restored -n cnpg
-```
-
-**Browse backups with restic (if needed)**
-```shell
-# Set up environment
-export AWS_ACCESS_KEY_ID="YOUR_ACCESS_KEY"
-export AWS_SECRET_ACCESS_KEY="YOUR_SECRET_KEY"
-export RESTIC_PASSWORD="YOUR_RESTIC_PASSWORD"
-export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/postgres/cnpg-cluster/"
-
-# Note: Barman uses different structure than restic,
-# use barman-cloud-backup-list instead:
-# Requires barman-cli-cloud package
-```
+- See backup: `k get backup -n cnpg`
+- It is possible to run a manual backup or recover from ID or point in time.
+- For restore, see comments in `cluster`.
 
 ### Metallb
 
