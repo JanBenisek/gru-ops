@@ -33,8 +33,26 @@ spec:
     size: 20Gi
     storageClass: synology-storage-apps
 
-  # bootstrap:
-    # initdb:
+  # Continuous backup to S3 using Barman
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://gru-k8up-backups/barman/postgres/cnpg-cluster/
+      endpointURL: https://fsn1.your-objectstorage.com
+      s3Credentials:
+        accessKeyId:
+          name: hetzner-credentials
+          key: user
+        secretAccessKey:
+          name: hetzner-credentials
+          key: password
+      data:
+        compression: gzip
+        encryption: AES256
+        jobs: 2
+      wal:
+        compression: gzip
+        encryption: AES256
+    retentionPolicy: "30d"
 
   managed:
     services:
