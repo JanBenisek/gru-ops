@@ -26,7 +26,6 @@ updateStrategy:
   # Single instance is ensured by replicaCount: 1 (required for v2 database locking)
   type: RollingUpdate
   rollingUpdate:
-    maxUnavailable: "100%"
     partition: 0
     
 pocketID:

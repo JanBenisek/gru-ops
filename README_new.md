@@ -146,6 +146,7 @@ export AWS_ACCESS_KEY_ID="PWD"
 export AWS_SECRET_ACCESS_KEY="PWD"
 export RESTIC_PASSWORD="PWD"
 export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/immich/scheduled/"
+export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/pvc/otterwiki/scheduled/"
 export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/postgres/immich/scheduled/"
 export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/postgres/metabase/scheduled/"
 
