@@ -186,9 +186,9 @@ ingress:
     kubernetes.io/ingress.class: "traefik"
     traefik.ingress.kubernetes.io/max-body-size: "100M"
   hosts:
-    - jupyter.pengiuns.com
+    - jupyterhub.pengiuns.com
   tls:
     - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
       hosts:
-        - jupyter.pengiuns.com
+        - jupyterhub.pengiuns.com
 
