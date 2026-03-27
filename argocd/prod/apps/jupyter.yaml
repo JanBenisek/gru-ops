@@ -10,7 +10,7 @@ spec:
   sources:
   - repoURL: https://hub.jupyter.org/helm-chart/
     chart: jupyterhub
-    targetRevision: "4.2.0"
+    targetRevision: "4.3.3"
     helm:
       valueFiles:
       - $values/argocd/manifests/prod/apps/jupyterhub/values.yaml
