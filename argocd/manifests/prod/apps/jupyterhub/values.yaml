@@ -41,8 +41,8 @@ hub:
       client_secret: "60tED5rCoeDKh3xu7QlZWbYG8wVYtg60"
       oauth_callback_url: https://jupyterhub.pengiuns.com/hub/oauth_callback
       authorize_url: https://pocket-id.pengiuns.com/authorize
-      token_url: https://pocket-id.pengiuns.com/oauth/token
-      userdata_url: https://pocket-id.pengiuns.com/oauth/userinfo
+      token_url: https://pocket-id.pengiuns.com/api/oidc/token
+      userdata_url: https://pocket-id.pengiuns.com/api/oidc/userinfo
       username_claim: preferred_username
       scope:
         - openid
