@@ -1,0 +1,26 @@
+# # Testing restore
+# apiVersion: k8up.io/v1
+# kind: Restore
+# metadata:
+#   name: otterwiki-restore
+#   namespace: otterwiki
+# spec:
+#   backend:
+#     s3:
+#       endpoint: https://fsn1.your-objectstorage.com
+#       bucket: gru-k8up-backups/pvc/otterwiki/scheduled/
+#       accessKeyIDSecretRef:
+#         name: hetzner-credentials
+#         key: user
+#       secretAccessKeySecretRef:
+#         name: hetzner-credentials
+#         key: password
+#     repoPasswordSecretRef:
+#       name: restic-credentials
+#       key: password
+
+#   snapshot: latest
+
+#   restoreMethod:
+#     folder:
+#       claimName: otterwiki-pvc
