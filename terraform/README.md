@@ -51,11 +51,15 @@ t config merge ./talosconfig
 # master
 t upgrade -n kevin --image factory.talos.dev/metal-installer/5a0d85f0683f3cfe1eddb883e8b9943e651c4a1e644570001dc315ecb3310225:v1.11.6
 
+t upgrade -n kevin --image factory.talos.dev/metal-installer/5a0d85f0683f3cfe1eddb883e8b9943e651c4a1e644570001dc315ecb3310225:v1.12.6
+
 # workers
 t upgrade -n stuart --image factory.talos.dev/metal-installer/5a0d85f0683f3cfe1eddb883e8b9943e651c4a1e644570001dc315ecb3310225:v1.11.6
 
+t upgrade -n stuart --image factory.talos.dev/metal-installer/5a0d85f0683f3cfe1eddb883e8b9943e651c4a1e644570001dc315ecb3310225:v1.12.6
+
 # k8s update (can be worker or master)
-t -n kevin upgrade-k8s --to "1.34.2"
+t -n kevin upgrade-k8s --to "1.35.3"
 ```
 
 ### Renew expired certs

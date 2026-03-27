@@ -25,19 +25,19 @@ variable "worker_stuart_node_ip" {
 variable "talos_version" {
   description = "Talos version to use for secrets and configuration"
   type        = string
-  default     = "v1.11.6"
+  default     = "v1.12.6"
 }
 
 variable "talos_image" {
   description = "Talos version to use for secrets and configuration"
   type        = string
-  default     = "factory.talos.dev/metal-installer/5a0d85f0683f3cfe1eddb883e8b9943e651c4a1e644570001dc315ecb3310225:v1.11.6"
+  default     = "factory.talos.dev/metal-installer/5a0d85f0683f3cfe1eddb883e8b9943e651c4a1e644570001dc315ecb3310225:v1.12.6"
 }
 
 variable "k8s_version" {
   description = "k8s version to use for kubelet"
   type        = string
-  default     = "v1.34.2"
+  default     = "v1.35.3"
 }
 
 
