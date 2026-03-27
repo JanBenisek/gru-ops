@@ -34,7 +34,7 @@ hub:
 
     Authenticator:
       admin_users:
-        - corgi
+        - jan
 
     GenericOAuthenticator:
       client_id: "5a6a698f-da25-4b8b-9e4e-28602ed4ecf5"
