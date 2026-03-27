@@ -118,9 +118,9 @@ data:
             app: outline
         - JupyterHub:
             icon: jupyter.png
-            href: https://jupyter.pengiuns.com
-            description: Make some cool shit!
-            namespace: jupyter
+            href: https://jupyterhub.pengiuns.com
+            description: Notebooks belong to production!!!
+            namespace: jupyterhub
             app: jupyterhub
         - NextCloud:
             icon: nextcloud.png
