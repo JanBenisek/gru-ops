@@ -19,8 +19,14 @@
 #       name: restic-credentials
 #       key: password
 
-#   snapshot: latest
+#   # snapshot: edec0c14 # find latest hash
 
 #   restoreMethod:
 #     folder:
-#       claimName: otterwiki-pvc
+#       claimName: otterwiki
+
+#   # this job runs as non-root by default, but there were already files with specific permissions/ownership
+#   # restic needs permission to restore/replace the files
+#   podSecurityContext:
+#     runAsUser: 0
+#     fsGroup: 0
