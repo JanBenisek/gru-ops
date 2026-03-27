@@ -13,6 +13,8 @@ config:
   SITE_NAME: 'Otterwiki'
   SITE_DESCRIPTION: 'Document it!'
   SITE_LANG: 'en'
+  COMMIT_MESSAGE: 'DISABLED'
+  ADMIN_USER_EMAIL: 'benisekj@gmail.com'
   # RETAIN_PAGE_NAME_CASE: false
   # GIT_WEB_SERVER: false
 
