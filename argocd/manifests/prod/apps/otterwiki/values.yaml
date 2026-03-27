@@ -63,7 +63,7 @@ persistence:
   accessMode: ReadWriteOnce
   annotations:
     k8up.io/backup: "true"
-  storageClassName: "synology-storage-apps"
+  storageClass: "synology-storage-apps"
 
 nodeSelector: {}
 
