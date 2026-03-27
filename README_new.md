@@ -479,6 +479,25 @@ create extension if not exists earthdistance cascade;
 - Add `immich-share.pengiuns.com` to Server Settings -> External Domain 
 - `CNAME` record must have the `<tunnel ID>.cfargotunnel.com` in `target`.
 
+### jupyter
+
+- [docs](https://z2jh.jupyter.org/en/stable/jupyterhub/installation.html)
+- [images](https://github.com/jupyter/docker-stacks/tree/main/images)
+  - more: https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-datascience-notebook
+- [repo](https://github.com/jupyterhub/zero-to-jupyterhub-k8s)
+- [values](https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/HEAD/jupyterhub/values.yaml)
+- [refrence](https://z2jh.jupyter.org/en/latest/resources/reference.html)
+- [Helm chart](https://github.com/jupyterhub/helm-chart)
+- Kernels
+  - https://github.com/jupyter/jupyter/wiki/Jupyter-kernels
+  - https://github.com/gopherdata/gophernotes
+  - https://jupyter-docker-stacks.readthedocs.io/en/latest/index.html
+
+- Secrets
+```bash
+./aux/seal-secret.sh jupyterhub-proxy-token jupyterhub token=TOKENs prod/apps/jupyterhub
+```
+
 ### Next Cloud
 
 > Experiment with self-hosted cloud

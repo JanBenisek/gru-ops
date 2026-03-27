@@ -1,0 +1,22 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "jupyterhub-proxy-token",
+    "namespace": "jupyterhub",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "jupyterhub-proxy-token",
+        "namespace": "jupyterhub",
+        "creationTimestamp": null
+      },
+      "data": null
+    },
+    "encryptedData": {
+      "token": "AgBVo8+ukV3jNaYiq7wWPnh+JkkU26WSy9O99pdxxAaZDrSg6WchTNLCN13/2ETI4TAmnk+2AtCQKjDPYKO8iJRHVEFEMgYjI9Tg9LQGBoM0gyrKJK8Jjo+mo62H3VRTmJwcnR74f6385lSXoYEw3Jb2MbyMNzCw4O234t7G+k1gI//65A52jeLUaQ4SD2esyzqnlZ/TnHycMCreSZDhG96vudv4ywfJk8ZpAMuKGqXMZ7PzAh9p2N43xfmpiRuhonemWZGMQLO/PXfB0+k5SnO0ZbNJ5GNVRir5Z1KGKpzn7MQYWNTBh+RqhbBn0dys09265H9sWDS/tJsXjN9/bj9LwpisDXm3tad3dnohfduMNaC4gXiAJKRI4Ji0McuIbba98P0etenUz48ipR4qP3aFwmvriCPQ9ZGf6G98FtZfjwmt0GTwS3UdZfP+TFi3VdVVQ8gGEYHxmQsDSDq4hFuvaW/forfUZg19QEm35AihwcWlR4dU26275sHhE3SKtOiikLYveuRs8kZqQy2Ci8ta8Vn5GaQzVROY4JopTm9Flmf1R8P/kkea/qcwXMRxEicoHBPbfp5WH1KMiIoKJrCkclAM3hrMLfwXDY+I9ymwQe4yzdsrG4CR4DYZA6DzSlNE+SV7tcjU0lOY8RKw/MilsGv1Sb8ov0X+cdTr+7PggXPQgJ1tgpcQyAUvKUHaqqSnlUh8cKVVoInqSmc4j3Nnc7Baya0b2U0Bnf2qnYnbkvNL39FyJdJYzVK6c0TWSrbRUpAU9+WL6WL9LqXopchL"
+    }
+  }
+}
