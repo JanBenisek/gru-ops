@@ -7,7 +7,7 @@ image:
   # -- Operator image repository
   repository: k8up-io/k8up
   # -- Operator image tag (version)
-  tag: v2.14.0
+  tag: v2.15.0
 
 k8up:
   # https://docs.k8up.io/k8up/2.12/references/operator-config-reference.html
