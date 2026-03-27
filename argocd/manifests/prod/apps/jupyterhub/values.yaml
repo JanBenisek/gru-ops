@@ -28,17 +28,31 @@ hub:
   config:
     JupyterHub:
       admin_access: true
-      authenticator_class: dummy
+      authenticator_class: generic-oauth
       log_level: 'DEBUG'
       # proxy_auth_token: ""
-    
+
     Authenticator:
       admin_users:
         - corgi
       allowed_users:
         - penguin
-    DummyAuthenticator:
-      password: a-shared-secret-password
+
+    GenericOAuthenticator:
+      client_id: "5a6a698f-da25-4b8b-9e4e-28602ed4ecf5"
+      client_secret: "60tED5rCoeDKh3xu7QlZWbYG8wVYtg60"
+      oauth_callback_url: https://jupyterhub.pengiuns.com/hub/oauth_callback
+      authorize_url: https://pocket-id.pengiuns.com/authorize
+      token_url: https://pocket-id.pengiuns.com/oauth/token
+      userdata_url: https://pocket-id.pengiuns.com/oauth/userinfo
+      username_claim: preferred_username
+      claim_groups_key: groups
+      allowed_groups: []  # Empty means all authenticated users
+      admin_groups: []    # Optional: groups that get admin access
+      scope:
+        - openid
+        - profile
+        - email
 
 proxy:
   #  openssl rand -hex 3
