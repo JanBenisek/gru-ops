@@ -63,8 +63,6 @@ proxy:
         memory: 128Mi
 
 singleuser:
-  extraAnnotations:
-    k8up.io/backup: "true"
   allowPrivilegeEscalation: true
   uid: 0 # run as root!
   # uid: 1000 # is default user in JupyterHub - jovyan
