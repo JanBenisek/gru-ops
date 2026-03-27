@@ -30,8 +30,7 @@ hub:
       admin_access: true
       authenticator_class: dummy
       log_level: 'DEBUG'
-      # TODO: use secret
-      proxy_auth_token: 93b2706b1babfb2f74a33ca51cfa592d94c8309298735b9526d83ed3d87e0ed4
+      # proxy_auth_token: ""
     
     Authenticator:
       admin_users:
