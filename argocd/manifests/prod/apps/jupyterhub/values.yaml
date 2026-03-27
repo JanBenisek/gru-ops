@@ -71,6 +71,9 @@ singleuser:
   
   defaultUrl: "/lab" # default Jupyter
 
+  cloudMetadata:
+    blockWithIptables: false
+
   storage:
     type: dynamic
     capacity: 2Gi
