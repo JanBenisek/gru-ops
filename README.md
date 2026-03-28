@@ -54,3 +54,10 @@ GitOps-style with ArgoCD, exposing some apps to the internet with Cloudflare tun
 <div align="center">
   <img src="assets/gru.png" alt="Gru Homelab" width="100%" />
 </div>
+
+## NAS
+
+`Synology DS920+` aka Choko
+- Intel Celeron J4125 2.0 GHz *(4 cores, 4 threads, 4MB cache, 10W)*
+- 4GB DDR4 RAM (added +8GB myself), two 1GbE ports, and two M.2 NVMe slots for SSD caching.
+- 2x 4TB WD Red (WD40EFRX)
