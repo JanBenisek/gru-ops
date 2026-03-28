@@ -34,7 +34,6 @@ hub:
       admin_access: true
       authenticator_class: generic-oauth
       log_level: 'DEBUG'
-      # proxy_auth_token: ""
 
     Authenticator:
       admin_users:
@@ -54,9 +53,6 @@ hub:
         - email
 
 proxy:
-  #  openssl rand -hex 3
-  #  read with echo ... | base64 -d
-  # secretToken: ""
   chp: # proxy pod, running jupyterhub/configurable-http-proxy
     resources:
       requests:
