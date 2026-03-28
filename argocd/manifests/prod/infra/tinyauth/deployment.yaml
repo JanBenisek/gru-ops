@@ -49,7 +49,7 @@ spec:
             value: Bello!
           # Figure out later
           - name: TINYAUTH_UI_BACKGROUNDIMAGE
-            value: "https://raw.githubusercontent.com/JanBenisek/public-assets/main/zermatt.jpg"
+            value: "https://raw.githubusercontent.com/JanBenisek/public-assets/main/assets/zermatt.jpg"
           # Connecting it to Pocket ID
           - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_CLIENTID
             value: 4b93b989-ebb5-48cf-b8f2-d5d4efc1cf15 # from UI Client ID
@@ -67,11 +67,11 @@ spec:
             value: "openid email profile groups" # not sure what this is
           - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_NAME
             value: "Pocket ID"
-          - name: TINYAUTH_OAUTH_AUTOREDIRECT 
+          - name: TINYAUTH_OAUTH_AUTOREDIRECT
             value: "pocketid"
         resources:
           requests:
-            memory: "128Mi"  
-            cpu: "10m"      
+            memory: "128Mi"
+            cpu: "10m"
           limits:
             memory: "1Gi"
