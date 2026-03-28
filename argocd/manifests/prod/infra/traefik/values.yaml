@@ -50,6 +50,15 @@ api:
   dashboard: true
   insecure: false
 
+# Increase timeouts for large file uploads (Docker registry)
+serversTransport:
+  insecureSkipVerify: false
+  maxIdleConnsPerHost: 42
+  forwardingTimeouts:
+    dialTimeout: 30s
+    responseHeaderTimeout: 3600s
+    idleConnTimeout: 3600s
+
 ingressRoute:
   dashboard:
     enabled: true
