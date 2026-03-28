@@ -24,7 +24,7 @@ tf state rm 'talos_machine_configuration_apply.worker_config_apply[0]'
 - [Factory](https://factory.talos.dev/)
 - [Extensions](https://github.com/siderolabs/extensions)
   - [More details](https://a-cup-of.coffee/blog/talos-ext/)
-- Inspect with 
+- Inspect with
 ```shell
 t get extensions -n kevin
 t ls /usr/local/lib/containers/iscsid -n kevin
@@ -96,4 +96,16 @@ yq eval '
 
 # regenerate .kube
 t kubeconfig ~/.kube/config -n kevin --force
+```
+
+## Proxmox
+
+- Provision Talos VM (manual for now)
+- [Docs](https://docs.siderolabs.com/talos/v1.10/platform-specific-installations/virtualized-platforms/proxmox)
+```bash
+# Get ISO
+ curl https://factory.talos.dev/image/5a0d85f0683f3cfe1eddb883e8b9943e651c4a1e644570001dc315ecb3310225/v1.12.6/metal-amd64.iso -L -o metal-amd64.iso
+
+# Check which disk is used for correct installation (patch file)
+t -n 192.168.178.103 get disks --insecure
 ```

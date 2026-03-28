@@ -40,8 +40,8 @@ resource "talos_machine_configuration_apply" "cp_config_apply" {
 ######################
 # WORKER - stuart
 ######################
-data "talos_machine_configuration" "machineconfig_worker" {
-  cluster_name     = var.cluster_name 
+data "talos_machine_configuration" "machineconfig_stuart" {
+  cluster_name     = var.cluster_name
   cluster_endpoint = var.cluster_endpoint
   machine_type     = "worker"
   machine_secrets  = talos_machine_secrets.machine_secrets.machine_secrets
@@ -55,9 +55,9 @@ data "talos_machine_configuration" "machineconfig_worker" {
   ]
 }
 
-resource "talos_machine_configuration_apply" "worker_config_apply" {
+resource "talos_machine_configuration_apply" "stuart_config_apply" {
   client_configuration        = talos_machine_secrets.machine_secrets.client_configuration
-  machine_configuration_input = data.talos_machine_configuration.machineconfig_worker.machine_configuration
+  machine_configuration_input = data.talos_machine_configuration.machineconfig_stuart.machine_configuration
   count                       = 1
   node                        = var.worker_stuart_node_ip
 }
@@ -75,7 +75,7 @@ resource "talos_machine_configuration_apply" "worker_config_apply" {
 #   node         = var.node
 
 #   cores        = 2    # Match existing
-#   memory       = 8192 # Match existing  
+#   memory       = 8192 # Match existing
 #   disk_size    = "20G" # Match existing
 #   disk_storage = "local-lvm"
 #   cpu_type     = "x86-64-v2-AES" # Match existing
@@ -89,6 +89,29 @@ resource "talos_machine_configuration_apply" "worker_config_apply" {
 #   boot_order   = "order=ide2;scsi0;net0" # Boot from ISO first
 # }
 
+# For now provisioned manually
+data "talos_machine_configuration" "machineconfig_bob" {
+  cluster_name     = var.cluster_name
+  cluster_endpoint = var.cluster_endpoint
+  machine_type     = "worker"
+  machine_secrets  = talos_machine_secrets.machine_secrets.machine_secrets
+
+  config_patches = [
+    templatefile("${path.module}/patches/worker-bob.yaml", {
+      talos_installer_image = var.talos_image
+      kubelet_image         = "ghcr.io/siderolabs/kubelet:${var.k8s_version}"
+      hostname              = "bob"
+    })
+  ]
+}
+
+resource "talos_machine_configuration_apply" "bob_config_apply" {
+  client_configuration        = talos_machine_secrets.machine_secrets.client_configuration
+  machine_configuration_input = data.talos_machine_configuration.machineconfig_bob.machine_configuration
+  count                       = 1
+  node                        = var.worker_bob_node_ip
+}
+
 ######################
 # BOOTSTRAP
 ######################
@@ -100,22 +123,23 @@ resource "talos_machine_bootstrap" "bootstrap" {
 
 # Sometimes better to comment out
 data "talos_cluster_health" "health" {
-  depends_on           = [ 
-    talos_machine_configuration_apply.cp_config_apply, 
-    talos_machine_configuration_apply.worker_config_apply # Adding worker Stuart
+  depends_on           = [
+    talos_machine_configuration_apply.cp_config_apply,
+    talos_machine_configuration_apply.stuart_config_apply, # Adding worker Stuart bob_config_apply
+    talos_machine_configuration_apply.bob_config_apply # Adding worker Bob
     ]
   client_configuration = data.talos_client_configuration.talosconfig.client_configuration
   control_plane_nodes  = [ var.control_plane_node_ip ]
-  worker_nodes         = [ var.worker_stuart_node_ip ] # Adding worker Stuart
+  worker_nodes         = [ var.worker_stuart_node_ip, var.worker_bob_node_ip ] # Adding worker Stuart
   endpoints            = data.talos_client_configuration.talosconfig.endpoints
 }
 
 
 resource "talos_cluster_kubeconfig" "kubeconfig" {
-  depends_on           = [ 
-      talos_machine_bootstrap.bootstrap, 
+  depends_on           = [
+      talos_machine_bootstrap.bootstrap,
       data.talos_cluster_health.health
-    ] 
+    ]
   client_configuration = talos_machine_secrets.machine_secrets.client_configuration
   node                 = var.control_plane_node_ip
 }

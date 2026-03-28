@@ -22,6 +22,12 @@ variable "worker_stuart_node_ip" {
   default     = "192.168.178.38"
 }
 
+variable "worker_bob_node_ip" {
+  description = "Worker node (Bob) IP"
+  type        = string
+  default     = "192.168.178.103"
+}
+
 variable "talos_version" {
   description = "Talos version to use for secrets and configuration"
   type        = string
