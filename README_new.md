@@ -42,6 +42,8 @@ kubectl create secret generic cloudflare-tunel-credentials \
 
 ### docker-registry
 
+> Container Registry
+
 - [Helm Chart](https://github.com/twuni/docker-registry.helm)
 - [Docker image](https://hub.docker.com/_/registry)
 - [Docs](https://distribution.github.io/distribution/)
@@ -83,6 +85,8 @@ curl -v -X DELETE https://docker-registry.pengiuns.com/v2/jupyter/manifests/sha2
 
 ### External-DNS
 
+> Service that creates DNS record in Cloudflare
+
 - [Helm](https://artifacthub.io/packages/helm/external-dns/external-dns)
 - [Cloudflare](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/cloudflare.md)
 - [Github](https://github.com/kubernetes-sigs/external-dns/blob/master/charts/external-dns/README.md)
@@ -103,6 +107,8 @@ curl -v -X DELETE https://docker-registry.pengiuns.com/v2/jupyter/manifests/sha2
 ```
 
 ### k8up
+
+> Backup service
 
 - Backup of PVs and DBs
 - [Repo](https://github.com/k8up-io/k8up)
@@ -137,9 +143,7 @@ k describe backup immich-backup-manual -n immich
 ```
 
 
-#### Restore backup - TBD
-- Bunch of docs on how to do it on k8s
-- Manually:
+#### Restic
 
 ```shell
 export AWS_ACCESS_KEY_ID="PWD"
@@ -237,7 +241,7 @@ echo "hello" | aws s3 cp - s3://gru-k8up-backups/test.txt --endpoint-url https:/
 
 ### CNPG
 
-> Using cloudnative-pg with vchord extension, v18.
+> Postgres DB. Using cloudnative-pg with vchord extension, v18.
 
 - Because immich needs `VectorChord` extension which is too hard to install in bitnami chart.
   - [VectorChord Github](https://github.com/tensorchord/VectorChord/)
@@ -343,7 +347,6 @@ k create job --from=cronjob/reflector reflector-manual-$(date +%s) -n reflector
 
 > Encrypt/decrypt secrets in git for the cluster
 
-
 - Create my own keys. Pod needs to be rebooted
 
 ```shell
@@ -364,6 +367,8 @@ k -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-se
   - https://github.com/bitnami-labs/sealed-secrets/blob/main/docs/bring-your-own-certificates.md
 
 ### Synology
+
+> Using Synology NAS DS920+ in k8s.
 
 - [Guide](https://docs.siderolabs.com/kubernetes-guides/csi/synology-csi)
 - [Repo](https://github.com/zebernst/synology-csi-talos)
@@ -430,17 +435,19 @@ make docker-build
 
 ## Funnaiest
 
-> Fun project
+> Fun project, LLM tells dad jokes
 
 - Fun LLM app to test cloudflare tunnel, pants, auth etc.
 
 ### Hiker
 
-> Fun project
+> Fun project, find hikes in Switzerland.
 
 - Port-forward from 8080
 
 ### Homepage
+
+> Overview of all services for quick access.
 
 - Homepage for all tools [source](https://gethomepage.dev/).
 - [List of icons](https://github.com/walkxcode/dashboard-icons)
@@ -481,6 +488,8 @@ create extension if not exists earthdistance cascade;
 
 ### jupyterhub
 
+> Data Analysis & Exploration
+
 - [docs](https://z2jh.jupyter.org/en/stable/jupyterhub/installation.html)
 - [images](https://github.com/jupyter/docker-stacks/tree/main/images)
   - more: https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-datascience-notebook
@@ -517,6 +526,8 @@ grant all privileges on database nextcloud to bot_nextcloud;
 
 ### ollama
 
+> Running LLMs
+
 - LLMs!
 - [Helm](https://github.com/otwld/ollama-helm)
 - [Helm value](https://artifacthub.io/packages/helm/ollama-helm/ollama/0.67.0?modal=values)
@@ -552,6 +563,8 @@ curl https://ollama.pengiuns.com/api/ps
 
 ### Otter Wiki
 
+> Documentation
+
 - [Installation](https://otterwiki.com/Installation)
 - [Configuration](https://otterwiki.com/Configuration)
 - [Helm](https://github.com/redimp/otterwiki/blob/main/helm/README.md)
@@ -566,7 +579,7 @@ curl https://ollama.pengiuns.com/api/ps
 
 ### Libretranslate
 
-> Translate things
+> Translate service
 
 - [Repo](https://github.com/LibreTranslate/LibreTranslate/blob/main/docker-compose.yml)
 - [Very old helm chart](https://github.com/LibreTranslate/helm-chart/tree/main/charts/libretranslate)
@@ -590,6 +603,7 @@ docker run -ti --rm \
 - ! Needs correct permissions in Synology: Shared folder - NSF permission!
 
 #### Bazarr
+
 > Subtitles
 
 - Setup
@@ -599,6 +613,7 @@ docker run -ti --rm \
 #### Prowlarr
 
 > Indexer
+
 - Setup
   1. Add new indexer (nzbplanet for example, `https://api.nzbplanet.net`)
   2. Connect Prowlarr to Radarr: Generate API key in Radarr, add url `https://radarr. ...`
@@ -607,6 +622,7 @@ docker run -ti --rm \
 #### Radarr
 
 > Movies
+
 - Setup
   3. Radarr needs to send request to Download. Add download client: `sabnzbd.media.svc.cluster.local`, port 80, API key from Sabnzbd.
   3. Create folder in `data/` and adjust permissions `mkdir movies && chown -R 329:hotio movies`

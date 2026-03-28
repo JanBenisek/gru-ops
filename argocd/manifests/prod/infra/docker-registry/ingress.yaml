@@ -8,9 +8,9 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "traefik"
     traefik.ingress.kubernetes.io/max-body-size: "0"
-    traefik.ingress.kubernetes.io/readtimeout: "1000s"
-    traefik.ingress.kubernetes.io/writetimeout: "1000s"
-    traefik.ingress.kubernetes.io/idletimeout: "1000s"
+    traefik.ingress.kubernetes.io/readtimeout: "3600s"
+    traefik.ingress.kubernetes.io/writetimeout: "3600s"
+    traefik.ingress.kubernetes.io/idletimeout: "3600s"
     traefik.ingress.kubernetes.io/retries: "3"
 spec:
   ingressClassName: traefik
