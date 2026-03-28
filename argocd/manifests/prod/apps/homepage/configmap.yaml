@@ -50,37 +50,37 @@ data:
             icon: argo-cd.png
             href: https://argocd.pengiuns.com
             description: Is it synced yet?
-            namespace: argocd 
+            namespace: argocd
             app: argocd-server
         - Grafana:
             icon: grafana.png
             href: https://grafana.pengiuns.com
             description: Them logs!
-            namespace: monitoring 
+            namespace: monitoring
             app: grafana
         - Traefik:
             icon: traefik.png
             href: https://traefik.pengiuns.com
-            description: Trafficking 
-            namespace: traefik 
+            description: Trafficking
+            namespace: traefik
             app: traefik
         - Tinyauth:
             icon: tinyauth.png
             href: https://tinyauth.pengiuns.com
-            description: Who dis? 
-            namespace: tinyauth 
+            description: Who dis?
+            namespace: tinyauth
             app: tinyauth
         - Pocket-ID:
             icon: pocket-id.png
             href: https://pocket-id.pengiuns.com
-            description: Hands where I can see them! 
-            namespace: pocket-id 
+            description: Hands where I can see them!
+            namespace: pocket-id
             app: pocket-id
         - Metabase:
             icon: metabase.png
             href: https://metabase.pengiuns.com
             description: Moar data.
-            namespace: metabase 
+            namespace: metabase
             app: metabase
         - Proxmox:
             icon: proxmox.png
@@ -96,7 +96,7 @@ data:
             icon: it-tools.png
             href: https://it-tools.pengiuns.com/
             description: The Swiss knife of internet
-            namespace: it-tools 
+            namespace: it-tools
             app: it-tools
         - Stirling PDF:
             icon: stirling-pdf.png
@@ -110,12 +110,6 @@ data:
             description: Was ist das?
             namespace: libretranslate
             app: libretranslate
-        - Outline:
-            icon: outline.png
-            href: https://outline.pengiuns.com
-            description: Document it or die!
-            namespace: outline
-            app: outline
         - JupyterHub:
             icon: jupyter.png
             href: https://jupyterhub.pengiuns.com
@@ -171,7 +165,7 @@ data:
         - Jellyfin:
             icon: jellyfin.png
             href: https://jellyfin.pengiuns.com
-            description: There be procrastination 
+            description: There be procrastination
             namespace: media
             app: jellyfin
         - Radarr:
@@ -210,7 +204,7 @@ data:
             description: Usenet client
             namespace: media
             app: bazarr
-    
+
     - Experiments:
       - Router:
           icon: fritzbox.png

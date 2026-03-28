@@ -20,25 +20,21 @@ cloudflare:
     # Opening immich share
     - hostname: immich-share.pengiuns.com
       service: http://192.168.178.100
-    
+
     # Testing publicy opening a website
     - hostname: funnaiest.com
       service: http://traefik.traefik.svc.cluster.local:80 # But also works of course http://192.168.178.100
-    
+
     # TinyAuth login page
     - hostname: tinyauth.pengiuns.com
       service: http://tinyauth.tinyauth.svc.cluster.local:3000
-    
+
     # Hiker app (protected via TinyAuth middleware)
     - hostname: hiker.pengiuns.com
       service: http://traefik.traefik.svc.cluster.local:80
 
     # Pocket-ID
     - hostname: pocket-id.pengiuns.com
-      service: http://traefik.traefik.svc.cluster.local:80
-
-    # Outline
-    - hostname: outline.pengiuns.com
       service: http://traefik.traefik.svc.cluster.local:80
 
     # OtterWiki (protected via TinyAuth middleware)
