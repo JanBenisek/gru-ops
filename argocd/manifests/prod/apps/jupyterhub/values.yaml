@@ -1,5 +1,5 @@
 # TODO: read docs and fine-tune!
-# TODO: understand RBAC 
+# TODO: understand RBAC
 #    https://z2jh.jupyter.org/en/stable/administrator/security.html#use-role-based-access-control-rbac
 debug:
   enabled: True
@@ -23,13 +23,11 @@ hub:
       storageClassName: "synology-storage-apps"
   resources:
     requests:
-      cpu: 100m 
-      memory: 1Gi 
+      cpu: 100m
+      memory: 1Gi
     limits:
       cpu: 1
       memory: 2Gi
-
-  existingSecret: jupyterhub-proxy-token
 
   config:
     JupyterHub:
@@ -62,10 +60,10 @@ proxy:
   chp: # proxy pod, running jupyterhub/configurable-http-proxy
     resources:
       requests:
-        cpu: 50m 
-        memory: 64Mi 
+        cpu: 50m
+        memory: 64Mi
       limits:
-        cpu: 100m 
+        cpu: 100m
         memory: 128Mi
 
 singleuser:
@@ -81,7 +79,7 @@ singleuser:
 
   nodeSelector:
     kubernetes.io/hostname: kevin # for the PVC
-  
+
   defaultUrl: "/lab" # default Jupyter
 
   cloudMetadata:
@@ -112,7 +110,7 @@ singleuser:
     name: docker-registry.pengiuns.com/jupyter
     tag: minimal
     pullPolicy: Always
-  
+
   profileList:
     - display_name: "Tiny"
       description: "Python 3.12.10, [0.2 CPU, 1-5G RAM]"
@@ -159,7 +157,7 @@ singleuser:
         mem_guarantee: 1G
         cpu_limit: 1
         mem_limit: 5G
-  
+
   extraFiles:
     # Playing with more custom culling
     # https://z2jh.jupyter.org/en/stable/jupyterhub/customizing/user-management.html
@@ -176,21 +174,21 @@ singleuser:
 # Pre-pulls images on new nodes, useful for autoscaling, not needed
 prePuller:
   hook:
-    enabled: false 
+    enabled: false
   continuous:
-    enabled: false 
+    enabled: false
 
 # Preparing small images on nodes, so users do not have to wait when they arrive.
 # Also efficiently packing pods on a node, not needed.
 # Good content: https://z2jh.jupyter.org/en/stable/administrator/optimization.html
 scheduling:
   userScheduler:
-    enabled: false 
+    enabled: false
 
 # Rules to remove inactive pods (see all default values)
 cull:
   enabled: true
-  adminUsers: true 
+  adminUsers: true
   timeout: 1200 # 20 mins
   every: 600 # 10 minutes
 
@@ -206,4 +204,3 @@ ingress:
     - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
       hosts:
         - jupyterhub.pengiuns.com
-
