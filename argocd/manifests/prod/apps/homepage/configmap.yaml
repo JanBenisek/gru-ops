@@ -116,12 +116,6 @@ data:
             description: Notebooks belong to production!!!
             namespace: jupyterhub
             app: jupyterhub
-        - NextCloud:
-            icon: nextcloud.png
-            href: https://nextcloud.pengiuns.com
-            description: My data!
-            namespace: nextcloud
-            app: nextcloud
         - Immich:
             icon: immich.png
             href: https://immich.pengiuns.com

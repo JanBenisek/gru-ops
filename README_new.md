@@ -507,23 +507,6 @@ create extension if not exists earthdistance cascade;
 ./aux/seal-secret.sh jupyterhub-pocketid-client-secret jupyterhub CLIENT_SECRET=SECRET prod/apps/jupyterhub
 ```
 
-### Next Cloud
-
-> Experiment with self-hosted cloud
-
-- [Helm Chart](https://github.com/nextcloud/helm)
-  -  Using this one, as oppsed to AIO which seems limited in k8s.
-
-- Sealed secret: `./aux/seal-secret.sh bot-nextcloud-pswd nextcloud username=bot_nextcloud prod/app/nextcloud password=gPWD`
-- Set up DB
-```sql
--- Prod DB with bot_jerry
-create database nextcloud;
-create user bot_nextcloud with password 'pwd';
-alter database nextcloud owner to bot_nextcloud;
-grant all privileges on database nextcloud to bot_nextcloud;
-```
-
 ### ollama
 
 > Running LLMs
