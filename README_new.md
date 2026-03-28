@@ -51,7 +51,7 @@ kubectl create secret generic cloudflare-tunel-credentials \
 curl -X GET https://docker-registry.pengiuns.com/v2/_catalog?n=1000
 curl -X GET https://docker-registry.pengiuns.com/v2/jupyter/tags/list
 
-# add image 
+# add image
 docker tag vllm:cpu docker-registry.pengiuns.com/vllm:cpu
 docker push docker-registry.pengiuns.com/vllm:cpu
 
@@ -476,7 +476,7 @@ create extension if not exists earthdistance cascade;
 
 - [GitHub](https://github.com/alangrainger/immich-public-proxy)
 - [Proxy](https://github.com/alangrainger/immich-public-proxy)
-- Add `immich-share.pengiuns.com` to Server Settings -> External Domain 
+- Add `immich-share.pengiuns.com` to Server Settings -> External Domain
 - `CNAME` record must have the `<tunnel ID>.cfargotunnel.com` in `target`.
 
 ### jupyter
@@ -549,39 +549,6 @@ curl https://ollama.pengiuns.com/api/tags
 
 # list running models
 curl https://ollama.pengiuns.com/api/ps
-```
-
-### Outline
-
-> Knowledge base
-
-- Knowledge management (like Notion)
-- [Helm](https://artifacthub.io/packages/helm/community-charts/outline)
-- [GitHub](https://github.com/outline/outline?tab=readme-ov-file)
-- [Values](https://community-charts.github.io/docs/charts/outline/usage)
-- [Pocket-ID setup](https://pocket-id.org/docs/client-examples/outline) 
-  - Does not need tinyauth, already has auth baked in
-
-```sql
-create database outline;
-create user bot_outline with password '<pswd>';
-grant all privileges on database outline to bot_outline;
-alter database outline owner to bot_outline;
-alter role bot_outline createdb;
-```
-
-- Sealed secret
-```shell
-./aux/seal-secret.sh bot-outline-pswd cnpg password=PSWD prod/infra/cnpg
-./aux/seal-secret.sh outline-auto-generated-secret outline secret-key=SECRET prod/apps/outline utils-secret=SECRET
-```
-- I added the annotation
-```yaml
-"annotations": {
-  "reflector.v1.k8s.emberstack.com/reflection-allowed": "true",
-  "reflector.v1.k8s.emberstack.com/reflection-auto-enabled": "true",
-  "reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces": "outline"
-}
 ```
 
 ### Otter Wiki
