@@ -24,7 +24,7 @@ GitOps-style with ArgoCD, exposing some apps to the internet with Cloudflare tun
       <td>Intel Quad Core i5 7500 3,40 GHz (4 cores, 4 threads, 6MB cache)</td>
       <td>40GiB</td>
       <td>256 GB NVMe</td>
-      <td>500GiB SSD</td>
+      <td>500 GB SSD</td>
       <td>Talos (master)</td>
       <td>65W</td>
     </tr>
@@ -32,9 +32,9 @@ GitOps-style with ArgoCD, exposing some apps to the internet with Cloudflare tun
       <td>Stuart</td>
       <td>HP EliteDesk 800 G3 Mini</td>
       <td>Intel Quad Core i5 7500 3,40 GHz (4 cores, 4 threads, 6MB cache)</td>
-      <td>40GiB</td>
+      <td>40 GB</td>
       <td>256 GB NVMe</td>
-      <td>500GiB SSD</td>
+      <td>500 GB SSD</td>
       <td>Talos</td>
       <td>65W</td>
     </tr>
@@ -42,8 +42,8 @@ GitOps-style with ArgoCD, exposing some apps to the internet with Cloudflare tun
       <td>Bob</td>
       <td>HP EliteDesk 800 G3 Mini</td>
       <td>Intel Quad Core i5 7600T 2.8GHz (4 cores, 4 threads, 6MB cache)</td>
-      <td>16GiB</td>
-      <td>256GiB NVMe</td>
+      <td>16 GB</td>
+      <td>256 GB NVMe</td>
       <td>N/A</td>
       <td>Proxmox</td>
       <td>35W</td>
