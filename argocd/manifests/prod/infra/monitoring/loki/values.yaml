@@ -17,7 +17,8 @@ loki:
     ingestion_burst_size_mb: 15
     allow_structured_metadata: true # needs to be false with boltdb v11
     volume_enabled: true # persistence
-  
+    retention_period: 168h # 7 days retention
+
   ruler:
     enable_api: false
 
@@ -37,23 +38,25 @@ loki:
       max_concurrent: 4
   pattern_ingester:
     enabled: true
-  limits_config:
-      allow_structured_metadata: true
-      volume_enabled: true
+
+  compactor:
+    retention_enabled: true
+    delete_request_store: s3
 
 minio:
   enabled: true
   persistence:
     storageClass: "synology-storage-apps"
+    size: 20Gi
 
 singleBinary:
   replicas: 1
   persistence:
     enabled: true
     size: 4Gi
-    storageClass: "synology-storage-apps" 
+    storageClass: "synology-storage-apps"
   affinity: {} # otherwise rules prohibiting some nodes
-  
+
 
 # Zero out replica counts of other deployment modes
 backend:
