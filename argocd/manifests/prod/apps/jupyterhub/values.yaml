@@ -7,6 +7,12 @@ debug:
 hub:
   # TODO: User auth (see gitops)
   # https://z2jh.jupyter.org/en/stable/administrator/authentication.html
+  extraEnv:
+    OAUTH_CLIENT_SECRET:
+      valueFrom:
+        secretKeyRef:
+          name: jupyterhub-pocketid-client-secret
+          key: CLIENT_SECRET
   db:
     type: sqlite-pvc
     pvc:
@@ -38,7 +44,7 @@ hub:
 
     GenericOAuthenticator:
       client_id: "5a6a698f-da25-4b8b-9e4e-28602ed4ecf5"
-      client_secret: "60tED5rCoeDKh3xu7QlZWbYG8wVYtg60"
+      # client_secret: "" # as secret
       oauth_callback_url: https://jupyterhub.pengiuns.com/hub/oauth_callback
       authorize_url: https://pocket-id.pengiuns.com/authorize
       token_url: https://pocket-id.pengiuns.com/api/oidc/token

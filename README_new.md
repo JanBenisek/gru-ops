@@ -496,6 +496,7 @@ create extension if not exists earthdistance cascade;
 - Secrets
 ```bash
 ./aux/seal-secret.sh jupyterhub-proxy-token jupyterhub token=TOKENs prod/apps/jupyterhub
+./aux/seal-secret.sh jupyterhub-pocketid-client-secret jupyterhub CLIENT_SECRET=60tED5rCoeDKh3xu7QlZWbYG8wVYtg60 prod/apps/jupyterhub
 ```
 
 ### Next Cloud
