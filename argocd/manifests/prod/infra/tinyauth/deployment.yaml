@@ -47,9 +47,8 @@ spec:
             value: "300"  # Login Atimeout: 5 minutes (300 seconds)
           - name: TINYAUTH_UI_TITLE
             value: Bello!
-          # Figure out later
           - name: TINYAUTH_UI_BACKGROUNDIMAGE
-            value: "https://raw.githubusercontent.com/JanBenisek/gru-ops/main/assets/zermatt.jpg"
+            value: "https://raw.githubusercontent.com/JanBenisek/public-assets/main/zermatt.jpg"
           # Connecting it to Pocket ID
           - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_CLIENTID
             value: 4b93b989-ebb5-48cf-b8f2-d5d4efc1cf15 # from UI Client ID
