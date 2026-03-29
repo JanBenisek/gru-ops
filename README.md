@@ -16,7 +16,7 @@ This is my tiny homelab, running k8s with Talos OS and Proxmox, build from three
 
 | Name   | Node                       | CPU                                                                  | RAM    | HDD          | Second HDD | OS             | Power |
 |--------|----------------------------|----------------------------------------------------------------------|--------|--------------|------------|----------------|-------|
-| Kevin  | HP EliteDesk 800 G3 Mini   | Intel Quad Core i5 7500 3,40 GHz (4 cores, 4 threads, 6MB cache)    | 40GiB  | 256 GB NVMe  | 500 GB SSD | Talos (master) | 65W   |
+| Kevin  | HP EliteDesk 800 G3 Mini   | Intel Quad Core i5 7500 3,40 GHz (4 cores, 4 threads, 6MB cache)    | 40 GB  | 256 GB NVMe  | 500 GB SSD | Talos (master) | 65W   |
 | Stuart | HP EliteDesk 800 G3 Mini   | Intel Quad Core i5 7500 3,40 GHz (4 cores, 4 threads, 6MB cache)    | 40 GB  | 256 GB NVMe  | 500 GB SSD | Talos (worker) | 65W   |
 | Bob    | HP EliteDesk 800 G3 Mini   | Intel Quad Core i5 7600T 2.8GHz (4 cores, 4 threads, 6MB cache)     | 16 GB  | 256 GB NVMe  | N/A        | Proxmox        | 35W   |
 
