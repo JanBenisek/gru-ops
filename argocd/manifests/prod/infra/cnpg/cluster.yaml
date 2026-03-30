@@ -40,12 +40,12 @@ spec:
     recovery:
       source: cnpg-backup
       recoveryTarget:
-        # Restore specific backup (use latest verified one)
-        backupID: "20260330T090200"
+        backupID: "20260330T090200" # restore specific backup
   externalClusters:
     - name: cnpg-backup
       barmanObjectStore:
         destinationPath: s3://gru-k8up-backups/barman/postgres/cnpg-cluster/
+        serverName: cnpg
         endpointURL: https://fsn1.your-objectstorage.com
         s3Credentials:
           accessKeyId:

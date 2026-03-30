@@ -279,7 +279,6 @@ create extension fuzzystrmatch;
 - Retention: 30 days
 - Schedule: Daily at 2am via ScheduledBackup
 - See backup: `k get backup -n cnpg`
-- It is possible to run a manual backup or recover from ID or point in time.
 - For restore, see comments in `cluster`.
 
 ```bash
