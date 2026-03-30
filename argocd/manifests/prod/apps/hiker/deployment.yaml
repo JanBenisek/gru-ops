@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hiker
+  namespace: hiker
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+  labels:
+    app: hiker
+    app.kubernetes.io/name: hiker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hiker
+  template:
+    metadata:
+      labels:
+        app: hiker
+        app.kubernetes.io/name: hiker
+    spec:
+      containers:
+      - name: hiker
+        image: ghcr.io/janbenisek/swisshikefinder:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080 # internal port for the app
+        resources: # added by me
+          requests:
+            memory: "128Mi"  
+            cpu: "10m"      
+          limits:
+            memory: "256Mi"  
+            cpu: "100m"    
+        volumeMounts:
+        - mountPath: /mnt/sandbox # dir inside container where the app will write
+          name: storage-sandbox # link to the volume name in volumes
+        - mountPath: /mnt/apps # dir inside container where the app will write
+          name: storage-apps # link to the volume name in volumes
+      volumes:
+        - name: storage-sandbox
+          persistentVolumeClaim:
+            claimName: pvc-sandbox # synology-storage-sandbox, NFS at /volume1/sandbox
+        - name: storage-apps
+          persistentVolumeClaim:
+            claimName: pvc-apps # LUN at /volume1, works!

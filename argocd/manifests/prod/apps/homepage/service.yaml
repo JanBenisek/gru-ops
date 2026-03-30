@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: homepage
+  namespace: homepage
+  labels:
+    app.kubernetes.io/name: homepage
+  # annotations:
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80 # Exposes the service on port 80
+      protocol: TCP
+      targetPort: 3000 # Routes traffic to port 3000 in the app
+  # ports:
+  #   - port: 3000
+  #     targetPort: http
+  #     protocol: TCP
+  #     name: http
+  selector:
+    app.kubernetes.io/name: homepage

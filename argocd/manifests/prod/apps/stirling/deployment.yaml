@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stirling
+  namespace: stirling
+  labels:
+    app: stirling
+    app.kubernetes.io/name: stirling
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stirling
+  template:
+    metadata:
+      labels:
+        app: stirling
+        app.kubernetes.io/name: stirling
+    spec:
+      containers:
+      - name: stirling
+        image: frooodle/s-pdf:2.8.0-fat
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080 # internal port for the app
+        
+        resources: # added by me
+          requests:
+            memory: "256Mi"  
+            cpu: "50m"      
+          limits:
+            memory: "5Gi"
+        
+        volumeMounts:
+        - name: stirling-data
+          mountPath: /usr/share/tessdata
+          subPath: tessdata
+        - name: stirling-data
+          mountPath: /configs
+          subPath: configs
+        - name: stirling-data
+          mountPath: /logs
+          subPath: logs
+        - name: stirling-data
+          mountPath: /pipeline
+          subPath: pipeline
+      
+      volumes:
+      - name: stirling-data
+        persistentVolumeClaim:
+          claimName: pvc-stirling-apps

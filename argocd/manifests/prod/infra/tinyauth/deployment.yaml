@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: tinyauth
+  namespace: tinyauth
+  labels:
+    app: tinyauth
+    app.kubernetes.io/name: tinyauth
+spec:
+  serviceName: tinyauth
+  replicas: 1
+
+  podManagementPolicy: OrderedReady
+
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
+
+  selector:
+    matchLabels:
+      app: tinyauth
+  template:
+    metadata:
+      labels:
+        app: tinyauth
+        app.kubernetes.io/name: tinyauth
+    spec:
+      containers:
+      - name: tinyauth
+        image: ghcr.io/steveiliop56/tinyauth:v5.0.4
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 3000
+        env:
+          - name: TINYAUTH_APPURL
+            value: https://tinyauth.pengiuns.com
+          # - name: USERS
+            # htpasswd -nbB corgi ilovecorgi
+            # value: corgi:$2y$05$FoIrOW55cZYshGDEyQokcOAhZZ2wfePbKiAFEAlTetNaGlk5Jc0zK
+            # value: user:$$2a$$10$$UdLYoJ5lgPsC0RKqYH/jMua7zIn0g9kPqWmhYayJYLaZQ/FTmH2/u # Username is user and password is password
+          - name: TINYAUTH_LOG_LEVEL
+            value: debug
+          - name: TINYAUTH_AUTH_SESSIONEXPIRY
+            value: "86400"  # Session expires after 24 hours (86400 seconds)
+          - name: TINYAUTH_AUTH_LOGINTIMEOUT
+            value: "300"  # Login Atimeout: 5 minutes (300 seconds)
+          - name: TINYAUTH_UI_TITLE
+            value: Bello!
+          - name: TINYAUTH_UI_BACKGROUNDIMAGE
+            value: "https://raw.githubusercontent.com/JanBenisek/public-assets/main/zermatt.jpg"
+          # Connecting it to Pocket ID
+          - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_CLIENTID
+            value: 4b93b989-ebb5-48cf-b8f2-d5d4efc1cf15 # from UI Client ID
+          - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_CLIENTSECRET
+            value: MSyPNdcU45R3O1eAhVZyEIN7hwncD03U # from UI Client Secret
+          - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_AUTHURL
+            value: https://pocket-id.pengiuns.com/authorize
+          - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_TOKENURL
+            value: https://pocket-id.pengiuns.com/api/oidc/token
+          - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_USERINFOURL
+            value: https://pocket-id.pengiuns.com/api/oidc/userinfo
+          - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_REDIRECTURL
+            value: https://tinyauth.pengiuns.com/api/oauth/callback/pocketid
+          - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_SCOPES
+            value: "openid email profile groups" # not sure what this is
+          - name: TINYAUTH_OAUTH_PROVIDERS_POCKETID_NAME
+            value: "Pocket ID"
+          - name: TINYAUTH_OAUTH_AUTOREDIRECT
+            value: "pocketid"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "10m"
+          limits:
+            memory: "1Gi"

@@ -1,0 +1,14 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-libretranslate
+  namespace: libretranslate
+  annotations:
+    argocd.argoproj.io/sync-wave: "30"
+spec:
+  storageClassName: synology-storage-apps
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi

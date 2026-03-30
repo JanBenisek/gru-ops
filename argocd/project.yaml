@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: gru
+  namespace: argocd
+spec:
+  description: Gru project for all applications
+  sourceRepos:
+  - '*' # allowing Argo to pull from all repos, which is needed for Helm Charts
+  destinations:
+  - namespace: '*'
+    server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'

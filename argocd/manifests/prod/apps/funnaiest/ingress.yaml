@@ -1,0 +1,27 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: funnaiest
+#   labels:
+#     app: funnaiest
+#     app.kubernetes.io/name: funnaiest
+#   annotations:
+#     kubernetes.io/ingress.class: "traefik" # TODO: Update ingress to traefik annots
+
+# spec:
+#   ingressClassName: traefik
+#   rules:
+#   - host: funnaiest.com
+#     http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: funnaiest
+#             port:
+#               number: 80
+#   tls:
+#   - hosts:
+#       - funnaiest.com
+#     secretName: letsencrypt-funnaiest-com

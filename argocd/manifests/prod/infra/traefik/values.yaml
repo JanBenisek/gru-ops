@@ -1,0 +1,66 @@
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+
+deployment:
+  replicas: 1
+
+# Trust X-Forwarded-* headers ONLY from Kubernetes pod network
+# Without this, Traefik ignores X-Forwarded-Proto from Cloudflare and TinyAuth thinks requests are HTTP
+# Security: Only trust pods in the cluster, not all private IPs (prevents header injection attacks)
+ports:
+  web:
+    forwardedHeaders:
+      trustedIPs:
+        - 10.244.0.0/16   # Kubernetes pod CIDR (Cloudflare Tunnel pods run here)
+  websecure:
+    forwardedHeaders:
+      trustedIPs:
+        - 10.244.0.0/16   # Kubernetes pod CIDR
+  traefik:
+    expose:
+      default: true
+
+logs:
+  general:
+    level: INFO
+    format: json
+  access:
+    enabled: true
+    format: json
+
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "10m"
+
+service:
+  type: LoadBalancer
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: traefik.pengiuns.com
+  ports:
+    web:
+      port: 80
+    websecure:
+      port: 443
+    traefik:
+      port: 9000
+
+api:
+  dashboard: true
+  insecure: false
+
+# Increase timeouts for large file uploads (Docker registry)
+additionalArguments:
+  - --serversTransport.forwardingTimeouts.dialTimeout=30s
+  - --serversTransport.forwardingTimeouts.responseHeaderTimeout=3600s
+  - --serversTransport.forwardingTimeouts.idleConnTimeout=3600s
+
+ingressRoute:
+  dashboard:
+    enabled: true
+    entryPoints:
+      - websecure
+    matchRule: Host(`traefik.pengiuns.com`)
+    tls:
+      secretName: letsencrypt-wildcard-cert-pengiuns.com-production

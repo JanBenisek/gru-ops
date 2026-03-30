@@ -1,0 +1,97 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cnpg-v2
+  namespace: cnpg
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
+
+spec:
+
+  instances: 1
+
+  superuserSecret:
+    name: superuser-pswd
+
+  enableSuperuserAccess: true
+
+  resources:
+    requests:
+      memory: "2Gi"
+      cpu: "200m"
+    limits:
+      memory: "6Gi"
+
+  imageName: "ghcr.io/tensorchord/cloudnative-vectorchord:18.0-0.5.3" # pg / vchord version
+  imagePullPolicy: Always
+
+  postgresql:
+    shared_preload_libraries:
+      - "vchord"
+
+  storage:
+    size: 20Gi
+    storageClass: synology-storage-apps
+# RESTORE FROM BACKUP
+# -> delete cluster (will also remove PVC), uncomment this,
+# -> bump the cluster to `cnpg-v{n}` (it needs new location, check in hetzner)
+# -> apply
+# -> once recovered, comment this out (bootstrap and externalClusters) and apply
+#   bootstrap:
+#     recovery:
+#       source: cnpg-backup
+#       recoveryTarget:
+#         backupID: "20260330T090200" # restore specific backup
+#   externalClusters:
+#     - name: cnpg-backup
+#       barmanObjectStore:
+#         destinationPath: s3://gru-k8up-backups/barman/postgres/cnpg-cluster/
+#         serverName: cnpg
+#         endpointURL: https://fsn1.your-objectstorage.com
+#         s3Credentials:
+#           accessKeyId:
+#             name: hetzner-credentials
+#             key: user
+#           secretAccessKey:
+#             name: hetzner-credentials
+#             key: password
+# END OF RESTORE
+
+  # Continuous backup to S3 using Barman
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://gru-k8up-backups/barman/postgres/cnpg-cluster/
+      endpointURL: https://fsn1.your-objectstorage.com
+      s3Credentials:
+        accessKeyId:
+          name: hetzner-credentials
+          key: user
+        secretAccessKey:
+          name: hetzner-credentials
+          key: password
+      data:
+        compression: gzip
+        jobs: 2
+      wal:
+        compression: gzip
+    retentionPolicy: "30d"
+
+  managed:
+    services:
+      disabledDefaultServices: ["ro", "r"]
+      additional:
+        - selectorType: rw
+          serviceTemplate:
+            metadata:
+              name: cnpg-rw-lb
+              annotations:
+                external-dns.alpha.kubernetes.io/hostname: vchord-postgres.pengiuns.com
+            spec:
+              type: LoadBalancer
+              loadBalancerIP: 192.168.178.190 # pick from `k get ipaddresspool -A`
+              ports:
+                - name: postgresql
+                  port: 5432
+                  targetPort: 5432
+                  protocol: TCP
+          updateStrategy: patch

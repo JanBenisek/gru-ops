@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jupyterhub
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  project: gru
+  sources:
+  - repoURL: https://hub.jupyter.org/helm-chart/
+    chart: jupyterhub
+    targetRevision: "4.3.3"
+    helm:
+      valueFiles:
+      - $values/argocd/manifests/prod/apps/jupyterhub/values.yaml
+  - repoURL: https://github.com/JanBenisek/gru-ops.git
+    targetRevision: main
+    path: argocd/manifests/prod/apps/jupyterhub
+    ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: jupyterhub
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        # Needs this otherwise the pod will not start
+        pod-security.kubernetes.io/enforce: privileged
+        pod-security.kubernetes.io/enforce-version: latest
+        pod-security.kubernetes.io/audit: privileged
+        pod-security.kubernetes.io/audit-version: latest
+        pod-security.kubernetes.io/warn: privileged
+        pod-security.kubernetes.io/warn-version: latest

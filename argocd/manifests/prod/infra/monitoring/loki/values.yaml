@@ -1,0 +1,86 @@
+deploymentMode: SingleBinary
+
+loki:
+  auth_enabled: false
+
+  gateway:
+    enabled: false  # otherwise rules prohibiting some nodes
+
+  commonConfig:
+    replication_factor: 1
+
+  # pattern_ingester:
+  #     enabled: true
+
+  limits_config:
+    ingestion_rate_mb: 3
+    ingestion_burst_size_mb: 15
+    allow_structured_metadata: true # needs to be false with boltdb v11
+    volume_enabled: true # persistence
+    retention_period: 168h # 7 days retention
+
+  ruler:
+    enable_api: false
+
+  schemaConfig:
+    configs:
+      - from: "2025-03-01"
+        store: tsdb
+        object_store: s3
+        schema: v13
+        index:
+          prefix: loki_index_
+          period: 24h
+  ingester:
+      chunk_encoding: snappy
+  querier:
+      # Default is 4, if you have enough memory and CPU you can increase, reduce if OOMing
+      max_concurrent: 4
+  pattern_ingester:
+    enabled: true
+
+  compactor:
+    retention_enabled: true
+    delete_request_store: s3
+
+minio:
+  enabled: true
+  persistence:
+    storageClass: "synology-storage-apps"
+    size: 20Gi
+
+singleBinary:
+  replicas: 1
+  persistence:
+    enabled: true
+    size: 4Gi
+    storageClass: "synology-storage-apps"
+  affinity: {} # otherwise rules prohibiting some nodes
+
+
+# Zero out replica counts of other deployment modes
+backend:
+  replicas: 0
+read:
+  replicas: 0
+write:
+  replicas: 0
+
+ingester:
+  replicas: 0
+querier:
+  replicas: 0
+queryFrontend:
+  replicas: 0
+queryScheduler:
+  replicas: 0
+distributor:
+  replicas: 0
+compactor:
+  replicas: 0
+indexGateway:
+  replicas: 0
+bloomCompactor:
+  replicas: 0
+bloomGateway:
+  replicas: 0

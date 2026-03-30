@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: docker-registry
+  labels:
+    app: docker-registry
+    app.kubernetes.io/name: docker-registry
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/max-body-size: "0"
+    traefik.ingress.kubernetes.io/readtimeout: "3600s"
+    traefik.ingress.kubernetes.io/writetimeout: "3600s"
+    traefik.ingress.kubernetes.io/idletimeout: "3600s"
+    traefik.ingress.kubernetes.io/retries: "3"
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: docker-registry.pengiuns.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: docker-registry
+            port:
+              number: 80 # or 443
+  tls:
+  - hosts:
+      - docker-registry.pengiuns.com
+    secretName: letsencrypt-wildcard-cert-pengiuns.com-production

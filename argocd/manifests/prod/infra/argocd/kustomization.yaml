@@ -1,0 +1,10 @@
+resources:
+  - ingress.yaml
+  - https://github.com/argoproj/argo-cd/manifests/cluster-install?ref=v3.2.2
+
+patchesStrategicMerge:
+  - patch-server-insecure.yaml
+
+patches:
+  - path: patch-disable-dex.yaml
+  - path: patch-disable-dex-service.yaml

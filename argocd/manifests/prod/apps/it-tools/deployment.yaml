@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: it-tools
+  namespace: it-tools
+  labels:
+    app: it-tools
+    app.kubernetes.io/name: it-tools
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: it-tools
+  template:
+    metadata:
+      labels:
+        app: it-tools
+        app.kubernetes.io/name: it-tools
+    spec:
+      containers:
+      - name: nginx
+        image: corentinth/it-tools:2024.10.22-7ca5933
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080 # internal port for the app
+        resources: # added by me
+          requests:
+            memory: "256Mi"  
+            cpu: "50m"      
+          limits:
+            memory: "1Gi"

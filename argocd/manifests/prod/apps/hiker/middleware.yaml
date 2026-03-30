@@ -1,0 +1,37 @@
+# Must be the same namespace as ingress route
+# Each app requires a Middleware
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: tinyauth
+  namespace: hiker
+spec:
+  forwardAuth:
+    address: http://tinyauth.tinyauth.svc.cluster.local:3000/api/auth/traefik
+    trustForwardHeader: true
+    # Pass original request headers to TinyAuth so it knows the request came via HTTPS
+    # Without X-Forwarded-Proto, TinyAuth thinks request was HTTP (since Cloudflare terminates TLS)
+    # This prevents "redirecting from HTTPS to HTTP" security warnings
+    authRequestHeaders:
+      - Accept             # TinyAuth uses this to detect if request is from browser
+      - User-Agent         # TinyAuth uses this to detect if request is from browser
+      - Cookie             # Session cookie for authentication state
+      - X-Forwarded-Proto  # Tells TinyAuth original protocol was HTTPS
+      - X-Forwarded-Host   # Original hostname (hiker.pengiuns.com)
+      - X-Forwarded-Uri    # Original request URI
+      - X-Forwarded-For    # Client IP address
+    # Pass response headers back from TinyAuth to the client
+    authResponseHeaders:
+      - Set-Cookie         # Session cookie from TinyAuth after login
+
+
+# What it does step by step:
+# Traefik receives a request for https://hiker.pengiuns.com.
+# Middleware intercepts the request (ForwardAuth).
+# Traefik forwards the request to TinyAuth (internal ClusterIP service) at /api/auth/traefik.
+# TinyAuth responds with:
+# 200 OK → request is allowed → Traefik forwards to your app
+# 401/302 redirect → user is not authenticated → Traefik redirects to login page (tinyauth.pengiuns.com)
+# Only after authentication does Traefik forward the request to your backend service (hiker app).
+
+# Middleware is what enforces authentication without changing your app. Your app doesn’t need to know TinyAuth exists.

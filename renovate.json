@@ -1,0 +1,99 @@
+{
+  "extends": [
+    "config:recommended"
+  ],
+  "timezone": "UTC",
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "automerge": false,
+  "includePaths": [
+    "argocd/manifests/**",
+    "argocd/prod/**"
+  ],
+  "ignorePaths": [
+    "argocd/manifests/prod/infra/synology/v1.21/**"
+  ],
+  "enabledManagers": [
+    "kubernetes",
+    "argocd",
+    "helm-values"
+  ],
+  "kubernetes": {
+    "managerFilePatterns": [
+      "/argocd/manifests/.+\\.ya?ml$/",
+      "/argocd/prod/.+\\.ya?ml$/"
+    ]
+  },
+  "argocd": {
+    "managerFilePatterns": [
+      "/argocd/prod/.+\\.ya?ml$/"
+    ]
+  },
+  "helm-values": {
+    "managerFilePatterns": [
+      "/argocd/manifests/.+values\\.ya?ml$/",
+      "/argocd/prod/.+values\\.ya?ml$/"
+    ]
+  },
+  "packageRules": [
+    {
+      "matchDatasources": [
+        "helm"
+      ],
+      "matchPackageNames": [
+        "csi-driver-nfs"
+      ],
+      "enabled": false
+    },
+    {
+      "versioning": "regex:^release-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(\\.(?<build>\\d+))?$",
+      "matchPackageNames": [
+        "/^ghcr\\.io/hotio//"
+      ]
+    },
+    {
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "metabase/metabase"
+      ],
+      "versioning": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)$"
+    },
+    {
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "metabase/metabase"
+      ],
+      "matchUpdateTypes": [
+        "patch",
+        "pin",
+        "digest"
+      ],
+      "enabled": false
+    },
+    {
+      "matchDatasources": [
+        "docker"
+      ],
+      "enabled": false,
+      "matchPackageNames": [
+        "/^docker-registry\\.pengiuns\\.com//"
+      ]
+    },
+    {
+      "matchDatasources": [
+        "docker"
+      ],
+      "groupName": "Docker image updates"
+    },
+    {
+      "matchDatasources": [
+        "helm"
+      ],
+      "groupName": "Helm chart updates"
+    }
+  ]
+}

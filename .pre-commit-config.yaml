@@ -1,0 +1,23 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      # Check YAML files for syntax errors
+      - id: check-yaml
+        args: [--unsafe]  # Allows custom YAML tags (useful for K8s, Ansible, etc.)
+
+      # Check for added large files
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+
+      # Trim trailing whitespace
+      - id: trailing-whitespace
+
+      # Ensure files end with a newline
+      - id: end-of-file-fixer
+
+  # Secret detection using gitleaks
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.21.2
+    hooks:
+      - id: gitleaks

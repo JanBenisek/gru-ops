@@ -1,2 +1,26 @@
-# GitHub actions binaries
-bin/
+# OS files
+.DS_Store
+
+# envs and secrets
+.env
+.argocd_env
+secrets.auto.tfvars
+*.lock.info
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Talos
+*.iso
+talosconfig
+kubeconfig
+
+# Sealed secrets keys
+aux/sealed-secrets-private.key
+aux/sealed-secrets-public.crt
+
+# Old auxiliary files
+aux_old/

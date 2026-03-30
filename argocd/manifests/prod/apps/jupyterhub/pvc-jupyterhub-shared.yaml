@@ -1,0 +1,14 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-jupyterhub-shared
+  namespace: jupyterhub
+  annotations:
+    k8up.io/backup: "true"
+spec:
+  storageClassName: synology-storage-apps
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi

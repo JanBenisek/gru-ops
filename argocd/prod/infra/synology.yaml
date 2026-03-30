@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: synology-csi
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  project: gru
+  source:
+    repoURL: https://github.com/JanBenisek/gru-ops.git
+    targetRevision: main
+    path: argocd/manifests/prod/infra/synology
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: synology-csi
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        # I think these are needed
+        pod-security.kubernetes.io/enforce: privileged
+        pod-security.kubernetes.io/audit: privileged
+        pod-security.kubernetes.io/warn: privileged
+        pod-security.kubernetes.io/enforce-version: latest
