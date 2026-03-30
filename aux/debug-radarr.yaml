@@ -1,0 +1,43 @@
+# k apply -f debug-radarr.yaml
+# k exec -it -n radarr radarr-debug -- sh
+# k delete -f debug-radarr.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: radarr-debug
+  namespace: radarr
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: stuart 
+  securityContext:
+    runAsUser: 321  #all processes in the pod run with user ID 321
+    runAsGroup: 321  # same but for groups
+    fsGroup: 321 # owner of attached volume is group 321
+  containers:
+    - name: radarr
+      image: ghcr.io/hotio/radarr
+      securityContext:
+        runAsUser: 0  # Allow root user for package installation
+      env:
+        - name: PUID
+          value: "321" 
+        - name: PGID
+          value: "321"   
+        - name: UMASK
+          value: "002" 
+        - name: TZ
+          value: "Etc/UTC" # Timezone
+      volumeMounts:
+        - mountPath: /config  # Mount for Radarr config
+          name: config-storage
+        - mountPath: /data # Single volume for Movies and Downloads
+          name: data-storage
+  volumes:
+    - name: config-storage
+      persistentVolumeClaim:
+        claimName: pvc-radarr-config # PVC for config storage
+    - name: data-storage
+      persistentVolumeClaim:
+        claimName: pvc-radarr-data   # PVC for data storage
+

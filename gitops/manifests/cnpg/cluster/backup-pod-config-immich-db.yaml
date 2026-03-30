@@ -1,0 +1,26 @@
+# Needed to pass db credentials as secrets
+apiVersion: k8up.io/v1
+kind: PodConfig
+metadata:
+  name: backup-env-config-immich-db
+  namespace: cnpg
+spec:
+  template:
+    spec:
+      containers:
+        - name: backup # can be anything
+          env:
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: bot-immich-pswd
+                  key: password
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: bot-immich-pswd
+                  key: username
+            # - name: PGUSER
+            #   value: bot_immich
+          securityContext:
+            allowPrivilegeEscalation: true

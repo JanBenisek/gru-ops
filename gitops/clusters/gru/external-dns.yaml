@@ -13,6 +13,8 @@ spec:
       namespace: flux-system
     - name: sealed-secrets
       namespace: flux-system
+    - name: reflector
+      namespace: flux-system
   sourceRef:
     kind: GitRepository
     name: flux-system

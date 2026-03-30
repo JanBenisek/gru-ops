@@ -1,0 +1,26 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "bot-outline-pswd",
+    "namespace": "cnpg",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "bot-outline-pswd",
+        "namespace": "cnpg",
+        "creationTimestamp": null,
+        "annotations": {
+          "reflector.v1.k8s.emberstack.com/reflection-allowed": "true",
+          "reflector.v1.k8s.emberstack.com/reflection-auto-enabled": "true",
+          "reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces": "outline"
+        }
+      }
+    },
+    "encryptedData": {
+      "postgres-password": "AgBLdyu2l9zZPjLADSMV62merusW3ZG/4OEdQQ+QbJYfyYLvUZbKAdufNyxKWnWO89lQUW5sLgAlcnVBVwk/hwofT/616pbNqoAM2UpLtml+PReXLsWiwkmo91N2eCnxRk7ikEDf2IY3zWlBqHpola+f7UVkGPB7yMVgOg0WzdkH1F0yk/vf9+l04ryYQD5m88I3jR4PJwNePNebZTr6DlFaILRkoTXM7+j0YlKzAqIpHo4p6BScxgUMcnQcYiSFCGeGJ8+AI/uBDnpSA5dcRGVsQZgR+kg7XsFShbpi+mrxGhiHGWV3QMPsfiZDGZVnqummDjukrAses1JHuUqls68E/WvJuPCBkC/X3TOelknK5u2nVhoMBgdOongzKE3mj37jQi40ta86r3TpXESvQOskRe+4OVOOc0WrWrU8z1IrDchtloGMwUGYYEPoD2ZPLXeGvXq2HQLIFU6EKuXBTbc56MdceCDccPQI6C8QYWwmc+wGnRIZMpBq50g1xlJkT7jwR+DdcwlEaMv8Zhvsl7TNQO1amlaAR8ElHWluZt8q64m9AJ6KgW5SE1CronBzQVZ8BNM84O6K0EoSFKZozSFRvwFzBFg73Y8xs9pyYiiqT7I1DqDdcSJkKSxNT/HKbSu/CVug2gmLsJULrpa2CRAvh7XiHhYTTcmdjUNEj5CPA6No6mq8W/xrCvOZjLojvHhPEtOiGJ+YNTjFg3nAV43c0czd13YW"
+    }
+  }
+}

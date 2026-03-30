@@ -1,0 +1,79 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: openebs
+  namespace: openebs
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: openebs
+      version: "4.1.1"
+      sourceRef:
+        kind: HelmRepository
+        name: openebs
+        namespace: openebs
+      interval: 12h
+  values:
+    localpv-provisioner:
+      hostpathClass:
+        enabled: false # disable default SC
+      enabled: true
+      localpv:
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "10m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+    image:
+      pullPolicy: IfNotPresent #Always got me rate limited
+    engines:
+      local:
+        lvm:
+          enabled: true
+        zfs:
+          enabled: false
+      replicated:
+        mayastor:
+          enabled: false
+    # mayastor:
+    #   base:
+    #     metrics:
+    #     # -- Review, was blocking it
+    #     enabled: false
+    #     initContainers:
+    #       enabled: false # is this a good idea?
+    #     initHaNodeContainers:
+    #       enabled: false # same Q?
+    #   io_engine:
+    #     cpuCount: "1"
+    #     resources:
+    #       limits:
+    #         cpu: "1"
+    #         memory: "1Gi"
+    #         hugepages2Mi: "2Gi"
+    #       requests:
+    #         cpu: "500m"
+    #         memory: "500Mi"
+    #         hugepages2Mi: "2Gi"
+    #   loki-stack:
+    #     enabled: true
+    #     localpvScConfig:
+    #       basePath: "/var/mnt/storage/data/openebs/local/{{ .Release.Name }}/localpv-hostpath/loki"
+    #     loki:
+    #       persistence:
+    #         size: 2Gi
+    #   etcd:
+    #     replicaCount: 1 # is this a good idea?
+    #     localpvScConfig:
+    #       basePath: "/var/mnt/storage/data/openebs/local/{{ .Release.Name }}/localpv-hostpath/etcd"
+    #   csi:
+    #     node:
+    #       initContainers:
+    #         enabled: false
+    #   crds:
+    #     enabled: false # installation breaks if enabled hmmm
+    #   # localpv-provisioner:
+    #   #   enabled: true

@@ -3,8 +3,8 @@ kind: Kustomization
 resources:
 - namespace.yaml
 - letsencrypt-production.yaml
-- letsencrypt-staging.yaml
-- cloudflare-api-token.yaml
 - letsencrypt-wildcard-cert-pengiuns.com-production.yaml
-- letsencrypt-wildcard-cert-pengiuns.com-staging.yaml
-# the last two are in a separate namespace
+# Specific
+- letscencrypt-funnaiest-com.yaml
+- letscencrypt-swisshikefinder-com.yaml
+- letscencrypt-immich-share-pengiuns.yaml

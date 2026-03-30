@@ -1,0 +1,55 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: secret-replicator
+  namespace: secret-replicator
+spec:
+  chart:
+    spec:
+      chart: secret-replicator
+      version: 0.6.x
+      sourceRef:
+        kind: HelmRepository
+        name: kiwigrid
+        namespace: secret-replicator
+  interval: 15m
+  timeout: 5m
+  releaseName: secret-replicator
+  values:
+    image:
+      repository: kiwigrid/secret-replicator
+      tag: latest
+      pullPolicy: IfNotPresent
+      ## Specify ImagePullSecrets for Pods
+      ## ref: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
+      # pullSecrets: myregistrykey
+
+    # csv list of secrets
+    # it runs regex match, hence it works for both:
+    # https://github.com/kiwigrid/secret-replicator/blob/f43c9c6c983ed06ea11ca631c5e86efbca9b558d/controllers/secret_controller.go#L103
+    # secretList: "letsencrypt-wildcard-cert"
+    secretList: "letsencrypt-wildcard-cert,letsencrypt-swisshikefinder-com"
+    # secretList: "secret1,secret2
+
+    ignoreNamespaces: "kube-system,kube-public"
+
+    # If defined, allow secret-replicator to watch for secrets in _another_ namespace
+    secretNamespace: "letsencrypt-wildcard-cert"
+
+    rbac:
+      enabled: true
+
+    resources:
+      requests:
+        memory: "125Mi"  
+        cpu: "10m"      
+      limits:
+        memory: "256Mi"  
+        cpu: "100m"
+
+    nodeSelector: {}
+
+    tolerations: []
+
+    affinity: {}
+    

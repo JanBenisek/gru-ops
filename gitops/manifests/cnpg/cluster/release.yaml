@@ -1,0 +1,87 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cnpg
+  namespace: cnpg
+  annotations:
+    k8up.io/backupcommand: >-
+      sh -c 'PGDATABASE=immich pg_dump --clean'
+    k8up.io/file-extension: .sql
+
+spec:
+
+  instances: 1
+  
+  superuserSecret:
+    name: superuser-pswd
+  
+  enableSuperuserAccess: true
+    
+  resources: 
+    requests:
+      memory: "2Gi"  
+      cpu: "200m"      
+    limits:
+      memory: "6Gi"  
+      cpu: "1000m"
+
+  imageName: "ghcr.io/tensorchord/cloudnative-vectorchord:16-0.4.3"
+  imagePullPolicy: Always
+
+  postgresql:
+    shared_preload_libraries:
+      - "vchord"
+
+  storage:
+    size: 5Gi
+    storageClass: local-hostpath-kevin
+
+  bootstrap:
+    initdb:
+      database: immich # CREATE DATABASE immich;
+      owner: bot_immich # CREATE ROLE bot_immich; --will be owner
+      secret:
+        name: bot-immich-pswd
+      postInitSQL:
+        # Extensions
+        - "CREATE EXTENSION IF NOT EXISTS vector;"
+        - "CREATE EXTENSION IF NOT EXISTS vchord;"
+        - "CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;"
+        # DB - metabase
+        - "CREATE DATABASE metabase OWNER bot_metabase;"
+        - "GRANT ALL PRIVILEGES ON DATABASE metabase TO bot_metabase;"
+        # DB - production
+        - "CREATE DATABASE prod OWNER bot_jerry;"
+        - "GRANT ALL PRIVILEGES ON DATABASE prod TO bot_jerry;"
+        # DB - outline
+        - "CREATE DATABASE outline OWNER bot_outline;"
+        - "GRANT ALL PRIVILEGES ON DATABASE outline TO bot_outline;"
+
+  managed:
+    roles:
+      - name: bot_metabase
+        createdb: true
+        login: true
+        passwordSecret:
+          name: bot-metabase-pswd
+      - name: bot_jerry
+        createdb: true
+        login: true
+        passwordSecret:
+          name: bot-jerry-pswd
+    services:
+      disabledDefaultServices: ["ro", "r"]
+      additional:
+        - selectorType: rw
+          serviceTemplate:
+            metadata:
+              name: cnpg-rw-lb
+              annotations:
+                external-dns.alpha.kubernetes.io/hostname: vchord-postgres.${DOMAIN_NAME}
+            spec:
+              type: LoadBalancer
+              loadBalancerIP: 192.168.178.190 # pick from `k get ipaddresspool -A`
+              ports:
+                - name: postgresql
+                  port: 5432
+                  targetPort: 5432

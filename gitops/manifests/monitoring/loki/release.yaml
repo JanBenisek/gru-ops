@@ -1,14 +1,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: loki-stack
+  name: loki
   namespace: monitoring
 spec:
   interval: 1m
   chart:
     spec:
-      chart: loki-stack
-      version: '2.10.2'
+      chart: loki
+      version: '6.28.0'
       sourceRef:
         kind: HelmRepository
         name: grafana
@@ -16,39 +16,86 @@ spec:
       interval: 1m
   values:
     loki:
+      auth_enabled: false
+
+      gateway:
+        enabled: false  # otherwise rules prohibiting some nodes
+
       image:
-        # there is a bug where it pulls by default some old tag
-        tag: '2.9.3'
-      # serviceAccount: # I probably don't need this
-      #   name: loki
-      #   create: false
-    promtail:
-      enabled: true
-      config:
-        logLevel: debug
-      tolerations:
-      - effect: NoSchedule
-        operator: Exists
-    grafana:
-      enabled: false
-    prometheus:
-      enabled: false
-      # config:
-      #   query_scheduler:
-      #     max_outstanding_requests_per_tenant: 4096
-      #   schema_config:
-      #     configs:
-      #     - from: "2023-02-01"
-      #       store: boltdb-shipper
-      #       object_store: s3
+        registry: docker.io
+        repository: grafana/loki
+        tag: 3.4.2
+        pullPolicy: IfNotPresent
+
+      commonConfig:
+        replication_factor: 1
+
+      pattern_ingester:
+          enabled: true
+
+      limits_config:
+        ingestion_rate_mb: 3
+        ingestion_burst_size_mb: 15
+        allow_structured_metadata: true # needs to be false with boltdb v11
+        volume_enabled: true # persistence
+      
+      ruler:
+        enable_api: false
+
+      # storage:
+      #   type: filesystem
+
+      # schemaConfig:
+      #   configs:
+      #     - from: "2022-06-01"
+      #       store: boltdb-shipper #tsdb is probably better
+      #       object_store: filesystem
       #       schema: v11
       #       index:
-      #         prefix: loki_
-      #         period: "24h"
-        # storage_config:
-        #   boltdb_shipper:
-        #     active_index_directory: /data/loki/boltdb-shipper-active
-        #     cache_location: /data/loki/boltdb-shipper-cache
-        #     shared_store: s3
-        #   aws:
-        #     s3: s3://eu-west-1/smallpdf-data-loki
+      #         prefix: index_
+      #         period: 24h
+      schemaConfig:
+        configs:
+          - from: "2025-03-01"
+            store: tsdb
+            object_store: s3
+            schema: v13
+            index:
+              prefix: loki_index_
+              period: 24h
+    minio:
+      enabled: true
+    deploymentMode: SingleBinary
+    singleBinary:
+      replicas: 1
+      persistence:
+        enabled: true
+        size: 4Gi
+      affinity: {} # otherwise rules prohibiting some nodes
+  
+    # Zero out replica counts of other deployment modes
+    backend:
+      replicas: 0
+    read:
+      replicas: 0
+    write:
+      replicas: 0
+
+    ingester:
+      replicas: 0
+    querier:
+      replicas: 0
+    queryFrontend:
+      replicas: 0
+    queryScheduler:
+      replicas: 0
+    distributor:
+      replicas: 0
+    compactor:
+      replicas: 0
+    indexGateway:
+      replicas: 0
+    bloomCompactor:
+      replicas: 0
+    bloomGateway:
+      replicas: 0
