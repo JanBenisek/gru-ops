@@ -9,18 +9,18 @@ metadata:
 spec:
 
   instances: 1
-  
+
   superuserSecret:
     name: superuser-pswd
-  
+
   enableSuperuserAccess: true
-    
-  resources: 
+
+  resources:
     requests:
-      memory: "2Gi"  
-      cpu: "200m"      
+      memory: "2Gi"
+      cpu: "200m"
     limits:
-      memory: "6Gi"  
+      memory: "6Gi"
 
   imageName: "ghcr.io/tensorchord/cloudnative-vectorchord:18.0-0.5.3" # pg / vchord version
   imagePullPolicy: Always
@@ -35,28 +35,28 @@ spec:
 # RESTORE FROM BACKUP
 # -> delete cluster (will also remove PVC), uncomment this, apply
 # -> once ok, comment this out (bootstrap and externalClusters)
-#   # Bootstrap from backup
-#   bootstrap:
-#     recovery:
-#       source: cnpg-backup
-#       # recoveryTarget:
-#       #   # Restore immediately (latest consistent state)
-#       #   targetImmediate: true
-#   # Reference to backup location
-#   externalClusters:
-#     - name: cnpg-backup
-#       barmanObjectStore:
-#         destinationPath: s3://gru-k8up-backups/barman/postgres/cnpg-cluster/
-#         endpointURL: https://fsn1.your-objectstorage.com
-#         s3Credentials:
-#           accessKeyId:
-#             name: hetzner-credentials
-#             key: user
-#           secretAccessKey:
-#             name: hetzner-credentials
-#             key: password
-#         wal:
-#           compression: gzip
+  # Bootstrap from backup
+  bootstrap:
+    recovery:
+      source: cnpg-backup
+      recoveryTarget:
+        # Restore immediately (latest consistent state)
+        targetImmediate: true
+  # Reference to backup location
+  externalClusters:
+    - name: cnpg-backup
+      barmanObjectStore:
+        destinationPath: s3://gru-k8up-backups/barman/postgres/cnpg-cluster/
+        endpointURL: https://fsn1.your-objectstorage.com
+        s3Credentials:
+          accessKeyId:
+            name: hetzner-credentials
+            key: user
+          secretAccessKey:
+            name: hetzner-credentials
+            key: password
+        wal:
+          compression: gzip
 
   # Continuous backup to S3 using Barman
   backup:
