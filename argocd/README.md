@@ -274,6 +274,7 @@ create extension fuzzystrmatch;
 #### Backup & Recovery
 
 - Using Barman Object Store for continuous backup
+- [Docs](https://cloudnative-pg.io/documentation/1.20/recovery/) (see `Restoring into a cluster with a backup section`)
 - Backups stored at: `s3://gru-k8up-backups/postgres/cnpg-cluster/`
 - Includes base backups + WAL archiving for point-in-time recovery
 - Retention: 30 days

@@ -37,24 +37,24 @@ spec:
 # -> bump the cluster to `cnpg-v{n}` (it needs new location, check in hetzner)
 # -> apply
 # -> once recovered, comment this out (bootstrap and externalClusters) and apply
-  bootstrap:
-    recovery:
-      source: cnpg-backup
-      recoveryTarget:
-        backupID: "20260330T090200" # restore specific backup
-  externalClusters:
-    - name: cnpg-backup
-      barmanObjectStore:
-        destinationPath: s3://gru-k8up-backups/barman/postgres/cnpg-cluster/
-        serverName: cnpg
-        endpointURL: https://fsn1.your-objectstorage.com
-        s3Credentials:
-          accessKeyId:
-            name: hetzner-credentials
-            key: user
-          secretAccessKey:
-            name: hetzner-credentials
-            key: password
+#   bootstrap:
+#     recovery:
+#       source: cnpg-backup
+#       recoveryTarget:
+#         backupID: "20260330T090200" # restore specific backup
+#   externalClusters:
+#     - name: cnpg-backup
+#       barmanObjectStore:
+#         destinationPath: s3://gru-k8up-backups/barman/postgres/cnpg-cluster/
+#         serverName: cnpg
+#         endpointURL: https://fsn1.your-objectstorage.com
+#         s3Credentials:
+#           accessKeyId:
+#             name: hetzner-credentials
+#             key: user
+#           secretAccessKey:
+#             name: hetzner-credentials
+#             key: password
 # END OF RESTORE
 
   # Continuous backup to S3 using Barman
