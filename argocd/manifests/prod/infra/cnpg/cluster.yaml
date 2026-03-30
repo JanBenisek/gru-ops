@@ -35,14 +35,13 @@ spec:
 # RESTORE FROM BACKUP
 # -> delete cluster (will also remove PVC), uncomment this, apply
 # -> once ok, comment this out (bootstrap and externalClusters)
-  # Bootstrap from backup
+#   # Bootstrap from backup
   bootstrap:
     recovery:
       source: cnpg-backup
       recoveryTarget:
-        # Restore immediately (latest consistent state)
-        targetImmediate: true
-  # Reference to backup location
+        # Restore specific backup (use latest verified one)
+        backupID: "20260330T090200"
   externalClusters:
     - name: cnpg-backup
       barmanObjectStore:
@@ -57,6 +56,7 @@ spec:
             key: password
         wal:
           compression: gzip
+# END OF RESTORE
 
   # Continuous backup to S3 using Barman
   backup:
