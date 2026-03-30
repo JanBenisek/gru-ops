@@ -54,8 +54,6 @@ spec:
           secretAccessKey:
             name: hetzner-credentials
             key: password
-        wal:
-          compression: gzip
 # END OF RESTORE
 
   # Continuous backup to S3 using Barman
