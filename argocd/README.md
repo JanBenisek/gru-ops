@@ -151,8 +151,6 @@ export AWS_SECRET_ACCESS_KEY="PWD"
 export RESTIC_PASSWORD="PWD"
 export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/immich/scheduled/"
 export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/pvc/otterwiki/scheduled/"
-export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/postgres/immich/scheduled/"
-export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/postgres/metabase/scheduled/"
 
 # List all snapshots
 restic snapshots
@@ -283,6 +281,18 @@ create extension fuzzystrmatch;
 - See backup: `k get backup -n cnpg`
 - It is possible to run a manual backup or recover from ID or point in time.
 - For restore, see comments in `cluster`.
+
+```bash
+# sh into the pod
+export AWS_ACCESS_KEY_ID="PWD"
+export AWS_SECRET_ACCESS_KEY="PWD"
+
+# list all backups
+barman-cloud-backup-list --endpoint-url https://fsn1.your-objectstorage.com s3://gru-k8up-backups/barman/postgres/cnpg-cluster/ cnpg
+
+# inspect specific backup
+barman-cloud-backup-show --endpoint-url https://fsn1.your-objectstorage.com s3://gru-k8up-backups/barman/postgres/cnpg-cluster/ cnpg 20260325T170200
+```
 
 ### Metallb
 
