@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stirling
+  namespace: stirling
+  labels:
+    app: stirling
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stirling
+  template:
+    metadata:
+      labels:
+        app: stirling
+    spec:
+      containers:
+      - name: nginx
+        image: frooodle/s-pdf:latest-ultra-lite
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080 # internal port for the app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stirling
+  namespace: stirling
+spec:
+  selector:
+    app: stirling
+  ports:
+  - name: http
+    port: 80 # we talk to 80
+    protocol: TCP
+    targetPort: 8080 # app listens here
+  # type: LoadBalancer # for debugging
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: stirling
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/proxy-body-size: 100m
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: 900
+    nginx.ingress.kubernetes.io/proxy-send-timeout: 900
+    nginx.ingress.kubernetes.io/proxy-read-timeout: 900
+    nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: 900
+    
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: stirling.${DOMAIN_NAME}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: stirling
+            port:
+              number: 80
+  tls:
+  - hosts:
+      - stirling.${DOMAIN_NAME}
+    secretName: letsencrypt-wildcard-cert-pengiuns.com-production
