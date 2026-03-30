@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: cnpg-controller-manager-config
-  namespace: cnpg
-data:
-  INHERITED_ANNOTATIONS: k8up.io/backupcommand,k8up.io/file-extension
