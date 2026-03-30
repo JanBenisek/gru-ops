@@ -11,11 +11,16 @@
       "metadata": {
         "name": "cloudflare-api-token",
         "namespace": "external-dns",
-        "creationTimestamp": null
+        "creationTimestamp": null,
+        "annotations": {
+          "reflector.v1.k8s.emberstack.com/reflection-allowed": "true",
+          "reflector.v1.k8s.emberstack.com/reflection-auto-enabled": "true",
+          "reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces": "cert-manager"
+        }
       }
     },
     "encryptedData": {
-      "cloudflare_api_token": "AgA73kJ4pQA/P4wwYoh71ss4K0TXlWgKyMPv3ERBPPxk94D/M82tfVoOn5q5byRoCBkNZtiYmncFelr9BMiUCRYCxUd+Y/d+b2rz/yzxM4srZRG4BhVpSn/7v+pAFqzo1amMtsW8ioJYpi4EyR08QN/zIb0Yh+Mh0Aqu/GPqUhIZTuPd4CzBH3TCHwn/55kF5puMNNF45+fvmssEJBX06mU+esorVLPyaRj07R2L2wl0HzNjFeqmCdcWGy/S2TLtJGdj9YWp3tN3nClFQppsnb9t4qzxqLHTdO2cuNMTAuqgE/jGoibTbXylP0+iQOCwCIOfAlwwoLjujhV/yHaCRg22oh3yi5k0qwJeEu04dpZtpf5/xpHz1Rv5KJ77DD1fJg8g++j3ZmSfHvYr6GCHS9KvpnoeG1j61xW9Te/YNFVYORdGuLeeTrqeUPb0Io1aXFyDWrLTKMt0JLisb84FpqOYu0MPQS4x5Fw+hyGZQjpKH+qlLc88NjoRoGM6NP7/lKyXVJ4Ku22jzJfYXpwRoIoXpbUkH5mTwDCpDIwjEZqQuKHdurdtvXHQaJPKf8cEzXZmuZmKSQeAokEz5ekiWZC8xvZUYQm9A65//0uyQIQcwFvQbW1JFxZ/x72y/8zDE67N2pCgDQAuaC85qBIhVyOZrTwv2so5iJzDPYNA+G7ORW1OE2tqLDvrzYmtUsIF8TP1UNq9iAI0L4+NdaCriaBeWnBNifyg0/dm4SLGX/rLg1MFDqVOVvjX"
+      "apiKey": "AgByidzjZJNnwqtchNP40bKLhfUnCHXp2jGP6v/nPWnLkpGv8Wyg/5c1X15g6nj0zgJubfIZ+WQtqJ3i6lvlaKKWDqRB/Ynm/I8LkmNRqfhCmIXVlv14UIpeR6+zEZmXG2BaepLrD3W7GCnpfa5xVBG8MMGD0fy8CaK6zCYAzl8YMkxNHATM5kbBsu4U4THX1DyFvX/NokALL5fkj3z9x7kGCqYqbjhji392EjGOUI8Abew7NaMmdHZgEf7lzwzs6hzTaQbutp3dYRMSObY2ah3YNa1CnGHP629SnQmC1tvUELkEiPHvWjl8/C5kdcMF7hxxZW7sXjGZpNYf8NPae3p1LrIY2+Wue0uHxRwo+Su2b40dA1r+wnbD5sCBopL+7FOujDFQwnM/2fneY5mONi5qbyqfsEJi8sTS6HcIylIqsJUUM9mzGoPpBt2ljx8tqPp9L/SZ16Tul5LuKQCutu4KazSctshkc46BVdoeBD0r7xqnUUSNQmfOp/SgOj4y10rLiNdLSolgg0Lj4+jXrwwf1IFK9BY5NUWSmNz0gxqaM8X8wpn5IDgwdtO3YvuetWsolIx+xy4t+oY+OVPD0ZAcibfEMiQyjopy+tEbQ6lHk2qIEWWaKEDWtY6viQiy1ZGkWLkbgV5fQtG26Yct6nhGWuztX8e1Z4qqd4+C/oYl/8St6svLnEj6YV69Cmz6EWRrV42Fe2S6tGTHwPHiz+0BrpRWqYymvpvt/iu5Ewq/YVzdILhD5C9z"
     }
   }
 }

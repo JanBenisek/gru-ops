@@ -1,0 +1,12 @@
+# I though this could be done through - name: HOST_WHITELIST value: "sabnzbd.pengiuns.com". But not.
+# Fixing it manually in config/sabnzbd.ini by this host_whitelist = sabnzbd-6885cd8b-84g65,sabnzbd.pengiuns.com works
+# I hope the config map works.
+# Also otherwise keep it mind that the PVC might need to be deleted.
+# Details: https://sabnzbd.org/wiki/extra/hostname-check.html
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sabnzbd-whitelist
+  namespace: media
+data:
+  host_whitelist: "sabnzbd.pengiuns.com"

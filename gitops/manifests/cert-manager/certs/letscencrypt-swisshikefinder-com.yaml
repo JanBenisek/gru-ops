@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: letsencrypt-swisshikefinder-com
+  namespace: letsencrypt-wildcard-cert
+spec:
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "hiker"
+  secretName: letsencrypt-swisshikefinder-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - "swisshikefinder.com"
+    # - "*.swisshikefinder.com"
+  duration: 2160h # 90 days (default)
+  renewBefore: 360h # 15 days
+

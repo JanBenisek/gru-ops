@@ -1,0 +1,38 @@
+# docker build -t docker-registry.pengiuns.com/jupyter:rust -f Dockerfile-rust .
+# docker push docker-registry.pengiuns.com/jupyter:rust
+# docker run --rm -it --entrypoint /bin/bash docker-registry.pengiuns.com/jupyter:rust
+
+FROM quay.io/jupyter/minimal-notebook:7830074b9e0a
+
+USER root
+
+ARG RUST_VERSION=nightly
+
+# Add Rust binaries to path
+ENV CARGO_HOME=/root/.cargo
+ENV PATH="${CARGO_HOME}/bin:${PATH}"
+
+RUN apt-get update && \
+    apt-get install -y curl build-essential && \
+    curl https://sh.rustup.rs -sSf | sh -s -- -y && \
+    rustup install ${RUST_VERSION} && \
+    rustup default ${RUST_VERSION} && \
+    rustc --version && \
+    cargo --version && \
+    cargo install evcxr_jupyter && \
+    # Copy evcxr_jupyter binary to jovyan's home
+    mkdir -p /home/jovyan/.cargo/bin && \
+    cp /root/.cargo/bin/evcxr_jupyter /home/jovyan/.cargo/bin/ && \
+    chown -R jovyan:users /home/jovyan/.cargo && \
+    # Clean up build tools and cache
+    apt-get remove --purge -y curl build-essential && \
+    apt-get autoremove -y && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /root/.cargo/registry /root/.cargo/git /root/.rustup/tmp
+
+USER jovyan
+
+ENV PATH="/home/jovyan/.cargo/bin:${PATH}"
+
+# Install the evcxr_jupyter kernel as the jovyan user
+RUN evcxr_jupyter --install --user
+    

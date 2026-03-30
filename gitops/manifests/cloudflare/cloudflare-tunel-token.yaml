@@ -1,0 +1,21 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "cloudflare-tunnel-cloudflare-tunnel-remote",
+    "namespace": "cloudflare",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "cloudflare-tunnel-cloudflare-tunnel-remote",
+        "namespace": "cloudflare",
+        "creationTimestamp": null
+      }
+    },
+    "encryptedData": {
+      "tunnelToken": "AgBPTzkOJ0dZPbrnSiYsn1XEn2Rh93GbnQ+guYL8j0EpOgpUDTz7/cOfc9Fq0vBYz5D2PtZeEvZd4WxH6dRZfp/yl+VLBnZfqBdSqb44RVeeMj9zjzrhC40m8/qfFWZBbz2JRRXYwH/oDf3Pnob3Jlbxw0zkYH8/qeZROruW5IP3ncJgt8VGWVffPJ8Gs16k2OsQxms83m3fJEymnp3VFTpsMaqyxk8CkyouFVVCrhmsZ7ugkEi3V7w64rj6VGGvn+vdAzQNutHOCwa/M0d79wdQA+bowLRsMu7PNo6wL/0SVrrBnJMnVO015b/nUXa0P1Ed+sQG73i8SNHyszttgUPW88ha4uUJVKjMl3jb1ytVhcn7SbfPSoWHYGqhpEWj0nM27ckzX3a3oKJpli9bTSYt4i7+D1EoeepaeArg0TK8ut2UpM2cRBl5pS2ZDJkCbpO1a9gFBhI4HhsGsb7xo7EEgWB9rL2MNkeFN//mz64Fq/UU9/fCcfibHsFTT+vVwnJNsGmMPTg2cT9nN0lX1nwo+4wwmmevQX45nMEJwF9XRGHXa+lWkwnZ2x/Ma7KOfQp0LpDAoceaPM1EMtG4Q18jtcTpssCy9FJDD9eiNrg4katVMd4EpYSC1UIP3kzOOJUjjDpftL3YQqMuBac3BkiihhXXHEc5+Bu5ZmmBFnxqfzNvdHzGDNnJn0m/btb2ZWtxSFXD4wmLciQV1gYecrBXnGhqF0n7aOY6TA+eU92C0lpElNuGJQTlDQOuyBrFUqqOJt4fvAko4sgtiiovDKQ9kn4u22K/Jji5rTxHzzdXQv1aOazxImaNvRVghVEYRnKYT7EEkebGTLAr6O5RDRlIoZDeAqo+oDZea3lRKd5B2PHXVAoqbJCakYD1D/OA3WiI2k+mub5DHBuvW/+sQ5V5BLh1GoC2axaXXas8wRJj5zkGbtcF6Swv"
+    }
+  }
+}

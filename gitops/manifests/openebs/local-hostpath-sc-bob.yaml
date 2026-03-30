@@ -1,0 +1,23 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-hostpath-bob
+  namespace: openebs
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
+    openebs.io/cas-type: local
+    cas.openebs.io/config: |
+      - name: StorageType
+        value: "hostpath"
+      - name: BasePath
+        value: /var/mnt/storage/data
+provisioner: openebs.io/local
+allowVolumeExpansion: true
+reclaimPolicy: Retain # Delete is default, but I need Retain for psql and such
+volumeBindingMode: WaitForFirstConsumer
+# https://openebs.io/docs/user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-configuration
+allowedTopologies:
+- matchLabelExpressions:
+  - key: kubernetes.io/hostname
+    values:
+    - bob

@@ -12,6 +12,11 @@ spec:
   dependsOn:
     - name: external-dns
       namespace: flux-system
+    - name: openebs
+      namespace: flux-system
+    # TODO: enable
+    # - name: cloudflare
+    #   namespace: flux-system
   sourceRef:
     kind: GitRepository
     name: flux-system

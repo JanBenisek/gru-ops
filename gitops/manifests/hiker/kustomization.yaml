@@ -3,4 +3,6 @@ kind: Kustomization
 namespace: hiker
 resources:
   - namespace.yaml
+  # - pvc.yaml
   - hiker.yaml
+  

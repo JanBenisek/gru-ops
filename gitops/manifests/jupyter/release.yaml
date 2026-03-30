@@ -1,0 +1,214 @@
+  apiVersion: helm.toolkit.fluxcd.io/v2
+  kind: HelmRelease
+  metadata:
+    name: jupyter
+    namespace: jupyter
+  spec:
+    interval: 30m
+    chart:
+      spec:
+        chart: jupyterhub
+        version: "4.2.0"
+        sourceRef:
+          kind: HelmRepository
+          name: jupyterhub
+          namespace: jupyter
+        interval: 12h
+    values:
+      # FIX: PV(C) not there, vim not there
+      # TODO: read docs and fine-tune!
+      # TODO: understand RBAC 
+      #    https://z2jh.jupyter.org/en/stable/administrator/security.html#use-role-based-access-control-rbac
+      debug:
+        enabled: True
+
+      hub:
+        # TODO: User auth (see gitops)
+        # https://z2jh.jupyter.org/en/stable/administrator/authentication.html
+        # TODO: Persistence
+        nodeSelector:
+          kubernetes.io/hostname: kevin
+
+        db:
+          type: sqlite-memory # should not need PVC, change later to sqlite-pvc
+        resources:
+          requests:
+            cpu: 100m 
+            memory: 1Gi 
+          limits:
+            cpu: 1
+            memory: 2Gi
+
+        config:
+          JupyterHub:
+            admin_access: true
+            authenticator_class: dummy
+            log_level: 'DEBUG'
+            # TODO: use secret
+            proxy_auth_token: 93b2706b1babfb2f74a33ca51cfa592d94c8309298735b9526d83ed3d87e0ed4
+          
+          Authenticator:
+            admin_users:
+              - corgi
+            allowed_users:
+              - penguin
+          DummyAuthenticator:
+            password: a-shared-secret-password
+
+      proxy:
+        #  openssl rand -hex 3
+        #  read with echo ... | base64 -d
+        secretToken: 93b2706b1babfb2f74a33ca51cfa592d94c8309298735b9526d83ed3d87e0ed4
+        chp: # proxy pod, running jupyterhub/configurable-http-proxy
+          resources:
+            requests:
+              cpu: 50m 
+              memory: 64Mi 
+            limits:
+              cpu: 100m 
+              memory: 128Mi
+
+          nodeSelector:
+            kubernetes.io/hostname: kevin
+      
+      singleuser:
+        extraAnnotations:
+          k8up.io/backup: "true"
+        allowPrivilegeEscalation: true
+        uid: 0 # run as root!
+        # uid: 1000 # is default user in JupyterHub - jovyan
+        fsGid: 100 # all files created will be owned by group ID 100
+        cmd: start-singleuser.sh
+        extraEnv:
+          EDITOR: "vim"
+          GRANT_SUDO: "yes" # Also need the one below and uid=0
+          NOTEBOOK_ARGS: "--allow-root" # TODO: Allows root access in Jupyter, how to do just for admin?
+
+        nodeSelector:
+          kubernetes.io/hostname: kevin # for the PVC
+        
+        defaultUrl: "/lab" # default Jupyter
+
+        # storage: # no storage for users
+        #   type: none
+        storage:
+          type: dynamic
+          capacity: 2Gi
+          dynamic:
+            storageClass: local-hostpath-kevin
+          extraVolumes:
+            # This is ephemeral storage, uses node on the disk
+            - name: tmp
+              emptyDir:
+                sizeLimit: 1Gi
+            - name: shared
+              persistentVolumeClaim:
+                claimName: pvc-jupyter-shared
+          extraVolumeMounts:
+            - name: tmp
+              mountPath: /tmp
+            - name: shared
+              mountPath: /home/jovyan/shared
+
+        image:
+          # The default image
+          # name: quay.io/jupyter/minimal-notebook
+          # tag: 7830074b9e0a
+          name: docker-registry.pengiuns.com/jupyter
+          tag: minimal
+          pullPolicy: Always
+        
+        profileList:
+          - display_name: "Tiny"
+            description: "Python 3.12.10, [0.2 CPU, 1-5G RAM]"
+            default: true
+            kubespawner_override:
+              image: docker-registry.pengiuns.com/jupyter:minimal
+              imagePullPolicy: Always # might take too long
+              cpu_guarantee: 0.2
+              mem_guarantee: 1G
+              cpu_limit: 1
+              mem_limit: 5G
+          - display_name: "Chonky boi ༼ つ ◕_◕ ༽つ🍰"
+            description: "Python 3.12.10, [2 CPU, 10-15G RAM]"
+            kubespawner_override:
+              image: docker-registry.pengiuns.com/jupyter:minimal
+              imagePullPolicy: Always # might take too long
+              cpu_guarantee: 2
+              mem_guarantee: 10G
+              cpu_limit: 2
+              mem_limit: 15G
+          - display_name: "I love p-values"
+            description: "R, [1/2 CPU, 1-5G RAM]"
+            kubespawner_override:
+              image: quay.io/jupyter/r-notebook:7830074b9e0a
+              cpu_guarantee: 0.5
+              mem_guarantee: 1G
+              cpu_limit: 1
+              mem_limit: 5G
+          - display_name: "Let's Go!"
+            description: "Go 1.22.3, [1/2 CPU, 1-5G RAM]"
+            kubespawner_override:
+              image: docker-registry.pengiuns.com/jupyter:go
+              imagePullPolicy: Always # might take too long
+              cpu_guarantee: 0.2
+              mem_guarantee: 1G
+              cpu_limit: 1
+              mem_limit: 5G
+          - display_name: "Blazingly fast"
+            description: "Rust 1.70.0, [1/2 CPU, 1-5G RAM]"
+            kubespawner_override:
+              image: docker-registry.pengiuns.com/jupyter:rust
+              imagePullPolicy: Always # might take too long
+              cpu_guarantee: 0.2
+              mem_guarantee: 1G
+              cpu_limit: 1
+              mem_limit: 5G
+        
+        extraFiles:
+          # Playing with more custom culling
+          # https://z2jh.jupyter.org/en/stable/jupyterhub/customizing/user-management.html
+          # https://github.com/jupyterhub/zero-to-jupyterhub-k8s/issues/2244
+          jupyter_notebook_config.json:
+            mountPath: /etc/jupyter/jupyter_notebook_config.json
+            data:
+              MappingKernelManager:
+                cull_idle_timeout: 1200 # idle kernel is considered for culling
+                cull_interval: 600 # interval to check kernels for culling
+                cull_connected: true # consider kernels for culling with active connections
+                cull_busy: false # consider kernels for culling with running code
+
+      # Pre-pulls images on new nodes, useful for autoscaling, not needed
+      prePuller:
+        hook:
+          enabled: false 
+        continuous:
+          enabled: false 
+
+      # Preparing small images on nodes, so users do not have to wait when they arrive.
+      # Also efficiently packing pods on a node, not needed.
+      # Good content: https://z2jh.jupyter.org/en/stable/administrator/optimization.html
+      scheduling:
+        userScheduler:
+          enabled: false 
+
+      # Rules to remove inactive pods (see all default values)
+      cull:
+        enabled: true
+        adminUsers: true 
+        timeout: 1200 # 20 mins
+        every: 600 # 10 minutes
+
+      ingress:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          kubernetes.io/ingress.class: "nginx"
+          nginx.ingress.kubernetes.io/proxy-body-size: 100m
+        hosts:
+          - jupyter.${DOMAIN_NAME}
+        tls:
+          - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+            hosts:
+              - jupyter.${DOMAIN_NAME}
+

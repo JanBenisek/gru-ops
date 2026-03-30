@@ -14,10 +14,12 @@ spec:
     - selector:
         dnsZones:
           - "pengiuns.com"
+          - "swisshikefinder.com" 
+          - "funnaiest.com"
       dns01:
         cloudflare:
           email: benisekj@gmail.com
           apiTokenSecretRef:
             name: cloudflare-api-token
-            key: cloudflare_api_token
+            key: apiKey
 

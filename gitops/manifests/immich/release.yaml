@@ -1,0 +1,120 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: immich
+  namespace: immich
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: immich
+      version: "0.9.3"
+      sourceRef:
+        kind: HelmRepository
+        name: immich
+        namespace: immich
+      interval: 12h
+  values:
+    ## This chart relies on the common library chart from bjw-s
+    ## You can find it at https://github.com/bjw-s-labs/helm-charts/tree/923ef40a39520979c98f354ea23963ee54f54433/charts/library/common
+    ## Refer there for more detail about the supported values
+
+    # These entries are shared between all the Immich components
+
+    env:
+      REDIS_HOSTNAME: '{{ printf "%s-redis-master" .Release.Name }}'
+      DB_HOSTNAME: vchord-postgres.${DOMAIN_NAME}
+      DB_USERNAME: "bot_immich"
+      DB_DATABASE_NAME: "immich"
+      # -- You should provide your own secret outside of this helm-chart and use `postgresql.global.postgresql.auth.existingSecret` to provide credentials to the postgresql instance
+      DB_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: bot-immich-pswd
+            key: password
+      IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
+      IMMICH_LOG_LEVEL: "debug"
+
+    image:
+      # ghcr.io/immich-app/immich-server:v1.140.1
+      tag: v2.0.1 # v2.0.1 v1.143.1 
+
+    immich:
+      metrics:
+        # TODO: Enable metrics
+        enabled: true
+      persistence:
+        # Main data store for all photos shared between different components.
+        library:
+          # Automatically creating the library volume is not supported by this chart
+          # You have to specify an existing PVC to use
+          existingClaim: pvc-immich
+      # configuration is immich-config.json converted to yaml
+      # ref: https://immich.app/docs/install/config-file/
+      #
+      configuration: {}
+        # trash:
+        #   enabled: false
+        #   days: 30
+        # storageTemplate:
+        #   enabled: true
+        #   template: "{{y}}/{{y}}-{{MM}}-{{dd}}/{{filename}}"
+
+    # Dependencies
+    redis:
+      enabled: true
+      architecture: standalone
+      auth:
+        enabled: false
+
+    # Immich components
+    server:
+      enabled: true
+      resources:
+        requests:
+          cpu: "200m"
+          memory: "6Gi"
+        limits:
+          cpu: "1"
+          memory: "10Gi"
+      image:
+        repository: ghcr.io/immich-app/immich-server
+        pullPolicy: IfNotPresent
+      ingress:
+        main:
+          enabled: true
+          annotations:
+            kubernetes.io/ingress.class: "nginx"
+            nginx.ingress.kubernetes.io/proxy-body-size: "0"
+          hosts:
+            - host: immich.${DOMAIN_NAME}
+              paths:
+                - path: "/"
+          tls:
+            - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+              hosts:
+                - immich.${DOMAIN_NAME}
+
+    machine-learning:
+      enabled: true 
+      resources:
+        requests:
+          cpu: "200m"
+          memory: "6Gi"
+        limits:
+          cpu: "2"
+          memory: "10Gi"
+      image:
+        repository: ghcr.io/immich-app/immich-machine-learning
+        pullPolicy: IfNotPresent
+      env:
+        TRANSFORMERS_CACHE: /cache
+        IMMICH_LOG_LEVEL: "debug"
+      persistence:
+        cache:
+          enabled: true
+          size: 10Gi
+          # Optional: Set this to pvc to avoid downloading the ML models every start.
+          type: emptyDir
+          accessMode: ReadWriteMany
+          storageClass: local-hostpath-kevin
