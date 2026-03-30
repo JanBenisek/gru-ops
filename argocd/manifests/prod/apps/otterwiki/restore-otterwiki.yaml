@@ -1,0 +1,32 @@
+# # Testing restore
+# apiVersion: k8up.io/v1
+# kind: Restore
+# metadata:
+#   name: otterwiki-restore
+#   namespace: otterwiki
+# spec:
+#   backend:
+#     s3:
+#       endpoint: https://fsn1.your-objectstorage.com
+#       bucket: gru-k8up-backups/pvc/otterwiki/scheduled/
+#       accessKeyIDSecretRef:
+#         name: hetzner-credentials
+#         key: user
+#       secretAccessKeySecretRef:
+#         name: hetzner-credentials
+#         key: password
+#     repoPasswordSecretRef:
+#       name: restic-credentials
+#       key: password
+
+#   # snapshot: edec0c14 # find latest hash
+
+#   restoreMethod:
+#     folder:
+#       claimName: otterwiki
+
+#   # this job runs as non-root by default, but there were already files with specific permissions/ownership
+#   # restic needs permission to restore/replace the files
+#   podSecurityContext:
+#     runAsUser: 0
+#     fsGroup: 0

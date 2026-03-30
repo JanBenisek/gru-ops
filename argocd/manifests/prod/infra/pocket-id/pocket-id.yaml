@@ -1,0 +1,23 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "pocket-id",
+    "namespace": "pocket-id",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "pocket-id",
+        "namespace": "pocket-id",
+        "creationTimestamp": null
+      },
+      "data": null
+    },
+    "encryptedData": {
+      "DB_CONNECTION_STRING": "AgB/FwoPILoUYfmW7/xP5G+hpxy76C922gbsvxo8xTUhd4LeqWNtskSnLL/Jo+L43cDAm2M//ZVZaggn5N39o8u9HAsS9BJQ+0KzyrDUClVhKSXSjTzJi5N5arNfjQaKX9KnAcfeddpQutsQxZDAzb3Rr8uRz+j2e9ZlnHY4/k8yuunIanyBC4BtBnWcXmBLObU6ZnSncIgLGZXiTzst2/s70Ca5lAkItfGZLT73gwzO9MvR5rpS4zP57ofI1Di7tedcRPF4hn5RVFfUixjrXyqLP1c/tLSIUl+uBihPX9tafmgMXvZnN4bfz/HO/VI8drxqEu9vDgMTko4u0ZRGiwQfCvkRowfBsaV608MUt60vOKwac6vVZk1MJfybqLHdbxipmiz3ujrioE1+x/wnXrSNq8D7pRNpSM2MXbkADLssOnT+8IdN/eLxNQhdp/ZJzwQV9iBlclszSVfV/p3+qJlWDk3ingcyj6bsQSmMZQx8pyvxBQ97Hh61YZRsGC4yn9MjlpbsPdf0t9lKbdIeDG9eXxW/yajjtqD33Sgx5WjdUoDnMtQJmu70TLku0bhd11I4Lc6n4ALb/bfAN6Bh/vXO38KRtPDL4WFZi3tQsFNRHN0QrMl13oA1l7N5Eq0G/qNrOfRUlo7G76VDFKfwWXM9NbyUz/yja2o59NUHIY9barWAkbwBqSbUm2FpLTkUwT8QaeocKglPRFfihjiy9jU9SQstMolgZvqG39BLDOjZdN0GtfbAE9OxYQZ5UJvhOzSO90PcG3NkkzycuIDo8430VXkOYG7ZVIyVCiv+rBFG4lMO30UJQblwRNfl2NUU",
+      "ENCRYPTION_KEY": "AgB+jW4zqmg3lPH8oF9WwZlq7U06ZXifvcHE8Jdu31McPp64wilkEzS5S99e9o9G3kVn+zeGy+aeKVOjBLUewFg8X/SRyTWvQSuV7vzdU5W83x0Kt8PGKu51h+RLS+wBJKOTbfpCRyoBJ8/FdoJw3ddP6FzIv2Kcr5zuvts6VB5TsUDTCtg3sCfFSaoau/xxxnJJkL53+wdUa1iyPR8UZT7NM4LOJXAq3ogKxShfecUSkZyuo/u0hnSZzHnYEM79L+le3Ftbp0P4OYpqlG07dOxZ1G5lkFQFO3Jq4z+AucK8znQ/z3b77tCeXpY7A21Ktb/B5Xxem0DXK23U1cV4jhC+GXqi0sF2sP9Mhr/XgfDMTk9+9t4txnPc8M1w1a1ObBB2Q9rrEMQm/cnM5ptEqNDcxtYMCNoaqRiJFSyiS4PPbRDZeZ1lPepfeEyxLLStGwJE1K7YonmxL5x+zcKuF4RHlBDXcn2V2N1m4DTHtjz2t0pElmCGr0cbXDu0Jd5FiwJZA9n2rHyMnPBcdRwJE8WuKzc8eqAx1oQc0X0LL1zJhnzJua6zwSiJQR4o/n7mmksKi7r+N1oyq7ofzQavWjyWg0bxwbnCz69pPQbM46rpweVPXA7mYiLEDaCozYkA5gg3Txa/qwTBzhZQ5sn37mvM9H9UIN3r9TjhzYQ9JeqdnkZcyFIamCCVtASGCEGfNxNRy5WKXE0/rsZCk5oXgiXSSt63RevpVrcK3FxT6ugPw5gnlMq8fyhbGNKIew=="
+    }
+  }
+}

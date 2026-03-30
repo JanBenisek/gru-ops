@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: otterwiki
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  project: gru
+  sources:
+  - repoURL: https://charts.otterwiki.com
+    chart: otterwiki
+    targetRevision: "0.1.3"
+    helm:
+      valueFiles:
+      - $values/argocd/manifests/prod/apps/otterwiki/values.yaml
+  - repoURL: https://github.com/JanBenisek/gru-ops.git
+    targetRevision: main
+    path: argocd/manifests/prod/apps/otterwiki
+    ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: otterwiki
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

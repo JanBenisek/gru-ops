@@ -1,0 +1,53 @@
+debug: false # Enable verbose logging to the console.
+persist: true
+
+machine:
+  type: controlplane
+
+  kernel:
+    modules:
+      - name: btrfs
+      - name: btrfs
+      - name: iscsi_tcp
+      - name: libiscsi_tcp
+      - name: scsi_transport_iscsi
+      - name: dm_multipath
+      - name: overlay
+
+  kubelet:
+    image: ${kubelet_image}
+    # Bootstrap without and apply later
+    extraMounts:
+      - destination: /var/mnt/storage
+        type: bind
+        source: /var/mnt/storage
+        options:
+          - bind
+          - rshared
+          - rw
+
+  network:
+    hostname: kevin
+
+  # Bootstrap without and apply later
+  disks:
+    - device: /dev/sda
+      partitions:
+        - mountpoint: /var/mnt/storage
+  
+  install:
+    disk: /dev/nvme0n1 
+    image: ${talos_installer_image}
+
+
+    wipe: true
+
+  features:
+    hostDNS:
+      enabled: true # Talos provides DNS resolver to pods
+
+cluster:
+  clusterName: ${cluster_name}
+  network:
+    dnsDomain: cluster.local
+  allowSchedulingOnControlPlanes: true

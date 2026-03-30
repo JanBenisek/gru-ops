@@ -1,0 +1,99 @@
+
+grafana:
+  enabled: true
+  adminPassword: admin
+  plugins:
+    - yesoreyeram-infinity-datasource
+
+  # Disable default datasource to avoid conflicts with additionalDataSources
+  defaultDashboardsEnabled: true
+  sidecar:
+    datasources:
+      enabled: true
+      defaultDatasourceEnabled: false  # Disable auto-created Prometheus datasource
+
+  grafana.ini:
+    users:
+      auto_assign_org_role: Admin
+      default_theme: light
+    server:
+      root_url: https://grafana.pengiuns.com
+    auth.basic:
+      enabled: false
+    # new stuff, experiment with kuberay grafana embedding
+    security:
+      allow_embedding: true
+    auth.anonymous:
+      enabled: true
+      org_role: Viewer
+  persistence:
+    type: pvc
+    enabled: true
+    storageClassName: synology-storage-apps
+    accessModes:
+      - ReadWriteOnce
+    size: 5Gi
+  additionalDataSources: # Enable later? But then need dependsOn
+    - name: Prometheus
+      type: prometheus
+      url: http://kube-prometheus-stack-prometheus:9090
+      access: proxy
+      isDefault: true
+    - name: Loki
+      type: loki
+      url: http://loki:3100 # it listens to 3100 (see k describe)
+      access: direct
+      basicAuth: false
+      isDefault: false
+  ingress:
+    enabled: true 
+    ingressClassName: traefik
+    annotations:
+      kubernetes.io/ingress.class: "traefik"
+    hosts:
+      - grafana.pengiuns.com
+    tls:
+      - hosts:
+          - grafana.pengiuns.com
+        secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+# Install CRDs with the chart
+crds:
+  enabled: true
+
+# Disable admission webhooks to avoid sync conflicts
+prometheusOperator:
+  admissionWebhooks:
+    enabled: false
+  tls:
+    enabled: false
+
+prometheus:
+  prometheusSpec:
+    # Allow Prometheus to discover ServiceMonitors across all namespaces without label restrictions
+    serviceMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelector: {}
+    serviceMonitorNamespaceSelector: {}
+
+    # Allow Prometheus to discover PodMonitors across all namespaces without label restrictions
+    podMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelector: {}
+    podMonitorNamespaceSelector: {}
+
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: synology-storage-apps
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 5Gi
+    retentionSize: 4GB
+    retention: 30d
+
+# Prometheus Pushgateway for k8up backup metrics
+# TODO: not working
+prometheus-pushgateway:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+    namespace: monitoring

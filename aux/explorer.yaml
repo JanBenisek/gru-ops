@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: explorer
+  namespace: hiker
+spec:
+  containers:
+    - name: shell
+      image: ubuntu:24.04
+      command:
+        - /bin/bash
+        - -c
+        - |
+          apt update && apt install -y vim && sleep infinity
+      volumeMounts:
+        - name: mydata
+          mountPath: /mnt/data
+  volumes:
+    - name: mydata
+      persistentVolumeClaim:
+        claimName: pvc-hiker

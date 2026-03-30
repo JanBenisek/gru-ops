@@ -1,0 +1,234 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homepage
+  namespace: homepage
+  labels:
+    app.kubernetes.io/name: homepage
+data:
+  kubernetes.yaml: |
+    mode: cluster
+  settings.yaml: |
+    title: Home of pengiuns
+    theme: dark
+    layout:
+      Media:
+        style: row
+        columns: 4
+    headerStyle: clean
+    language: en
+    quicklaunch:
+      searchDescriptions: true
+      hideInternetSearch: true
+      showSearchSuggestions: true
+      hideVisitURL: true
+      provider: google
+    statusStyle: "dot"
+  custom.css: ""
+  custom.js: ""
+  bookmarks.yaml: |
+    - Developer:
+        - Github:
+            - icon: github.png
+              href: https://github.com/JanBenisek/gru-ops
+        - Cloudflare:
+            - icon: cloudflare.png
+              href: https://dash.cloudflare.com/6f72e3a2bfcc7b774fdcecc770035336/home/domains
+        - Cloudflare Zero Trust:
+            - icon: cloudflare-zero-trust.png
+              href: https://one.dash.cloudflare.com/6f72e3a2bfcc7b774fdcecc770035336/networks/connectors
+        - Hetzner:
+            - icon: hetzner.png
+              href: https://console.hetzner.com/projects
+    - Docs:
+        - Notion:
+            - icon: notion.png
+              href: https://www.notion.so/Homelab-074c94b564de4cb7b57de7a7f60e0e1b
+  services.yaml: |
+    - Vercajk:
+        - ArgoCD:
+            icon: argo-cd.png
+            href: https://argocd.pengiuns.com
+            description: Is it synced yet?
+            namespace: argocd
+            app: argocd-server
+        - Grafana:
+            icon: grafana.png
+            href: https://grafana.pengiuns.com
+            description: Them logs!
+            namespace: monitoring
+            app: grafana
+        - Traefik:
+            icon: traefik.png
+            href: https://traefik.pengiuns.com
+            description: Trafficking
+            namespace: traefik
+            app: traefik
+        - Tinyauth:
+            icon: tinyauth.png
+            href: https://tinyauth.pengiuns.com
+            description: Who dis?
+            namespace: tinyauth
+            app: tinyauth
+        - Pocket-ID:
+            icon: pocket-id.png
+            href: https://pocket-id.pengiuns.com
+            description: Hands where I can see them!
+            namespace: pocket-id
+            app: pocket-id
+        - Metabase:
+            icon: metabase.png
+            href: https://metabase.pengiuns.com
+            description: Moar data.
+            namespace: metabase
+            app: metabase
+        - Proxmox:
+            icon: proxmox.png
+            href: https://192.168.178.40:8006
+            description: VMs for everyone.
+        - Storage:
+            icon: synology.png
+            href: http://192.168.178.96:5000/
+            description: HOARD!!!
+
+    - Tools:
+        - IT-Tools:
+            icon: it-tools.png
+            href: https://it-tools.pengiuns.com/
+            description: The Swiss knife of internet
+            namespace: it-tools
+            app: it-tools
+        - Stirling PDF:
+            icon: stirling-pdf.png
+            href: https://stirling.pengiuns.com/?lang=en_GB
+            description: PDF tools
+            namespace: stirling
+            app: stirling
+        - LibreTranslate:
+            icon: libretranslate.png
+            href: https://libretranslate.pengiuns.com/?lang=en_GB
+            description: Was ist das?
+            namespace: libretranslate
+            app: libretranslate
+        - JupyterHub:
+            icon: jupyter.png
+            href: https://jupyterhub.pengiuns.com
+            description: Notebooks belong to production!!!
+            namespace: jupyterhub
+            app: jupyterhub
+        - Immich:
+            icon: immich.png
+            href: https://immich.pengiuns.com
+            description: So pretty!
+            namespace: immich
+            app: server
+        - Immich Proxy:
+            icon: immich-public-proxy.png
+            href: https://immich-share.pengiuns.com
+            description: Gib!
+            namespace: immich
+            app: immich-proxy
+        - Otter Wiki:
+            icon: otter-wiki-dark.svg
+            href: https://otterwiki.pengiuns.com
+            description: Otter helps!
+            namespace: otterwiki
+            app: otterwiki
+
+    - Fun:
+        - Hiker:
+            icon: go.png
+            href: https://hiker.pengiuns.com
+            description: Let's go hiking!
+            namespace: hiker
+            app: hiker
+        - LLMs:
+            icon: open-webui.png
+            href: https://chat.pengiuns.com
+            description: Ollama & WebUI locally
+            namespace: open-webui
+            app: open-webui
+        - Funnaiest:
+            icon: deepseek.png
+            href: https://funnaiest.com
+            description: I am so funny
+            namespace: funnaiest
+            app: funnaiest
+
+    - Media:
+        - Jellyfin:
+            icon: jellyfin.png
+            href: https://jellyfin.pengiuns.com
+            description: There be procrastination
+            namespace: media
+            app: jellyfin
+        - Radarr:
+            icon: radarr.png
+            href: https://radarr.pengiuns.com
+            description: Movies
+            namespace: media
+            app: radarr
+        - Prowlarr:
+            icon: prowlarr.png
+            href: https://prowlarr.pengiuns.com
+            description: Indexer
+            namespace: media
+            app: radarr
+        - qbittorrent:
+            icon: qbittorrent.png
+            href: https://qbittorrent.pengiuns.com
+            description: Torrent
+            namespace: media
+            app: qbittorrent
+        - Sonarr:
+            icon: sonarr.png
+            href: https://sonarr.pengiuns.com
+            description: Shows
+            namespace: media
+            app: sonarr
+        - Bazarr:
+            icon: bazarr.png
+            href: https://bazarr.pengiuns.com
+            description: Subtitles
+            namespace: media
+            app: bazarr
+        - SABnzbd:
+            icon: sabnzbd.png
+            href: https://sabnzbd.pengiuns.com
+            description: Usenet client
+            namespace: media
+            app: bazarr
+
+    - Experiments:
+      - Router:
+          icon: fritzbox.png
+          href: https://fritz.box/
+          description: Router boi
+          widget:
+            type: fritzbox
+            url: http://192.168.178.1
+            fields: ["down", "up", "received", "sent"]
+  widgets.yaml: |
+    - kubernetes:
+        cluster:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+          label: "Gru"
+        nodes:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+    - search:
+        provider: google
+        target: _blank
+    - openmeteo:
+        label: Adliswil
+        latitude: 47.31
+        longitude: 8.5246
+        timezone: "Europe/Berlin"
+        units: metric
+        cache: 5
+  docker.yaml: ""

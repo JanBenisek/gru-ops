@@ -1,0 +1,16 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-media
+  namespace: media
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+    k8up.io/backup: "false"
+spec:
+  storageClassName: synology-storage-media
+  volumeName: pvc-49291478-8164-4a41-b729-8903ab727423
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti # Just a logical limit, can write more, current max limit is 3.6Ti

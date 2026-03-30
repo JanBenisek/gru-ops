@@ -1,0 +1,16 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-bazarr-config
+  namespace: media
+  annotations:
+    k8up.io/backup: "true"
+spec:
+  storageClassName: synology-storage-apps
+  volumeName: pvc-7b0b0507-857f-4d63-8325-21592b8cf485
+  # k patch pv pvc-7b0b0507-857f-4d63-8325-21592b8cf485 -p '{"spec":{"claimRef": null}}'
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

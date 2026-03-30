@@ -1,0 +1,39 @@
+logLevel: debug
+image:
+  pullPolicy: Always
+domainFilters:
+- "pengiuns.com"
+# - "swisshikefinder.com"
+- "funnaiest.com"
+# Based on what we create records in DNS
+# Sometimes I use regular ingress, but cloudflare tunnel apps
+#  I am using ingress route where I can controll it more.
+sources:
+  - service
+  - ingress # only check default k8s ingress, not from traefik
+  - traefik-proxy # Watch Traefik IngressRoute CRDs for DNS
+provider:
+  name: cloudflare
+  proxied: false
+
+env:
+  - name: CF_API_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: cloudflare-api-token
+        key: apiKey
+
+registry: txt
+
+txtOwnerId: external-dns-gru
+
+# available values are `create-only`, `sync`, & `upsert-only`.
+policy: sync # mirrors dns records based on on txtOwnerId, (insert, update, delete)
+
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "10m"
+  limits:
+    memory: "256Mi"
+

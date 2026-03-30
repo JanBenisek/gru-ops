@@ -1,0 +1,32 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: funnaiest
+  namespace: funnaiest
+spec:
+  entryPoints:
+    - web # cannot be websecure
+  routes:
+  - match: Host(`funnaiest.com`)
+    kind: Rule
+    services:
+      - name: funnaiest
+        port: 80
+  # Not needed since Cloudflare does tls termination
+  # tls:
+  #   secretName: letsencrypt-funnaiest-com
+
+# Without cloudflare
+# Traefik will expect HTTPS traffic on the entryPoint you specified (usually websecure → port 443).
+# It will terminate TLS inside the cluster, decrypt HTTPS, and forward HTTP traffic to your pod.
+# This requires that the client (browser) connects directly to Traefik over HTTPS.
+
+# With cloudflare
+# Cloudflare Tunnel (Cloudflare Argo Tunnel) terminates TLS at Cloudflare’s edge, not in your cluster.
+# The connection from Cloudflare Tunnel → Traefik is plain HTTP, even if the browser requested HTTPS.
+# Traefik sees HTTP traffic on its web entryPoint.
+
+# Why tls with cloudflare breaks things
+# Traefik will expect HTTPS on that entryPoint (websecure / port 443).
+# Cloudflare Tunnel is sending HTTP, so Traefik thinks “this request isn’t HTTPS” → doesn’t match the route → returns 404.
+# Same happens if you leave websecure in entryPoints while the traffic comes as HTTP from the Tunnel.

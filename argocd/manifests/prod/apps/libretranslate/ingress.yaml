@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: libretranslate
+  labels:
+    app: libretranslate
+    app.kubernetes.io/name: libretranslate
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/max-body-size: "100M"
+    traefik.ingress.kubernetes.io/readtimeout: "1000s"
+    traefik.ingress.kubernetes.io/writetimeout: "1000s"
+    traefik.ingress.kubernetes.io/idletimeout: "1000s"
+    
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: libretranslate.pengiuns.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: libretranslate
+            port:
+              number: 80
+  tls:
+  - hosts:
+      - libretranslate.pengiuns.com
+    secretName: letsencrypt-wildcard-cert-pengiuns.com-production

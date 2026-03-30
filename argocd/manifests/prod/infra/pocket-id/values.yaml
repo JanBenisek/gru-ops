@@ -1,0 +1,119 @@
+# -- Number of replicas for the stateful set.
+replicaCount: 1
+
+# -- Specifies the time zone to be used by the application.
+# Use a valid IANA time zone string (e.g., "Etc/UTC", "America/New_York").
+timeZone: "Europe/Zurich"
+
+# -- Specifies if the server should send heartbeat to Pocket-ID for analytic purposes.
+analyticsDisabled: false
+
+# -- MaxMind license key used to download the GeoLite2 database. Leave blank to disable download.
+maxmindLicenseKey: ""
+
+# -- Host where you will access the app.
+host: "pocket-id.pengiuns.com"
+
+database:
+  # -- Connection string for the database.
+  # Using PostgreSQL connection from sealed secret (pocket-id) via DB_CONNECTION_STRING key
+  # The actual connection string is stored securely in the sealed secret
+  connectionString: ""
+
+updateStrategy:
+  # -- The deployment strategy to use to replace existing pods with new ones. Options: "RollingUpdate" or "OnDelete".
+  # Using RollingUpdate (StatefulSets don't support maxUnavailable, only partition)
+  # Single instance is ensured by replicaCount: 1 (required for v2 database locking)
+  type: RollingUpdate
+  rollingUpdate:
+    partition: 0
+    
+pocketID:
+  # Has image etc.
+  resources:
+    limits:
+      memory: 1Gi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+
+backup:
+  # Has image etc.
+  resources:
+    limits:
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+config:
+  # -- Specifies whether a config map should be created.
+  create: true
+  # -- Specifies name of a config map used to configure the pocket-id.
+  # If not filled, uses full name.
+  name: ""
+
+  # -- Public URL where the application is accessed. Must match exactly how users access the app.
+  PUBLIC_APP_URL: "https://pocket-id.pengiuns.com"
+
+  telemetry:
+    # -- Enables OpenTelemetry tracing.
+    tracingEnabled: false
+    # -- Enables OpenTelemetry metrics.
+    metricsEnabled: true
+
+    # -- OpenTelemetry SDK environment variables.
+    # https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/
+    otel:
+      OTEL_METRICS_EXPORTER: prometheus
+
+  ui:
+    # -- Whether to enable default settings for the UI or allow customizations
+    useDefaults: true
+
+secret:
+  # -- Specifies whether a secret should be created.
+  # Using existing sealed secret that contains both ENCRYPTION_KEY and DB_CONNECTION_STRING
+  create: false
+  # -- Specifies name of a secret used to configure the pocket-id.
+  name: "pocket-id"
+
+persistence:
+  data:
+    enabled: true
+    storageClass: "synology-storage-apps"
+    accessMode: ReadWriteOnce
+    size: 10Gi
+    annotations:
+      k8up.io/backup: "true"
+
+ingress:
+  enabled: false # Handled by ingress route
+  className: "traefik"
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    # kubernetes.io/tls-acme: "true"
+  # -- Ingress host configuration.
+  host: pocket-id.pengiuns.com
+  paths:
+    - path: /
+      pathType: ImplementationSpecific
+  tls:
+  - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+    hosts:
+      - pocket-id.pengiuns.com
+
+service:
+  # -- Service type.
+  type: ClusterIP
+  # -- Service port.
+  port: 80
+  # -- Annotations to add to the service.
+  annotations:
+    external-dns.alpha.kubernetes.io/ttl: "300"
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+    external-dns.alpha.kubernetes.io/hostname: pocket-id.pengiuns.com
+    external-dns.alpha.kubernetes.io/target: d65bf19e-11ed-4df3-81c1-b76923b14de4.cfargotunnel.com
+
+

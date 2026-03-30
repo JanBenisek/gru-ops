@@ -1,0 +1,16 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-jellyfin-config
+  namespace: media
+  annotations:
+    k8up.io/backup: "true"
+spec:
+  storageClassName: synology-storage-apps
+  volumeName: pvc-35fafcf7-e83d-4015-ade5-a802015ac633
+  # k patch pv pvc-35fafcf7-e83d-4015-ade5-a802015ac633 -p '{"spec":{"claimRef": null}}'
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 4Gi

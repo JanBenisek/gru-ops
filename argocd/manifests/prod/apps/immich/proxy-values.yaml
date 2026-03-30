@@ -1,0 +1,67 @@
+global:
+  nameOverride: immich-proxy
+
+controllers:
+  main:
+    enabled: true
+    containers:
+      main:
+        enabled: true
+        image:
+          repository: alangrainger/immich-public-proxy
+          tag: "1.15.5"
+          pullPolicy: IfNotPresent
+        env:
+          - name: IMMICH_URL
+            value: "http://immich-server:2283"
+          - name: CONFIG
+            value: |
+              {
+                "ipp": {
+                  "singleImageGallery": true,
+                  "downloadOriginalPhoto": false,
+                  "allowDownloadAll": false,
+                  "showHomePage": false
+                }
+              }
+
+service:
+  main:
+    controller: main  
+    enabled: true
+    primary: true
+    type: ClusterIP
+    ports:
+      http:
+        port: 3000
+        protocol: HTTP
+
+ingress:
+  main:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: "traefik"
+      # extra, see hiker readme
+      # nginx.ingress.kubernetes.io/ssl-redirect: "false" # do not redirect HTTP to HTTPS
+      # nginx.ingress.kubernetes.io/backend-protocol: "HTTP" # not it expects HTTP from cloudflare
+      # nginx.ingress.kubernetes.io/proxy-redirect-from: "http://" # telling how to redirect
+      # nginx.ingress.kubernetes.io/proxy-redirect-to: "https://"
+      # disable /preview - needs to enable server snippets on ingress
+      # nginx.ingress.kubernetes.io/server-snippet: 'location ~* "^/share/photo/.*/preview" { return 403; }'
+    hosts:
+      - host: immich-share.pengiuns.com
+        paths:
+          - path: "/"
+            pathType: Prefix
+    tls:
+      - secretName: letsencrypt-immich-share-pengiuns-com
+        hosts:
+          - immich-share.pengiuns.com
+
+resources:
+  requests:
+    cpu: "50m"
+    memory: "128Mi"
+  limits:
+    cpu: "200m"
+    memory: "256Mi"

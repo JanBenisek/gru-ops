@@ -1,0 +1,42 @@
+debug: false
+persist: true
+
+machine:
+  type: worker
+
+  kernel:
+    modules:
+      - name: btrfs
+      - name: iscsi_tcp
+      - name: libiscsi_tcp
+      - name: scsi_transport_iscsi
+      - name: dm_multipath
+      - name: overlay
+
+  kubelet:
+    image: ${kubelet_image}
+    extraMounts:
+        - destination: /var/mnt/storage
+          type: bind 
+          source: /var/mnt/storage
+          options:
+            - bind
+            - rshared
+            - rw
+
+  network:
+    hostname: ${hostname} 
+
+  disks:
+    - device: /dev/sda 
+      partitions:
+        - mountpoint: /var/mnt/storage
+
+  install:
+    disk: /dev/nvme0n1 
+    image: ${talos_installer_image}
+    wipe: true
+
+  features:
+    hostDNS:
+      enabled: true
