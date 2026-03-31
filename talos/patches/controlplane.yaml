@@ -3,13 +3,12 @@ machine:
   network:
     hostname: kevin
   # DNS should be apparently default k8s, otherwise it cannot resolve internal domains
-  # like the issue with juputerhub where when scheduled on kevin, it would not resolve proxy from hub pod
   # kubelet:
   #   clusterDNS:
-  #     - 192.168.178.1 
+  #     - 192.168.178.1
   # changed in place with `edit machineconfig`, DO NOT ADD DURING INSTALLATION!!!!
   # kubelet:
-  #   extraMounts: # for EBS
+  #   extraMounts:
   #     - destination: /var/mnt/storage
   #       type: bind
   #       source: /var/mnt/storage

@@ -1,4 +1,3 @@
-# patches/all.yaml 
 machine:
   features:
     hostDNS:
@@ -11,17 +10,17 @@ machine:
     disk: /dev/nvme0n1
     image: ghcr.io/siderolabs/installer:v1.8.3 # Allows for supplying the image used to perform the installation.
     wipe: True # Indicates if the installation disk should be wiped at installation time.
-  
+
   sysctls:
-    vm.nr_hugepages: "1024" # for EBS
+    vm.nr_hugepages: "1024" # for EBS, remove in the next update
   nodeLabels:
-    openebs.io/engine: "mayastor" # for EBS
+    openebs.io/engine: "mayastor" # for EBS, remove in the next update
   # also removed kubelet extra mounts and added it to controlplane
-cluster: 
+cluster:
   allowSchedulingOnControlPlanes: true
   clusterName: gru
   apiServer:
-    admissionControl: # Needed by EBS
+    admissionControl: # Needed by EBS, remove in the next update
       - name: PodSecurity
         configuration:
           apiVersion: pod-security.admission.config.k8s.io/v1beta1

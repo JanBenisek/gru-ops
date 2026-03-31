@@ -4,7 +4,7 @@ machine:
     hostname: bob
   # changed in place with `edit machineconfig`, DO NOT ADD DURING INSTALLATION!!!!
   # kubelet:
-  #   extraMounts: # for EBS
+  #   extraMounts:
   #     - destination: /var/mnt/storage
   #       type: bind
   #       source: /var/mnt/storage
