@@ -17,6 +17,9 @@ secrets.auto.tfvars
 *.iso
 talosconfig
 kubeconfig
+talos/kube_config
+talos/secrets.yaml
+talos/rendered/
 
 # Sealed secrets keys
 aux/sealed-secrets-private.key
