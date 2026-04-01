@@ -1,24 +1,24 @@
 terraform {
-    required_version = "= 1.14.2"
+  required_version = "= 1.14.2"
 
-    required_providers {
-        proxmox = {
-            source  = "Telmate/proxmox"
-            version = "3.0.2-rc05"
-        }
-        talos = {
-            source  = "siderolabs/talos"
-            version = "~> 0.9.0"
-        }
-        hcloud = {
-            source  = "hetznercloud/hcloud"
-            version = "~> 1.48"
-        }
-        aws = {
-            source  = "hashicorp/aws"
-            version = "~> 5.0"
-        }
+  required_providers {
+    proxmox = {
+      source  = "Telmate/proxmox"
+      version = "3.0.2-rc05"
     }
+    talos = {
+      source  = "siderolabs/talos"
+      version = "0.11.0-beta.1"
+    }
+    hcloud = {
+      source  = "hetznercloud/hcloud"
+      version = "~> 1.48"
+    }
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
 }
 
 provider "proxmox" {
@@ -49,4 +49,3 @@ provider "aws" {
   skip_metadata_api_check     = true
   skip_region_validation      = true
 }
-

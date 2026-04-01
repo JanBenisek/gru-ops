@@ -20,6 +20,7 @@ kubeconfig
 talos/kube_config
 talos/secrets.yaml
 talos/rendered/
+talos/machineconfigs
 
 # Sealed secrets keys
 aux/sealed-secrets-private.key

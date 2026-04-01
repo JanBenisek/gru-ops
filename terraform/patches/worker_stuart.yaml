@@ -17,7 +17,7 @@ machine:
     image: ${kubelet_image}
     extraMounts:
         - destination: /var/mnt/storage
-          type: bind 
+          type: bind
           source: /var/mnt/storage
           options:
             - bind
@@ -25,15 +25,15 @@ machine:
             - rw
 
   network:
-    hostname: ${hostname} 
+    hostname: ${hostname}
 
   disks:
-    - device: /dev/sda 
+    - device: /dev/sda
       partitions:
         - mountpoint: /var/mnt/storage
 
   install:
-    disk: /dev/nvme0n1 
+    disk: /dev/nvme0n1
     image: ${talos_installer_image}
     wipe: true
 

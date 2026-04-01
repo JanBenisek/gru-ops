@@ -62,6 +62,23 @@ t upgrade -n stuart --image factory.talos.dev/metal-installer/5a0d85f0683f3cfe1e
 t -n kevin upgrade-k8s --to "1.35.3"
 ```
 
+### Generate secrets and configs
+- [Secrets](https://docs.siderolabs.com/talos/v1.7/getting-started/prodnotes#separating-out-secrets)
+```bash
+# Get machine configs
+t -n kevin get machineconfig v1alpha1 -o jsonpath='{.spec}' > kevin_controlplane_machineconfig.json
+t -n stuart get machineconfig v1alpha1 -o jsonpath='{.spec}' > stuart_worker_machineconfig.json
+t -n bob get machineconfig v1alpha1 -o jsonpath='{.spec}' > bob_worker_machineconfig.json
+
+# Get secrets
+t gen secrets --from-controlplane-config kevin_controlplane_machineconfig.json -o secrets.yaml
+t gen config kevin "https://192.168.178.39:6443" --with-secrets secrets.yaml --output-types talosconfig
+t -n kevin kubeconfig .
+
+# Import secrets in tf
+tf import talos_machine_secrets.machine_secrets /Users/janbenisek/github/gru-ops/talos/machineconfigs/secrets.yaml
+```
+
 ### Renew expired certs
 
 - Check validity:
