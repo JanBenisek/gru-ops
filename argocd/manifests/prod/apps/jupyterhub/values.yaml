@@ -73,9 +73,6 @@ singleuser:
     GRANT_SUDO: "yes" # Also need the one below and uid=0
     NOTEBOOK_ARGS: "--allow-root" # TODO: Allows root access in Jupyter, how to do just for admin?
 
-  nodeSelector:
-    kubernetes.io/hostname: kevin # for the PVC
-
   defaultUrl: "/lab" # default Jupyter
 
   cloudMetadata:
