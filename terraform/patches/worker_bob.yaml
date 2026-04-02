@@ -16,9 +16,6 @@ machine:
   kubelet:
     image: ${kubelet_image}
 
-  network:
-    hostname: ${hostname}
-
   install:
     disk: /dev/sda
     image: ${talos_installer_image}

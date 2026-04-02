@@ -26,17 +26,14 @@ machine:
           - rshared
           - rw
 
-  network:
-    hostname: kevin
-
   # Bootstrap without and apply later
   disks:
     - device: /dev/sda
       partitions:
         - mountpoint: /var/mnt/storage
-  
+
   install:
-    disk: /dev/nvme0n1 
+    disk: /dev/nvme0n1
     image: ${talos_installer_image}
 
 

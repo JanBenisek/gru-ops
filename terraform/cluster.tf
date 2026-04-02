@@ -27,6 +27,9 @@ data "talos_machine_configuration" "machineconfig_cp" {
       talos_installer_image = var.talos_image
       kubelet_image         = "ghcr.io/siderolabs/kubelet:${var.k8s_version}"
       cluster_name          = var.cluster_name
+    }),
+    templatefile("${path.module}/patches/hostname.yaml", {
+      hostname = "kevin"
     })
   ]
 }
@@ -52,7 +55,9 @@ data "talos_machine_configuration" "machineconfig_stuart" {
     templatefile("${path.module}/patches/worker_stuart.yaml", {
       talos_installer_image = var.talos_image
       kubelet_image         = "ghcr.io/siderolabs/kubelet:${var.k8s_version}"
-      hostname              = "stuart"
+    }),
+    templatefile("${path.module}/patches/hostname.yaml", {
+      hostname = "stuart"
     })
   ]
 }
@@ -104,7 +109,9 @@ data "talos_machine_configuration" "machineconfig_bob" {
     templatefile("${path.module}/patches/worker_bob.yaml", {
       talos_installer_image = var.talos_image
       kubelet_image         = "ghcr.io/siderolabs/kubelet:${var.k8s_version}"
-      hostname              = "bob"
+    }),
+    templatefile("${path.module}/patches/hostname.yaml", {
+      hostname = "bob"
     })
   ]
 }

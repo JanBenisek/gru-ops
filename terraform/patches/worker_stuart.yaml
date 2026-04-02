@@ -24,9 +24,6 @@ machine:
             - rshared
             - rw
 
-  network:
-    hostname: ${hostname}
-
   disks:
     - device: /dev/sda
       partitions:
