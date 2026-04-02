@@ -12,62 +12,41 @@ resource "proxmox_vm_qemu" "vm" {
   vmid        = var.vmid # id of the VM node
 
   # agent       = var.agent # Commented due to provider bug
-  onboot      = true # autostarts on boot
-  memory      = var.memory
-  full_clone  = false # Match existing
-  define_connection_info = false # Match existing
-  qemu_os     = "l26" # Match existing
+  onboot                 = true # autostarts on boot
+  memory                 = var.memory
+  full_clone             = false
+  define_connection_info = false
+  qemu_os                = "l26"
 
   cpu {
     cores   = var.cores
-    type    = var.cpu_type
-    sockets = 1 # Match existing
-    numa    = false # Match existing
+    sockets = 1
+    numa    = false
   }
 
-  scsihw = "virtio-scsi-single" # booting settings, TBD
+  scsihw = "virtio-scsi-single" # booting settings
   boot   = var.boot_order
 
   network {
     id       = 0
-    model    = "virtio" # Network interface
+    model    = "virtio"   # Network interface
     bridge   = var.bridge # proxmox bridge type
-    firewall = true # Match existing
+    firewall = true       # Match existing
   }
 
   disks {
     scsi {
       scsi0 {
         disk {
-          size       = var.disk_size
-          storage    = var.disk_storage
-          iothread   = true
-          replicate  = true
-          backup     = true
-          discard    = false
-          emulatessd = false
-          format     = "raw"
-          readonly   = false
-        }
-      }
-      scsi1 {
-        disk {
-          size       = "10G"
-          storage    = var.disk_storage
-          iothread   = true
-          replicate  = true
-          backup     = true
-          discard    = false
-          emulatessd = false
-          format     = "raw"
-          readonly   = false
+          size    = var.disk_size
+          storage = var.disk_storage
         }
       }
     }
     ide {
       ide2 {
         cdrom {
-          iso = var.iso_file != null ? var.iso_file : null
+          iso = var.iso_file
         }
       }
     }

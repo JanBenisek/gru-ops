@@ -1,11 +1,21 @@
 variable "name" {}
 variable "vmid" {}
-variable "node" {}
+variable "node" {
+  description = "Proxmox node name"
+  type        = string
+  default     = "bob-proxmox"
+}
 variable "cores" {}
 variable "memory" {}
 variable "disk_size" {}
 variable "disk_storage" {}
-variable "bridge" {}
+
+variable "bridge" {
+  description = "Network bridge mode"
+  type        = string
+  default     = "vmbr0"
+}
+
 variable "agent" {
   default = 1
 }

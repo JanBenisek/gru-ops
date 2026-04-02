@@ -74,30 +74,21 @@ resource "talos_machine_configuration_apply" "stuart_config_apply" {
 ######################
 # WORKER - Bob (proxmox)
 ######################
-# TBD later
-# module "worker_bob" {
-#   source = "../modules/proxmox-vm"
+module "worker_bob" {
+  source = "./modules/proxmox-vm"
 
-#   name         = "talos-bob"
-#   vmid         = 104  # Match existing VMID
-#   node         = var.node
+  name         = "talos-bob"
+  vmid         = 104
+  cores        = 2
+  memory       = 12000
+  disk_size    = "64G"
+  disk_storage = "local-lvm"
+  cpu_type     = "x86-64-v2-AES"
+  agent        = 0
+  iso_file     = "local:iso/talos-1.12.6-metal-amd64.iso" # need to manually upload, TBD automation
+  boot_order   = "order=ide2;scsi0;net0"                  # Boot from ISO first
+}
 
-#   cores        = 2    # Match existing
-#   memory       = 8192 # Match existing
-#   disk_size    = "20G" # Match existing
-#   disk_storage = "local-lvm"
-#   cpu_type     = "x86-64-v2-AES" # Match existing
-#   agent        = 0    # Match existing (disabled)
-
-#   bridge       = "vmbr0"
-
-#   # Talos ISO for automated installation
-#   iso_file     = "local:iso/talos-1.10.4-metal-amd64.iso"
-
-#   boot_order   = "order=ide2;scsi0;net0" # Boot from ISO first
-# }
-
-# For now provisioned manually
 data "talos_machine_configuration" "machineconfig_bob" {
   cluster_name       = var.cluster_name
   cluster_endpoint   = var.cluster_endpoint
@@ -120,7 +111,7 @@ resource "talos_machine_configuration_apply" "bob_config_apply" {
   client_configuration        = talos_machine_secrets.machine_secrets.client_configuration
   machine_configuration_input = data.talos_machine_configuration.machineconfig_bob.machine_configuration
   count                       = 1
-  node                        = var.worker_bob_node_ip
+  node                        = var.worker_bob_node_ip # chicken & egg problem, fix later
 
 }
 
@@ -137,11 +128,12 @@ resource "talos_machine_bootstrap" "bootstrap" {
 data "talos_cluster_health" "health" {
   depends_on = [
     talos_machine_configuration_apply.cp_config_apply,
-    talos_machine_configuration_apply.stuart_config_apply # Adding worker Stuart
+    talos_machine_configuration_apply.stuart_config_apply,
+    talos_machine_configuration_apply.bob_config_apply
   ]
   client_configuration = data.talos_client_configuration.talosconfig.client_configuration
   control_plane_nodes  = [var.control_plane_node_ip]
-  worker_nodes         = [var.worker_stuart_node_ip, var.worker_bob_node_ip] # Adding worker Stuart
+  worker_nodes         = [var.worker_stuart_node_ip, var.worker_bob_node_ip]
   endpoints            = data.talos_client_configuration.talosconfig.endpoints
 }
 
@@ -168,4 +160,9 @@ resource "local_file" "kubeconfig" {
   filename        = "${path.module}/kubeconfig"
   content         = talos_cluster_kubeconfig.kubeconfig.kubeconfig_raw
   file_permission = "0600"
+}
+
+output "bob_vm_ip" {
+  value       = module.worker_bob.ip_address_for_talos_bob
+  description = "IP address of the Bob VM"
 }
