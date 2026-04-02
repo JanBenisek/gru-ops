@@ -142,14 +142,12 @@ k logs -n immich -l job-name=immich-backup-manual -f
 k describe backup immich-backup-manual -n immich
 ```
 
-
 #### Restic
 
 ```shell
 export AWS_ACCESS_KEY_ID="PWD"
 export AWS_SECRET_ACCESS_KEY="PWD"
 export RESTIC_PASSWORD="PWD"
-export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/immich/scheduled/"
 export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/pvc/otterwiki/scheduled/"
 
 # List all snapshots
@@ -179,9 +177,9 @@ restic check
 ```bash
 export AWS_ACCESS_KEY_ID=PWD
 export AWS_SECRET_ACCESS_KEY=PWD
-aws s3 ls s3://gru-k8up-backups/immich --recursive --endpoint-url https://fsn1.your-objectstorage.com
-aws s3 rm s3://gru-k8up-backups/postgres --recursive --endpoint-url https://fsn1.your-objectstorage.com
-echo "hello" | aws s3 cp - s3://gru-k8up-backups/test.txt --endpoint-url https://fsn1.your-objectstorage.com
+aws s3 ls s3://gru-backup/immich --recursive --endpoint-url https://fsn1.your-objectstorage.com
+aws s3 rm s3://gru-backup/postgres --recursive --endpoint-url https://fsn1.your-objectstorage.com
+echo "hello" | aws s3 cp - s3://gru-backup/test.txt --endpoint-url https://fsn1.your-objectstorage.com
 ```
 
 ### Let's Encrypt
@@ -275,7 +273,7 @@ create extension fuzzystrmatch;
 
 - Using Barman Object Store for continuous backup
 - [Docs](https://cloudnative-pg.io/documentation/1.20/recovery/) (see `Restoring into a cluster with a backup section`)
-- Backups stored at: `s3://gru-k8up-backups/postgres/cnpg-cluster/`
+- Backups stored at: `s3://gru-backup/postgres/cnpg-cluster/`
 - Includes base backups + WAL archiving for point-in-time recovery
 - Retention: 30 days
 - Schedule: Daily at 2am via ScheduledBackup
@@ -288,10 +286,10 @@ export AWS_ACCESS_KEY_ID="PWD"
 export AWS_SECRET_ACCESS_KEY="PWD"
 
 # list all backups
-barman-cloud-backup-list --endpoint-url https://fsn1.your-objectstorage.com s3://gru-k8up-backups/barman/postgres/cnpg-cluster/ cnpg
+barman-cloud-backup-list --endpoint-url https://fsn1.your-objectstorage.com s3://gru-backup/barman/postgres/cnpg-cluster/ cnpg
 
 # inspect specific backup
-barman-cloud-backup-show --endpoint-url https://fsn1.your-objectstorage.com s3://gru-k8up-backups/barman/postgres/cnpg-cluster/ cnpg 20260325T170200
+barman-cloud-backup-show --endpoint-url https://fsn1.your-objectstorage.com s3://gru-backup/barman/postgres/cnpg-cluster/ cnpg 20260325T170200
 ```
 
 ### Metallb

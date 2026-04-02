@@ -57,7 +57,7 @@ resource "aws_s3_bucket_versioning" "k8up_backups" {
   bucket   = aws_s3_bucket.k8up_backups.id
 
   versioning_configuration {
-    status = "Enabled"
+    status = "Disabled"
   }
 }
 
