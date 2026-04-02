@@ -85,7 +85,7 @@ service:
   # -- External traffic policy (Cluster or Local).
   # externalTrafficPolicy: Cluster
   # -- NodePort for the service (if applicable).
-  # nodePort: 
+  # nodePort:
 
 # -- Ingress configuration. See: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
@@ -111,33 +111,35 @@ ingress:
           - jellyfin.pengiuns.com
 
 # -- Resource requests and limits for the Jellyfin container.
-resources: 
+resources:
   limits:
     memory: "15Gi"
   requests:
     cpu: "500m"
     memory: "5Gi"
-  
+
 
 # -- Configure liveness probe for Jellyfin.
 livenessProbe:
-  initialDelaySeconds: 10
-  tcpSocket:
+  httpGet:
+    path: /health
     port: http
-  # successThreshold: 1
-  # failureThreshold: 3
-  # timeoutSeconds: 1
-  # periodSeconds: 10
+  initialDelaySeconds: 10
 
 # -- Configure readiness probe for Jellyfin.
 readinessProbe:
+  httpGet:
+    path: /health
+    port: http
   initialDelaySeconds: 10
+
+# -- Configure startup probe for Jellyfin (new in 3.0.0).
+startupProbe:
   tcpSocket:
     port: http
-  # successThreshold: 1
-  # failureThreshold: 3
-  # timeoutSeconds: 1
-  # periodSeconds: 10
+  initialDelaySeconds: 0
+  periodSeconds: 10
+  failureThreshold: 30
 
 # -- Additional volumes to mount in the Jellyfin pod.
 volumes:
@@ -234,6 +236,6 @@ metrics:
 
 # -- additional init containers to run inside the pod.
 extraInitContainers: []
-  
+
 # -- additional sidecar containers to run inside the pod.
 extraContainers: []
