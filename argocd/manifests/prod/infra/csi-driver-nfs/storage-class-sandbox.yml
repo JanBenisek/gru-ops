@@ -1,4 +1,4 @@
-# NFS shared folder for sandbox - experimenting
+# NFS shared folder for sandbox
 # Needs enabled NFS service in Synology & Permissions
 # Needs Shared Folder
 apiVersion: storage.k8s.io/v1
@@ -7,16 +7,16 @@ metadata:
   name: synology-storage-sandbox
   annotations:
     storageclass.kubernetes.io/is-default-class: "false"
-    argocd.argoproj.io/sync-wave: "40" 
+    argocd.argoproj.io/sync-wave: "40"
 provisioner: nfs.csi.k8s.io # should be in talos by default
 parameters:
-  server: 192.168.178.96         
-  share: /volume1/sandbox           
-reclaimPolicy: Retain            
+  server: 192.168.178.96
+  share: /volume1/sandbox
+reclaimPolicy: Retain
 allowVolumeExpansion: true
-volumeBindingMode: Immediate 
+volumeBindingMode: Immediate
 mountOptions:
-  - nfsvers=4.1 # version to use, must match with what is in Synology UI   
+  - nfsvers=4.1 # version to use, must match with what is in Synology UI
   - rsize=1048576 # max bytes in single read, 1MiB
   - wsize=1048576 # max bytes in write read, 1MiB
   - timeo=600 # timeout before retry

@@ -6,9 +6,9 @@ metadata:
   annotations:
     k8up.io/backup: "true"
 spec:
-  storageClassName: synology-storage-apps
+  storageClassName: synology-storage-sandbox
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 5Gi
