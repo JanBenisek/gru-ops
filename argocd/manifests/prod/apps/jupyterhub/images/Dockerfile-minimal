@@ -16,9 +16,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 USER $NB_UID
 RUN curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 
+# Install uv (Astral)
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Ensure uv and other local binaries are available everywhere
+ENV PATH="/home/jovyan/.local/bin:${PATH}"
+
 RUN echo "alias ll='ls -lah'" >> /home/jovyan/.bashrc
 RUN echo "export PATH=\"\$HOME/.local/bin:\$PATH\"" >> /home/jovyan/.bashrc
 RUN echo 'eval "$(zoxide init bash)"' >> /home/jovyan/.bashrc
 
-# Need to source the shell 
+# Need to source the shell
 RUN echo 'if [ -f /home/jovyan/.bashrc ]; then source /home/jovyan/.bashrc; fi' >> /home/jovyan/.bash_profile
