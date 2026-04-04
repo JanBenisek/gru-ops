@@ -21,6 +21,8 @@ spec:
     schedule: "0 2 * * *" # runs daily at 2am, should run AFTER db backup
     failedJobsHistoryLimit: 2
     successfulJobsHistoryLimit: 2
+    podSecurityContext:
+      runAsUser: 0  # Run as root for NFS access
     # promURL: http://kube-prometheus-stack-prometheus-pushgateway.monitoring.svc.cluster.local:9091
   check:
     schedule: '0 1 * * 1' # runs every monday, validates integrity of backup
