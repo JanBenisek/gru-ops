@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: stirling
-        image: frooodle/s-pdf:2.9.0-fat
+        image: frooodle/s-pdf:2.9.2-fat
         imagePullPolicy: Always
         ports:
         - containerPort: 8080 # internal port for the app
