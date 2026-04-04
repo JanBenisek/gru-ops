@@ -148,9 +148,11 @@ k describe backup immich-backup-manual -n immich
 export AWS_ACCESS_KEY_ID=""
 export AWS_SECRET_ACCESS_KEY=""
 export RESTIC_PASSWORD=""
-export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/pvc/otterwiki/scheduled/"
 export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/pvc/immich/scheduled/"
 export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/pvc/jupyterhub/scheduled/"
+export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/pvc/media/scheduled/"
+export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/pvc/otterwiki/scheduled/"
+export RESTIC_REPOSITORY="s3:https://fsn1.your-objectstorage.com/gru-k8up-backups/pvc/pocket-id/scheduled/"
 
 # List all snapshots
 restic snapshots
