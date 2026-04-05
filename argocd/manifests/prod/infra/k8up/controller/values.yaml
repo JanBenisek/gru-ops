@@ -26,3 +26,9 @@ k8up:
       cpu: "500m"
       # -- Global Memory resource limit applied to jobs. See [supported units][resource-units].
       memory: "3Gi"
+metrics:
+
+  serviceMonitor:
+    # -- Whether to enable ServiceMonitor manifests for
+    # [Prometheus Operator][prometheus-operator]
+    enabled: true
