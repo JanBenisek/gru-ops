@@ -38,7 +38,7 @@ ingress:
 persistence:
   enabled: true
   keep: true
-  storageClass: standard
+  storageClass: synology-storage-apps
   accessMode: ReadWriteOnce
   configSize: 1Gi
   dataSize: 1Gi
