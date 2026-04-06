@@ -24,7 +24,13 @@ spec:
           image: onlyoffice/documentserver:9.3
           imagePullPolicy: IfNotPresent
           env:
-            # Use OnlyOffice auto-generated JWT secret (simpler)
+            # JWT configuration - must match Filebrowser secret
+            - name: JWT_SECRET
+              value: "filebrowser-onlyoffice-integration"
+            - name: JWT_ENABLED
+              value: "true"
+            - name: JWT_HEADER
+              value: "Authorization"
             # External PostgreSQL (CNPG) connection - uncomment to use
             # - name: DB_TYPE
             #   value: "postgres"

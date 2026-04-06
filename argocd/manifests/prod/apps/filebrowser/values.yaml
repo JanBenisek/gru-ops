@@ -249,7 +249,7 @@ config:
     office:                                 #  validate:omitempty
       url: "https://onlyoffice.pengiuns.com"  # The URL to the OnlyOffice Document Server, needs to be accessible to the user.  validate:required
       internalUrl: "http://onlyoffice.onlyoffice.svc.cluster.local"  # An optional internal address that the filebrowser server can use to communicate with the OnlyOffice Document Server, could be useful to bypass proxy.
-      secret: "filebrowser-onlyoffice-integration"  # JWT secret - OnlyOffice will use its auto-generated secret
+      secret: "filebrowser-onlyoffice-integration"  # JWT secret - must match JWT_SECRET in onlyoffice deployment
       viewOnly: false                       # view only mode for OnlyOffice
     media:                                  #  validate:omitempty
       ffmpegPath: ""                        # path to ffmpeg directory with ffmpeg and ffprobe (eg. /usr/local/bin)
