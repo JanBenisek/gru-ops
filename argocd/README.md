@@ -573,11 +573,11 @@ curl https://ollama.pengiuns.com/api/ps
 
 > EXPERIMENTAL
 
-- TODO: review egress, secrets, db, JWT is by default, logs to grafana?
+- TODO: review egress
 
 - Set up DB:
 ```sql
--- Immich with bot_immich
+-- onlyoffice with bot_onlyoffice
 create database onlyoffice;
 create user bot_onlyoffice with password 'pwd';
 alter database onlyoffice owner to bot_onlyoffice;
@@ -585,7 +585,7 @@ grant all privileges on database onlyoffice to bot_onlyoffice;
 ```
 - Secret:
 ```bash
-./aux/seal-secret.sh bot_onlyoffice cnpg password=PWD prod/infra/cnpg
+./aux/seal-secret.sh bot-onlyoffice-pswd cnpg user=bot_onlyoffice prod/infra/cnpg password=PWD
 ```
 
 

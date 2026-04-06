@@ -1,0 +1,28 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "bot-onlyoffice-pswd",
+    "namespace": "cnpg",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "bot-onlyoffice-pswd",
+        "namespace": "cnpg",
+        "creationTimestamp": null,
+        "annotations": {
+          "reflector.v1.k8s.emberstack.com/reflection-allowed": "true",
+          "reflector.v1.k8s.emberstack.com/reflection-auto-enabled": "true",
+          "reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces": "onlyoffice"
+        }
+      },
+      "data": null
+    },
+    "encryptedData": {
+      "password": "AgBxWn5qfJ98nXVrRscHxHs7wHhcVLeoJxeR1Epidr7PQnJVkC0xf9eyictxJEXE97ZemvxupuYvWMHeKCDp8Epm1sRfACuYekdwfHdhqEmRhY2FBdgLkZO5FF6lqGI3o13ydqTkVKllYW2CwoUwDw9BzKtGgUDjGW/bJvVU+StdbcIYTycuJWtwXxWQLAUX0DtGpFRS2KnH4fimQukvCJd9fSWbHwoUdD2vyyLWfcKZhoi+7yjspr+pGhLO1AW7HkqpkGmnkZdse8bGzhknPjkkJHA+thFr7m/Go1HkkOwCeIDKV4hzrj7/8MA5UwKDiJzfMOd6fM/Kvy0un/1pY7KD/ehuFYkmQu+U2m7zULOcruRaBGeP9jMTu6ErGIAUtgXQkczdPn72LYO7GL62rUHRqQcI0qgNnv4GuIj10B0WeH87SO/B/b1bkMlcyxWSqVknObRPmvZe5mUSUBuMCVhQWnMWTDaKEKV4HRQtcppJ2nu1NAdGfryLsyKcnOCLcq5jXCSYFjfk4V88JDXuhhdSwEEz9uvzF7TzUqrrs4EUJV5HouQDL/5HKcHTr/N211j4LqEcIquZNAUF101ZQQZrqYrWa/sAXROWhlHNcJxpTXdT7Idxuk1wgyNZMnpjHflf8geqGyvwUXrnvExh+MRxvQfMpnsxWFEfi8VqeeosyJPqJZ1OkfrhWeKQho98DGqBrkS2ncw49Od9Fk06lRqERhZi/44SCH/OF/Q=",
+      "user": "AgADK9wUQa9iXbED3RUNqw1sl4R2m6Kf3Hh20s+yHkXfi9z2Mglndok+5aeiQ+oZHNG1hrEK53UypWIx6pR+osDvUhkf2RlpYOK4H5NfSkhgls0fKUFll8qAq9xQRcOkc+8legqRzOmOaQ7p6eGStF0EU+ii/bqkJKbSSmJ+s4iMf6AqzOqH8Tj2yYWNCqXRdFGTfwPMwt/MnNDhllnh/IuM49Aa8Em58WwSP69pAqKHwvTPiAhMmTqe9YIT8JR9VHVpKYpO87cNzO+1U392udJzBp6yzWEDXuNM/usfnDsAXwNvhvBBK+xT0OdyaIsSxvIE5bLo8EgT0a1S8EhvXZAsb02zAP4doAov9wZaOsTp0/2i+cKDDxClJAm5Pr0/Q4MS+sYUBwSoIdnxvXXggEFqYOY31c9/Qtv7Cww+lvw2ac4w/uTXq/1Fe+J9rLmIIb48K8Cd8aqwftLp+AY9I5xUIeQnZeMVMmAraAkm5csse+o5f+OScUrZFp/8BwcbXFu5ikxOQUpIdFhgeiTX9a0HWLjJlhdmjfBvOLQ74Zdjj2XBH5EpywP9WVVFlOzdfV0U9WTrxvPIBELZTf7RQXIuJpvJSPv//CuW2Sh5TxKpzi4QpEYQipFocRGVlpKP4rG8ccBQS1BtHkRb6bzsS5+VRWNY/sd3PzsD3ihOG4y79dEkmxXVPuneU8sBcA4X2TpmE1gsUIZUd68CLZ1lqA=="
+    }
+  }
+}

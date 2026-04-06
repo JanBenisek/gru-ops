@@ -47,7 +47,7 @@ spec:
             - name: DB_PWD
               valueFrom:
                 secretKeyRef:
-                  name: bot_onlyoffice
+                  name: bot-onlyoffice-pswd
                   key: password
           ports:
             - containerPort: 80
