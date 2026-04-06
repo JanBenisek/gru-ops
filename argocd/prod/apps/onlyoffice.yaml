@@ -7,17 +7,10 @@ metadata:
     argocd.argoproj.io/sync-wave: "10"
 spec:
   project: gru
-  sources:
-  - repoURL: https://download.onlyoffice.com/download/helm-chart/onlyoffice-document-server
-    chart: onlyoffice-document-server
-    targetRevision: 4.4.0
-    helm:
-      valueFiles:
-      - $values/argocd/manifests/prod/apps/onlyoffice/values.yaml
-  - repoURL: https://github.com/JanBenisek/gru-ops.git
+  source:
+    repoURL: https://github.com/JanBenisek/gru-ops.git
     targetRevision: main
     path: argocd/manifests/prod/apps/onlyoffice
-    ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: onlyoffice

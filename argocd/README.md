@@ -573,7 +573,7 @@ curl https://ollama.pengiuns.com/api/ps
 
 > EXPERIMENTAL
 
-- TODO: review egress
+- TODO: review egress, secrets
 
 
 ### Otter Wiki

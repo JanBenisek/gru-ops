@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: onlyoffice
+  namespace: onlyoffice
+  labels:
+    app.kubernetes.io/name: onlyoffice
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+    external-dns.alpha.kubernetes.io/ttl: "300"
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+    external-dns.alpha.kubernetes.io/hostname: onlyoffice.pengiuns.com
+    external-dns.alpha.kubernetes.io/target: d65bf19e-11ed-4df3-81c1-b76923b14de4.cfargotunnel.com
+spec:
+  selector:
+    app: onlyoffice
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 443

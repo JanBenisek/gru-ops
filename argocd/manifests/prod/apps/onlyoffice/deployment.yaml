@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: onlyoffice
+  namespace: onlyoffice
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+  labels:
+    app: onlyoffice
+    app.kubernetes.io/name: onlyoffice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: onlyoffice
+  template:
+    metadata:
+      labels:
+        app: onlyoffice
+        app.kubernetes.io/name: onlyoffice
+    spec:
+      containers:
+        - name: onlyoffice
+          image: onlyoffice/documentserver:9.3
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: JWT_SECRET
+              value: "change-this-to-a-secure-random-string"
+            - name: JWT_ENABLED
+              value: "true"
+            - name: JWT_HEADER
+              value: "Authorization"
+            - name: JWT_IN_BODY
+              value: "false"
+            - name: DB_TYPE
+              value: "postgres"
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "500m"
+            limits:
+              memory: "2Gi"
+              cpu: "2000m"
+          volumeMounts:
+            - mountPath: /var/log/onlyoffice
+              name: logs
+            - mountPath: /var/www/onlyoffice/Data
+              name: data
+            - mountPath: /var/lib/onlyoffice
+              name: lib
+            - mountPath: /var/lib/postgresql
+              name: db
+      volumes:
+        - name: logs
+          persistentVolumeClaim:
+            claimName: pvc-logs
+        - name: data
+          persistentVolumeClaim:
+            claimName: pvc-data
+        - name: lib
+          persistentVolumeClaim:
+            claimName: pvc-lib
+        - name: db
+          persistentVolumeClaim:
+            claimName: pvc-db
