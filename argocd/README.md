@@ -445,6 +445,18 @@ make docker-build
 
 ## Apps
 
+## Collabora
+
+> EXPERIMENTAL, filebrowser
+
+- [Helm](https://github.com/CollaboraOnline/online/tree/main/kubernetes/helm/collabora-online)
+
+## Filebrowser quantum
+
+> EXPERIMENTAL, filebrowser
+
+- [Helm](https://github.com/Softwaredam/filebrowser-chart/tree/main/filebrowser)
+
 ## Funnaiest
 
 > Fun project, LLM tells dad jokes

@@ -319,7 +319,7 @@ resources:
 replicaCount: 1
 
 autoscaling:
-  enabled: true
+  enabled: false # disabled
   minReplicas: 2
   maxReplicas: 100
   targetCPUUtilizationPercentage: 70
