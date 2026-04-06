@@ -579,7 +579,7 @@ curl https://ollama.pengiuns.com/api/ps
 ```sql
 -- onlyoffice with bot_onlyoffice
 create database onlyoffice;
-create user bot_onlyoffice with password 'pwd';
+create user bot_onlyoffice with password 'PWD';
 alter database onlyoffice owner to bot_onlyoffice;
 grant all privileges on database onlyoffice to bot_onlyoffice;
 ```

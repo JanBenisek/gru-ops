@@ -49,6 +49,9 @@ spec:
                 secretKeyRef:
                   name: bot-onlyoffice-pswd
                   key: password
+            # Filebrowser integration - OnlyOffice needs to know where Filebrowser is
+            - name: SERVER_EXTERNAL_URL
+              value: "http://filebrowser.filebrowser.svc.cluster.local"
           ports:
             - containerPort: 80
             - containerPort: 443
