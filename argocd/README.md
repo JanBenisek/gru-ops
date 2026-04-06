@@ -575,6 +575,19 @@ curl https://ollama.pengiuns.com/api/ps
 
 - TODO: review egress, secrets, db, JWT is by default, logs to grafana?
 
+- Set up DB:
+```sql
+-- Immich with bot_immich
+create database onlyoffice;
+create user bot_onlyoffice with password 'pwd';
+alter database onlyoffice owner to bot_onlyoffice;
+grant all privileges on database onlyoffice to bot_onlyoffice;
+```
+- Secret:
+```bash
+./aux/seal-secret.sh bot_onlyoffice cnpg password=PWD prod/infra/cnpg
+```
+
 
 ### Otter Wiki
 

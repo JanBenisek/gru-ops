@@ -31,24 +31,24 @@ spec:
               value: "true"
             - name: JWT_HEADER
               value: "Authorization"
-            # External PostgreSQL (CNPG) connection - uncomment to use
-            # - name: DB_TYPE
-            #   value: "postgres"
-            # - name: DB_HOST
-            #   value: "cnpg-cnpg-rw.default.svc.cluster.local"
-            # - name: DB_PORT
-            #   value: "5432"
-            # - name: DB_NAME
-            #   value: "onlyoffice"
-            # - name: DB_USER
-            #   value: "onlyoffice"
-            # - name: DB_PWD
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: onlyoffice-db-credentials
-            #       key: password
             - name: WOPI_ENABLED
               value: "true"
+            # External PostgreSQL (CNPG) connection
+            - name: DB_TYPE
+              value: "postgres"
+            - name: DB_HOST
+              value: "vchord-postgres.pengiuns.com"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_NAME
+              value: "onlyoffice"
+            - name: DB_USER
+              value: "bot_onlyoffice"
+            - name: DB_PWD
+              valueFrom:
+                secretKeyRef:
+                  name: bot_onlyoffice
+                  key: password
           ports:
             - containerPort: 80
             - containerPort: 443
@@ -66,8 +66,6 @@ spec:
               name: data
             - mountPath: /var/lib/onlyoffice
               name: lib
-            - mountPath: /var/lib/postgresql
-              name: db
       volumes:
         - name: logs
           persistentVolumeClaim:
@@ -78,6 +76,3 @@ spec:
         - name: lib
           persistentVolumeClaim:
             claimName: pvc-lib
-        - name: db
-          persistentVolumeClaim:
-            claimName: pvc-db
