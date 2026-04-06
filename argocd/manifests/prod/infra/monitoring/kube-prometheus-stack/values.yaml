@@ -46,7 +46,7 @@ grafana:
       basicAuth: false
       isDefault: false
   ingress:
-    enabled: true 
+    enabled: true
     ingressClassName: traefik
     annotations:
       kubernetes.io/ingress.class: "traefik"
@@ -91,7 +91,6 @@ prometheus:
     retention: 30d
 
 # Prometheus Pushgateway for k8up backup metrics
-# TODO: not working
 prometheus-pushgateway:
   enabled: true
   serviceMonitor:
