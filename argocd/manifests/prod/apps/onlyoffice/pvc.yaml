@@ -4,6 +4,7 @@ metadata:
   name: pvc-logs
   namespace: onlyoffice
 spec:
+  storageClassName: synology-storage-ephemeral
   accessModes:
     - ReadWriteOnce
   resources:
@@ -16,6 +17,7 @@ metadata:
   name: pvc-data
   namespace: onlyoffice
 spec:
+  storageClassName: synology-storage-apps
   accessModes:
     - ReadWriteOnce
   resources:
@@ -28,6 +30,7 @@ metadata:
   name: pvc-lib
   namespace: onlyoffice
 spec:
+  storageClassName: synology-storage-apps
   accessModes:
     - ReadWriteOnce
   resources:
@@ -40,6 +43,7 @@ metadata:
   name: pvc-db
   namespace: onlyoffice
 spec:
+  storageClassName: synology-storage-apps
   accessModes:
     - ReadWriteOnce
   resources:
