@@ -247,9 +247,9 @@ config:
     debugOffice: false                      # debug onlyoffice editor
   integrations:
     office:                                 #  validate:omitempty
-      url: ""                               # The URL to the OnlyOffice Document Server, needs to be accessible to the user.  validate:required
-      internalUrl: ""                       # An optional internal address that the filebrowser server can use to communicate with the OnlyOffice Document Server, could be useful to bypass proxy.
-      secret: ""                            # secret: authentication key for OnlyOffice integration  validate:required
+      url: "https://onlyoffice.pengiuns.com"  # The URL to the OnlyOffice Document Server, needs to be accessible to the user.  validate:required
+      internalUrl: "http://onlyoffice.onlyoffice.svc.cluster.local"  # An optional internal address that the filebrowser server can use to communicate with the OnlyOffice Document Server, could be useful to bypass proxy.
+      secret: "your-secret-key-here-change-this"  # secret: authentication key for OnlyOffice integration  validate:required
       viewOnly: false                       # view only mode for OnlyOffice
     media:                                  #  validate:omitempty
       ffmpegPath: ""                        # path to ffmpeg directory with ffmpeg and ffprobe (eg. /usr/local/bin)

@@ -450,6 +450,7 @@ make docker-build
 > EXPERIMENTAL, filebrowser
 
 - [Helm](https://github.com/CollaboraOnline/online/tree/main/kubernetes/helm/collabora-online)
+- [Admin panel](https://collabora.pengiuns.com/browser/dist/admin/admin.html)
 
 ## Filebrowser quantum
 
@@ -567,6 +568,13 @@ curl https://ollama.pengiuns.com/api/tags
 # list running models
 curl https://ollama.pengiuns.com/api/ps
 ```
+
+### OnlyOffice
+
+> EXPERIMENTAL
+
+- TODO: review egress
+
 
 ### Otter Wiki
 

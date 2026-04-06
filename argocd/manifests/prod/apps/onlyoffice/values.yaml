@@ -1,0 +1,36 @@
+---
+image:
+  tag: "8.2.0"
+
+ingress:
+  enabled: true
+  className: "traefik"
+  annotations: {}
+  hosts:
+    - host: onlyoffice.pengiuns.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+      hosts:
+        - onlyoffice.pengiuns.com
+
+resources:
+  limits:
+    cpu: 2000m
+    memory: 2Gi
+  requests:
+    cpu: 1000m
+    memory: 1Gi
+
+# JWT secret for OnlyOffice (set this to a secure value)
+jwt:
+  enabled: true
+  secret: "your-secret-key-here-change-this"
+  header: Authorization
+  inBody: true
+
+persistence:
+  enabled: true
+  size: 10Gi
