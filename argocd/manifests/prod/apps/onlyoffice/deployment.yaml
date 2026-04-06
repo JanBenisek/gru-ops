@@ -24,15 +24,8 @@ spec:
           image: onlyoffice/documentserver:9.3
           imagePullPolicy: IfNotPresent
           env:
-            - name: JWT_SECRET
-              value: "change-this-to-a-secure-random-string"
-            - name: JWT_ENABLED
-              value: "true"
-            - name: JWT_HEADER
-              value: "Authorization"
-            - name: JWT_IN_BODY
-              value: "false"
-            # External PostgreSQL (CNPG) connection
+            # Use OnlyOffice auto-generated JWT secret (simpler)
+            # External PostgreSQL (CNPG) connection - uncomment to use
             # - name: DB_TYPE
             #   value: "postgres"
             # - name: DB_HOST
@@ -67,6 +60,8 @@ spec:
               name: data
             - mountPath: /var/lib/onlyoffice
               name: lib
+            - mountPath: /var/lib/postgresql
+              name: db
       volumes:
         - name: logs
           persistentVolumeClaim:
@@ -77,3 +72,6 @@ spec:
         - name: lib
           persistentVolumeClaim:
             claimName: pvc-lib
+        - name: db
+          persistentVolumeClaim:
+            claimName: pvc-db
