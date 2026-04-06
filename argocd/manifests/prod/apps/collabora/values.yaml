@@ -310,11 +310,10 @@ ingress:
 # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
 resources:
  limits:
-   cpu: 100m
-   memory: 128Mi
+   memory: 4Gi
  requests:
-   cpu: 100m
-   memory: 128Mi
+   cpu: 200m
+   memory: 1Gi
 
 replicaCount: 1
 
