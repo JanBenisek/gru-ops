@@ -573,7 +573,7 @@ curl https://ollama.pengiuns.com/api/ps
 
 > EXPERIMENTAL
 
-- TODO: review egress, secrets
+- TODO: review egress, secrets, db, JWT is by default, logs to grafana?
 
 
 ### Otter Wiki
