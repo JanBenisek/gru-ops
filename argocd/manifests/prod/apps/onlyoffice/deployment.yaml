@@ -33,6 +33,8 @@ spec:
               value: "Authorization"
             - name: WOPI_ENABLED
               value: "true"
+            - name: ALLOW_PRIVATE_IP_ADDRESS
+              value: "true"
             # External PostgreSQL (CNPG) connection
             - name: DB_TYPE
               value: "postgres"
@@ -51,7 +53,7 @@ spec:
                   key: password
             # Filebrowser integration - OnlyOffice needs to know where Filebrowser is
             - name: SERVER_EXTERNAL_URL
-              value: "http://filebrowser.filebrowser.svc.cluster.local"
+              value: "http://filebrowser-filebrowser-quantum.filebrowser.svc.cluster.local:8080"
           ports:
             - containerPort: 80
             - containerPort: 443
