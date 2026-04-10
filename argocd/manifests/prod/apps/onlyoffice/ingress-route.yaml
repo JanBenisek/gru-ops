@@ -9,8 +9,11 @@ metadata:
     traefik.ingress.kubernetes.io/readtimeout: "900"
     traefik.ingress.kubernetes.io/writetimeout: "900"
     traefik.ingress.kubernetes.io/idletimeout: "900"
-    # Forward HTTPS protocol to OnlyOffice so it generates HTTPS URLs
+    # Forward HTTPS protocol and host to OnlyOffice so it generates HTTPS URLs
     traefik.ingress.kubernetes.io/headers.customrequestheaders.X-Forwarded-Proto: "https"
+    traefik.ingress.kubernetes.io/headers.customrequestheaders.X-Forwarded-Host: "onlyoffice.pengiuns.com"
+    traefik.ingress.kubernetes.io/headers.customrequestheaders.X-Forwarded-Port: "443"
+    traefik.ingress.kubernetes.io/headers.sslproxyheaders.X-Forwarded-Proto: "https"
 
 spec:
   ingressClassName: traefik

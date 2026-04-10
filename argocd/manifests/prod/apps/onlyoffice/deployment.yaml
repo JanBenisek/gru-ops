@@ -42,6 +42,9 @@ spec:
               value: "true"
             - name: ONLYOFFICE_HTTPS_HSTS_ENABLED
               value: "false"
+            # Force HTTPS URLs for cached files
+            - name: STORAGE_URL
+              value: "https://onlyoffice.pengiuns.com"
             # External PostgreSQL (CNPG) connection
             - name: DB_TYPE
               value: "postgres"
