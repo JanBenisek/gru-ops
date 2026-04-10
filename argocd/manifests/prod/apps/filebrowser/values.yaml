@@ -120,7 +120,7 @@ config:
           createUserDir: false              # create a user directory for each user under defaultUserScope + username
           useLogicalSize: false             # calculate sizes based on logical size instead of disk utilization (du -sh), folders will be 0 bytes when empty.
     externalUrl: "https://filebrowser.pengiuns.com"                         # used by share links if set (eg. http://mydomain.com)
-    internalUrl: "http://filebrowser-filebrowser-quantum.filebrowser.svc.cluster.local:8080"                         # used by integrations if set, this is the base domain that an integration service will use to communicate with filebrowser (eg. http://localhost:8080)
+    # internalUrl: "http://filebrowser-filebrowser-quantum.filebrowser.svc.cluster.local:8080"                         # used by integrations if set, this is the base domain that an integration service will use to communicate with filebrowser (eg. http://localhost:8080)
     cacheDir: "tmp"                         # path to the cache directory, used for thumbnails and other cached files
     cacheDirCleanup: false                  # whether to automatically cleanup the cache directory. Note: docker must also mount a persistent volume to persist the cache (default: false)
     maxArchiveSize: 50                      # max pre-archive combined size of files/folder that are allowed to be archived (in GB)
@@ -248,7 +248,7 @@ config:
   integrations:
     office:                                 #  validate:omitempty
       url: "https://onlyoffice.pengiuns.com"  # The URL to the OnlyOffice Document Server, needs to be accessible to the user.  validate:required
-      internalUrl: "http://onlyoffice.onlyoffice.svc.cluster.local"  # An optional internal address that the filebrowser server can use to communicate with the OnlyOffice Document Server, could be useful to bypass proxy.
+      # internalUrl: "http://onlyoffice.onlyoffice.svc.cluster.local"  # An optional internal address that the filebrowser server can use to communicate with the OnlyOffice Document Server, could be useful to bypass proxy.
       secret: "filebrowser-onlyoffice-integration"  # JWT secret - must match JWT_SECRET in onlyoffice deployment
       viewOnly: false                       # view only mode for OnlyOffice
     media:                                  #  validate:omitempty
