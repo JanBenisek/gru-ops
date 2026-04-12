@@ -10,11 +10,11 @@ spec:
   sources:
     - repoURL: https://github.com/JanBenisek/gru-ops.git
       targetRevision: main
-      path: argocd/manifests/prod/apps/filebrowser
+      path: argocd/manifests/prod/apps/filebrowser/filebrowser
       helm:
         releaseName: filebrowser
         valueFiles:
-          - values.yaml
+          - ../values.yaml
     - repoURL: https://github.com/JanBenisek/gru-ops.git
       targetRevision: main
       path: argocd/manifests/prod/apps/filebrowser
