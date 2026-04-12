@@ -445,13 +445,6 @@ make docker-build
 
 ## Apps
 
-## Collabora
-
-> EXPERIMENTAL, filebrowser
-
-- [Helm](https://github.com/CollaboraOnline/online/tree/main/kubernetes/helm/collabora-online)
-- [Admin panel](https://collabora.pengiuns.com/browser/dist/admin/admin.html)
-
 ## Filebrowser quantum
 
 > EXPERIMENTAL, filebrowser
