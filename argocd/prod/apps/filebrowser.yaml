@@ -10,11 +10,16 @@ spec:
   sources:
     - repoURL: https://github.com/JanBenisek/gru-ops.git
       targetRevision: main
-      path: argocd/manifests/prod/apps/filebrowser/filebrowser
+      path: argocd/manifests/prod/apps/filebrowser
       helm:
         releaseName: filebrowser
         valueFiles:
-          - ../values.yaml
+          - values.yaml
+    - repoURL: https://github.com/JanBenisek/gru-ops.git
+      targetRevision: main
+      path: argocd/manifests/prod/apps/filebrowser
+      directory:
+        recurse: true
   destination:
     server: "https://kubernetes.default.svc"
     namespace: filebrowser
