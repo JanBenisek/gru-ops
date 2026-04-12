@@ -24,8 +24,9 @@ spec:
           image: onlyoffice/documentserver:9.3
           imagePullPolicy: IfNotPresent
           env:
-            - name: DS_LOG_LEVEL
-              value: DEBUG
+            # Handy for debugging
+            # - name: DS_LOG_LEVEL
+              # value: DEBUG
             # JWT configuration - must match Filebrowser secret
             - name: JWT_SECRET
               value: "filebrowser-onlyoffice-integration"
