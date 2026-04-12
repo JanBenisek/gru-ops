@@ -457,6 +457,12 @@ make docker-build
 > EXPERIMENTAL, filebrowser
 
 - [Helm](https://github.com/Softwaredam/filebrowser-chart/tree/main/filebrowser)
+- [Docs](https://filebrowserquantum.com/en/docs/)
+
+- Secrets
+```bash
+./aux/seal-secret.sh filebrowser-jwt-token filebrowser SECRET=PWD prod/apps/filebrowser
+```
 
 ## Funnaiest
 

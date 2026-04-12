@@ -68,6 +68,8 @@ adminPassword:
   #passwordLength: for admin. Also set the minLength under config
   passwordLength: 20
   passwordOverride: ""  # Leave empty to auto-generate
+#onlyofficeJwtSecret: overrides the FILEBROWSER_INTEGRATIONS_OFFICE_SECRET env var. Use this for OnlyOffice JWT secret.
+onlyofficeJwtSecret: "filebrowser-jwt-token" # added by me
 
 #config: contains application config file which will be mounted to the pod
 #config: these defaults are copied from https://github.com/gtsteffaniak/filebrowser/blob/stable/v1.0.0/frontend/public/config.generated.yaml
@@ -248,7 +250,7 @@ config:
   integrations:
     office:                                 #  validate:omitempty
       url: "https://onlyoffice.pengiuns.com"  # The URL to the OnlyOffice Document Server, needs to be accessible to the user.  validate:required
-      secret: "filebrowser-onlyoffice-integration"  # JWT secret - must match JWT_SECRET in onlyoffice deployment
+      secret: "${FILEBROWSER_INTEGRATIONS_OFFICE_SECRET}"  # JWT secret - must match JWT_SECRET in onlyoffice deployment
       viewOnly: false                       # view only mode for OnlyOffice
     media:                                  #  validate:omitempty
       ffmpegPath: ""                        # path to ffmpeg directory with ffmpeg and ffprobe (eg. /usr/local/bin)

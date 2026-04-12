@@ -1,0 +1,26 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "filebrowser-jwt-token",
+    "namespace": "filebrowser",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "filebrowser-jwt-token",
+        "namespace": "filebrowser",
+        "creationTimestamp": null,
+        "annotations": {
+          "reflector.v1.k8s.emberstack.com/reflection-allowed": "true",
+          "reflector.v1.k8s.emberstack.com/reflection-auto-enabled": "true",
+          "reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces": "onlyoffice"
+        }
+      }
+    },
+    "encryptedData": {
+      "SECRET": "AgB87PG736qX0gvve3wPgtQk+ZqiRldXYDbNtMwpKO4L6yzHDPpl9O6lB5F7sYAogHIP/IxHGgYG4eH2bLdJe86yfE7ebSS3PnqRZDxJT8NTvEvm1/3SlPUcdOZhQ48O2arjZt0mM92wBiSwlaVs55ZjTWxRjw40IjgjCRc855N16wDjHBJLsrkyFhDnaFhtJtXG4SWZCJZ6WgifJYgzWY/zWNsZNzNHfnBZW59MEAkYX344rJlUP0n55BbEVWHtFfczVHJZOGABd+M4lvP7g9tkdeC1TppBxZwuL2J1LohNFY6rWmfeqWGxYXqe9YLiL9F7QufhUXii9ZJU9FoRwfP6HOo28d2De8FU1sKpivV+ig31MXq0TBWXzsyn6tN+8nyydoNqUTa7aWAMJQns5WXBmapjiyRFb4683Hk0wIv/M4FWgqPJ07CROvnO9joRS3/kuOijy1PtgbYoMKQeaG2rg6nHgRDngcLxCiNFtxAna3dYp9EFcWtYlRBAyQzmLjZMXYE+UOWKEP68vWvHsknDatBRxGeM1EHnLAsoKllf/Sj73A4Y2ww702Z19+CSLkOjGvG8YASjhHTJL5eFAtwAXF8xVMcqsHRtM6DJMo5+9D+blCZpAIMnzjQGCxu/55R2OxA7WbIINNpjhJh242kF3kdUXbDM+BcvwkYwrR8AkDpyC2XPuvZxug6tUHpH+d/cu2K1je9r+K9tA/HUeDUcaS/K"
+    }
+  }
+}
