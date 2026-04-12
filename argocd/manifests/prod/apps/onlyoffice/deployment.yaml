@@ -37,15 +37,6 @@ spec:
             - name: WOPI_ENABLED
               value: "true"
             - name: ALLOW_PRIVATE_IP_ADDRESS
-            # Not needed?
-            # Force OnlyOffice to use HTTPS for external URLs - now handled by Traefik middleware
-            # - name: ONLYOFFICE_HTTPS
-            #   value: "true"
-            # - name: ONLYOFFICE_HTTPS_HSTS_ENABLED
-            #   value: "false"
-            # Force HTTPS URLs for cached files - now handled by Traefik middleware
-            # - name: STORAGE_URL
-            #   value: "https://onlyoffice.pengiuns.com"
             # External PostgreSQL (CNPG) connection
             - name: DB_TYPE
               value: "postgres"
