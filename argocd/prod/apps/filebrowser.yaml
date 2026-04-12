@@ -19,7 +19,7 @@ spec:
       targetRevision: main
       path: argocd/manifests/prod/apps/filebrowser
       directory:
-        recurse: true
+        recurse: false
   destination:
     server: "https://kubernetes.default.svc"
     namespace: filebrowser
