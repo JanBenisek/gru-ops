@@ -1,0 +1,13 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: onlyoffice-headers
+  namespace: onlyoffice
+spec:
+  headers:
+    customRequestHeaders:
+      X-Forwarded-Proto: "https"
+      X-Forwarded-Host: "onlyoffice.pengiuns.com"
+      X-Forwarded-Port: "443"
+    sslProxyHeaders:
+      X-Forwarded-Proto: "https"
