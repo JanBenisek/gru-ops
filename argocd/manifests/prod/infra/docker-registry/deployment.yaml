@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: docker-registry
-        image: registry:3.0
+        image: registry:3.1
         imagePullPolicy: Always
         env:
           # disabling OTEL for now
