@@ -69,6 +69,9 @@ prometheusOperator:
 
 prometheus:
   prometheusSpec:
+    # Enable remote write receiver for Alloy to send metrics
+    enableRemoteWriteReceiver: true
+
     # Allow Prometheus to discover ServiceMonitors across all namespaces without label restrictions
     serviceMonitorSelectorNilUsesHelmValues: false
     serviceMonitorSelector: {}
