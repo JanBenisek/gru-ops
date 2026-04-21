@@ -134,6 +134,12 @@ data:
             description: Otter helps!
             namespace: otterwiki
             app: otterwiki
+        - Filebrowser:
+            icon: filebrowser-quantum.svg
+            href: https://filebrowser.pengiuns.com
+            description: Where is it?
+            namespace: filebrowser
+            app: filebrowser
         - Ashim:
             icon: nextcloud-photos.svg
             href: https://ashim.pengiuns.com
