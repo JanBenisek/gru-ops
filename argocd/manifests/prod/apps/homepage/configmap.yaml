@@ -141,7 +141,7 @@ data:
             namespace: filebrowser
             app: filebrowser
         - OnlyOffice:
-            icon: onlyofffice.svg
+            icon: onlyoffice.svg
             href: https://onlyoffice.pengiuns.com
             description: For the fans
             namespace: onlyoffice
