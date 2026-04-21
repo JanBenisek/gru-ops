@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-ashim-data
+  namespace: ashim
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  storageClassName: synology-storage-apps
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-ashim-workspace
+  namespace: ashim
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  storageClassName: synology-storage-ephemeral
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi

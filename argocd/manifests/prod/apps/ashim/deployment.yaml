@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ashim
+  namespace: ashim
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+  labels:
+    app: ashim
+    app.kubernetes.io/name: ashim
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ashim
+  template:
+    metadata:
+      labels:
+        app: ashim
+        app.kubernetes.io/name: ashim
+    spec:
+      containers:
+        - name: ashim
+          image: ghcr.io/ashim-hq/ashim:1.15.8
+          imagePullPolicy: IfNotPresent
+          env:
+            # --- Authentication ---
+            - name: AUTH_ENABLED
+              value: "true"
+            - name: DEFAULT_USERNAME
+              value: "admin"
+            - name: DEFAULT_PASSWORD
+              value: "admin"
+            # --- Networking ---
+            - name: TRUST_PROXY
+              value: "true"
+            # --- Limits ---
+            - name: MAX_UPLOAD_SIZE_MB
+              value: "200"
+            - name: CONCURRENT_JOBS
+              value: "4"
+            - name: FILE_MAX_AGE_HOURS
+              value: "12"
+            # --- UI Settings ---
+            - name: APP_NAME
+              value: "ashim"
+            - name: DEFAULT_THEME
+              value: "light"
+            - name: DEFAULT_LOCALE
+              value: "en"
+
+          ports:
+            - containerPort: 1349
+              name: http
+
+          resources:
+            requests:
+              memory: "2Gi"
+              cpu: "500m"
+            limits:
+              cpu: "2000m"
+              memory: "4Gi"
+
+          volumeMounts:
+            - name: ashim-data
+              mountPath: /data
+            - name: ashim-workspace
+              mountPath: /tmp/workspace
+
+          livenessProbe:
+            httpGet:
+              path: /api/v1/health
+              port: 1349
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 3
+
+      volumes:
+        - name: ashim-data
+          persistentVolumeClaim:
+            claimName: pvc-ashim-data
+        - name: ashim-workspace
+          persistentVolumeClaim:
+            claimName: pvc-ashim-workspace

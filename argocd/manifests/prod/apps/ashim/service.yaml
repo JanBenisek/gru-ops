@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ashim
+  namespace: ashim
+  labels:
+    app: ashim
+    app.kubernetes.io/name: ashim
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  selector:
+    app: ashim
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 1349
+      protocol: TCP
+      targetPort: 1349

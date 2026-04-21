@@ -134,6 +134,12 @@ data:
             description: Otter helps!
             namespace: otterwiki
             app: otterwiki
+        - Ashim:
+            icon: nextcloud-photos.svg
+            href: https://ashim.pengiuns.com
+            description: Can you image it?
+            namespace: ashim
+            app: ashim
 
     - Fun:
         - Hiker:

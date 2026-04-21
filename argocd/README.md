@@ -445,6 +445,14 @@ make docker-build
 
 ## Apps
 
+## ashim
+
+> Set of tools to work with images
+
+- [GitHub Repo](https://github.com/ashim-hq/ashim)
+- [Docs](https://ashim-hq.github.io/ashim/guide/getting-started.html)
+
+
 ## Filebrowser quantum
 
 > EXPERIMENTAL, filebrowser
