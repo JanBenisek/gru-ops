@@ -459,6 +459,7 @@ make docker-build
 
 - [Helm](https://github.com/Softwaredam/filebrowser-chart/tree/main/filebrowser)
 - [Docs](https://filebrowserquantum.com/en/docs/)
+- TODO: secrets management (there is a bug), better user management
 
 - Secrets
 ```bash
