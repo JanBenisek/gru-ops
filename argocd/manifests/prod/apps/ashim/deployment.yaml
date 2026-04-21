@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: ashim
-          image: ghcr.io/ashim-hq/ashim:1.15.8
+          image: ghcr.io/ashim-hq/ashim:1.15.9
           imagePullPolicy: IfNotPresent
           env:
             # --- Authentication ---
