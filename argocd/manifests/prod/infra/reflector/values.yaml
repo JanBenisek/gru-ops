@@ -2,7 +2,7 @@ replicaCount: 1
 
 cron:
   enabled: true
-  schedule: "*/15 * * * *"
+  schedule: "*/30 * * * *"
   activeDeadlineSeconds: 1200
   securityContext:
     runAsNonRoot: true
