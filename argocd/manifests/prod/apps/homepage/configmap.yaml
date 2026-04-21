@@ -140,6 +140,12 @@ data:
             description: Where is it?
             namespace: filebrowser
             app: filebrowser
+        - OnlyOffice:
+            icon: onlyofffice.svg
+            href: https://onlyoffice.pengiuns.com
+            description: For the fans
+            namespace: onlyoffice
+            app: onlyoffice
         - Ashim:
             icon: nextcloud-photos.svg
             href: https://ashim.pengiuns.com
