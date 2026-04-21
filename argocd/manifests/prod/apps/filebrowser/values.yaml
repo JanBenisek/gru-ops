@@ -1,7 +1,7 @@
 # image: location, and version of the filebrowser-quantum to use
 image:
   repository: ghcr.io/gtsteffaniak/filebrowser
-  # tag: 1.2.4-stable
+  tag: 1.2.4-stable
   pullPolicy: IfNotPresent
 
 # securityContext: of the pod
@@ -38,10 +38,21 @@ ingress:
 persistence:
   enabled: true
   keep: true
-  storageClass: synology-storage-apps
+  # Global defaults
+  storageClass: synology-storage-ephemeral
   accessMode: ReadWriteOnce
-  configSize: 1Gi
-  dataSize: 1Gi
+
+  data:
+    size: 2Gi
+    storageClass: synology-storage-ephemeral
+    accessMode: ReadWriteOnce
+    annotations:
+      my.custom/annotation: "value"
+
+  config:
+    size: 1Gi
+    annotations:
+      my.custom/annotation: "huh"
 
 # extraVolumes: Use additional volumes for the deployment. May be a mix of any volume type.
 # Reference: https://kubernetes.io/docs/concepts/storage/volumes/
@@ -68,8 +79,6 @@ adminPassword:
   #passwordLength: for admin. Also set the minLength under config
   passwordLength: 20
   passwordOverride: ""  # Leave empty to auto-generate
-#onlyofficeJwtSecret: overrides the FILEBROWSER_INTEGRATIONS_OFFICE_SECRET env var. Use this for OnlyOffice JWT secret.
-onlyofficeJwtSecret: "filebrowser-jwt-token" # added by me
 
 #config: contains application config file which will be mounted to the pod
 #config: these defaults are copied from https://github.com/gtsteffaniak/filebrowser/blob/stable/v1.0.0/frontend/public/config.generated.yaml
@@ -165,8 +174,8 @@ config:
         adminGroup: ""                      # if set, users in this group will be granted admin privileges.
         groupsClaim: "groups"               # the JSON field name to read groups from. Default is "groups"
     key: ""                                 # secret: the key used to sign the JWT tokens. If not set, a random key will be generated.
-    adminUsername: "admin"                       # secret: the username of the admin user. If not set, the default is "admin".
-    adminPassword: "**hidden**"             # secret: the password of the admin user. If not set, the default is "admin".
+    adminUsername: "admin"                  # secret: the username of the admin user. If not set, the default is "admin".
+    adminPassword: "admin"                  # secret: the password of the admin user. If not set, the default is "admin".
     totpSecret: ""                          # secret: secret used to encrypt TOTP secrets
   frontend:
     name: "FileBrowser Quantum"             # display name
@@ -250,7 +259,7 @@ config:
   integrations:
     office:                                 #  validate:omitempty
       url: "https://onlyoffice.pengiuns.com"  # The URL to the OnlyOffice Document Server, needs to be accessible to the user.  validate:required
-      secret: "${FILEBROWSER_INTEGRATIONS_OFFICE_SECRET}"  # JWT secret - must match JWT_SECRET in onlyoffice deployment
+      secret: "filebrowser-jwt-token"  # JWT secret - must match JWT_SECRET in onlyoffice deployment
       viewOnly: false                       # view only mode for OnlyOffice
     media:                                  #  validate:omitempty
       ffmpegPath: ""                        # path to ffmpeg directory with ffmpeg and ffprobe (eg. /usr/local/bin)
