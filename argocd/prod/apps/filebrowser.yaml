@@ -1,31 +1,31 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: filebrowser
-#   namespace: argocd
-#   annotations:
-#     argocd.argoproj.io/sync-wave: "10"
-# spec:
-#   project: gru
-#   sources:
-#     - repoURL: https://github.com/JanBenisek/gru-ops.git
-#       targetRevision: main
-#       path: argocd/manifests/prod/apps/filebrowser/filebrowser
-#       helm:
-#         releaseName: filebrowser
-#         valueFiles:
-#           - ../values.yaml
-#     - repoURL: https://github.com/JanBenisek/gru-ops.git
-#       targetRevision: main
-#       path: argocd/manifests/prod/apps/filebrowser
-#       directory:
-#         recurse: false
-#   destination:
-#     server: "https://kubernetes.default.svc"
-#     namespace: filebrowser
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#     syncOptions:
-#       - CreateNamespace=true
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: filebrowser
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  project: gru
+  sources:
+    - repoURL: https://github.com/JanBenisek/gru-ops.git
+      targetRevision: main
+      path: argocd/manifests/prod/apps/filebrowser/filebrowser
+      helm:
+        releaseName: filebrowser
+        valueFiles:
+          - ../values.yaml
+    - repoURL: https://github.com/JanBenisek/gru-ops.git
+      targetRevision: main
+      path: argocd/manifests/prod/apps/filebrowser
+      directory:
+        recurse: false
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: filebrowser
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
