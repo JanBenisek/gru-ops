@@ -3,7 +3,7 @@ replicaCount: 1
 cron:
   enabled: true
   schedule: "*/15 * * * *"
-  activeDeadlineSeconds: 600
+  activeDeadlineSeconds: 1200
   securityContext:
     runAsNonRoot: true
     runAsUser: 1000
