@@ -21,7 +21,7 @@ spec:
           service:
             name: ashim
             port:
-              number: 80
+              number: 1349
   tls:
   - hosts:
       - ashim.pengiuns.com
