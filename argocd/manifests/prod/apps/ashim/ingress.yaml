@@ -19,7 +19,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: it-tools
+            name: ashim
             port:
               number: 80
   tls:
