@@ -1,6 +1,6 @@
 resources:
   - ingress.yaml
-  - https://github.com/argoproj/argo-cd/manifests/cluster-install?ref=v3.2.10
+  - https://github.com/argoproj/argo-cd/manifests/cluster-install?ref=v3.3.8
 
 patchesStrategicMerge:
   - patch-server-insecure.yaml
