@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ashim
-  namespace: ashim
+  name: snapotter
+  namespace: snapotter
   annotations:
     argocd.argoproj.io/sync-wave: "10"
   labels:
-    app: ashim
-    app.kubernetes.io/name: ashim
+    app: snapotter
+    app.kubernetes.io/name: snapotter
 spec:
   replicas: 1
   strategy:
@@ -17,16 +17,16 @@ spec:
       maxUnavailable: 1
   selector:
     matchLabels:
-      app: ashim
+      app: snapotter
   template:
     metadata:
       labels:
-        app: ashim
-        app.kubernetes.io/name: ashim
+        app: snapotter
+        app.kubernetes.io/name: snapotter
     spec:
       containers:
-        - name: ashim
-          image: ghcr.io/ashim-hq/ashim:1.15.9
+        - name: snapotter
+          image: snapotter/snapotter:1.15.9
           imagePullPolicy: IfNotPresent
           env:
             # --- Authentication ---
@@ -48,7 +48,7 @@ spec:
               value: "12"
             # --- UI Settings ---
             - name: APP_NAME
-              value: "ashim"
+              value: "snapotter"
             - name: DEFAULT_THEME
               value: "light"
             - name: DEFAULT_LOCALE
@@ -67,9 +67,9 @@ spec:
               memory: "4Gi"
 
           volumeMounts:
-            - name: ashim-data
+            - name: snapotter-data
               mountPath: /data
-            - name: ashim-workspace
+            - name: snapotter-workspace
               mountPath: /tmp/workspace
 
           livenessProbe:
@@ -82,9 +82,9 @@ spec:
             failureThreshold: 3
 
       volumes:
-        - name: ashim-data
+        - name: snapotter-data
           persistentVolumeClaim:
-            claimName: pvc-ashim-data
-        - name: ashim-workspace
+            claimName: pvc-snapotter-data
+        - name: assnapotterhim-workspace
           persistentVolumeClaim:
-            claimName: pvc-ashim-workspace
+            claimName: pvc-snapotter-workspace

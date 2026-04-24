@@ -445,12 +445,12 @@ make docker-build
 
 ## Apps
 
-## ashim
+## SnapOtter
 
 > Set of tools to work with images
 
-- [GitHub Repo](https://github.com/ashim-hq/ashim)
-- [Docs](https://ashim-hq.github.io/ashim/guide/getting-started.html)
+- [GitHub Repo](https://github.com/snapotter-hq/SnapOtter)
+- [Docs](https://docs.snapotter.com/guide/getting-started.html)
 
 
 ## Filebrowser quantum

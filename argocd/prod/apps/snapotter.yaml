@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ashim
+  name: snapotter
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "10"
@@ -10,10 +10,10 @@ spec:
   source:
     repoURL: https://github.com/JanBenisek/gru-ops.git
     targetRevision: main
-    path: argocd/manifests/prod/apps/ashim
+    path: argocd/manifests/prod/apps/snapotter
   destination:
     server: https://kubernetes.default.svc
-    namespace: ashim
+    namespace: snapotter
   syncPolicy:
     automated:
       prune: true
