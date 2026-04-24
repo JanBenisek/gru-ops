@@ -146,12 +146,12 @@ data:
             description: For the fans
             namespace: onlyoffice
             app: onlyoffice
-        - Ashim:
+        - SnapOtter:
             icon: nextcloud-photos.svg
-            href: https://ashim.pengiuns.com
+            href: https://snapotter.pengiuns.com
             description: Can you image it?
-            namespace: ashim
-            app: ashim
+            namespace: snapotter
+            app: snapotter
 
     - Fun:
         - Hiker:
