@@ -85,6 +85,6 @@ spec:
         - name: snapotter-data
           persistentVolumeClaim:
             claimName: pvc-snapotter-data
-        - name: assnapotterhim-workspace
+        - name: snapotter-workspace
           persistentVolumeClaim:
             claimName: pvc-snapotter-workspace
