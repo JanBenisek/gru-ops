@@ -77,11 +77,6 @@ extraVolumeMounts: []
 # extraEnv: Add individual environment variables referencing existing secrets
 # Example:
 extraEnv:
-    - name: FILEBROWSER_JWT_KEY
-      valueFrom:
-        secretKeyRef:
-          name: filebrowser-jwt-token
-          key: SECRET
     - name: FILEBROWSER_ADMIN_PASSWORD
       valueFrom:
         secretKeyRef:
