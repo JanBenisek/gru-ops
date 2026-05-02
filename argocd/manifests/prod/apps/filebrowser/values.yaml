@@ -74,6 +74,27 @@ extraVolumes: []
 #     readOnly: false
 extraVolumeMounts: []
 
+# extraEnv: Add individual environment variables referencing existing secrets
+# Example:
+extraEnv:
+    - name: FILEBROWSER_JWT_KEY
+      valueFrom:
+        secretKeyRef:
+          name: filebrowser-jwt-token
+          key: SECRET
+    - name: FILEBROWSER_ADMIN_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: filebrowser-admin
+          key: password
+
+# extraEnvFromSecrets: Load entire secrets as environment variables
+# Example:
+# extraEnvFromSecrets:
+#   - secretRef:
+#       name: my-existing-secret
+extraEnvFromSecrets: []
+
 #adminPassword: overrides the FILEBROWSER_ADMIN_PASSWORD env var.
 adminPassword:
   #passwordLength: for admin. Also set the minLength under config

@@ -41,9 +41,15 @@ spec:
           env:
             - name: FILEBROWSER_CONFIG
               value: /home/filebrowser/config.yaml
+            {{- with .Values.extraEnv }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
           envFrom:
             - secretRef:
                 name: {{ .Release.Name }}-filebrowser-quantum
+            {{- with .Values.extraEnvFromSecrets }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
           resources:
             requests:
               cpu: {{ .Values.resources.requests.cpu }}

@@ -28,13 +28,13 @@ spec:
             # - name: DS_LOG_LEVEL
               # value: DEBUG
             # JWT configuration - must match Filebrowser secret
-            - name: JWT_SECRET
-              value: "filebrowser-jwt-token"
             # - name: JWT_SECRET
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: filebrowser-jwt-token
-            #       key: SECRET
+              # value: "filebrowser-jwt-token"
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: filebrowser-jwt-token
+                  key: SECRET
             - name: JWT_ENABLED
               value: "true"
             - name: JWT_HEADER
