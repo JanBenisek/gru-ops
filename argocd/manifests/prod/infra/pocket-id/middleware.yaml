@@ -1,0 +1,13 @@
+# Injects proxy headers so Pocket ID knows it's accessed via HTTPS
+# Cloudflare terminates TLS and forwards HTTP over the tunnel, so Pocket ID
+# would otherwise see the origin as http:// which breaks WebAuthn (origin mismatch)
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: proxy-headers
+  namespace: pocket-id
+spec:
+  headers:
+    customRequestHeaders:
+      X-Forwarded-Proto: "https"
+      X-Forwarded-Host: "pocket-id.pengiuns.com"

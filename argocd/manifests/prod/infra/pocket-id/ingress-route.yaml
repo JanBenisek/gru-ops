@@ -5,10 +5,13 @@ metadata:
   namespace: pocket-id
 spec:
   entryPoints:
-    - web 
+    - web
   routes:
   - match: Host(`pocket-id.pengiuns.com`)
     kind: Rule
+    middlewares: # added together with middleware
+      - name: proxy-headers
+        namespace: pocket-id
     services:
       - name: pocket-id
         port: 80
