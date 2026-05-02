@@ -25,8 +25,8 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             # Handy for debugging
-            # - name: DS_LOG_LEVEL
-              # value: DEBUG
+            - name: DS_LOG_LEVEL
+              value: DEBUG
             # JWT configuration - must match Filebrowser secret
             # - name: JWT_SECRET
               # value: "filebrowser-jwt-token"

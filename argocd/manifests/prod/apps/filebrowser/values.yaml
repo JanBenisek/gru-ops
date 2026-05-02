@@ -87,6 +87,11 @@ extraEnv:
         secretKeyRef:
           name: filebrowser-admin
           key: password
+    - name: FILEBROWSER_ONLYOFFICE_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: filebrowser-jwt-token
+          key: SECRET
 
 # extraEnvFromSecrets: Load entire secrets as environment variables
 # Example:
@@ -280,7 +285,7 @@ config:
   integrations:
     office:                                 #  validate:omitempty
       url: "https://onlyoffice.pengiuns.com"  # The URL to the OnlyOffice Document Server, needs to be accessible to the user.  validate:required
-      secret: "filebrowser-jwt-token"       # JWT secret - must match JWT_SECRET in onlyoffice deployment
+      secret: ""                            # JWT secret - set via FILEBROWSER_ONLYOFFICE_SECRET env var (from filebrowser-jwt-token secret)
       viewOnly: false                       # view only mode for OnlyOffice
     media:                                  #  validate:omitempty
       ffmpegPath: ""                        # path to ffmpeg directory with ffmpeg and ffprobe (eg. /usr/local/bin)
