@@ -455,7 +455,7 @@ make docker-build
 
 ## Filebrowser quantum
 
-> EXPERIMENTAL, filebrowser
+> filebrowser
 
 - [Helm](https://github.com/Softwaredam/filebrowser-chart/tree/main/filebrowser)
 - [Docs](https://filebrowserquantum.com/en/docs/)
