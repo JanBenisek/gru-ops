@@ -1,0 +1,17 @@
+{
+  "context": {
+    "include_patterns": [
+      "**/*.yaml",
+      "**/*.yml",
+      "**/*.tf",
+      "**/*.md",
+      "aux/*.sh",
+      "renovate.json"
+    ],
+    "exclude_patterns": [
+      "**/*.tfstate",
+      "terraform/.terraform/",
+      "aux/sealed-secrets-private.key"
+    ]
+  }
+}
