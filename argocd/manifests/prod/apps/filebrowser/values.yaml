@@ -186,7 +186,7 @@ config:
         logoutRedirectUrl: ""               # if provider logout url is provided, filebrowser will also redirect to logout url. Custom logout query params are respected.
       noauth: false                         # if set to true, overrides all other auth methods and disables authentication
       password:                             #  validate:omitempty
-        enabled: true
+        enabled: false
         minLength: 20                       # minimum pasword length required, default is 5.  validate:omitempty
         signup: false                       # allow signups on login page if enabled -- not secure.  validate:omitempty
         recaptcha:                          # recaptcha config, only used if signup is enabled  validate:omitempty
