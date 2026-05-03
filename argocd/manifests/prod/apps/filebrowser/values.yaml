@@ -48,11 +48,13 @@ persistence:
     accessMode: ReadWriteOnce
     annotations:
       my.custom/annotation: "value"
+      # k8up.io/backup: "true"
 
   config:
     size: 1Gi
     annotations:
       my.custom/annotation: "huh"
+      # k8up.io/backup: "true"
 
 # extraVolumes: Use additional volumes for the deployment. May be a mix of any volume type.
 # Reference: https://kubernetes.io/docs/concepts/storage/volumes/
@@ -87,6 +89,16 @@ extraEnv:
         secretKeyRef:
           name: filebrowser-jwt-token
           key: SECRET
+    - name: FILEBROWSER_OIDC_CLIENT_ID
+      valueFrom:
+        secretKeyRef:
+          name: filebrowser-oidc-client
+          key: id
+    - name: FILEBROWSER_OIDC_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: filebrowser-oidc-client
+          key: secret
 
 # extraEnvFromSecrets: Load entire secrets as environment variables
 # Example:
@@ -183,16 +195,16 @@ config:
           secret: ""                        #  validate:required
         enforcedOtp: false                  # if set to true, TOTP is enforced for all password users users. Otherwise, users can choose to enable TOTP.
       oidc:                                 #  validate:omitempty
-        enabled: false                      # whether to enable OIDC authentication
+        enabled: true                      # whether to enable OIDC authentication
         clientId: ""                        # secret: client id of the OIDC application
         clientSecret: ""                    # secret: client secret of the OIDC application
-        issuerUrl: ""                       # authorization URL of the OIDC provider
-        scopes: "openid email profile"      # scopes to request from the OIDC provider
+        issuerUrl: "https://pocket-id.pengiuns.com"                       # authorization URL of the OIDC provider
+        scopes: "email openid profile groups"      # scopes to request from the OIDC provider
         userIdentifier: "preferred_username" # the field value to use as the username. Default is "preferred_username", can also be "email" or "username", or "phone"
         disableVerifyTLS: false             # disable TLS verification for the OIDC provider. This is insecure and should only be used for testing.
         logoutRedirectUrl: ""               # if provider logout url is provided, filebrowser will also redirect to logout url. Custom logout query params are respected.
-        createUser: false                   # create user if not exists
-        adminGroup: ""                      # if set, users in this group will be granted admin privileges.
+        createUser: true                   # create user if not exists
+        adminGroup: "admin"                      # if set, users in this group will be granted admin privileges.
         groupsClaim: "groups"               # the JSON field name to read groups from. Default is "groups"
     key: ""                                 # secret: the key used to sign the JWT tokens. If not set, a random key will be generated.
     adminUsername: "admin"                  # secret: the username of the admin user. If not set, the default is "admin".

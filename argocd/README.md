@@ -465,6 +465,7 @@ make docker-build
 ```bash
 ./aux/seal-secret.sh filebrowser-jwt-token filebrowser SECRET=PWD prod/apps/filebrowser
 ./aux/seal-secret.sh filebrowser-admin filebrowser user=admin prod/apps/filebrowser password=pwd
+./aux/seal-secret.sh ffilebrowser-oidc-client filebrowser id=pwd prod/apps/filebrowser secret=pwd
 ```
 
 ## Funnaiest
