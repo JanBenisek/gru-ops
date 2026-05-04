@@ -11,17 +11,12 @@
       "metadata": {
         "name": "cloudflare-api-token",
         "namespace": "external-dns",
-        "creationTimestamp": null,
-        "annotations": {
-          "reflector.v1.k8s.emberstack.com/reflection-allowed": "true",
-          "reflector.v1.k8s.emberstack.com/reflection-auto-enabled": "true",
-          "reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces": "cert-manager"
-        }
+        "creationTimestamp": null
       },
       "data": null
     },
     "encryptedData": {
-      "apiKey": "AgCUaCALH8xpfdFxvqL5GK3FI4WFza9qh/52FbyRgTFPq1AXtnLYZSr89RuV9yIIzgMnNUHdyWqikfwjBo814nJcZzvDnTXArRjNByGutRQRslz8AEaMoi0KUhim6KtawAuAh+sGzAd/ptlOzfeM9Bru67MlAWd1utvMfJCJvwbv5z9L+bESTciIbdZK6JKJox3xDc456xODsva21iOj+s8b4/H14cLq3Gm5AwumT9BXi1Vb1uy3T5jo5vn8WiDUi1APZHDZwF93Mah04haparjbli35QSnmABAp5WCMn5QMFJVmggODDEzj2DA74FWhiLqCWkJqn2r63oa+WTjUQ0c1rqCyLRWWfu0qBvGsVgsylz3/UxwRz6qSVt+NNRFZlcGchsVgPf3LDd0+RQbQajlTvnwr04ZUUoSwPZ0uJjAxDdPlcUu8OSvDmB+/KJ06lIPNgLjM2vlJhBxXC//cT4SHGEQXgNJSsk8vKQEN4zLE9Rk82aQCDsadACqQNVwYOiFvSzu9ygZpjBSa3nbzW/xl/zGDKvUNNxhhS26W4yWEYFogkaiE3+2yoRc1sHAp8LFTQxfGEaM3ktBOHyDSPr1mNKsaqSHC+14wXjsCopwghL7vCIx5IXgWeWrj7dlMdwx7UAoxIMlY953eWMcaLFpB3WJX7AvwO8VzjG6VFGqfls3tBYNDNjbAzxHFrdU8T2kkUZSpVQg/R44T96CgNJM9S7XyQmIOtO7peqNLdZZnhMofQoc2mm9T"
+      "apiKey": "AgBaKY79MbvYKxxBjEOWNu+0gzq61+l5NSUXBFXLU49IlksQgI3pknQylfUZnvGt1J4nzpVjFhjYCt7X6Na6Ypz/cejgUFo6vTBHjCcUBrrfTSLBbQ1qz9EQcQDFHCeP7tQLH6UlaPzooBYOVSqbY4WXoL/r4uLO2obd7W0fICO6m28TZ5q8lrPPru6wgJ8FVWFQ6BJB4JWSG8CH0OxO5nP9uPSzIasGB8uhfoU/MK8ZoJJWO7+9GAvrpG8OEZHOFUgwkWKaOoBSad4D6tKOn0xWtUtM31Rs0jhKBGq5/gnQM+GWRkNcbJRbnTR/VWn7HkDTyNbHq/FuQoQhPatKhqoYCSE2rY73rGeLf7sdCBEOucTkWAfdgxzqQYUJuWvtKTJ34ReAEWabcseTT3TFZA+xC3lckBtGfmNkktBONoC00NAJq/xavOchRZYI+TrEcnqOrjNhXpJTY8IjepUJuSapkdqIdzpdioUCMZ5oNfpLonjfG4cLJtP/iX6kredBrElMzzEo+29kK2dW1EIBRney9ZlGf0jefet3OE4s8iLOQau6qSyJ8A4P6sJKNKzQ3fXgVEuK3soiExLLLE5g3TN+G7VC7Wkln/qu0ee5RP3PcPWQl40dhBX9vP7YVCNv4Piu5iG2oyEGZC9PW9xTUvnvNlUbv546zDnzvJCiIZM+FdN4COrxltd+bYDOXHlpzAQy6S617MqMfriU0fUfvSHzufd9Pf+GscuXx1niEo1bW4MNcr0brtdPyaHcHz+qSF0Ho8Tyhg=="
     }
   }
 }
