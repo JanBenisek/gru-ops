@@ -6,7 +6,8 @@
       "Bash(kubectl describe:*)",
       "Bash(helm list:*)",
       "Bash(helm search repo:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "WebSearch"
     ]
   }
 }
