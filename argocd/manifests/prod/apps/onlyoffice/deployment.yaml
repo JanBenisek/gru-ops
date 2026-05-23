@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: onlyoffice
-          image: onlyoffice/documentserver:9.3
+          image: onlyoffice/documentserver:9.4
           imagePullPolicy: IfNotPresent
           env:
             # Handy for debugging
