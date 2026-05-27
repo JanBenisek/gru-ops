@@ -2,3 +2,8 @@ tolerations:
   - key: "node-role.kubernetes.io/master"
     operator: "Exists"
     effect: "NoSchedule"
+
+frr-k8s:
+  prometheus:
+    serviceMonitor:
+      enabled: false
