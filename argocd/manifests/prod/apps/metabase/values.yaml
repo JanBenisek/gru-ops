@@ -15,20 +15,9 @@ resources:
     cpu: "5000m"
 
 ingress:
-  enabled: true
-  hosts:
-    - "metabase.pengiuns.com"
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/max-body-size: "100M"
-    traefik.ingress.kubernetes.io/readtimeout: "1000s"
-    traefik.ingress.kubernetes.io/writetimeout: "1000s"
-    traefik.ingress.kubernetes.io/idletimeout: "1000s"
-    traefik.ingress.kubernetes.io/retries: "3"
-  tls:
-    - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
-      hosts:
-        - "metabase.pengiuns.com"
+  enabled: false  # Disabled - using custom IngressRoute with TinyAuth instead
+  labels:
+    app.kubernetes.io/name: "metabase"
 
 database:
   type: postgres

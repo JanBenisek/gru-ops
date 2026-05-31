@@ -1,0 +1,21 @@
+# Must be the same namespace as ingress route
+# Each app requires a Middleware
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: tinyauth
+  namespace: metabase
+spec:
+  forwardAuth:
+    address: http://tinyauth.tinyauth.svc.cluster.local:3000/api/auth/traefik
+    trustForwardHeader: true
+    authRequestHeaders:
+      - Accept
+      - User-Agent
+      - Cookie
+      - X-Forwarded-Proto
+      - X-Forwarded-Host
+      - X-Forwarded-Uri
+      - X-Forwarded-For
+    authResponseHeaders:
+      - Set-Cookie
