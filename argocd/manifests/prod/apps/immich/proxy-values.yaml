@@ -9,7 +9,7 @@ controllers:
         enabled: true
         image:
           repository: alangrainger/immich-public-proxy
-          tag: "2.0.3"
+          tag: "2.4.2"
           pullPolicy: IfNotPresent
         env:
           - name: IMMICH_URL
