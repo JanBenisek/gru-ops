@@ -7,7 +7,8 @@
       "Bash(helm list:*)",
       "Bash(helm search repo:*)",
       "Bash(curl:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(grep -A 20 \"^| log$\")"
     ]
   }
 }
