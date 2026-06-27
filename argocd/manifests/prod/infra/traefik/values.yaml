@@ -21,13 +21,12 @@ ports:
     expose:
       default: true
 
-logs:
-  general:
-    level: INFO
-    format: json
-  access:
-    enabled: true
-    format: json
+log:
+  level: INFO
+  format: json
+accessLog:
+  enabled: true
+  format: json
 
 resources:
   requests:
