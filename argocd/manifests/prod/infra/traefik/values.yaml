@@ -21,11 +21,11 @@ ports:
     expose:
       default: true
 
-traefik:
-  log:
+logs:
+  general:
     level: INFO
     format: json
-  accessLog:
+  access:
     enabled: true
     format: json
 
