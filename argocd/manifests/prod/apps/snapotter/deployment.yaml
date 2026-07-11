@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: snapotter
-          image: snapotter/snapotter:2.0.0
+          image: snapotter/snapotter:2.1.0
           imagePullPolicy: IfNotPresent
           env:
             # --- Authentication ---

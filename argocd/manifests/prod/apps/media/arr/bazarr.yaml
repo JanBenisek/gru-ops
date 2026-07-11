@@ -20,7 +20,7 @@ spec:
   selector:
     matchLabels:
       app: bazarr
-      
+
   template:
     metadata:
       labels:
@@ -30,10 +30,10 @@ spec:
       securityContext:
         runAsUser: 327  #all processes in the pod run with user ID 321
         runAsGroup: 321  # same but for groups
-        fsGroup: 321 # owner of attached volume is group 321 
+        fsGroup: 321 # owner of attached volume is group 321
       containers:
         - name: bazarr
-          image: ghcr.io/hotio/bazarr:release-1.5.6
+          image: ghcr.io/hotio/bazarr:release-1.6.0
           securityContext:
             runAsUser: 0  # Temporary root for setup, not great, but does not work otherwise
             # runAsGroup: 321 # also needed here
@@ -41,32 +41,32 @@ spec:
             allowPrivilegeEscalation: true
           imagePullPolicy: Always
           ports:
-          - containerPort: 6767 
+          - containerPort: 6767
           env:
             - name: PUID
               # Process User ID - under which user will the containers processes run
               # Files inside the container belong to that user
-              value: "326" 
+              value: "326"
             - name: PGID
               # Similar to the above. Bazarr can modify files that belong to a specific group
-              value: "321"   
+              value: "321"
             - name: UMASK
               # Default privileges. 002 is 775 = full access to user and group
               # and read/execute only to others
-              value: "002" 
+              value: "002"
             - name: TZ
               value: "Etc/UTC" # Timezone
           resources:
             requests:
-              memory: "512Mi"  
-              cpu: "10m"      
+              memory: "512Mi"
+              cpu: "10m"
             limits:
-              memory: "1G"  
+              memory: "1G"
               cpu: "200m"
           volumeMounts:
-            - mountPath: /config  
+            - mountPath: /config
               name: config-storage
-            - mountPath: /data 
+            - mountPath: /data
               name: media-storage
       volumes:
         - name: config-storage
