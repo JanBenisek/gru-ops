@@ -37,7 +37,7 @@ spec:
         fsGroup: 321 # owner of attached volume is group 321 
       containers:
         - name: radarr
-          image: ghcr.io/hotio/radarr:release-6.2.1.10461
+          image: ghcr.io/hotio/radarr:release-6.3.0.10514
           securityContext:
             runAsUser: 0  # Temporary root for setup, not great, but does not work otherwise
             # runAsGroup: 321 # Remove later
