@@ -88,7 +88,7 @@ data:
             description: VMs for everyone.
         - Storage:
             icon: synology.png
-            href: http://192.168.178.96:5000/
+            href: http://192.168.178.21:5000/
             description: HOARD!!!
 
     - Tools:

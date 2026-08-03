@@ -7,25 +7,25 @@ variable "cluster_name" {
 variable "cluster_endpoint" {
   description = "Kubernetes API endpoint"
   type        = string
-  default     = "https://192.168.178.39:6443"
+  default     = "https://192.168.178.23:6443"
 }
 
 variable "control_plane_node_ip" {
   description = "Control plane node IP"
   type        = string
-  default     = "192.168.178.39"
+  default     = "192.168.178.23"
 }
 
 variable "worker_stuart_node_ip" {
   description = "Worker node (Stuart) IP"
   type        = string
-  default     = "192.168.178.38"
+  default     = "192.168.178.20"
 }
 
 variable "worker_bob_node_ip" {
   description = "Worker node (Bob) IP"
   type        = string
-  default     = "192.168.178.108"
+  default     = "192.168.178.22"
 }
 
 variable "talos_version" {
