@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
-  name: cnpg-daily-backup
+  name: cnpg-daily-backupa
   namespace: cnpg
   annotations:
     argocd.argoproj.io/sync-wave: "30"
@@ -10,6 +10,6 @@ spec:
   schedule: "0 2 * * *"
   backupOwnerReference: self
   cluster:
-    name: cnpg
+    name: cnpg-v2
   # Take first backup immediately after creation
   immediate: true
