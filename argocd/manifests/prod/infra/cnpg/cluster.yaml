@@ -35,6 +35,7 @@ spec:
 # RESTORE FROM BACKUP
 # -> delete cluster (will also remove PVC), uncomment this,
 # -> bump the cluster to `cnpg-v{n}` (it needs new location, check in hetzner)
+# -> !!! Update spec.cluster.name in ScheduledBackup
 # -> apply
 # -> once recovered, comment this out (bootstrap and externalClusters) and apply
 #   bootstrap:
