@@ -69,12 +69,22 @@ spec:
             - mountPath: /data
               name: media-storage
       volumes:
-        - name: config-storage
-          persistentVolumeClaim:
-            claimName: pvc-bazarr-config # PVC for config storage
         - name: media-storage
           persistentVolumeClaim:
             claimName: pvc-media   # PVC for data storage
+
+  # Automatically manages config PVC - won't be deleted on rollouts
+  volumeClaimTemplates:
+  - metadata:
+      name: config-storage
+      annotations:
+        k8up.io/backup: "true"
+    spec:
+      storageClassName: synology-storage-apps
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
 ---
 apiVersion: v1
 kind: Service

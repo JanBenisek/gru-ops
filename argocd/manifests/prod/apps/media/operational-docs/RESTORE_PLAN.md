@@ -20,6 +20,7 @@ The PVCs are stuck in **Pending** state because they reference deleted PVs. The 
 ### Step 1: Scale down statefulsets
 
 ```bash
+k scale statefulset -n media bazarr --replicas=0
 k scale statefulset -n media prowlarr radarr --replicas=0
 ```
 
@@ -27,10 +28,13 @@ k scale statefulset -n media prowlarr radarr --replicas=0
 
 ```bash
 # Remove finalizers to allow deletion
+k patch pvc -n media pvc-bazarr-config pvc-bazarr-config -p '{"metadata":{"finalizers":null}}' --type=merge
 k patch pvc -n media pvc-prowlarr-config pvc-radarr-config -p '{"metadata":{"finalizers":null}}' --type=merge
 k patch pvc -n media pvc-radar-config pvc-radarr-config -p '{"metadata":{"finalizers":null}}' --type=merge
 
+
 # Force delete PVCs
+k delete pvc -n media pvc-bazarr-config pvc-bazarr-config --force --grace-period=0
 k delete pvc -n media pvc-prowlarr-config pvc-radarr-config --force --grace-period=0
 k delete pvc -n media pvc-radar-config pvc-radarr-config --force --grace-period=0
 ```
@@ -46,6 +50,7 @@ k apply -f /Users/janbenisek/github/gru-ops/argocd/manifests/prod/apps/media/arr
 ### Step 5: Apply restore manifests
 
 ```bash
+k apply -f /Users/janbenisek/github/gru-ops/argocd/manifests/prod/apps/media/restore-bazarr.yaml
 k apply -f /Users/janbenisek/github/gru-ops/argocd/manifests/prod/apps/media/restore-prowlarr.yaml
 k apply -f /Users/janbenisek/github/gru-ops/argocd/manifests/prod/apps/media/restore-radarr.yaml
 ```
