@@ -1,5 +1,5 @@
 clients:
-- host: 192.168.178.21
+- host: 192.168.178.96
   port: 5001
   https: true
   username: bot_k8s

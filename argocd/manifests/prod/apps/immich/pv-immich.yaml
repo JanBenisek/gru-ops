@@ -11,6 +11,6 @@ spec:
   accessModes:
     - ReadWriteMany
   nfs:
-    server: 192.168.178.21
+    server: 192.168.178.96
     path: /volume1/photos
   persistentVolumeReclaimPolicy: Retain

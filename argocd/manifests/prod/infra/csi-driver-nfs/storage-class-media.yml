@@ -10,7 +10,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "40"
 provisioner: nfs.csi.k8s.io # should be in talos by default
 parameters:
-  server: 192.168.178.21
+  server: 192.168.178.96
   share: /volume1/media
 reclaimPolicy: Retain
 allowVolumeExpansion: true
