@@ -20,10 +20,18 @@ This document describes the steps to restore application PVCs from k8up backups 
 
 ## Restoration Steps
 
-### Step 1: Scale down statefulsets and deployments
+### Step 1: Delete statefulsets and deployments (must recreate to change volumeClaimTemplates)
 
 ```bash
-# StatefulSets
+# StatefulSets (delete and recreate - volumeClaimTemplates is immutable)
+k delete statefulset -n media bazarr
+k delete statefulset -n media prowlarr
+k delete statefulset -n media radarr
+k delete statefulset -n media sonarr
+k delete statefulset -n media sabnzbd
+k delete statefulset -n media qbittorrent
+
+# Scale to 0 might also be needed
 k scale statefulset -n media bazarr --replicas=0
 k scale statefulset -n media prowlarr --replicas=0
 k scale statefulset -n media radarr --replicas=0
@@ -57,7 +65,7 @@ k delete pvc -n media pvc-qbittorrent-config --force --grace-period=0
 k delete pvc -n media pvc-jellyfin-config --force --grace-period=0
 ```
 
-### Step 3: Apply updated manifests (creates new PVCs via volumeClaimTemplates)
+### Step 3: Apply updated manifests (creates StatefulSets with volumeClaimTemplates, pods start immediately)
 
 ```bash
 k apply -f /Users/janbenisek/github/gru-ops/argocd/manifests/prod/apps/media/arr/bazarr.yaml
@@ -98,10 +106,9 @@ k apply -f /Users/janbenisek/github/gru-ops/argocd/manifests/prod/apps/media/ope
 k apply -f /Users/janbenisek/github/gru-ops/argocd/manifests/prod/apps/media/operational-docs/restore-jellyfin.yaml
 ```
 
-### Step 5: Scale up statefulsets and deployments
+### Step 5: Scale deployment
 
 ```bash
-k scale statefulset -n media bazarr prowlarr radarr sonarr sabnzbd qbittorrent --replicas=1
 k scale deployment -n media jellyfin --replicas=1
 ```
 
