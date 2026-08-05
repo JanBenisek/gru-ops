@@ -24,6 +24,9 @@ spec:
         app: snapotter
         app.kubernetes.io/name: snapotter
     spec:
+      securityContext:
+        runAsUser: 0
+        fsGroup: 0
       containers:
         - name: snapotter
           image: snapotter/snapotter:2.1.0
