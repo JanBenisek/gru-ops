@@ -67,12 +67,26 @@ spec:
             - mountPath: /data # In UI add /downloads/torrents
               name: media-storage
       volumes:
-        - name: config-storage
-          persistentVolumeClaim:
-            claimName: pvc-qbittorrent-config
+        # MIGRATION: Switched to volumeClaimTemplates for config
+        # - name: config-storage
+        #   persistentVolumeClaim:
+        #     claimName: pvc-qbittorrent-config
         - name: media-storage
           persistentVolumeClaim:
             claimName: pvc-media
+
+  # Automatically manages config PVC - won't be deleted on rollouts
+  volumeClaimTemplates:
+  - metadata:
+      name: config-storage
+      annotations:
+        k8up.io/backup: "true"
+    spec:
+      storageClassName: synology-storage-apps
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
 ---
 apiVersion: v1
 kind: Service

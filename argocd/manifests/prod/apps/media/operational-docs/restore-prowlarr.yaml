@@ -22,5 +22,5 @@
 #     runAsUser: 0
 #   restoreMethod:
 #     folder:
-#       claimName: pvc-prowlarr-config
-#   snapshot: "5a827507"
+#       claimName: config-storage-prowlarr-0
+#   snapshot: "93d9e374"

@@ -1,14 +1,15 @@
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: pvc-qbittorrent-config
-  namespace: media
-  annotations:
-    k8up.io/backup: "true"
-spec:
-  storageClassName: synology-storage-apps
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
+# MIGRATION: Switched to volumeClaimTemplates - old PVC kept for backup/restore
+# kind: PersistentVolumeClaim
+# apiVersion: v1
+# metadata:
+#   name: pvc-qbittorrent-config
+#   namespace: media
+#   annotations:
+#     k8up.io/backup: "true"
+# spec:
+#   storageClassName: synology-storage-apps
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 1Gi
