@@ -24,19 +24,11 @@ spec:
         app: snapotter
         app.kubernetes.io/name: snapotter
     spec:
-      securityContext:
-        runAsUser: 321
-        fsGroup: 321
       containers:
         - name: snapotter
           image: snapotter/snapotter:2.2.0
           imagePullPolicy: IfNotPresent
           env:
-            # --- User/Group ---
-            - name: PUID
-              value: "321"
-            - name: PGID
-              value: "321"
             # --- Authentication ---
             - name: AUTH_ENABLED
               value: "true"
