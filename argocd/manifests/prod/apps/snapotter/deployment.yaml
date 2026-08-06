@@ -29,7 +29,7 @@ spec:
         fsGroup: 321
       containers:
         - name: snapotter
-          image: snapotter/snapotter:2.1.0
+          image: snapotter/snapotter:2.2.0
           imagePullPolicy: IfNotPresent
           env:
             # --- User/Group ---
