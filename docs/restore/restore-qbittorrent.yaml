@@ -1,0 +1,26 @@
+# apiVersion: k8up.io/v1
+# kind: Restore
+# metadata:
+#   name: qbittorrent-config-restore
+#   namespace: media
+# spec:
+#   backend:
+#     repoPasswordSecretRef:
+#       key: password
+#       name: restic-credentials
+#     s3:
+#       accessKeyIDSecretRef:
+#         key: user
+#         name: hetzner-credentials
+#       bucket: gru-k8up-backups/pvc/media/scheduled/
+#       endpoint: https://fsn1.your-objectstorage.com
+#       secretAccessKeySecretRef:
+#         key: password
+#         name: hetzner-credentials
+#   podSecurityContext:
+#     fsGroup: 0
+#     runAsUser: 0
+#   restoreMethod:
+#     folder:
+#       claimName: config-storage-qbittorrent-0
+#   snapshot: "ebc3f736"
