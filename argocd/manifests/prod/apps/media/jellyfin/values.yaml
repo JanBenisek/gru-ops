@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 
 # -- Number of Jellyfin replicas to start. Should be left at 1.
-replicaCount: 0
+replicaCount: 1
 
 # -- Image pull secrets to authenticate with private repositories.
 # See: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/

@@ -7,7 +7,7 @@ metadata:
     k8up.io/backup: "true"
 spec:
   storageClassName: synology-storage-apps
-  volumeName: pvc-50736309-b955-450f-ab18-c1bbc7aa91a8
+  # volumeName: pvc-6167bc2c-5b06-4513-bb79-3d3c0e25de15
   accessModes:
     - ReadWriteOnce
   resources:
