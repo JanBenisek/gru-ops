@@ -8,18 +8,17 @@ metadata:
 spec:
   project: gru
   sources:
-    - repoURL: https://github.com/JanBenisek/gru-ops.git
-      targetRevision: main
-      path: argocd/manifests/prod/apps/filebrowser/filebrowser
+    - repoURL: oci://ghcr.io/softwaredam/helm-charts
+      chart: filebrowser-quantum
+      targetRevision: "1.5.3-stable-2"
       helm:
         releaseName: filebrowser
         valueFiles:
-          - ../values.yaml
+          - $values/argocd/manifests/prod/apps/filebrowser/values.yaml
     - repoURL: https://github.com/JanBenisek/gru-ops.git
       targetRevision: main
       path: argocd/manifests/prod/apps/filebrowser
-      directory:
-        recurse: false
+      ref: values
   destination:
     server: "https://kubernetes.default.svc"
     namespace: filebrowser
