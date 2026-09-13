@@ -8,9 +8,14 @@ metadata:
 spec:
   project: gru
   sources:
-    - repoURL: oci://ghcr.io/softwaredam/helm-charts
-      chart: filebrowser-quantum
+    # Chart is consumed from the upstream git repo at the release tag because the
+    # ghcr.io/softwaredam/helm-charts OCI package is private (403 on anonymous pull).
+    # If it ever goes public, switch to:
+    #   repoURL: oci://ghcr.io/softwaredam/helm-charts
+    #   chart: filebrowser-quantum
+    - repoURL: https://github.com/Softwaredam/filebrowser-chart.git
       targetRevision: "1.5.3-stable-2"
+      path: filebrowser
       helm:
         releaseName: filebrowser
         valueFiles:
