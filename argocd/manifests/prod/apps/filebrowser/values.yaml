@@ -3,7 +3,7 @@
 # Chart reference: https://github.com/Softwaredam/filebrowser-chart
 image:
   repository: ghcr.io/gtsteffaniak/filebrowser
-  tag: 2.0.4-beta
+  tag: 2.0.6-beta
   pullPolicy: IfNotPresent
 
 ingress:
