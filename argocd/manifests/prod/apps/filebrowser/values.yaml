@@ -58,6 +58,13 @@ config:
   server:
     externalUrl: "https://filebrowser.pengiuns.com"
     maxArchiveSize: 50 # upstream default dropped to 20, keeping the previous limit
+    # v2.0.6 changed `database` from a string path to a MAP ({path, migrateFrom} for SQLite) and
+    # hard-fails on the legacy string form that the chart default still ships ("old database path
+    # is set in the config"), so it must be overridden in map form. Starting fresh - the old bolt
+    # database.db on the config PVC is ignored. `path` is pinned to the config PVC; the implicit
+    # default would land in the ephemeral container filesystem and lose the DB on pod restart.
+    database:
+      path: /home/filebrowser/data/filebrowser.sqlite
   auth:
     methods:
       password:
