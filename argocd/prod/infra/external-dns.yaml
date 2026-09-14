@@ -8,6 +8,10 @@ metadata:
 spec:
   project: gru
   sources:
+    # Plain manifests: DNSEndpoint resources declaring the cloudflare tunnel CNAMEs
+    - repoURL: https://github.com/JanBenisek/gru-ops.git
+      targetRevision: main
+      path: argocd/manifests/prod/infra/external-dns/records
     - chart: external-dns
       repoURL: https://kubernetes-sigs.github.io/external-dns/
       targetRevision: 1.22.0
