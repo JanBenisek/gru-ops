@@ -54,9 +54,22 @@ extraEnv:
         name: filebrowser-oidc-client
         key: secret
 
+# filebrowser v2 strict-decodes this config (unknown fields are fatal) and moved the HTTP/TLS
+# settings (port, baseURL, tlsCert, ...) out of `server:` into a new `http:` section. The chart's
+# default config block is still copied from filebrowser v1.0.0, so the v1-era keys are set to
+# null below - Helm deletes null keys from the merged values, keeping them out of the rendered
+# config.yaml. Check keys against backend/pkg/settings/structs.go when bumping the app version.
 config:
   server:
-    externalUrl: "https://filebrowser.pengiuns.com"
+    socket: null # v2: moved to http.socket
+    externalUrl: null # v2: moved to http.externalUrl
+    tlsKey: null # v2: moved to http.tlsKey
+    tlsCert: null # v2: moved to http.tlsCert
+    port: null # v2: moved to http.port
+    listen: null # v2: moved to http.listen
+    baseURL: null # v2: moved to http.baseURL
+    internalUrl: null # v2: moved to http.internalUrl
+    disableWebDAV: null # v2: moved to http.disableWebDAV
     maxArchiveSize: 50 # upstream default dropped to 20, keeping the previous limit
     # v2.0.6 changed `database` from a string path to a MAP ({path, migrateFrom} for SQLite) and
     # hard-fails on the legacy string form that the chart default still ships ("old database path
@@ -78,3 +91,12 @@ config:
   integrations:
     office:
       url: "https://onlyoffice.pengiuns.com" # JWT secret comes from the FILEBROWSER_ONLYOFFICE_SECRET env
+    media:
+      exiftoolPath: null # removed in v2
+  userDefaults:
+    fileViewer:
+      defaultMediaPlayer: null # removed in v2
+  http:
+    port: 8080 # v2 default is 80; the chart's service, probe, and ingress all expect 8080
+    externalUrl: "https://filebrowser.pengiuns.com" # moved from server.externalUrl in v2
+    trustedHeaders: null # removed in v2 (replaced by trustProxyHeaders, default false)
