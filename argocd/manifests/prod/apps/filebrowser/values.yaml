@@ -1,11 +1,11 @@
 # Only deltas from the filebrowser-quantum chart defaults are pinned here.
 # Chart: oci://ghcr.io/softwaredam/helm-charts/filebrowser-quantum (version pinned in argocd/prod/apps/filebrowser.yaml)
 # Chart reference: https://github.com/Softwaredam/filebrowser-chart
-image:
-  repository: ghcr.io/gtsteffaniak/filebrowser
-  tag: 2.0.6-beta
-  pullPolicy: IfNotPresent
-
+# The image and app config intentionally use the chart defaults (filebrowser v1 line). Do NOT add
+# an image.tag override here: Renovate's helm-values manager would auto-bump it to v2 again, whose
+# strict config decoding rejects this chart's v1-era defaults (that is what broke the pod in Aug 2026).
+# The chart's default database path (/home/filebrowser/data/database.db) reuses the existing bolt DB
+# on the config PVC, so users and settings from before the v2 attempt come back.
 ingress:
   enabled: true
   class: traefik
@@ -54,30 +54,10 @@ extraEnv:
         name: filebrowser-oidc-client
         key: secret
 
-# filebrowser v2 strict-decodes this config (unknown fields are fatal) and moved the HTTP/TLS
-# settings (port, baseURL, tlsCert, ...) out of `server:` into a new `http:` section. The chart's
-# default config block is still copied from filebrowser v1.0.0, so the v1-era keys are set to
-# null below - Helm deletes null keys from the merged values, keeping them out of the rendered
-# config.yaml. Check keys against backend/pkg/settings/structs.go when bumping the app version.
 config:
   server:
-    socket: null # v2: moved to http.socket
-    externalUrl: null # v2: moved to http.externalUrl
-    tlsKey: null # v2: moved to http.tlsKey
-    tlsCert: null # v2: moved to http.tlsCert
-    port: null # v2: moved to http.port
-    listen: null # v2: moved to http.listen
-    baseURL: null # v2: moved to http.baseURL
-    internalUrl: null # v2: moved to http.internalUrl
-    disableWebDAV: null # v2: moved to http.disableWebDAV
+    externalUrl: "https://filebrowser.pengiuns.com"
     maxArchiveSize: 50 # upstream default dropped to 20, keeping the previous limit
-    # v2.0.6 changed `database` from a string path to a MAP ({path, migrateFrom} for SQLite) and
-    # hard-fails on the legacy string form that the chart default still ships ("old database path
-    # is set in the config"), so it must be overridden in map form. Starting fresh - the old bolt
-    # database.db on the config PVC is ignored. `path` is pinned to the config PVC; the implicit
-    # default would land in the ephemeral container filesystem and lose the DB on pod restart.
-    database:
-      path: /home/filebrowser/data/filebrowser.sqlite
   auth:
     methods:
       password:
@@ -91,12 +71,3 @@ config:
   integrations:
     office:
       url: "https://onlyoffice.pengiuns.com" # JWT secret comes from the FILEBROWSER_ONLYOFFICE_SECRET env
-    media:
-      exiftoolPath: null # removed in v2
-  userDefaults:
-    fileViewer:
-      defaultMediaPlayer: null # removed in v2
-  http:
-    port: 8080 # v2 default is 80; the chart's service, probe, and ingress all expect 8080
-    externalUrl: "https://filebrowser.pengiuns.com" # moved from server.externalUrl in v2
-    trustedHeaders: null # removed in v2 (replaced by trustProxyHeaders, default false)
