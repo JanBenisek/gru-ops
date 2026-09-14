@@ -1,0 +1,82 @@
+# Public hostnames served through the Cloudflare tunnel (gru-ops-tunnel, see ../cloudflare/values.yaml).
+# external-dns owns these CNAMEs via its crd source and recreates them if they are ever deleted:
+# in Sep 2026 the pocket-id/tinyauth/otterwiki/hiker records were deleted from Cloudflare and
+# every app authenticating via Pocket-ID (filebrowser included) crashed until they came back.
+# Records MUST stay proxied (*.cfargotunnel.com does not resolve publicly as a DNS-only record).
+# policy=sync means removing an entry here also deletes the record from Cloudflare DNS.
+# immich-share was previously an unmanaged dashboard record with the same target; external-dns
+# adopts it unchanged.
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: tunnel-pocket-id
+  namespace: external-dns
+spec:
+  endpoints:
+    - dnsName: pocket-id.pengiuns.com
+      recordType: CNAME
+      targets:
+        - d65bf19e-11ed-4df3-81c1-b76923b14de4.cfargotunnel.com
+      providerSpecific:
+        - name: external-dns.kubernetes.io/cloudflare-proxied
+          value: "true"
+---
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: tunnel-tinyauth
+  namespace: external-dns
+spec:
+  endpoints:
+    - dnsName: tinyauth.pengiuns.com
+      recordType: CNAME
+      targets:
+        - d65bf19e-11ed-4df3-81c1-b76923b14de4.cfargotunnel.com
+      providerSpecific:
+        - name: external-dns.kubernetes.io/cloudflare-proxied
+          value: "true"
+---
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: tunnel-otterwiki
+  namespace: external-dns
+spec:
+  endpoints:
+    - dnsName: otterwiki.pengiuns.com
+      recordType: CNAME
+      targets:
+        - d65bf19e-11ed-4df3-81c1-b76923b14de4.cfargotunnel.com
+      providerSpecific:
+        - name: external-dns.kubernetes.io/cloudflare-proxied
+          value: "true"
+---
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: tunnel-hiker
+  namespace: external-dns
+spec:
+  endpoints:
+    - dnsName: hiker.pengiuns.com
+      recordType: CNAME
+      targets:
+        - d65bf19e-11ed-4df3-81c1-b76923b14de4.cfargotunnel.com
+      providerSpecific:
+        - name: external-dns.kubernetes.io/cloudflare-proxied
+          value: "true"
+---
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: tunnel-immich-share
+  namespace: external-dns
+spec:
+  endpoints:
+    - dnsName: immich-share.pengiuns.com
+      recordType: CNAME
+      targets:
+        - d65bf19e-11ed-4df3-81c1-b76923b14de4.cfargotunnel.com
+      providerSpecific:
+        - name: external-dns.kubernetes.io/cloudflare-proxied
+          value: "true"
