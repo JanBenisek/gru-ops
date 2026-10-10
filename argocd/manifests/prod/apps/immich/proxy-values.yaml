@@ -9,7 +9,7 @@ controllers:
         enabled: true
         image:
           repository: alangrainger/immich-public-proxy
-          tag: "3.4.1"
+          tag: "4.0.0"
           pullPolicy: IfNotPresent
         env:
           - name: IMMICH_URL
@@ -18,16 +18,21 @@ controllers:
             value: |
               {
                 "ipp": {
-                  "singleImageGallery": true,
-                  "downloadOriginalPhoto": false,
-                  "allowDownloadAll": false,
+                  "gallery": {
+                    "singleImage": true,
+                    "groupByDate": "month"
+                  },
+                  "maxDownloadQuality": "preview",
+                  "maxZoomQuality": "fullsize",
+                  "motionPhotos": false,
+                  "allowDownload": false,
                   "showHomePage": false
                 }
               }
 
 service:
   main:
-    controller: main  
+    controller: main
     enabled: true
     primary: true
     type: ClusterIP
