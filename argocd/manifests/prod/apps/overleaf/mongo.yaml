@@ -28,6 +28,10 @@ spec:
       - name: mongo
         image: mongo:8.0
         imagePullPolicy: IfNotPresent
+        # Overleaf requires transactions, which need a replica set (single-node is enough).
+        # One-time manual init after first deploy (as the bitnami/mongodb chart does on fresh installs):
+        #   kubectl exec -n overleaf mongo-0 -- mongosh --quiet --eval 'rs.initiate({_id: "rs0", members: [{_id: 0, host: "mongo:27017"}]})'
+        args: ["--replSet", "rs0", "--bind_ip_all"]
         ports:
         - containerPort: 27017
         resources:
