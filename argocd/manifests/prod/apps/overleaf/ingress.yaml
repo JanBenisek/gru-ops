@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: overleaf
+  namespace: overleaf
+  labels:
+    app: overleaf
+    app.kubernetes.io/name: overleaf
+  annotations:
+    traefik.ingress.kubernetes.io/max-body-size: "50M"
+    traefik.ingress.kubernetes.io/readtimeout: "1000s"
+    traefik.ingress.kubernetes.io/writetimeout: "1000s"
+    traefik.ingress.kubernetes.io/idletimeout: "1000s"
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: overleaf.pengiuns.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: overleaf
+            port:
+              number: 80
+  tls:
+  - hosts:
+      - overleaf.pengiuns.com
+    secretName: letsencrypt-wildcard-cert-pengiuns.com-production

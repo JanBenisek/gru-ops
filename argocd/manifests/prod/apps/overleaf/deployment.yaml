@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: overleaf
+  namespace: overleaf
+  labels:
+    app: overleaf
+    app.kubernetes.io/name: overleaf
+spec:
+  serviceName: overleaf
+  replicas: 1
+  podManagementPolicy: OrderedReady
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
+  selector:
+    matchLabels:
+      app: overleaf
+  template:
+    metadata:
+      labels:
+        app: overleaf
+        app.kubernetes.io/name: overleaf
+    spec:
+      # sharelatex image uses s6-overlay and must run as root
+      containers:
+      - name: overleaf
+        image: sharelatex/sharelatex:6.3.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80 # internal port for the app
+        env:
+        - name: OVERLEAF_APP_NAME
+          value: "Overleaf"
+        - name: OVERLEAF_SITE_URL
+          value: "https://overleaf.pengiuns.com"
+        - name: OVERLEAF_MONGO_URL
+          value: "mongodb://mongo:27017/sharelatex"
+        - name: OVERLEAF_REDIS_HOST
+          value: "redis"
+        - name: OVERLEAF_REDIS_PORT
+          value: "6379"
+        - name: ENABLED_LINKED_FILE_TYPES
+          value: "project_file,project_output_file"
+        - name: EMAIL_CONFIRMATION_DISABLED
+          value: "true"
+        - name: TELEMETRY_OPT_OUT
+          value: "true"
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "250m"
+          limits:
+            memory: "4Gi"
+            cpu: "2000m"
+        volumeMounts:
+        - name: overleaf-data
+          mountPath: /var/lib/sharelatex
+      volumes:
+      - name: overleaf-data
+        persistentVolumeClaim:
+          claimName: pvc-overleaf
