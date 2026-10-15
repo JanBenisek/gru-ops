@@ -155,7 +155,7 @@ data:
         - Overleaf:
             icon: overleaf.svg
             href: https://overleaf.pengiuns.com
-            description: Latex with friends
+            description: latex party
             namespace: overleaf
             app: overleaf
 
