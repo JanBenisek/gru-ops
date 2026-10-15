@@ -152,6 +152,12 @@ data:
             description: Can you image it?
             namespace: snapotter
             app: snapotter
+        - Overleaf:
+            icon: overleaf.svg
+            href: https://overleaf.pengiuns.com
+            description: Latex with friends
+            namespace: overleaf
+            app: overleaf
 
     - Fun:
         - Hiker:
