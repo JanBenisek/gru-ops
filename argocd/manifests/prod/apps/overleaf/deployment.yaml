@@ -49,8 +49,6 @@ spec:
           value: "true"
         - name: OVERLEAF_INVITE_TOKEN_SECRET
           value: "k6j6bvhetv6tqqaVfv89UbebeR0x9IhdMS7X34eXP9g="  # TODO: move to sealed secret before this leaves testing
-        - name: OVERLEAF_ALLOW_PUBLIC_ACCOUNT_CREATION
-          value: "false"
         resources:
           requests:
             memory: "1Gi"
