@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: mongo
-        image: mongo:8.0
+        image: mongo:8.3
         imagePullPolicy: IfNotPresent
         # Overleaf requires transactions, which need a replica set (single-node is enough).
         # One-time manual init after first deploy (as the bitnami/mongodb chart does on fresh installs):
