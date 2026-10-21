@@ -26,7 +26,7 @@ spec:
       # sharelatex image uses s6-overlay and must run as root
       containers:
       - name: overleaf
-        image: sharelatex/sharelatex:6.3.0
+        image: sharelatex/sharelatex:6.3.1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80 # internal port for the app
