@@ -1,0 +1,36 @@
+# Lightdash - OSS BI tool (experimental, no persistence)
+# https://github.com/lightdash/helm-charts
+
+# Injects LIGHTDASH_SECRET into all pods (signs session cookies, encrypts sensitive data)
+existingSecret: lightdash
+
+# Disable browserless-chrome (only needed for scheduled delivery PDFs/screenshots)
+browserless-chrome:
+  enabled: false
+
+resources:
+  requests:
+    memory: "512Mi"
+    cpu: "100m"
+  limits:
+    memory: "2Gi"
+    cpu: "1000m"
+
+# Bundled PostgreSQL (bitnami) - ephemeral on purpose, experiment only
+postgresql:
+  enabled: true
+  auth:
+    username: lightdash
+    database: lightdash
+    existingSecret: lightdash-postgres
+    secretKeys:
+      userPasswordKey: password
+  persistence:
+    enabled: false
+  primary:
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "50m"
+      limits:
+        memory: "512Mi"
