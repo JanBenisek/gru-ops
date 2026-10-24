@@ -3,6 +3,8 @@
 
 # Injects LIGHTDASH_SECRET into all pods (signs session cookies, encrypts sensitive data)
 existingSecret: lightdash
+s3:
+  existingSecret: lightdash-s3
 
 # Disable browserless-chrome (only needed for scheduled delivery PDFs/screenshots)
 browserless-chrome:
