@@ -23,7 +23,9 @@ spec:
       - name: rill
         image: rilldata/rill:v0.90.7
         imagePullPolicy: IfNotPresent
-        args: ["start", "--interactive=false", "--no-open", "--port", "9009"]
+        # v0.90 requires an explicit <path> arg when not interactive and the
+        # project dir has no rill.yaml yet; NewApp tolerates an empty project.
+        args: ["start", "/home/rill/project", "--interactive=false", "--no-open", "--port", "9009"]
         workingDir: /home/rill/project
         ports:
         - containerPort: 9009
