@@ -28,6 +28,14 @@ postgresql:
   primary:
     persistence:
       enabled: false
+    # Chart does not mount a writable volume when persistence is disabled,
+    # so provide an emptyDir for /bitnami/postgresql to keep it ephemeral.
+    extraVolumes:
+      - name: bitnami-data
+        emptyDir: {}
+    extraVolumeMounts:
+      - name: bitnami-data
+        mountPath: /bitnami/postgresql
     resources:
       requests:
         memory: "256Mi"
