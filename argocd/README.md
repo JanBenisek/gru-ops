@@ -521,6 +521,20 @@ create extension if not exists earthdistance cascade;
 - Add `immich-share.pengiuns.com` to Server Settings -> External Domain
 - `CNAME` record must have the `<tunnel ID>.cfargotunnel.com` in `target`.
 
+##### Visitor uploads
+
+> Visitors send their own photos into a shared link.
+
+- [Guide](https://docs.ipp.nz/visitor-uploads)
+- The `immich-public-proxy-upload` container serves `/upload` on
+  `immich-share.pengiuns.com`. The gallery container stays read-only.
+- Turn on `Allow public user to upload` on a shared link in Immich. The gallery
+  of that link then shows an `Add photos` button. No API key is needed.
+- Cloudflare rejects bodies over 100 MB on Free and Pro, tunnel included.
+  `ipp.upload.maxFileSize` is set to 100 so the page refuses the file early.
+- Check the route with `https://immich-share.pengiuns.com/upload/healthcheck`.
+  It answers `upload-ok`.
+
 ### jupyterhub
 
 > Data Analysis & Exploration
