@@ -160,7 +160,7 @@ Same as above but:
 
 ⚠️ **Monitoring uses pinned chart versions** - The monitoring app in `argocd/prod/infra/monitoring.yaml` uses `{{chartVersion}}` variables for Prometheus, Grafana, and Loki. When updating, verify compatibility across the stack.
 
-⚠️ **Sealed secrets public key is in .gitignore but IS tracked in git** - The public key at `aux/sealed-secrets-public.crt` is gitignored but currently tracked in the repository. This is intentional - it allows anyone to verify secrets but not create new ones. The private key (`aux/sealed-secrets-private.key`) is not tracked and must never be committed.
+⚠️ **Sealed secrets public key is gitignored and NOT tracked** - The public key at `aux/sealed-secrets-public.crt` is listed in `.gitignore` and is not in git. Each workstation needs a local copy, or `seal-secret.sh` fails with `data does not contain any valid RSA or ECDSA certificates`. Fetch it from the cluster: `kubeseal --fetch-cert --controller-name=sealed-secrets --controller-namespace=sealed-secrets > aux/sealed-secrets-public.crt`. The private key (`aux/sealed-secrets-private.key`) is not tracked and must never be committed.
 
 ⚠️ **K8up backup definitions must be in the same namespace** - Backup schedules need to live in the namespace they're backing up so they have access to PVCs and secrets.
 
