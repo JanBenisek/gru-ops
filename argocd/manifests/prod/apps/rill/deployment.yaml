@@ -1,0 +1,42 @@
+# Rill - OSS BI tool (experimental, no persistence)
+# Project state lives in an emptyDir, so it is lost on pod restart.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rill
+  namespace: rill
+  labels:
+    app: rill
+    app.kubernetes.io/name: rill
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rill
+  template:
+    metadata:
+      labels:
+        app: rill
+        app.kubernetes.io/name: rill
+    spec:
+      containers:
+      - name: rill
+        image: rilldata/rill:v0.90.7
+        imagePullPolicy: IfNotPresent
+        args: ["start", "--interactive=false", "--no-open", "--port", "9009"]
+        workingDir: /home/rill/project
+        ports:
+        - containerPort: 9009
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "100m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        volumeMounts:
+        - name: rill-project
+          mountPath: /home/rill/project
+      volumes:
+      - name: rill-project
+        emptyDir: {}
