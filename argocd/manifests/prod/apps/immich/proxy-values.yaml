@@ -30,9 +30,62 @@ controllers:
                 }
               }
 
+  # Visitor uploads (IPP 4.0+). Separate container so the gallery container
+  # stays read-only. https://docs.ipp.nz/visitor-uploads
+  upload:
+    enabled: true
+    containers:
+      main:
+        enabled: true
+        image:
+          repository: alangrainger/immich-public-proxy-upload
+          tag: "4.1.2"
+          pullPolicy: IfNotPresent
+        env:
+          - name: IMMICH_URL
+            value: "http://immich-server:2283"
+          # Public URL of the gallery above, not of this container. Used for the
+          # "Back to gallery" link on the upload page.
+          - name: PUBLIC_BASE_URL
+            value: "https://immich-share.pengiuns.com"
+          - name: CONFIG
+            # maxFileSize: Cloudflare rejects bodies over 100 MB on Free and
+            # Pro, tunnel included. Fail in the page, not mid-upload.
+            value: |
+              {
+                "ipp": {
+                  "upload": {
+                    "maxFileSize": 100
+                  }
+                }
+              }
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+              - ALL
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+
 service:
   main:
     controller: main
+    enabled: true
+    primary: true
+    type: ClusterIP
+    ports:
+      http:
+        port: 3000
+        protocol: HTTP
+
+  upload:
+    controller: upload
     enabled: true
     primary: true
     type: ClusterIP
@@ -58,6 +111,35 @@ ingress:
         paths:
           - path: "/"
             pathType: Prefix
+            # Service is named explicitly. The chart only auto-detects it while
+            # a single service exists.
+            service:
+              identifier: main
+    tls:
+      - secretName: letsencrypt-immich-share-pengiuns-com
+        hosts:
+          - immich-share.pengiuns.com
+
+  # Upload service route. IPP serves the upload page under /upload on the same
+  # hostname, so no extra DNS record and no extra certificate are needed.
+  upload:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: "traefik"
+      # /upload has to win over the catch-all / route on the same host.
+      traefik.ingress.kubernetes.io/router.priority: "100"
+      # Uploaded files stream through the proxy. Same limits as the docker registry.
+      traefik.ingress.kubernetes.io/max-body-size: "0"
+      traefik.ingress.kubernetes.io/readtimeout: "3600s"
+      traefik.ingress.kubernetes.io/writetimeout: "3600s"
+      traefik.ingress.kubernetes.io/idletimeout: "3600s"
+    hosts:
+      - host: immich-share.pengiuns.com
+        paths:
+          - path: "/upload"
+            pathType: Prefix
+            service:
+              identifier: upload
     tls:
       - secretName: letsencrypt-immich-share-pengiuns-com
         hosts:
