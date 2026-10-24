@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rill
+  namespace: rill
+  labels:
+    app.kubernetes.io/name: rill
+spec:
+  selector:
+    app: rill
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 9009
