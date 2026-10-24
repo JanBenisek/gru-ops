@@ -25,9 +25,9 @@ postgresql:
     existingSecret: lightdash-postgres
     secretKeys:
       userPasswordKey: password
-  persistence:
-    enabled: false
   primary:
+    persistence:
+      enabled: false
     resources:
       requests:
         memory: "256Mi"
