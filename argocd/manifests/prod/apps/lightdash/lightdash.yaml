@@ -1,0 +1,19 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "lightdash",
+    "namespace": "lightdash"
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "lightdash",
+        "namespace": "lightdash"
+      }
+    },
+    "encryptedData": {
+      "LIGHTDASH_SECRET": "AgAOzE8hICnJK9kLwXGYmCZPH8/Bqfr2lmyv5esBPCtarT1NuYJ0WJpU7zsnl983YYt9OwsWYl2V0qVKMmkj6W5lmU22nbHNkdI+xc7w7PK+yJ+rI9pt+HRW2417dlVcrbBlcpP8ETbTBDS9so+rQIMNlT5R2za1ZmXubHUvrvFmwFQox9YNBsQMvQalXoInXL0FC1IvoupI0DpG97c9afM4KMp0+24jYaIpeLBTXsRdHtI3/iAs7uUg1//30/4NHes+bz0NW5gyVIOZfMtgTvDFrQ1f1knzaMWnTtQuduuup6R+i9c0WsfJAq1EX9aHV1wqoU2FOXpJ1oTCtvvue+6zGALJLxcEvKC0tHeRw9bpO7sIwvRCk9iTy5cfTA7gXGkvykJIbiofpJOOxTFHfn2YsWaBYi4ffDeUi0VuJjUcFMaLv6F9KTGSslfxyKFzl+2gyOSQHFm1B87+q9rxial4NVPiu4TduXAz66Gp+Tsx5o+0mGuuQLr9/+UBteKR1BLV367U+t0Hm1AfhrTASNzEtIST3goSeosVV/HVUQhJuFRms4dNIkqEUUele+r39k2Fl/uL4tUvdkLFTvN2wVpNJQtJtMGf1Ttg/ADamQ8nN+YXlIKNz5zASkmznjwv6WKrl4Nc3oQPjGY0KKPJz+8KdTepYk8HiLdubFBrcZOeu4470YpmYGXIiEKVFlwOWKx3aXuCu5VQ4FASI8dDnnOOUfVTOhS5c1AD27HEDQOx5s9axhdbEP2v5PUYqQ=="
+    }
+  }
+}
