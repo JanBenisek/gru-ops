@@ -3,6 +3,10 @@
 
 # Injects LIGHTDASH_SECRET into all pods (signs session cookies, encrypts sensitive data)
 existingSecret: lightdash
+# Chart renders its own Secret named "lightdash" from `secrets` (default LIGHTDASH_SECRET=changeme),
+# which collides with the SealedSecret of the same name. null (not {}: Helm deep-merges maps with defaults)
+# drops it; existingSecret still injects the real one.
+secrets: null
 s3:
   existingSecret: lightdash-s3
 
