@@ -16,3 +16,9 @@ ui:
   # OpenShift Route is not used on Talos/Traefik; routed via manifests/ingress.yaml
   route:
     enabled: false
+
+database:
+  postgres:
+    bundled:
+      # Cluster has no default StorageClass; PVC stays Pending without this
+      storageClassName: synology-storage-apps
