@@ -1,0 +1,32 @@
+apiVersion: k8up.io/v1
+kind: Schedule
+metadata:
+  name: nommer-backup-schedule
+  namespace: nommer
+spec:
+  backend:
+    s3:
+      endpoint: https://fsn1.your-objectstorage.com
+      bucket: gru-k8up-backups/pvc/nommer/scheduled/
+      accessKeyIDSecretRef:
+        name: hetzner-credentials
+        key: user
+      secretAccessKeySecretRef:
+        name: hetzner-credentials
+        key: password
+    repoPasswordSecretRef:
+      name: restic-credentials
+      key: password
+  backup:
+    schedule: "0 5 * * *" # runs daily at 5am (offset from other backups)
+    failedJobsHistoryLimit: 2
+    successfulJobsHistoryLimit: 2
+    promURL: http://kube-prometheus-stack-prometheus-pushgateway.monitoring.svc.cluster.local:9091
+  check:
+    schedule: '0 4 * * 1' # runs every monday at 4am, validates integrity of backup
+    promURL: http://kube-prometheus-stack-prometheus-pushgateway.monitoring.svc.cluster.local:9091
+  prune:
+    schedule: '0 4 * * 0' # every sunday at 4am, prunes based on retention policy
+    retention:
+      keepLast: 5 # keeps last 5 snapshots
+      keepDaily: 14 # one backup per day for 14 days
