@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nommer
+  namespace: nommer
+  labels:
+    app: nommer
+    app.kubernetes.io/name: nommer
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate # RWO PVC: old pod must release the volume before the new one starts
+  selector:
+    matchLabels:
+      app: nommer
+  template:
+    metadata:
+      labels:
+        app: nommer
+        app.kubernetes.io/name: nommer
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000 # PVC must be writable by uid 1000
+      containers:
+      - name: nommer
+        image: docker-registry.pengiuns.com/nommer:0.1.0 # built by images/build.sh
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 30
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "10m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        volumeMounts:
+        - name: data
+          mountPath: /data
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: pvc-nommer
