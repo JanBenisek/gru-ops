@@ -28,3 +28,7 @@ aux/sealed-secrets-public.crt
 
 # Old auxiliary files
 aux_old/
+
+# Python
+__pycache__/
+*.py[cod]
