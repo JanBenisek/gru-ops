@@ -1,0 +1,18 @@
+# kagent chart 0.10.3 values
+# Anthropic key comes from sealed secret kagent-anthropic (see manifests/)
+controller:
+  auth:
+    # UI is exposed only behind TinyAuth (manifests/middleware.yaml)
+    mode: unsecure
+
+providers:
+  default: anthropic
+  anthropic:
+    model: "claude-haiku-4-5"
+    apiKeySecretRef: kagent-anthropic
+    apiKeySecretKey: ANTHROPIC_API_KEY
+
+ui:
+  # OpenShift Route is not used on Talos/Traefik; routed via manifests/ingress-route.yaml
+  route:
+    enabled: false
