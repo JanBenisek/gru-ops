@@ -1,0 +1,15 @@
+apiVersion: kagent.dev/v1alpha2
+kind: ModelConfig
+metadata:
+  name: opencode-go
+  namespace: kagent
+spec:
+  provider: Anthropic
+  model: claude-haiku-5-5
+  apiKeySecret: kagent-anthropic
+  apiKeySecretKey: ANTHROPIC_API_KEY
+  anthropic:
+    baseUrl: https://opencode.ai/inference/go/anthropic
+  # OpenCode Go rejects requests without a session header (400 MissingSessionID)
+  defaultHeaders:
+    x-opencode-session: 79C596AC-1C08-4E32-90CC-F4DC310B5882
