@@ -1,0 +1,8 @@
+# Kustomize so Argo CD Image Updater can pin the nommer image digest
+# (it only rewrites Kustomize/Helm-rendered apps). The digest is written to
+# .argocd-source-nommer.yaml in this directory by Image Updater.
+resources:
+  - deployment.yaml
+  - ingress.yaml
+  - pvc-nommer.yaml
+  - service.yaml

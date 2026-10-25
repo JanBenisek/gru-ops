@@ -1,0 +1,29 @@
+# Pins the nommer and kagent-worker images to the digest behind :latest.
+# Image Updater commits the digest into the Kustomize source's kustomization.yaml
+# (writeBackTarget: kustomization), using the repo credentials Argo CD already holds.
+# kagent is multi-source; the kustomization target selects its Kustomize source only.
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
+metadata:
+  name: gru-images
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "30"
+spec:
+  writeBackConfig:
+    method: "git"
+    gitConfig:
+      writeBackTarget: "kustomization"
+  applicationRefs:
+    - namePattern: "nommer"
+      images:
+        - alias: "nommer"
+          imageName: "docker-registry.pengiuns.com/nommer:latest"
+          commonUpdateSettings:
+            updateStrategy: "digest"
+    - namePattern: "kagent"
+      images:
+        - alias: "kagent-worker"
+          imageName: "docker-registry.pengiuns.com/kagent-worker:latest"
+          commonUpdateSettings:
+            updateStrategy: "digest"

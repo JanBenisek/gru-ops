@@ -1,0 +1,13 @@
+# Kustomize so Argo CD Image Updater can pin the repo-worker image digest.
+# image-fields.yaml teaches the images transformer where the Agent CR keeps its image.
+resources:
+  - ingress.yaml
+  - kagent-anthropic.yaml
+  - kagent-github-auth.yaml
+  - kagent-github-mcp.yaml
+  - kagent-github-token.yaml
+  - my-first-k8s-agent.yaml
+  - opencode-model-config.yaml
+  - repo-worker.yaml
+configurations:
+  - image-fields.yaml

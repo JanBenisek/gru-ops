@@ -1,0 +1,10 @@
+# argocd-image-updater chart 1.3.2 values
+# Controller reads Application/ImageUpdater resources via the Kubernetes API; no Argo CD API connection is needed.
+config:
+  registries:
+    # Registry is LAN-only and unauthenticated (no credentials needed)
+    - name: docker-registry.pengiuns.com
+      api_url: https://docker-registry.pengiuns.com
+      prefix: docker-registry.pengiuns.com
+      ping: yes
+      insecure: no
