@@ -546,6 +546,16 @@ create extension if not exists earthdistance cascade;
 ./aux/seal-secret.sh kagent-github-token kagent GITHUB_TOKEN=ghp_XXXX prod/apps/kagent/manifests
 ```
 
+- Chat UI (LAN): open `https://kagent.pengiuns.com`, pick an agent, type a message. Chat history and New Chat are in the menu.
+- CLI from your laptop (needs kubeconfig for this cluster):
+  ```shell
+  brew install kagent
+  kagent dashboard        # port-forwards the UI to http://localhost:8082
+  kagent get agent
+  kagent invoke -t "What pods are failing?" --agent <agent-name>
+  ```
+- Outside the LAN there is no route; use the CLI with kubeconfig or a VPN.
+
 ### jupyterhub
 
 > Data Analysis & Exploration
