@@ -542,9 +542,10 @@ create extension if not exists earthdistance cascade;
 - [Docs](https://kagent.dev/docs/kagent)
 - GitHub token: create a fine-grained token named `kagent` at https://github.com/settings/personal-access-tokens/new (Only select repositories; Contents read/write, Pull requests read/write, Metadata read). The agent pushes branches and opens PRs; you merge. Seal it as `GITHUB_TOKEN` below.
 ```
-./aux/seal-secret.sh kagent-anthropic kagent ANTHROPIC_API_KEY=sk-ant-XXXX prod/apps/kagent/manifests
+./aux/seal-secret.sh kagent-anthropic kagent ANTHROPIC_API_KEY=<OpenCode Go key> prod/apps/kagent/manifests
 ./aux/seal-secret.sh kagent-github-token kagent GITHUB_TOKEN=ghp_XXXX prod/apps/kagent/manifests
 ```
+- `kagent-anthropic` holds an OpenCode Go key, not an Anthropic key. The `opencode-go` ModelConfig (`manifests/opencode-model-config.yaml`) sends it to `https://opencode.ai/inference/go/anthropic` with the `x-opencode-session` header, which OpenCode requires. `my-first-k8s-agent` uses that ModelConfig; `k8s-agent` and `default-model-config` still target api.anthropic.com and need an Anthropic key.
 
 - Chat UI (LAN): open `https://kagent.pengiuns.com`, pick an agent, type a message. Chat history and New Chat are in the menu.
 - CLI from your laptop (needs kubeconfig for this cluster):
