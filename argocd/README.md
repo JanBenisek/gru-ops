@@ -556,8 +556,8 @@ create extension if not exists earthdistance cascade;
   kagent invoke -t "What pods are failing?" --agent <agent-name>
   ```
 - Outside the LAN there is no route; use the CLI with kubeconfig or a VPN.
-- BYO agent `repo-worker` (`manifests/prod/apps/kagent/manifests/repo-worker.yaml`, source in `manifests/prod/apps/kagent/images/repo-worker/`). Send `owner/repo: task` in the chat; it clones the repo, edits it, runs the repo's pre-commit checks, then pauses for approval. Reply `approve` to push `agent/<topic>` and open a PR; any other reply cancels. It never pushes the default branch. Uses the `kagent-github-token` and `kagent-anthropic` secrets; the Anthropic base URL is OpenCode.
-- Build and push the image before merging, since ArgoCD syncs the Agent CR and the image must exist: from `manifests/prod/apps/kagent/images/repo-worker/`, `docker build -t docker-registry.pengiuns.com/repo-worker:0.1.0 . && docker push docker-registry.pengiuns.com/repo-worker:0.1.0`.
+- BYO agent `repo-worker` (`manifests/prod/apps/kagent/manifests/repo-worker.yaml`); image `kagent-worker`, source and release in [piskoviste/kagent](https://github.com/JanBenisek/piskoviste/tree/main/kagent). Send `owner/repo: task` in the chat; it clones the repo, edits it, runs the repo's pre-commit checks, then pauses for approval. Reply `approve` to push `agent/<topic>` and open a PR; any other reply cancels. It never pushes the default branch. Uses the `kagent-github-token` and `kagent-anthropic` secrets; the Anthropic base URL is OpenCode.
+- Bump the image tag in `repo-worker.yaml` only after the piskoviste `kagent` workflow has pushed that version (`docker-registry.pengiuns.com/kagent-worker:<version>`). ArgoCD syncs the Agent CR, so an unpushed tag fails the pull.
 
 ### jupyterhub
 
