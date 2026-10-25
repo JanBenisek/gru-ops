@@ -10,6 +10,25 @@ s3:
 browserless-chrome:
   enabled: false
 
+# LAN-only: no external-dns annotations, so no Cloudflare record and no tunnel route.
+# Resolve lightdash.pengiuns.com to the Traefik LoadBalancer IP on your LAN DNS.
+configMap:
+  # Public URL of the instance (chart default is empty)
+  SITE_URL: https://lightdash.pengiuns.com
+
+ingress:
+  enabled: true
+  className: traefik
+  hosts:
+    - host: lightdash.pengiuns.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: letsencrypt-wildcard-cert-pengiuns.com-production
+      hosts:
+        - lightdash.pengiuns.com
+
 resources:
   requests:
     memory: "512Mi"
