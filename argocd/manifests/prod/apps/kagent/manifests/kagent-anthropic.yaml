@@ -1,0 +1,19 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "kagent-anthropic",
+    "namespace": "kagent"
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "kagent-anthropic",
+        "namespace": "kagent"
+      }
+    },
+    "encryptedData": {
+      "ANTHROPIC_API_KEY": "AgDGenhra10evITrHB2HJG0mQHjV+h1gGDnFlYXYYdrnjxcPTEOVcltd1cq4h1R+uOMn1j+tbz/1ZgJMltErd6+JG8g/INElweMlO3JrmEZKX3CkS2XLSIjuYproGSlo3ss/hcLEjusSgC21GAsROmV0Ix3nx6MgYTtEIfeT2GWi+Y0LXM9YsEz3FDGP+e3C0qc65wVahd5OjmarGjd3UhXwh7XYd1UsBnV6clnV1ukwFqpgHPmsNLocuhvx0iPuHPB73FxXRsdL8mvkCWBcHZ62kAmsHmhKoikRB+dm1q0sGpybjr95s/OXe/3ReAhXhRVdRg9WMs8XreIcPDBaUIJ4eRbJKteBGloiuSi6Zxd8HvF2PmwKjl5NtOb2JkxcQ2p9Zk2HJuUodwTThSl17vVDfitVwPpOJwKqCfA1JYgSqrATLB8hGWsuwht6tlGUSSw8KP+OziEI++owU6Ci9oe+sJ8qplfPr67AUA/UhNPXKTGisfSngusw5Nh8g/BKC9A2CZI9uxU5NLIxIBK7CqPCSXhTW4ID0c/kH4MksCvRay54nCPpa1o/7kJEbqIMnEU/4F4Wv1S2jZNNUJ6VBk9EIMAqEjZiW+3VDK0Vlf2G7nzrnRw+TZ5tv8a5s5TTTi3InJYtBMMojrI7KAOAsJFkJKnmJPnHPZLFZc2tCGC9kmcPSt7iH+FCM89H4QRIRfIUQo4dlKajncmanpzBWpTh6SCzKDsarIQUsjdbH0Ihdp4OR04Z2ObE0FElIKm8Ry/pbF8="
+    }
+  }
+}
