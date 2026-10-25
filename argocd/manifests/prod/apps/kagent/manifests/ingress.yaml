@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kagent
+  namespace: kagent
+  labels:
+    app.kubernetes.io/name: kagent
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: kagent.pengiuns.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kagent-ui
+                port:
+                  number: 8080
+  tls:
+    - hosts:
+        - kagent.pengiuns.com
+      secretName: letsencrypt-wildcard-cert-pengiuns.com-production

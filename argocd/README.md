@@ -535,6 +535,27 @@ create extension if not exists earthdistance cascade;
 - Check the route with `https://immich-share.pengiuns.com/upload/healthcheck`.
   It answers `upload-ok`.
 
+### kagent
+
+> AI agents for Kubernetes
+
+- [Docs](https://kagent.dev/docs/kagent)
+- GitHub token: create a fine-grained token named `kagent` at https://github.com/settings/personal-access-tokens/new (Only select repositories; Contents read/write, Pull requests read/write, Metadata read). The agent pushes branches and opens PRs; you merge. Seal it as `GITHUB_TOKEN` below.
+```
+./aux/seal-secret.sh kagent-anthropic kagent ANTHROPIC_API_KEY=sk-ant-XXXX prod/apps/kagent/manifests
+./aux/seal-secret.sh kagent-github-token kagent GITHUB_TOKEN=ghp_XXXX prod/apps/kagent/manifests
+```
+
+- Chat UI (LAN): open `https://kagent.pengiuns.com`, pick an agent, type a message. Chat history and New Chat are in the menu.
+- CLI from your laptop (needs kubeconfig for this cluster):
+  ```shell
+  brew install kagent
+  kagent dashboard        # port-forwards the UI to http://localhost:8082
+  kagent get agent
+  kagent invoke -t "What pods are failing?" --agent <agent-name>
+  ```
+- Outside the LAN there is no route; use the CLI with kubeconfig or a VPN.
+
 ### jupyterhub
 
 > Data Analysis & Exploration

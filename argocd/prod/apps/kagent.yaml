@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kagent
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
+spec:
+  project: gru
+  sources:
+    - repoURL: ghcr.io/kagent-dev/kagent/helm
+      chart: kagent
+      targetRevision: 0.10.3
+      helm:
+        releaseName: kagent
+        valueFiles:
+          - $values/argocd/manifests/prod/apps/kagent/values.yaml
+    - repoURL: https://github.com/JanBenisek/gru-ops.git
+      targetRevision: main
+      ref: values
+    - repoURL: https://github.com/JanBenisek/gru-ops.git
+      targetRevision: main
+      path: argocd/manifests/prod/apps/kagent/manifests
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kagent
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
