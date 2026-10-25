@@ -542,8 +542,8 @@ create extension if not exists earthdistance cascade;
 - [Docs](https://kagent.dev/docs/kagent)
 - Argo apps: `argocd/prod/apps/kagent-crds.yaml` (sync-wave 10) and `argocd/prod/apps/kagent.yaml` (sync-wave 20), chart `0.10.3`
 - LAN only: not exposed through Cloudflare. Add to `/etc/hosts` on your workstation:
-  `192.168.178.100 kagent.pengiuns.com`
-- Login goes through TinyAuth at `tinyauth.pengiuns.com`, so sign-in needs internet.
+  `192.168.178.100 kagent.pengiuns.com`, then open `https://kagent.pengiuns.com`
+- No TinyAuth in front of the UI (plain Ingress, like LibreTranslate). Anyone on the LAN can reach it.
 - Secrets: create before first sync, then commit the generated YAML into `argocd/manifests/prod/apps/kagent/manifests/`
 ```shell
 ./aux/seal-secret.sh kagent-anthropic kagent ANTHROPIC_API_KEY=sk-ant-XXXX prod/apps/kagent/manifests

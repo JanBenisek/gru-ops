@@ -2,7 +2,7 @@
 # Anthropic key comes from sealed secret kagent-anthropic (see manifests/)
 controller:
   auth:
-    # UI is exposed only behind TinyAuth (manifests/middleware.yaml)
+    # No auth in front of the UI; reachable from the LAN only
     mode: unsecure
 
 providers:
@@ -13,6 +13,6 @@ providers:
     apiKeySecretKey: ANTHROPIC_API_KEY
 
 ui:
-  # OpenShift Route is not used on Talos/Traefik; routed via manifests/ingress-route.yaml
+  # OpenShift Route is not used on Talos/Traefik; routed via manifests/ingress.yaml
   route:
     enabled: false
