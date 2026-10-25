@@ -161,19 +161,18 @@ data:
         - Nommer:
             icon: mdi-baby-bottle-outline
             href: https://nommer.pengiuns.com
-            description: Eggs-actly what you ate.
+            description: Omnomnom
             namespace: nommer
             app: nommer
         - Kagent:
             icon: mdi-robot-outline
             href: https://kagent.pengiuns.com
-            description: Agents that K-now the cluster.
-            namespace: kagent
+            description: MAKE NO MISTAKE
             app: kagent-ui
         - Lightdash:
             icon: mdi-lightbulb-on-outline
             href: https://lightdash.pengiuns.com
-            description: Light work for your data.
+            description: Yet another BI tool
             namespace: lightdash
             app: lightdash
 
