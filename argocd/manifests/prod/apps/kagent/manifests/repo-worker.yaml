@@ -8,8 +8,8 @@ spec:
   type: BYO
   byo:
     deployment:
-      image: docker-registry.pengiuns.com/kagent-worker:latest
-      imagePullPolicy: Always
+      image: docker-registry.pengiuns.com/kagent-worker:0.1.0
+      imagePullPolicy: IfNotPresent
       replicas: 1
       podSecurityContext:
         runAsNonRoot: true
