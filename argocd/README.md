@@ -540,7 +540,11 @@ create extension if not exists earthdistance cascade;
 > AI agents for Kubernetes
 
 - [Docs](https://kagent.dev/docs/kagent)
-
+- GitHub token: create a fine-grained token named `kagent` at https://github.com/settings/personal-access-tokens/new (Only select repositories; Contents read/write, Pull requests read/write, Metadata read). The agent pushes branches and opens PRs; you merge. Seal it as `GITHUB_TOKEN` below.
+```
+./aux/seal-secret.sh kagent-anthropic kagent ANTHROPIC_API_KEY=sk-ant-XXXX prod/apps/kagent/manifests
+./aux/seal-secret.sh kagent-github-token kagent GITHUB_TOKEN=ghp_XXXX prod/apps/kagent/manifests
+```
 
 ### jupyterhub
 
