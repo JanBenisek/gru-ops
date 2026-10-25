@@ -744,6 +744,31 @@ alter database metabase owner to bot_metabase;
 grant all privileges on database metabase to bot_metabase;
 ```
 
+### Lightdash
+
+> BI tool (experimental)
+
+- [Helm Chart](https://github.com/lightdash/helm-charts)
+- Uses the external CNPG cluster `cnpg-v2` (`vchord-postgres.pengiuns.com`), not the bundled bitnami postgres.
+- Set up DB (psql as superuser, e.g. `kubectl exec -it cnpg-v2-1 -n cnpg -- psql -U postgres`)
+```sql
+-- Lightdash with bot_lightdash
+create database lightdash;
+create user bot_lightdash with password 'PWD';
+alter database lightdash owner to bot_lightdash;
+grant all privileges on database lightdash to bot_lightdash;
+-- Migrations need these; create as superuser
+\c lightdash
+create extension if not exists "uuid-ossp";
+create extension if not exists citext;
+create extension if not exists ltree;
+create extension if not exists vector;
+```
+- Created secret (overwrites `lightdash-postgres.yaml`, commit the result)
+```shell
+./aux/seal-secret.sh lightdash-postgres lightdash password=PWD prod/apps/lightdash
+```
+
 ### Stirling
 
 > PDF tools
