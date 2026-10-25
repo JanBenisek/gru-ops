@@ -158,6 +158,23 @@ data:
             description: latex party
             namespace: overleaf
             app: overleaf
+        - Nommer:
+            icon: mdi-baby-bottle-outline
+            href: https://nommer.pengiuns.com
+            description: Omnomnom
+            namespace: nommer
+            app: nommer
+        - Kagent:
+            icon: mdi-robot-outline
+            href: https://kagent.pengiuns.com
+            description: MAKE NO MISTAKE
+            app: kagent-ui
+        - Lightdash:
+            icon: mdi-lightbulb-on-outline
+            href: https://lightdash.pengiuns.com
+            description: Yet another BI tool
+            namespace: lightdash
+            app: lightdash
 
     - Fun:
         - Hiker:
