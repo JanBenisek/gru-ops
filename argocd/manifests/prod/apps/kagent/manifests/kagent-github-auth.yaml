@@ -1,0 +1,19 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "kagent-github-auth",
+    "namespace": "kagent"
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "kagent-github-auth",
+        "namespace": "kagent"
+      }
+    },
+    "encryptedData": {
+      "Authorization": "AgC9ghlbLhdGNdJ2KXnX/HuY71c+NvOcDjbXRfXAowJWO4tMHLajm/I7KX5X3PInFZNLENArO0jS14UIWXr76OnW+LwNYd2aFhBss+2pVPsDGi5qGUt+Kmx+mj4S7eVAxwj1m7z1Pa3WXcmocYQRO7aYkKR2ISZaQy7/NtH8xI+LyP/KAueDio+17JyKjmF+Yf5NtpVpsb6Vithr9HR8/2+qG/BFikXuCTEWYeRnodWzL/hkturEXeqMHleqxDFDKuQZEbr9idyaxqAq5GPid9F+kK+xxzsYyzvVeLK/4jtiqUsLU7JjAGv/aFmHTpRaMjYuG0CRltQfxP/8f+mpn/ChKFR1vOd9W1yFqXQlD6zoY2G9oF6RwELkLFhF3RYWCm4MRZUJflpQzbfMdtqOIRYnZixAPqd+B2cQxPi3FkZU0DXlLfSpUxHSWHT/o8bjZ8jXnBl5GKmG1tokRhJI9FoEnytWqUvyOj1tzIwFiQWolW/JF+LTDiPykRUan+3Eo0c4dTqr5FmwpokUq2JgT9tLqVvVhoHj9j03T9OE+O8PjjxT3JNlTMPpHHXEJphV2nYaT5ivQx2ftzKsxcd2gvULuqoX/u94uSZYhB+GkqNr1Xqwd8DQo17Z21mqNNS5+7k0myCCTX7dIOfdKzrwxOLxoH82KaHa2QWdsBHAk2yqAZwJyjZNkKliPA3qjXI4/FzlSx9B1/vKDY1Y0MYKzBX+0BlcycyezofE0K7XM5zk7QroScDNrN+E0fbgZlx02hSqJVPACveiVk6ZjfKh9CeB2exSsXvyKiQPaVt0FhtO0/aVnYwnS2yt+IdRwB/kNc6OS3Hd"
+    }
+  }
+}

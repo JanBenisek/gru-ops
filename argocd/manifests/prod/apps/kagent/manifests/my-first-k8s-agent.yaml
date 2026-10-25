@@ -38,5 +38,20 @@ spec:
         toolNames:
         - k8s_get_resources
       type: McpServer
+    - mcpServer:
+        apiGroup: kagent.dev
+        kind: RemoteMCPServer
+        name: kagent-github-mcp
+        namespace: kagent
+        toolNames:
+        - get_file_contents
+        - list_branches
+        - create_branch
+        - create_or_update_file
+        - push_files
+        - list_pull_requests
+        - pull_request_read
+        - create_pull_request
+      type: McpServer
   description: This agent can interact with the Kubernetes API to get information about the cluster.
   type: Declarative

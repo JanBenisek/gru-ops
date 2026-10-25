@@ -1,0 +1,18 @@
+apiVersion: kagent.dev/v1alpha2
+kind: RemoteMCPServer
+metadata:
+  name: kagent-github-mcp
+  namespace: kagent
+spec:
+  description: GitHub MCP server (hosted by GitHub) for branches, files, and pull requests
+  protocol: STREAMABLE_HTTP
+  url: https://api.githubcopilot.com/mcp/
+  timeout: 30s
+  sseReadTimeout: 5m0s
+  terminateOnClose: true
+  headersFrom:
+    - name: Authorization
+      valueFrom:
+        type: Secret
+        name: kagent-github-auth
+        key: Authorization
