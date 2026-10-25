@@ -1,4 +1,4 @@
-# Lightdash - OSS BI tool (experimental, no persistence)
+# Lightdash - OSS BI tool (experimental)
 # https://github.com/lightdash/helm-charts
 
 # Injects LIGHTDASH_SECRET into all pods (signs session cookies, encrypts sensitive data)
@@ -37,29 +37,15 @@ resources:
     memory: "2Gi"
     cpu: "1000m"
 
-# Bundled PostgreSQL (bitnami) - ephemeral on purpose, experiment only
+# PostgreSQL: external CNPG cluster cnpg-v2 (see argocd/README.md, CNPG section)
 postgresql:
-  enabled: true
-  auth:
-    username: lightdash
-    database: lightdash
-    existingSecret: lightdash-postgres
-    secretKeys:
-      userPasswordKey: password
-  primary:
-    persistence:
-      enabled: false
-    # Chart does not mount a writable volume when persistence is disabled,
-    # so provide an emptyDir for /bitnami/postgresql to keep it ephemeral.
-    extraVolumes:
-      - name: bitnami-data
-        emptyDir: {}
-    extraVolumeMounts:
-      - name: bitnami-data
-        mountPath: /bitnami/postgresql
-    resources:
-      requests:
-        memory: "256Mi"
-        cpu: "50m"
-      limits:
-        memory: "512Mi"
+  enabled: false
+
+externalDatabase:
+  host: vchord-postgres.pengiuns.com
+  port: 5432
+  user: bot_lightdash
+  database: lightdash
+  existingSecret: lightdash-postgres
+  secretKeys:
+    passwordKey: password
