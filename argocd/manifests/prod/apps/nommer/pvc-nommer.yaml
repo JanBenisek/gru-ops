@@ -2,6 +2,8 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: pvc-nommer
+  annotations:
+    k8up.io/backup: "true"
   namespace: nommer
 spec:
   storageClassName: synology-storage-apps
