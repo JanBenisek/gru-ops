@@ -10,7 +10,7 @@ spec:
   sources:
   - repoURL: https://lightdash.github.io/helm-charts
     chart: lightdash
-    targetRevision: "2.16.1333"
+    targetRevision: "2.16.1355"
     helm:
       valueFiles:
       - $values/argocd/manifests/prod/apps/lightdash/values.yaml
