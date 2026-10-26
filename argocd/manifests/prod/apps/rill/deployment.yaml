@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: rill
-        image: rilldata/rill:v0.90.7
+        image: rilldata/rill:v0.90.8
         imagePullPolicy: IfNotPresent
         # v0.90 requires an explicit <path> arg when not interactive and the
         # project dir has no rill.yaml yet; NewApp tolerates an empty project.
