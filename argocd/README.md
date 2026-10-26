@@ -782,3 +782,13 @@ create extension if not exists vector;
 - [Github](https://github.com/open-webui/open-webui)
 - [Helm](https://artifacthub.io/packages/helm/open-webui/open-webui)
 - Needs `k label pod open-webui-0 app.kubernetes.io/name=open-webui -n open-webui` otherwise not seen by Homepage.
+
+### Ayakaleaf Pro
+
+> Online LaTeX editor (runs alongside `overleaf`, will replace it if it works)
+
+- [Docs](https://ayakaleaf-pro.ayaka.space)
+- Image: `docker-registry.pengiuns.com/ayakaleaf-pro:6.3.2-scheme-full`, built from `manifests/prod/apps/ayakaleaf/images/` with `./build.sh` (full TeX Live, sandboxed compiles unsupported on Talos)
+- Secret: `./aux/seal-secret.sh ayakaleaf-secrets ayakaleaf "OVERLEAF_INVITE_TOKEN_SECRET=$(openssl rand -base64 32)" prod/apps/ayakaleaf`
+- After first sync, init the Mongo replica set once: `k exec -n ayakaleaf mongo-0 -- mongosh --quiet --eval 'rs.initiate({_id: "rs0", members: [{_id: 0, host: "mongo:27017"}]})'`
+- URL: https://ayakaleaf.pengiuns.com
