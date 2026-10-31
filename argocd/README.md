@@ -722,8 +722,6 @@ docker run -ti --rm \
 - [NZBPlanet](https://nzbplanet.net/profile#api_rss) - Used through indexer, like PirateBay.
   - indexer - bought for 1yr for 12EUR, VIP, ends 20.11.2027
   - I got 5000 api calls / day and unlimited downloads
-  - I am also keeping the second [NZBFinder](https://nzbfinder.ws/profile)
-    - but it has only 5000 limit to api calls and downloads
   - API: `api.nzbplanet.net`
 
 - Setup
