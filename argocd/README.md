@@ -715,15 +715,13 @@ docker run -ti --rm \
 
 - [NewsHosting](https://controlpanel.newshosting.com/customer/index.php) - Provider.
   - Like qBitTorrent but not P2P, distributed servers, like archives. AKA provider.
-  - Gives access to UseNet, paid
+  - Gives access to UseNet, paid, prolonged until 20.5.2028 (renew during Black Friday sale, every 31.10.)
   - Primary Usenet Provider (when setting up Sabnzbd)
     - `news.newshosting.com`
 - Sabnzbd - client that downloads, like qBitTorrent. I give it my creds from NewsHosting
 - [NZBPlanet](https://nzbplanet.net/profile#api_rss) - Used through indexer, like PirateBay.
-  - indexer - bought for 1yr (11/2026) for 12EUR, VIP
+  - indexer - bought for 1yr for 12EUR, VIP, ends 20.11.2027
   - I got 5000 api calls / day and unlimited downloads
-  - I am also keeping the second [NZBFinder](https://nzbfinder.ws/profile)
-    - but it has only 5000 limit to api calls and downloads
   - API: `api.nzbplanet.net`
 
 - Setup
