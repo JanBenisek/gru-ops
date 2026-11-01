@@ -158,6 +158,12 @@ data:
             description: latex party
             namespace: overleaf
             app: overleaf
+        - Ayakaleaf:
+            icon: overleaf.svg
+            href: https://ayakaleaf.pengiuns.com
+            description: latex party, pro edition
+            namespace: ayakaleaf
+            app: ayakaleaf
         - Nommer:
             icon: mdi-baby-bottle-outline
             href: https://nommer.pengiuns.com
