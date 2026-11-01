@@ -9,7 +9,7 @@ This is my tiny homelab, running k8s with Talos OS and Proxmox, build from three
 - `Hetzner` s3 for backup, `Cloudflare` for tunnels, domains and DNS.
 
 ### Apps
-- Homepage, immich, it-tools, jupyterhub, libretranslate, Jellyfin & arr-stack, metabase, ollama, open-webui, otterwiki, podinfo, stirling
+- Homepage, Immich, IT-Tools, JupyterHub, LibreTranslate, Jellyfin & arr-stack, Metabase, Lightdash, Ollama, Open-WebUI, OtterWiki, Podinfo, Stirling PDF, Ayakaleaf, Filebrowser, Funnaiest, Hiker, Kagent, Nommer, OnlyOffice, Rill, SnapOtter
 
 
 ## Cluster
