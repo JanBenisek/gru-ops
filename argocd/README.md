@@ -783,7 +783,7 @@ create extension if not exists vector;
 
 ### Ayakaleaf Pro
 
-> Online LaTeX editor (replaced Overleaf)
+> Online LaTeX editor
 
 - [Docs](https://ayakaleaf-pro.ayaka.space)
 - Image: `docker-registry.pengiuns.com/ayakaleaf-pro:6.3.2-scheme-full`, built from `manifests/prod/apps/ayakaleaf/images/` with `./build.sh` (full TeX Live, sandboxed compiles unsupported on Talos)

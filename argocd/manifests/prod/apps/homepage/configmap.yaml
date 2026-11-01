@@ -153,7 +153,7 @@ data:
             namespace: snapotter
             app: snapotter
         - Ayakaleaf:
-            icon: overleaf.svg
+            icon: mdi-file-document-outline
             href: https://ayakaleaf.pengiuns.com
             description: latex party, pro edition
             namespace: ayakaleaf
