@@ -152,12 +152,6 @@ data:
             description: Can you image it?
             namespace: snapotter
             app: snapotter
-        - Overleaf:
-            icon: overleaf.svg
-            href: https://overleaf.pengiuns.com
-            description: latex party
-            namespace: overleaf
-            app: overleaf
         - Ayakaleaf:
             icon: overleaf.svg
             href: https://ayakaleaf.pengiuns.com
