@@ -54,6 +54,9 @@ additionalArguments:
   - --serversTransport.forwardingTimeouts.dialTimeout=30s
   - --serversTransport.forwardingTimeouts.responseHeaderTimeout=3600s
   - --serversTransport.forwardingTimeouts.idleConnTimeout=3600s
+  # Default websecure readTimeout is 60s and covers reading the whole request body;
+  # it cuts off Docker blob PATCH chunks for the registry. Raise it to match the 3600s above.
+  - --entryPoints.websecure.transport.respondingTimeouts.readTimeout=3600s
 
 ingressRoute:
   dashboard:
