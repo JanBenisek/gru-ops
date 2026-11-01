@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ayakaleaf
+  namespace: ayakaleaf
+  labels:
+    app.kubernetes.io/name: ayakaleaf
+spec:
+  selector:
+    app: ayakaleaf
+  ports:
+  - name: http
+    port: 80 # we talk to 80
+    protocol: TCP
+    targetPort: 80 # app listens here

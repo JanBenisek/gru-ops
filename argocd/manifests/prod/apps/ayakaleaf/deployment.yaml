@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ayakaleaf
+  namespace: ayakaleaf
+  labels:
+    app: ayakaleaf
+    app.kubernetes.io/name: ayakaleaf
+spec:
+  serviceName: ayakaleaf
+  replicas: 1
+  podManagementPolicy: OrderedReady
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
+  selector:
+    matchLabels:
+      app: ayakaleaf
+  template:
+    metadata:
+      labels:
+        app: ayakaleaf
+        app.kubernetes.io/name: ayakaleaf
+    spec:
+      # Image uses s6-overlay and must run as root
+      containers:
+      - name: ayakaleaf
+        # Built from images/ (Pro + full TeX Live), see images/build.sh
+        image: docker-registry.pengiuns.com/ayakaleaf-pro:6.3.2-scheme-full
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80 # internal port for the app
+        env:
+        - name: OVERLEAF_APP_NAME
+          value: "Ayakaleaf Pro"
+        - name: OVERLEAF_SITE_URL
+          value: "https://ayakaleaf.pengiuns.com"
+        - name: OVERLEAF_MONGO_URL
+          value: "mongodb://mongo:27017/sharelatex"
+        - name: OVERLEAF_REDIS_HOST
+          value: "redis"
+        - name: REDIS_HOST
+          value: "redis"
+        - name: OVERLEAF_REDIS_PORT
+          value: "6379"
+        - name: REDIS_PORT
+          value: "6379"
+        # Traefik runs in the pod CIDR; trust it for X-Forwarded headers (see argocd/manifests/prod/infra/traefik)
+        - name: OVERLEAF_TRUSTED_PROXY_IPS
+          value: "loopback,10.244.0.0/16"
+        - name: EMAIL_CONFIRMATION_DISABLED
+          value: "true"
+        - name: TELEMETRY_OPT_OUT
+          value: "true"
+        - name: OVERLEAF_INVITE_TOKEN_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: ayakaleaf-secrets
+              key: OVERLEAF_INVITE_TOKEN_SECRET
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "250m"
+          limits:
+            memory: "4Gi"
+            cpu: "2000m"
+        volumeMounts:
+        - name: ayakaleaf-data
+          mountPath: /var/lib/overleaf
+      volumes:
+      - name: ayakaleaf-data
+        persistentVolumeClaim:
+          claimName: pvc-ayakaleaf

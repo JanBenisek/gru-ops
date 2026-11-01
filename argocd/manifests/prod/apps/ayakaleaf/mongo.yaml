@@ -1,0 +1,80 @@
+# MongoDB required by Ayakaleaf Pro (6.0+ supported, 8.0 recommended)
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongo
+  namespace: ayakaleaf
+  labels:
+    app: mongo
+    app.kubernetes.io/name: mongo
+spec:
+  serviceName: mongo
+  replicas: 1
+  podManagementPolicy: OrderedReady
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      labels:
+        app: mongo
+        app.kubernetes.io/name: mongo
+    spec:
+      containers:
+      - name: mongo
+        image: mongo:9.0
+        imagePullPolicy: IfNotPresent
+        # Overleaf requires transactions, which need a replica set (single-node is enough).
+        # One-time manual replica set init after first deploy, see argocd/README.md (Ayakaleaf Pro)
+        args: ["--replSet", "rs0", "--bind_ip_all"]
+        ports:
+        - containerPort: 27017
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "10m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+        volumeMounts:
+        - name: mongo-data
+          mountPath: /data/db
+      volumes:
+      - name: mongo-data
+        persistentVolumeClaim:
+          claimName: pvc-mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+  namespace: ayakaleaf
+  labels:
+    app.kubernetes.io/name: mongo
+spec:
+  selector:
+    app: mongo
+  ports:
+  - name: mongo
+    port: 27017
+    protocol: TCP
+    targetPort: 27017
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-mongo
+  namespace: ayakaleaf
+  annotations:
+    argocd.argoproj.io/sync-wave: "30"
+spec:
+  storageClassName: synology-storage-apps
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
