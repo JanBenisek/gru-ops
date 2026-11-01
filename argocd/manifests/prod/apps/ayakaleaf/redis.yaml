@@ -24,6 +24,9 @@ spec:
         app: redis
         app.kubernetes.io/name: redis
     spec:
+      # redis runs as uid/gid 999; fsGroup makes the PVC writable for it (RDB snapshots)
+      securityContext:
+        fsGroup: 999
       containers:
       - name: redis
         image: redis:8.10
