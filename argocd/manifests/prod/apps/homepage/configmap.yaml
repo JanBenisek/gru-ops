@@ -15,6 +15,12 @@ data:
       Media:
         style: row
         columns: 4
+      Data:
+        style: row
+        columns: 3
+      Files & Pics:
+        style: row
+        columns: 4
     headerStyle: clean
     language: en
     quicklaunch:
@@ -76,12 +82,6 @@ data:
             description: Hands where I can see them!
             namespace: pocket-id
             app: pocket-id
-        - Metabase:
-            icon: metabase.png
-            href: https://metabase.pengiuns.com
-            description: Moar data.
-            namespace: metabase
-            app: metabase
         - Proxmox:
             icon: proxmox.png
             href: https://192.168.178.40:8006
@@ -98,66 +98,18 @@ data:
             description: The Swiss knife of internet
             namespace: it-tools
             app: it-tools
-        - Stirling PDF:
-            icon: stirling-pdf.png
-            href: https://stirling.pengiuns.com/?lang=en_GB
-            description: PDF tools
-            namespace: stirling
-            app: stirling
         - LibreTranslate:
             icon: libretranslate.png
             href: https://libretranslate.pengiuns.com/?lang=en_GB
             description: Was ist das?
             namespace: libretranslate
             app: libretranslate
-        - JupyterHub:
-            icon: jupyter.png
-            href: https://jupyterhub.pengiuns.com
-            description: Notebooks belong to production!!!
-            namespace: jupyterhub
-            app: jupyterhub
-        - Immich:
-            icon: immich.png
-            href: https://immich.pengiuns.com
-            description: So pretty!
-            namespace: immich
-            app: server
-        - Immich Proxy:
-            icon: immich-public-proxy.png
-            href: https://immich-share.pengiuns.com
-            description: Gib!
-            namespace: immich
-            app: immich-proxy
-        - Otter Wiki:
-            icon: otter-wiki-dark.svg
-            href: https://otterwiki.pengiuns.com
-            description: Otter helps!
-            namespace: otterwiki
-            app: otterwiki
-        - Filebrowser:
-            icon: filebrowser-quantum.svg
-            href: https://filebrowser.pengiuns.com
-            description: Where is it?
-            namespace: filebrowser
-            app: filebrowser
-        - OnlyOffice:
-            icon: onlyoffice.svg
-            href: https://onlyoffice.pengiuns.com
-            description: For the fans
-            namespace: onlyoffice
-            app: onlyoffice
         - SnapOtter:
             icon: nextcloud-photos.svg
             href: https://snapotter.pengiuns.com
             description: Can you image it?
             namespace: snapotter
             app: snapotter
-        - Ayakaleaf:
-            icon: overleaf.svg
-            href: https://ayakaleaf.pengiuns.com
-            description: latex party, pro edition
-            namespace: ayakaleaf
-            app: ayakaleaf
         - Nommer:
             icon: mdi-baby-bottle-outline
             href: https://nommer.pengiuns.com
@@ -169,12 +121,6 @@ data:
             href: https://kagent.pengiuns.com
             description: MAKE NO MISTAKE
             app: kagent-ui
-        - Lightdash:
-            icon: mdi-lightbulb-on-outline
-            href: https://lightdash.pengiuns.com
-            description: Yet another BI tool
-            namespace: lightdash
-            app: lightdash
 
     - Fun:
         - Hiker:
@@ -239,6 +185,70 @@ data:
             description: Usenet client
             namespace: media
             app: bazarr
+
+    - Data:
+        - JupyterHub:
+            icon: jupyter.png
+            href: https://jupyterhub.pengiuns.com
+            description: Notebooks belong to production!!!
+            namespace: jupyterhub
+            app: jupyterhub
+        - Metabase:
+            icon: metabase.png
+            href: https://metabase.pengiuns.com
+            description: Moar data.
+            namespace: metabase
+            app: metabase
+        - Lightdash:
+            icon: mdi-lightbulb-on-outline
+            href: https://lightdash.pengiuns.com
+            description: Yet another BI tool
+            namespace: lightdash
+            app: lightdash
+
+    - Files & Pics:
+        - Stirling PDF:
+            icon: stirling-pdf.png
+            href: https://stirling.pengiuns.com/?lang=en_GB
+            description: PDF tools
+            namespace: stirling
+            app: stirling
+        - Otter Wiki:
+            icon: otter-wiki-dark.svg
+            href: https://otterwiki.pengiuns.com
+            description: Otter helps!
+            namespace: otterwiki
+            app: otterwiki
+        - Filebrowser:
+            icon: filebrowser-quantum.svg
+            href: https://filebrowser.pengiuns.com
+            description: Where is it?
+            namespace: filebrowser
+            app: filebrowser
+        - OnlyOffice:
+            icon: onlyoffice.svg
+            href: https://onlyoffice.pengiuns.com
+            description: For the fans
+            namespace: onlyoffice
+            app: onlyoffice
+        - Ayakaleaf:
+            icon: overleaf.svg
+            href: https://ayakaleaf.pengiuns.com
+            description: latex party, pro edition
+            namespace: ayakaleaf
+            app: ayakaleaf
+        - Immich:
+            icon: immich.png
+            href: https://immich.pengiuns.com
+            description: So pretty!
+            namespace: immich
+            app: server
+        - Immich Proxy:
+            icon: immich-public-proxy.png
+            href: https://immich-share.pengiuns.com
+            description: Gib!
+            namespace: immich
+            app: immich-proxy
 
     - Experiments:
       - Router:
