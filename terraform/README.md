@@ -59,7 +59,7 @@ t upgrade -n stuart --image factory.talos.dev/metal-installer/5a0d85f0683f3cfe1e
 t upgrade -n stuart --image factory.talos.dev/metal-installer/5a0d85f0683f3cfe1eddb883e8b9943e651c4a1e644570001dc315ecb3310225:v1.12.6
 
 # k8s update (can be worker or master)
-t -n kevin upgrade-k8s --to "1.35.3"
+t -n kevin upgrade-k8s --to "1.37.1"
 ```
 
 ### Generate secrets and configs
