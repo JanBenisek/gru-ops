@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miss Coco in a box</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0a0118;
+      --night: #14062e;
+      --white: #ffffff;
+      --pink: #ff2a95;
+      --cyan: #00f0ff;
+      --yellow: #ffe81a;
+      --lime: #39ff14;
+      --purple: #9d4dff;
+      --red: #ff2e4d;
+      --pixel: "Press Start 2P", "Courier New", monospace;
+      --crt: VT323, "Courier New", monospace;
+    }
+    html, body { min-height: 100%; }
+    body {
+      font-family: var(--crt);
+      font-size: 20px;
+      line-height: 1.2;
+      color: var(--white);
+      background-color: var(--ink);
+      background-image:
+        radial-gradient(var(--white) 1px, transparent 1px),
+        radial-gradient(var(--pink) 2px, transparent 2px);
+      background-size: 40px 40px, 120px 120px;
+      background-position: 0 0, 20px 60px;
+      overflow-x: hidden;
+    }
+    .window {
+      width: min(760px, 100%);
+      padding: 16px;
+      background: var(--night);
+      border: 4px solid var(--white);
+      box-shadow:
+        0 0 0 4px var(--ink),
+        0 0 0 8px var(--cyan),
+        0 0 0 12px var(--ink),
+        0 0 0 16px var(--pink);
+    }
+    .title {
+      font-family: var(--pixel);
+      font-size: 20px;
+      line-height: 1.5;
+      text-transform: uppercase;
+      color: var(--yellow);
+      text-shadow: 4px 4px 0 var(--pink), 8px 8px 0 var(--ink);
+      padding: 4px 0 10px;
+      animation: titleCycle 2s steps(1, end) infinite;
+    }
+    @keyframes titleCycle {
+      0%   { color: var(--yellow); }
+      33%  { color: var(--cyan); }
+      66%  { color: var(--lime); }
+    }
+    .play { width: min(400px, 100%, max(240px, calc(100vh - 200px))); }
+    .side { width: 100%; }
+    @media (min-width: 768px) { .side { width: 280px; flex-shrink: 0; } }
+    .hud {
+      font-family: var(--pixel);
+      font-size: 10px;
+      line-height: 1.6;
+      text-transform: uppercase;
+      color: var(--cyan);
+    }
+    .hint { color: #c8f7ff; }
+    .rules { color: var(--white); font-size: 20px; }
+    .panel {
+      background: #1b0838;
+      border: 4px solid var(--purple);
+      box-shadow: inset 0 0 0 4px var(--ink), 6px 6px 0 var(--ink);
+    }
+    .board {
+      padding: 6px;
+      background: var(--ink);
+      border: 4px solid var(--yellow);
+      box-shadow: 0 0 0 4px var(--ink), 8px 8px 0 var(--ink);
+    }
+    .status {
+      width: 100%;
+      min-height: 3rem;
+      padding: 8px 12px;
+      text-align: center;
+      font-size: 22px;
+      color: var(--white);
+      background: var(--ink);
+      border: 4px solid var(--cyan);
+    }
+    .tone-info { color: var(--white); }
+    .tone-warn { color: var(--red); }
+    .tone-ok { color: var(--lime); }
+    .btn {
+      font-family: var(--pixel);
+      font-size: 10px;
+      line-height: 1.4;
+      text-transform: uppercase;
+      min-width: 110px;
+      padding: 12px 14px;
+      color: var(--ink);
+      background: var(--cyan);
+      border: 0;
+      cursor: pointer;
+      box-shadow:
+        0 6px 0 0 var(--ink),
+        inset -4px -4px 0 rgba(10, 1, 24, .3),
+        inset 4px 4px 0 rgba(255, 255, 255, .6);
+    }
+    .btn:hover { filter: brightness(1.15); }
+    .btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 0 var(--ink), inset 4px 4px 0 rgba(10, 1, 24, .3);
+    }
+    .btn-primary { background: var(--pink); color: var(--white); text-shadow: 2px 2px 0 var(--ink); }
+    .btn:focus-visible { outline: 4px dashed var(--yellow); outline-offset: 4px; }
+    .overlay { background: rgba(10, 1, 24, .88); }
+    .win-title {
+      font-family: var(--pixel);
+      font-size: 20px;
+      line-height: 1.5;
+      color: var(--yellow);
+      text-shadow: 4px 4px 0 var(--pink);
+    }
+    .cell {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 0;
+      cursor: pointer;
+    }
+    .cell:hover { filter: brightness(1.25); }
+    .cell:focus-visible { outline: 4px dashed var(--yellow); outline-offset: -6px; z-index: 2; }
+    .cell.conflict { outline: 4px solid var(--red); outline-offset: -4px; }
+    .veil {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 46, 77, .55);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .cell.conflict .veil { opacity: 1; animation: blinkRed .5s steps(2, end) infinite; }
+    @keyframes blinkRed {
+      from { opacity: 1; }
+      to   { opacity: .25; }
+    }
+    .tag {
+      position: absolute;
+      top: 4px;
+      left: 6px;
+      font-family: var(--pixel);
+      font-size: 10px;
+      color: var(--white);
+      text-shadow: 2px 2px 0 var(--ink);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .cat {
+      position: relative;
+      z-index: 1;
+      width: 76%;
+      height: auto;
+      filter: drop-shadow(4px 4px 0 var(--ink));
+    }
+    .cell .cat { animation: pop .3s steps(4, end); }
+    @keyframes pop {
+      from { transform: scale(.4); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    #win, #finale { opacity: 0; pointer-events: none; transition: opacity .3s steps(3, end); }
+    #win.show, #finale.show { opacity: 1; pointer-events: auto; }
+    #win .card { transform: translateY(16px); transition: transform .4s steps(4, end); }
+    #win.show .card { transform: none; }
+    .finale-title {
+      font-family: var(--pixel);
+      font-size: clamp(20px, 5vw, 44px);
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+    .neon-flash { animation: neonFlash .8s steps(1, end) infinite; }
+    @keyframes neonFlash {
+      0%   { color: var(--pink); text-shadow: 6px 6px 0 var(--cyan), 12px 12px 0 var(--ink); }
+      50%  { color: var(--cyan); text-shadow: 6px 6px 0 var(--pink), 12px 12px 0 var(--ink); }
+      100% { color: var(--yellow); text-shadow: 6px 6px 0 var(--purple), 12px 12px 0 var(--ink); }
+    }
+    .piece { position: absolute; top: -24px; border-radius: 0; animation-name: fall; animation-timing-function: linear; animation-iteration-count: infinite; }
+    @keyframes fall {
+      from { transform: translate3d(0, 0, 0) rotate(0deg); }
+      to   { transform: translate3d(var(--drift), 110vh, 0) rotate(var(--spin)); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .title, .cell .cat, .cell.conflict .veil, .neon-flash, .piece { animation: none; }
+      .piece { display: none; }
+      #win, #win .card, #finale { transition-duration: .01s; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+  <main class="window">
+    <header class="text-center">
+      <h1 class="title">Miss Coco in a box</h1>
+    </header>
+    <div class="flex flex-col items-start gap-4 p-2 md:flex-row md:gap-6">
+      <section class="play flex flex-col items-center gap-3">
+        <div class="hud flex w-full justify-between">
+          <span id="count">0 / 6 cats placed</span>
+          <span id="levelLabel">Level 1 of 5 · Easy</span>
+        </div>
+        <div id="board" role="grid" aria-label="Ragdoll board"
+             class="board grid grid-cols-6 grid-rows-6 aspect-square w-full overflow-hidden"></div>
+      </section>
+      <aside class="side flex flex-col gap-3">
+        <p id="status" role="status" aria-live="polite" class="status"></p>
+        <div class="panel p-3">
+          <p class="hint mb-2">Click an empty cell to place a cat. Click a cat to remove it.</p>
+          <ol class="rules space-y-1.5">
+            <li>1. One cat per territory</li>
+            <li>2. One cat per row</li>
+            <li>3. One cat per column</li>
+            <li>4. Cats never touch, even diagonally</li>
+          </ol>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button id="solveBtn" type="button" class="btn btn-primary">Show Solution</button>
+          <button id="resetBtn" type="button" class="btn">Reset</button>
+          <button id="musicBtn" type="button" aria-pressed="false" class="btn">Music: off</button>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Level complete overlay (Levels 1-4) -->
+  <div id="win" role="dialog" aria-modal="true" aria-labelledby="winTitle" aria-hidden="true"
+       class="overlay fixed inset-0 z-50 flex items-center justify-center">
+    <div class="card mx-4 max-w-sm panel px-10 py-9 text-center">
+      <div id="winCat" class="mx-auto h-28 w-28"></div>
+      <h2 id="winTitle" class="mt-4 win-title">Purr-fectly Balanced!</h2>
+      <p class="mt-3 hint">Six cats, six territories, and not a single whisker touching.</p>
+      <button id="nextBtn" type="button" class="mt-6 btn btn-primary">Next Level</button>
+    </div>
+  </div>
+
+  <!-- Finale overlay (Level 5) -->
+  <div id="finale" role="dialog" aria-modal="true" aria-labelledby="finaleTitle" aria-hidden="true"
+       class="overlay fixed inset-0 z-[60] flex items-center justify-center overflow-hidden">
+    <div id="confetti" class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true"></div>
+    <div class="relative mx-4 flex flex-col items-center gap-6 text-center">
+      <p class="hud">Level 5 complete</p>
+      <h2 id="finaleTitle" class="neon-flash finale-title">HAPPY 30th BIRTHDAY!</h2>
+      <p class="hint">From Honza, Halyna and Artem</p>
+      <div id="finaleCat" class="mx-auto h-32 w-32"></div>
+      <button id="finaleBtn" type="button" class="mt-2 btn btn-primary">Play again</button>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const N = 6;
+      const LETTERS = 'ABCDEF';
+      // Territory colours, indexed by territory id.
+      const PALETTE = ['#d6336c', '#7e3fbf', '#0e8c7f', '#e07a1f', '#c9a227', '#5b8c2a'];
+      const LINE_THIN = 'rgba(0, 0, 0, .55)';
+      const LINE_THICK = '#000';
+
+      // Levels: 6x6 maps of territory ids (0-5), each with exactly one valid solution.
+      // Rounds 1-4 are ordered by backtracking effort; round 5 is the "30" glyph layout.
+      const LEVELS = [
+        { name: 'Easy', layout: [[0,0,0,1,1,2],[0,1,1,1,2,2],[3,3,3,3,2,2],[4,4,4,3,3,3],[4,4,4,5,5,5],[4,4,5,5,5,5]] },
+        { name: 'Medium', layout: [[1,1,1,0,0,0],[1,1,2,2,2,0],[2,2,2,3,3,3],[5,5,4,4,3,3],[5,5,4,4,3,3],[5,5,5,5,5,5]] },
+        { name: 'Tricky', layout: [[2,2,0,0,0,1],[2,2,0,1,1,1],[2,3,3,4,4,4],[3,3,3,4,4,4],[5,5,5,4,4,4],[5,5,5,5,4,4]] },
+        { name: 'Hard', layout: [[5,0,0,0,1,1],[5,3,2,0,1,1],[5,3,2,2,2,1],[5,3,3,4,4,1],[5,5,5,4,4,4],[5,5,5,4,4,4]] },
+        // Finale: "30" glyph layout; territory A forms the 3.
+        { name: 'Finale', layout: [[0,0,0,3,3,3],[1,1,0,4,5,3],[1,0,0,4,5,3],[1,1,0,4,5,3],[2,2,0,4,5,3],[0,0,0,3,3,3]] },
+      ];
+
+      // Blue Point Ragdoll as 16x17 pixel art, drawn row by row (not mirrored).
+      // Seated pose: dark outline, cream coat, grey-blue points, cyan eyes, tan shading.
+      const CAT_PIXELS = {
+        o: '#2a2a30', c: '#f5e4d9', s: '#dcc4b5', g: '#8c9ab4', b: '#5e7088', e: '#00f5ff',
+      };
+      const CAT_ROWS = [
+        '......o......o..',
+        '.....ogo....ogo.',
+        '.....ogoooooogo.',
+        '....ocgcccccgco.',
+        '....ocggggggggco',
+        '....oceegggeeco.',
+        '....ocggggogggco',
+        '....occggggggco.',
+        '...occcccccccco.',
+        '..occcccccccccco',
+        '.occcccccccccccc',
+        '.occcssssssccccc',
+        'occcccccccccccco',
+        'occcccccssscccco',
+        'obbbbooccccccco.',
+        'ggggggoo........',
+        'oooooo..........',
+      ];
+      const CAT_SVG = (() => {
+        const W = 16;
+        const H = CAT_ROWS.length;
+        let rects = '';
+        CAT_ROWS.forEach((row, y) => {
+          if (row.length !== W) throw new Error(`cat sprite row ${y} is ${row.length} wide, expected ${W}`);
+          for (let x = 0; x < W;) {
+            const ch = row[x];
+            let end = x + 1;
+            while (end < W && row[end] === ch) end++;
+            if (ch !== '.') rects += `<rect x="${x}" y="${y}" width="${end - x}" height="1" fill="${CAT_PIXELS[ch]}"/>`;
+            x = end;
+          }
+        });
+        return `<svg class="cat" viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
+      })();
+
+      const $ = (id) => document.getElementById(id);
+      const boardEl = $('board');
+      const statusEl = $('status');
+      const countEl = $('count');
+      const levelEl = $('levelLabel');
+      const winEl = $('win');
+      const winCatEl = $('winCat');
+      const finaleEl = $('finale');
+      const finaleCatEl = $('finaleCat');
+      const confettiEl = $('confetti');
+      const solveBtn = $('solveBtn');
+      const resetBtn = $('resetBtn');
+      const nextBtn = $('nextBtn');
+      const finaleBtn = $('finaleBtn');
+
+      const TONES = { info: 'tone-info', warn: 'tone-warn', ok: 'tone-ok' };
+      const key = (r, c) => `${r},${c}`;
+
+      let levelIndex = 0;
+      let region = LEVELS[0].layout;
+      let cells = [];
+      const placed = new Set();
+      let solution = null;
+      let revealed = false;
+
+      // Border lines: thin inside a territory, thick between territories and on the outer frame.
+      // Each internal boundary is drawn once, by the cell on its right/bottom side.
+      function lineShadows(r, c) {
+        const id = region[r][c];
+        const edgeColor = (nr, nc) => {
+          if (nr < 0 || nr >= N || nc < 0 || nc >= N) return LINE_THICK;
+          return region[nr][nc] === id ? LINE_THIN : LINE_THICK;
+        };
+        const parts = [];
+        if (r === 0) parts.push(`inset 0 3px 0 0 ${LINE_THICK}`);
+        if (c === 0) parts.push(`inset 3px 0 0 0 ${LINE_THICK}`);
+        const right = edgeColor(r, c + 1);
+        parts.push(`inset -${right === LINE_THICK ? 3 : 1}px 0 0 0 ${right}`);
+        const bottom = edgeColor(r + 1, c);
+        parts.push(`inset 0 -${bottom === LINE_THICK ? 3 : 1}px 0 0 ${bottom}`);
+        return parts.join(', ');
+      }
+
+      function buildBoard() {
+        boardEl.innerHTML = '';
+        cells = [];
+        const seen = new Set();
+        for (let r = 0; r < N; r++) {
+          for (let c = 0; c < N; c++) {
+            const id = region[r][c];
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'cell';
+            btn.dataset.r = r;
+            btn.dataset.c = c;
+            btn.dataset.zone = id;
+            btn.style.background = PALETTE[id];
+            btn.style.boxShadow = lineShadows(r, c);
+            let html = '<span class="veil"></span>';
+            if (!seen.has(id)) {
+              seen.add(id);
+              html += `<span class="tag">${LETTERS[id]}</span>`;
+            }
+            btn.innerHTML = html;
+            btn.addEventListener('click', () => toggle(r, c));
+            boardEl.appendChild(btn);
+            cells.push(btn);
+          }
+        }
+      }
+
+      // Returns the set of conflicting cell keys and human-readable messages.
+      function findConflicts() {
+        const list = [...placed].map((k) => k.split(',').map(Number));
+        const bad = new Set();
+        const msgs = [];
+        const mark = ([r, c]) => bad.add(key(r, c));
+        const byRow = Array.from({ length: N }, () => []);
+        const byCol = Array.from({ length: N }, () => []);
+        const byZone = Array.from({ length: N }, () => []);
+        for (const p of list) {
+          byRow[p[0]].push(p);
+          byCol[p[1]].push(p);
+          byZone[region[p[0]][p[1]]].push(p);
+        }
+        byRow.forEach((g, i) => {
+          if (g.length > 1) { g.forEach(mark); msgs.push(`Row ${i + 1} has ${g.length} cats`); }
+        });
+        byCol.forEach((g, i) => {
+          if (g.length > 1) { g.forEach(mark); msgs.push(`Column ${i + 1} has ${g.length} cats`); }
+        });
+        byZone.forEach((g, i) => {
+          if (g.length > 1) { g.forEach(mark); msgs.push(`Territory ${LETTERS[i]} has ${g.length} cats`); }
+        });
+        let touching = false;
+        for (let i = 0; i < list.length; i++) {
+          for (let j = i + 1; j < list.length; j++) {
+            const [a, b] = list[i];
+            const [c, d] = list[j];
+            if (Math.abs(a - c) <= 1 && Math.abs(b - d) <= 1) {
+              mark(list[i]);
+              mark(list[j]);
+              touching = true;
+            }
+          }
+        }
+        if (touching) msgs.push('Neighbouring cats touch');
+        return { bad, msgs };
+      }
+
+      function setStatus(text, tone) {
+        statusEl.textContent = text;
+        statusEl.className = `status ${TONES[tone]}`;
+      }
+
+      function render() {
+        const { bad, msgs } = findConflicts();
+        for (let r = 0; r < N; r++) {
+          for (let c = 0; c < N; c++) {
+            const btn = cells[r * N + c];
+            const on = placed.has(key(r, c));
+            const cat = btn.querySelector('.cat');
+            if (on && !cat) btn.insertAdjacentHTML('beforeend', CAT_SVG);
+            else if (!on && cat) cat.remove();
+            btn.classList.toggle('conflict', bad.has(key(r, c)));
+            btn.setAttribute('aria-pressed', String(on));
+            btn.setAttribute('aria-label',
+              `Row ${r + 1}, column ${c + 1}, territory ${LETTERS[region[r][c]]}${on ? ', cat' : ', empty'}`);
+          }
+        }
+        countEl.textContent = `${placed.size} / ${N} cats placed`;
+        if (msgs.length) setStatus(msgs.join(' · '), 'warn');
+        else if (placed.size === 0) setStatus('Place one cat in every territory.', 'info');
+        else if (placed.size < N) setStatus(`${N - placed.size} more to place.`, 'info');
+        else setStatus('Six cats placed.', 'info');
+      }
+
+      function toggle(r, c) {
+        if (overlayOpen() || revealed) return;
+        const k = key(r, c);
+        if (placed.has(k)) placed.delete(k);
+        else placed.add(k);
+        render();
+        completeIfSolved();
+      }
+
+      // Wins as soon as the sixth cat lands on a valid board.
+      function completeIfSolved() {
+        if (placed.size < N || findConflicts().msgs.length) return;
+        if (levelIndex === LEVELS.length - 1) showFinale();
+        else showWin();
+      }
+
+      // Fills the board with the level's solution and locks input until Reset or the next level.
+      function showSolution() {
+        if (overlayOpen()) return;
+        revealed = true;
+        placed.clear();
+        solution.forEach((c, r) => placed.add(key(r, c)));
+        render();
+        setStatus('Solution shown. Press Reset to play this level again.', 'info');
+      }
+
+      // Backtracking solver: one cat per row, column and territory, no touching neighbours.
+      function solveLayout(zones) {
+        const cols = [];
+        const usedCols = new Set();
+        const usedZones = new Set();
+        const place = (r) => {
+          if (r === N) return true;
+          for (let c = 0; c < N; c++) {
+            const z = zones[r][c];
+            if (usedCols.has(c) || usedZones.has(z)) continue;
+            if (r > 0 && Math.abs(cols[r - 1] - c) <= 1) continue;
+            cols[r] = c;
+            usedCols.add(c);
+            usedZones.add(z);
+            if (place(r + 1)) return true;
+            usedCols.delete(c);
+            usedZones.delete(z);
+          }
+          return false;
+        };
+        return place(0) ? cols : null;
+      }
+
+      // Synthesised cat voice: sawtooth with vibrato, a pitch arc (up, then down) and a vowel-like bandpass sweep.
+      function catVoice(ctx, dest, t, pitch, dur, peak) {
+        const osc = ctx.createOscillator();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(pitch * 0.6, t);
+        osc.frequency.linearRampToValueAtTime(pitch, t + dur * 0.3);
+        osc.frequency.exponentialRampToValueAtTime(pitch * 0.7, t + dur);
+        const vib = ctx.createOscillator();
+        vib.frequency.value = 6;
+        const vibDepth = ctx.createGain();
+        vibDepth.gain.value = pitch * 0.015;
+        vib.connect(vibDepth).connect(osc.frequency);
+        const formant = ctx.createBiquadFilter();
+        formant.type = 'bandpass';
+        formant.Q.value = 5;
+        formant.frequency.setValueAtTime(700, t);
+        formant.frequency.linearRampToValueAtTime(1600, t + dur * 0.3);
+        formant.frequency.linearRampToValueAtTime(900, t + dur);
+        const env = ctx.createGain();
+        env.gain.setValueAtTime(0.0001, t);
+        env.gain.exponentialRampToValueAtTime(peak, t + 0.04);
+        env.gain.setValueAtTime(peak * 0.8, t + dur - 0.12);
+        env.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+        osc.connect(formant).connect(env).connect(dest);
+        osc.start(t);
+        vib.start(t);
+        osc.stop(t + dur);
+        vib.stop(t + dur);
+      }
+
+      function playChime() {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const start = ctx.currentTime + 0.05;
+        const notes = [[659.25, 0], [830.61, 0.14], [987.77, 0.28], [1318.51, 0.44]];
+        for (const [freq, delay] of notes) {
+          const t = start + delay;
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, t);
+          gain.gain.setValueAtTime(0.0001, t);
+          gain.gain.exponentialRampToValueAtTime(0.14, t + 0.03);
+          gain.gain.exponentialRampToValueAtTime(0.0001, t + 2.2);
+          osc.connect(gain).connect(ctx.destination);
+          osc.start(t);
+          osc.stop(t + 2.3);
+        }
+        setTimeout(() => ctx.close(), 3000);
+      }
+
+      function overlayOpen() {
+        return winEl.classList.contains('show') || finaleEl.classList.contains('show');
+      }
+
+      function showWin() {
+        winEl.classList.add('show');
+        winEl.setAttribute('aria-hidden', 'false');
+        playChime();
+        setTimeout(() => nextBtn.focus({ preventScroll: true }), 900);
+      }
+
+      function hideWin() {
+        winEl.classList.remove('show');
+        winEl.setAttribute('aria-hidden', 'true');
+      }
+
+      let stopPurr = null;
+
+      function showFinale() {
+        launchConfetti();
+        stopPurr = playPurr();
+        finaleEl.classList.add('show');
+        finaleEl.setAttribute('aria-hidden', 'false');
+        setTimeout(() => finaleBtn.focus({ preventScroll: true }), 1500);
+      }
+
+      function hideFinale() {
+        finaleEl.classList.remove('show');
+        finaleEl.setAttribute('aria-hidden', 'true');
+        confettiEl.innerHTML = '';
+        if (stopPurr) stopPurr();
+        stopPurr = null;
+      }
+
+      // Digital confetti: square pixels in the arcade palette, falling with drift and spin.
+      function launchConfetti() {
+        const colours = ['#ff2e7e', '#fde047', '#22d3ee', '#a855f7', '#fb923c', '#fff6d6'];
+        confettiEl.innerHTML = '';
+        for (let i = 0; i < 160; i++) {
+          const piece = document.createElement('i');
+          const size = 6 + Math.random() * 9;
+          piece.className = 'piece';
+          piece.style.left = `${Math.random() * 100}%`;
+          piece.style.width = `${size}px`;
+          piece.style.height = `${size * (0.5 + Math.random() * 0.5)}px`;
+          piece.style.background = colours[i % colours.length];
+          piece.style.animationDuration = `${3 + Math.random() * 3.5}s`;
+          piece.style.animationDelay = `${-Math.random() * 6}s`;
+          piece.style.setProperty('--drift', `${-80 + Math.random() * 160}px`);
+          piece.style.setProperty('--spin', `${360 + Math.random() * 900}deg`);
+          confettiEl.appendChild(piece);
+        }
+      }
+
+      // Synthesised purr: low-passed noise pulsed at ~26 Hz, with a swell and fade out.
+      function playPurr() {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return null;
+        const ctx = new AudioCtx();
+        const close = () => ctx.close().catch(() => {});
+        const dur = 4.5;
+        const t = ctx.currentTime + 0.05;
+        const noise = ctx.createBuffer(1, Math.ceil(ctx.sampleRate * dur), ctx.sampleRate);
+        const data = noise.getChannelData(0);
+        for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
+        const src = ctx.createBufferSource();
+        src.buffer = noise;
+        const lowpass = ctx.createBiquadFilter();
+        lowpass.type = 'lowpass';
+        lowpass.frequency.value = 480;
+        lowpass.Q.value = 0.8;
+        const pulse = ctx.createGain();
+        pulse.gain.value = 0.3;
+        const lfo = ctx.createOscillator();
+        lfo.frequency.value = 26;
+        const lfoDepth = ctx.createGain();
+        lfoDepth.gain.value = 0.2;
+        lfo.connect(lfoDepth).connect(pulse.gain);
+        const env = ctx.createGain();
+        env.gain.setValueAtTime(0.0001, t);
+        env.gain.exponentialRampToValueAtTime(0.9, t + 0.6);
+        env.gain.setValueAtTime(0.9, t + dur - 1.2);
+        env.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+        src.connect(lowpass).connect(pulse).connect(env).connect(ctx.destination);
+        src.start(t);
+        lfo.start(t);
+        src.stop(t + dur);
+        lfo.stop(t + dur);
+        const timer = setTimeout(close, (dur + 0.5) * 1000);
+        return () => { clearTimeout(timer); close(); };
+      }
+
+      // Synthesised techno loop: 128 BPM four-on-the-floor kick, clap, hats and a bassline over an Am-F-C-G cycle.
+      const MUSIC_VOL = 0.6;
+      const BPM = 128;
+      const STEP = 60 / BPM / 4; // one sixteenth note
+      const BAR_ROOTS = [55, 43.65, 65.41, 49]; // A1, F1, C2, G1: one root per bar
+      const musicBtn = $('musicBtn');
+      let musicOn = false;
+      let music = null;
+
+      function noiseBuffer(ctx) {
+        const buf = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
+        const data = buf.getChannelData(0);
+        for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
+        return buf;
+      }
+
+      function kick(ctx, dest, t) {
+        const osc = ctx.createOscillator();
+        const env = ctx.createGain();
+        osc.frequency.setValueAtTime(160, t);
+        osc.frequency.exponentialRampToValueAtTime(42, t + 0.12);
+        env.gain.setValueAtTime(0.9, t);
+        env.gain.exponentialRampToValueAtTime(0.001, t + 0.45);
+        osc.connect(env).connect(dest);
+        osc.start(t);
+        osc.stop(t + 0.5);
+      }
+
+      function noiseHit(ctx, dest, noise, t, type, freq, peak, decay) {
+        const src = ctx.createBufferSource();
+        src.buffer = noise;
+        const filt = ctx.createBiquadFilter();
+        filt.type = type;
+        filt.frequency.value = freq;
+        const env = ctx.createGain();
+        env.gain.setValueAtTime(peak, t);
+        env.gain.exponentialRampToValueAtTime(0.001, t + decay);
+        src.connect(filt).connect(env).connect(dest);
+        src.start(t, Math.random() * 0.5);
+        src.stop(t + decay + 0.02);
+      }
+
+      function bassNote(ctx, dest, t, freq) {
+        const osc = ctx.createOscillator();
+        const filt = ctx.createBiquadFilter();
+        const env = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.value = freq;
+        filt.type = 'lowpass';
+        filt.Q.value = 6;
+        filt.frequency.setValueAtTime(1400, t);
+        filt.frequency.exponentialRampToValueAtTime(260, t + 0.14);
+        env.gain.setValueAtTime(0.0001, t);
+        env.gain.exponentialRampToValueAtTime(0.16, t + 0.01);
+        env.gain.exponentialRampToValueAtTime(0.0001, t + STEP * 0.9);
+        osc.connect(filt).connect(env).connect(dest);
+        osc.start(t);
+        osc.stop(t + STEP);
+      }
+
+      function scheduleStep(m, s, t) {
+        const pos = s % 16; // position within the bar
+        const bar = Math.floor(s / 16) % BAR_ROOTS.length;
+        if (s % 4 === 0) kick(m.ctx, m.master, t);
+        if (pos === 4 || pos === 12) noiseHit(m.ctx, m.master, m.noise, t, 'bandpass', 1800, 0.45, 0.18); // clap
+        if (s % 4 === 2) noiseHit(m.ctx, m.master, m.noise, t, 'highpass', 7000, 0.14, 0.06); // offbeat hat
+        noiseHit(m.ctx, m.master, m.noise, t, 'highpass', 9000, 0.05, 0.02); // closed tick every sixteenth
+        if (s % 2 === 0) bassNote(m.ctx, m.master, t, BAR_ROOTS[bar] * (pos % 4 === 2 ? 2 : 1));
+        if (s % 4 === 2) catVoice(m.ctx, m.master, t, [620, 740, 880, 700][(s >> 2) % 4], 0.14, 0.32); // mrr chirp on each 'and'
+        if (pos === 0 && bar % 2 === 0) catVoice(m.ctx, m.master, t, 820, 0.45, 0.4); // full mnau on every other downbeat
+      }
+
+      function startMusic() {
+        if (music || !musicOn) return;
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const master = ctx.createGain();
+        master.gain.value = MUSIC_VOL;
+        master.connect(ctx.destination);
+        music = { ctx, master, noise: noiseBuffer(ctx), step: 0, next: ctx.currentTime + 0.1, timer: null, idle: null };
+        music.schedule = () => {
+          while (music.next < ctx.currentTime + 0.2) {
+            scheduleStep(music, music.step, music.next);
+            music.next += STEP;
+            music.step++;
+          }
+        };
+        music.schedule();
+        music.timer = setInterval(music.schedule, 50);
+      }
+
+      function setMusicOn(on) {
+        musicOn = on;
+        musicBtn.setAttribute('aria-pressed', String(on));
+        musicBtn.textContent = on ? 'Music: on' : 'Music: off';
+        if (on) startMusic();
+        if (!music) return;
+        const { ctx, master } = music;
+        clearTimeout(music.idle);
+        master.gain.cancelScheduledValues(ctx.currentTime);
+        master.gain.setTargetAtTime(on ? MUSIC_VOL : 0, ctx.currentTime, 0.05);
+        clearInterval(music.timer);
+        if (on) {
+          ctx.resume();
+          music.timer = setInterval(music.schedule, 50);
+        } else {
+          // Let the fade finish, then stop scheduling and freeze the clock.
+          music.idle = setTimeout(() => ctx.suspend(), 200);
+        }
+      }
+
+      function loadLevel(i) {
+        levelIndex = i;
+        region = LEVELS[i].layout;
+        solution = solveLayout(region);
+        revealed = false;
+        placed.clear();
+        buildBoard();
+        levelEl.textContent = `Level ${i + 1} of ${LEVELS.length} · ${LEVELS[i].name}`;
+        render();
+      }
+
+      solveBtn.addEventListener('click', showSolution);
+      resetBtn.addEventListener('click', () => {
+        revealed = false;
+        placed.clear();
+        render();
+      });
+      nextBtn.addEventListener('click', () => {
+        hideWin();
+        loadLevel(levelIndex + 1);
+      });
+      finaleBtn.addEventListener('click', () => {
+        hideFinale();
+        loadLevel(0);
+      });
+      musicBtn.addEventListener('click', () => setMusicOn(!musicOn));
+
+      winCatEl.innerHTML = CAT_SVG;
+      finaleCatEl.innerHTML = CAT_SVG;
+      loadLevel(0);
+    })();
+  </script>
+</body>
+</html>

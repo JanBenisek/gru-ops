@@ -1,0 +1,18 @@
+# LAN-only: no Cloudflare tunnel, no external-dns annotations on the Service.
+# Same pattern as metabase, without TinyAuth. TLS uses the wildcard cert reflected into this namespace.
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: coco-in-a-box
+  namespace: games
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`coco-in-a-box.pengiuns.com`)
+      kind: Rule
+      services:
+        - name: coco-in-a-box
+          port: 80
+  tls:
+    secretName: letsencrypt-wildcard-cert-pengiuns.com-production

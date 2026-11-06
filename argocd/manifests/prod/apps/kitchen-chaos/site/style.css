@@ -1,0 +1,445 @@
+/* Miss Coco's Kitchen Chaos: retro arcade skin (bright palette, pixel fonts, CRT scanlines). */
+
+:root {
+  --bg: #5b1fd1;
+  --bg-deep: #2a0a7a;
+  --panel: #7a2fe8;
+  --panel-hi: #a45cff;
+  --line: #ffe14d;
+  --cream: #fffbea;
+  --muted: #ffe3f5;
+  --pink: #ff4fa3;
+  --yellow: #ffe14d;
+  --green: #63ff7a;
+  --cyan: #29f0ff;
+  --purple: #a45cff;
+  --red: #ff3860;
+}
+
+body {
+  font-family: 'VT323', monospace;
+  font-size: 22px;
+  color: var(--cream);
+  background: radial-gradient(ellipse at 50% 0%, var(--panel-hi) 0%, var(--bg) 70%);
+}
+
+h1, h2,
+.hud-value,
+.tool-btn,
+.item-label,
+.pixel-tag,
+.neon-banner,
+.logo-text,
+#shift-banner-title,
+#over-title,
+#scoop-text {
+  font-family: 'Press Start 2P', monospace;
+}
+
+/* ---------- Text utilities ---------- */
+.text-yellow { color: var(--yellow); }
+.text-green { color: var(--green); }
+.text-pink { color: var(--pink); }
+.text-cyan { color: var(--cyan); }
+.text-red { color: var(--red); }
+.text-cream { color: var(--cream); }
+
+.logo-text {
+  color: var(--cream);
+  font-size: 18px;
+  line-height: 1.4;
+  text-shadow: 3px 3px 0 var(--pink), 6px 6px 0 var(--bg-deep);
+}
+
+.hud-label {
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hud-sub {
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hud-value {
+  font-size: 18px;
+  text-shadow: 3px 3px 0 var(--bg-deep);
+}
+
+/* ---------- Pixel panels ---------- */
+.pixel-panel {
+  background: linear-gradient(180deg, var(--panel-hi), var(--panel));
+  border: 4px solid var(--bg-deep);
+  box-shadow:
+    inset 0 0 0 4px var(--line),
+    0 0 0 4px var(--bg-deep),
+    8px 8px 0 4px var(--bg-deep);
+}
+
+/* ---------- HUD meter ---------- */
+.meter {
+  height: 22px;
+  background: var(--bg-deep);
+  border: 4px solid var(--bg-deep);
+  box-shadow: inset 0 4px 0 rgba(0, 0, 0, 0.5), 0 0 0 2px var(--line);
+}
+
+.meter-fill {
+  height: 100%;
+  background-color: var(--green);
+  background-image: repeating-linear-gradient(90deg, transparent 0 10px, rgba(0, 0, 0, 0.45) 10px 14px);
+  transition: width 0.2s steps(4);
+}
+
+/* ---------- CRT scanlines over the stage ---------- */
+.crt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 25;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0 2px, transparent 2px 4px);
+}
+
+/* ---------- Kitchen set ---------- */
+.kitchen-wall {
+  background:
+    repeating-linear-gradient(0deg, transparent 0 22px, rgba(0, 0, 0, 0.35) 22px 24px),
+    repeating-linear-gradient(90deg, transparent 0 46px, rgba(0, 0, 0, 0.35) 46px 48px),
+    linear-gradient(180deg, #ff7ad9 0%, #c84dff 100%);
+}
+
+.window-glow {
+  background: linear-gradient(180deg, #29f0ff, #7b3ff2);
+  border: 4px solid var(--bg-deep);
+  box-shadow: inset 0 0 0 4px var(--cyan), 6px 6px 0 var(--bg-deep);
+}
+
+.pixel-star {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--cream);
+  box-shadow: 6px 0 0 var(--cream) , -6px 0 0 var(--cream), 0 6px 0 var(--cream), 0 -6px 0 var(--cream);
+}
+
+.shelf {
+  background: #7a3e1d;
+  border: 3px solid var(--bg-deep);
+  box-shadow: 0 6px 0 var(--bg-deep);
+}
+
+.counter {
+  background: conic-gradient(#ffb3e0 25%, #ff8fd0 0 50%, #ffb3e0 0 75%, #ff8fd0 0) 0 0 / 56px 56px;
+  border-top: 6px solid var(--pink);
+  box-shadow: inset 0 14px 24px rgba(0, 0, 0, 0.55);
+}
+
+/* ---------- Conveyor belt ---------- */
+.belt {
+  background: repeating-linear-gradient(90deg, #ffe14d 0 24px, #ffb300 24px 48px);
+  background-size: 48px 100%;
+  animation: belt-move var(--belt-dur, 0.8s) steps(8) infinite;
+  border: 4px solid var(--bg-deep);
+  box-shadow: inset 0 0 0 3px var(--line), 0 10px 0 4px var(--bg-deep);
+}
+
+@keyframes belt-move {
+  from { background-position: 0 0; }
+  to { background-position: 48px 0; }
+}
+
+/* ---------- Target zone ---------- */
+.target-zone {
+  border: 6px solid var(--cyan);
+  background: rgba(41, 240, 255, 0.08);
+  transition: background-color 0.08s, box-shadow 0.08s;
+}
+
+.target-zone.active {
+  border-style: solid;
+  border-color: var(--yellow);
+  background: rgba(255, 225, 77, 0.22);
+  box-shadow: 0 0 0 3px var(--bg-deep), 0 0 18px var(--yellow);
+}
+
+.target-zone::before {
+  content: "TARGET";
+  position: absolute;
+  top: -3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  color: var(--cyan);
+  white-space: nowrap;
+}
+
+/* ---------- Belt items ---------- */
+.item {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 84px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.item-bubble {
+  font-size: 40px;
+  line-height: 1;
+  filter: drop-shadow(4px 4px 0 var(--bg-deep));
+}
+
+.item-label {
+  margin-top: 4px;
+  font-size: 7px;
+  line-height: 1.6;
+  color: var(--cream);
+  text-shadow: 2px 2px 0 var(--bg-deep);
+}
+
+.item.cake-item .item-bubble { animation: wobble 1s steps(2) infinite; }
+.item.pop-out { animation: pop-out 0.22s steps(3) forwards; }
+.item.bad-out { animation: bad-out 0.3s steps(4) forwards; }
+
+@keyframes pop-out {
+  to { transform: translate(-50%, -50%) scale(1.7); opacity: 0; }
+}
+
+@keyframes bad-out {
+  to { transform: translate(-50%, 80%) rotate(-30deg) scale(0.6); opacity: 0; }
+}
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+
+/* ---------- Cat ---------- */
+.cat-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter:
+    drop-shadow(10px 0 0 var(--bg-deep))
+    drop-shadow(-10px 0 0 var(--bg-deep))
+    drop-shadow(0 10px 0 var(--bg-deep))
+    drop-shadow(0 -10px 0 var(--bg-deep))
+    drop-shadow(10px 10px 0 var(--bg-deep));
+}
+
+.cat-idle { animation: idle-bob 1.2s steps(2) infinite; }
+
+.cat-tail {
+  transform-box: view-box;
+  transform-origin: 280px 224px;
+  animation: tail-sway 1.6s steps(3) infinite;
+}
+
+#cat-wrap[data-mood="hungry"] .cat-svg { animation: hungry-shake 0.25s steps(2) infinite; }
+#cat-wrap[data-mood="pooping"] .cat-svg { animation: poop-squat 0.3s steps(2) 4 alternate; }
+
+@keyframes idle-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes tail-sway {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(6deg); }
+}
+
+@keyframes hungry-shake {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-4px); }
+}
+
+@keyframes poop-squat {
+  to { transform: scaleY(0.94) translateY(6px); }
+}
+
+/* Face variants: normal by default, swapped by data-mood */
+.face-hungry, .face-pooping, .party-hat { display: none; }
+#cat-wrap[data-mood="hungry"] .face-normal,
+#cat-wrap[data-mood="pooping"] .face-normal { display: none; }
+#cat-wrap[data-mood="hungry"] .face-hungry { display: inline; }
+#cat-wrap[data-mood="pooping"] .face-pooping { display: inline; }
+#cat-wrap[data-party="on"] .party-hat { display: inline; }
+
+/* Thought bubble with pixel tail */
+.pixel-bubble {
+  position: absolute;
+  background: #fff;
+  border: 4px solid var(--bg-deep);
+  box-shadow: 4px 4px 0 var(--bg-deep);
+  image-rendering: pixelated;
+}
+
+.pixel-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -14px;
+  right: 16px;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-right: 4px solid var(--bg-deep);
+  border-bottom: 4px solid var(--bg-deep);
+}
+
+/* Cat speech: short line, pops in with stepped scale. Visibility is toggled by game.js say(). */
+.speech {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  line-height: 1.4;
+  padding: 8px 10px;
+  white-space: nowrap;
+  color: var(--bg-deep);
+  animation: speech-pop 0.2s steps(3) both;
+}
+
+@keyframes speech-pop {
+  from { transform: scale(0.5); }
+  to { transform: scale(1); }
+}
+
+/* ---------- Litter box ---------- */
+.litter {
+  background: var(--bg-deep);
+  border: 4px solid var(--purple);
+  box-shadow: inset 0 -10px 0 #120627, 6px 6px 0 var(--bg-deep);
+}
+
+.alert-flash { animation: alert-flash 0.5s steps(2, start) infinite; }
+
+@keyframes alert-flash {
+  0% { background-color: #d81b3c; box-shadow: 0 0 0 4px var(--red), 4px 4px 0 var(--bg-deep); border-color: var(--red); }
+  100% { background-color: #3a0716; box-shadow: 0 0 0 4px #7a1030, 4px 4px 0 var(--bg-deep); border-color: #fca5a5; }
+}
+
+.pixel-tag {
+  font-size: 9px;
+  line-height: 1.6;
+  color: #fff;
+  border: 4px solid var(--bg-deep);
+  box-shadow: 4px 4px 0 var(--bg-deep);
+}
+
+/* ---------- Buttons ---------- */
+.tool-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1rem 0.8rem;
+  font-size: 11px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--bg-deep);
+  border: 4px solid var(--bg-deep);
+  box-shadow:
+    inset -4px -4px 0 rgba(0, 0, 0, 0.3),
+    inset 4px 4px 0 rgba(255, 255, 255, 0.4),
+    0 8px 0 var(--bg-deep);
+  outline: 4px solid transparent;
+  outline-offset: 3px;
+  transition: transform 0.04s steps(2), box-shadow 0.04s steps(2), outline-color 0.1s steps(2);
+  cursor: pointer;
+}
+
+/* Pixel icons (footer tools, belt items, shelf goods): crisp SVG rects built in game.js. */
+.pixel-icon {
+  display: inline-flex;
+  flex: none;
+  width: 44px;
+  height: 44px;
+}
+.pixel-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.item-bubble .pixel-icon { width: 52px; height: 52px; }
+.shelf-goods .pixel-icon { width: 40px; height: 40px; }
+.intro-list .pixel-icon { width: 28px; height: 28px; margin-right: 6px; vertical-align: middle; }
+
+.tool-btn:active {
+  transform: translateY(6px);
+  box-shadow:
+    inset -4px -4px 0 rgba(0, 0, 0, 0.3),
+    inset 4px 4px 0 rgba(255, 255, 255, 0.4),
+    0 2px 0 var(--bg-deep);
+}
+
+.btn--feed { background: var(--green); }
+.btn--groom { background: var(--cyan); }
+.btn--decline { background: var(--pink); }
+.btn--scoop { background: var(--yellow); }
+
+.keycap {
+  display: inline-block;
+  padding: 0 0.35rem;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--cream);
+  background: var(--bg-deep);
+  border: 2px solid var(--cream);
+  box-shadow: 0 3px 0 var(--purple);
+}
+
+.btn-ok { outline-color: var(--yellow); }
+.btn-bad { outline-color: var(--red); }
+
+/* ---------- Shake on penalties ---------- */
+.shake { animation: shake 0.3s steps(5) both; }
+
+@keyframes shake {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-8px, 3px); }
+  40% { transform: translate(8px, -3px); }
+  60% { transform: translate(-5px, 2px); }
+  80% { transform: translate(5px, -2px); }
+}
+
+/* ---------- Green fog ---------- */
+.fog {
+  opacity: 0;
+  transition: opacity 1.2s steps(6);
+  background: radial-gradient(
+    ellipse at 50% 45%,
+    rgba(99, 255, 122, 0.22) 0%,
+    rgba(40, 200, 90, 0.85) 65%,
+    rgba(8, 56, 28, 0.95) 100%
+  );
+}
+
+.fog.on { opacity: 1; }
+
+/* ---------- Finale banner ---------- */
+.neon-banner {
+  font-size: 18px;
+  line-height: 1.6;
+  background: linear-gradient(90deg, var(--pink), var(--yellow), var(--green), var(--cyan), var(--purple), var(--pink));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(4px 4px 0 var(--bg-deep)) drop-shadow(0 0 12px rgba(255, 79, 163, 0.6));
+  animation: rainbow 2.5s linear infinite;
+}
+
+@keyframes rainbow {
+  from { background-position: 0% 50%; }
+  to { background-position: 300% 50%; }
+}
+
+/* ---------- Shift banner pulse ---------- */
+#shift-banner-title { text-shadow: 4px 4px 0 var(--bg-deep); }
+#over-title { text-shadow: 4px 4px 0 var(--bg-deep); }
