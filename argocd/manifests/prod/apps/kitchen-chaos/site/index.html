@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miss Coco's Kitchen Chaos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="h-screen overflow-hidden select-none">
+
+  <div class="mx-auto flex h-full max-w-6xl flex-col gap-3 p-3 md:p-4">
+
+    <!-- HUD -->
+    <header class="pixel-panel flex flex-wrap items-center justify-between gap-4 px-4 py-3">
+      <div>
+        <h1 class="logo-text text-base md:text-xl">MISS COCO'S KITCHEN CHAOS</h1>
+        <p id="shift-label" class="hud-sub mt-2">Ready for your shift</p>
+      </div>
+      <div class="flex items-center gap-6 text-center">
+        <div>
+          <p class="hud-label">Shift clock</p>
+          <p id="shift-time" class="hud-value text-yellow">30</p>
+        </div>
+        <div>
+          <p class="hud-label">Treats fed</p>
+          <p id="stat-treats" class="hud-value text-green">0</p>
+        </div>
+        <div>
+          <p class="hud-label">Poops scooped</p>
+          <p id="stat-poops" class="hud-value text-pink">0</p>
+        </div>
+      </div>
+      <div class="w-full md:w-60">
+        <div class="hud-label flex justify-between">
+          <span>Anxiety</span><span id="anxiety-text">0%</span>
+        </div>
+        <div class="meter mt-2">
+          <div id="anxiety-bar" class="meter-fill" style="width: 0%;"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Kitchen stage -->
+    <main id="stage" class="crt pixel-panel relative min-h-[320px] flex-1 overflow-hidden">
+      <div class="kitchen-wall absolute inset-x-0 top-0 h-[62%]"></div>
+      <div class="window-glow absolute left-[4%] top-[8%] h-[28%] w-[16%]">
+        <span class="pixel-star" style="top:18%; left:22%"></span>
+        <span class="pixel-star" style="top:60%; left:70%"></span>
+        <span class="pixel-star" style="top:34%; left:58%"></span>
+      </div>
+      <div class="shelf absolute left-[27%] top-[14%] h-3 w-[30%]"></div>
+      <div class="shelf-goods absolute left-[27%] top-[6%] flex gap-6">
+        <span class="pixel-icon" data-icon="jar"></span><span class="pixel-icon" data-icon="tin"></span><span class="pixel-icon" data-icon="salt"></span><span class="pixel-icon" data-icon="honey"></span>
+      </div>
+      <div class="counter absolute inset-x-0 bottom-0 h-[38%]"></div>
+
+      <!-- Conveyor belt + target zone -->
+      <div id="belt" class="belt absolute left-[3%] top-[42%] h-[16%] w-[64%]">
+        <div id="zone" class="target-zone absolute -bottom-[14%] -top-[14%]"></div>
+        <div id="items" class="absolute inset-0"></div>
+      </div>
+
+      <!-- Litter box -->
+      <div id="litter" class="litter absolute bottom-[5%] right-[2%] flex h-[14%] w-[22%] items-center justify-center">
+        <span class="hud-label absolute -top-6 left-1">Litter box</span>
+        <div id="poop-pile" class="text-3xl tracking-tight"></div>
+      </div>
+      <div id="litter-alert" class="alert-flash pixel-tag absolute bottom-[22%] right-[2%] hidden px-3 py-2 text-[9px] text-white">
+        ! LITTER ALERT <span id="litter-timer">3.0s</span>
+      </div>
+
+      <div id="speech" class="pixel-bubble speech hidden absolute top-[20%] right-[36%] z-10 whitespace-nowrap"></div>
+      <!-- Cat (faces left toward the belt) -->
+      <div id="cat-wrap" data-mood="normal" data-party="off" class="absolute bottom-[36%] right-[5%] w-[28%] max-w-[290px]">
+        <div id="mood-bubble" class="pixel-bubble absolute -top-4 right-[6%] z-10 px-2 text-3xl leading-none">😸</div>
+        <div class="cat-idle">
+          <svg id="cat-svg" class="cat-svg" viewBox="0 0 320 288" shape-rendering="crispEdges" role="img" aria-label="Miss Coco, the Blue Point Ragdoll cat"></svg>
+        </div>
+      </div>
+
+      <!-- Shift banner -->
+      <div id="shift-banner" class="absolute inset-0 z-30 hidden items-center justify-center bg-[#0d0221]/70">
+        <div class="pixel-panel px-8 py-6 text-center">
+          <p id="shift-banner-title" class="text-2xl text-cyan md:text-3xl">SHIFT 1</p>
+          <p id="shift-banner-sub" class="hud-sub mt-4"></p>
+        </div>
+      </div>
+
+      <!-- Finale -->
+      <div id="finale" class="absolute inset-0 z-30 hidden flex-col items-center justify-center gap-5 bg-[#0d0221]/75 p-6 text-center">
+        <h2 class="neon-banner px-4 py-4 text-lg md:text-2xl">🎂 HAPPY 30th BIRTHDAY! 🎂</h2>
+        <p id="finale-recap" class="pixel-panel max-w-2xl px-5 py-4 text-2xl text-cream"></p>
+        <button id="btn-restart-finale" class="tool-btn btn--scoop px-8">Restart</button>
+      </div>
+    </main>
+
+    <!-- Controls -->
+    <footer class="grid grid-cols-2 gap-3 md:grid-cols-4">
+      <button id="btn-feed" class="tool-btn btn--feed"><span class="pixel-icon" data-icon="feed"></span> Feed <kbd class="keycap">F</kbd></button>
+      <button id="btn-groom" class="tool-btn btn--groom"><span class="pixel-icon" data-icon="groom"></span> Groom <kbd class="keycap">G</kbd></button>
+      <button id="btn-decline" class="tool-btn btn--decline"><span class="pixel-icon" data-icon="decline"></span> Decline <kbd class="keycap">D</kbd></button>
+      <button id="btn-scoop" class="tool-btn btn--scoop relative overflow-hidden">
+        <span class="pixel-icon" data-icon="scoop"></span> Scoop <kbd class="keycap">S</kbd>
+        <span id="scoop-text" class="ml-1 text-[9px]">0/5</span>
+        <span class="absolute inset-x-0 bottom-0 h-2 bg-black/40"><span id="scoop-bar" class="block h-full w-0 bg-white"></span></span>
+      </button>
+    </footer>
+  </div>
+
+  <!-- Start overlay -->
+  <div id="overlay-start" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0d0221]/90 p-4">
+    <div class="pixel-panel max-w-lg p-8 text-center">
+      <h2 class="logo-text text-lg md:text-2xl">MISS COCO'S<br />KITCHEN CHAOS</h2>
+      <p class="mt-5 text-2xl leading-snug text-cream">Keep Miss Coco fed, groomed, and un-poop-ed through three shifts of chaos.</p>
+      <ul class="intro-list mt-5 space-y-2 text-left text-2xl text-cream">
+        <li><span class="pixel-icon" data-icon="tuna"></span><span class="pixel-icon" data-icon="salmon"></span> Tuna / Salmon → <b class="text-green">FEED (F)</b></li>
+        <li><span class="pixel-icon" data-icon="groom"></span> Brush → <b class="text-cyan">GROOM (G)</b></li>
+        <li><span class="pixel-icon" data-icon="sock"></span><span class="pixel-icon" data-icon="duck"></span><span class="pixel-icon" data-icon="lego"></span> Sock, Duck, Lego → <b class="text-pink">DECLINE (D)</b></li>
+        <li>Miss an item, use the wrong tool, or press a tool with nothing in the zone → anxiety rises. 100% = game over.</li>
+        <li>Every 3 feeds the cat poops (every 2 in the 30s). Scoop it with <b class="text-yellow">S</b> ×5 within 3 seconds or the fog rolls in.</li>
+      </ul>
+      <button id="btn-start" class="tool-btn btn--feed mt-7 w-full text-sm">▶ Start Game</button>
+    </div>
+  </div>
+
+  <!-- Game over overlay -->
+  <div id="overlay-over" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-[#0d0221]/80 p-4">
+    <div class="pixel-panel max-w-lg p-8 text-center">
+      <h2 id="over-title" class="text-xl text-red md:text-2xl">GAME OVER</h2>
+      <p id="over-reason" class="mt-5 text-2xl leading-snug text-cream"></p>
+      <p id="over-stats" class="hud-sub mt-5"></p>
+      <button id="btn-restart" class="tool-btn btn--decline mt-7 w-full text-sm">Restart</button>
+    </div>
+  </div>
+
+  <!-- Green fog + confetti layers -->
+  <div id="fog" class="fog pointer-events-none fixed inset-0 z-40"></div>
+  <canvas id="confetti" class="pointer-events-none fixed inset-0 z-[45] hidden"></canvas>
+
+  <script src="audio.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
