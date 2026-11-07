@@ -147,6 +147,9 @@ h1, h2,
   box-shadow: inset 0 0 0 3px var(--line), 0 10px 0 4px var(--bg-deep);
 }
 
+/* Belt stops while a screech pop-up is open. */
+.screech-open .belt { animation-play-state: paused; }
+
 @keyframes belt-move {
   from { background-position: 0 0; }
   to { background-position: 48px 0; }

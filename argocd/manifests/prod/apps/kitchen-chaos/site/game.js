@@ -11,7 +11,11 @@ const POOP_TIMER = 3;            // seconds to finish scooping before the fog
 const SCOOP_CLICKS = 5;
 const POOP_ANIM = 1.4;           // seconds the cat holds the 🙀 pose
 const ANXIETY_DECAY = 2;         // per second
-const PENALTY = { miss: 10, wrong: 15, idle: 6 };
+const PENALTY = { miss: 10, wrong: 15, idle: 6, screech: 15 };
+const SCREECH_MIN = 25; // seconds of play between screech pop-ups
+const SCREECH_MAX = 40;
+const SCREECH_WINDOW = 5; // seconds to pet before she counts it as ignored
+const SCREECH_PRESSES = 10; // Space presses to finish petting (10% each)
 
 const SHIFTS = [
   { title: "The 10s", belt: 1.0, bpm: 128, spawn: [1.5, 2.2], feedsPerPoop: 3, sub: "Belt 1.0× · 128 BPM" },
@@ -67,6 +71,9 @@ const el = {
   fog: $("fog"),
   overStart: $("overlay-start"),
   overOver: $("overlay-over"),
+  overScreech: $("overlay-screech"),
+  screechFill: $("screech-fill"),
+  screechTime: $("screech-time"),
   overTitle: $("over-title"),
   overReason: $("over-reason"),
   overStats: $("over-stats"),
@@ -95,6 +102,8 @@ function newGame() {
     poopTimer: 0,
     scoopClicks: 0,
     poopAnim: 0,
+    screech: null, // { left, presses } while the pop-up is open
+    screechTimer: 0, // seconds of play until the next pop-up
     lastTs: 0,
   };
 }
@@ -251,6 +260,47 @@ function gameOver(reason) {
   el.overOver.classList.remove("hidden");
 }
 
+// ---- Screech pop-up ---------------------------------------------------------
+function openScreech() {
+  game.screech = { left: SCREECH_WINDOW, presses: 0 };
+  el.stage.classList.add("screech-open");
+  el.overScreech.classList.remove("hidden");
+  renderScreech();
+}
+
+function renderScreech() {
+  el.screechTime.textContent = `${game.screech.left.toFixed(1)}s`;
+  el.screechFill.style.width = `${(game.screech.presses / SCREECH_PRESSES) * 100}%`;
+}
+
+function closeScreech() {
+  game.screech = null;
+  game.screechTimer = rand(SCREECH_MIN, SCREECH_MAX);
+  el.stage.classList.remove("screech-open");
+  el.overScreech.classList.add("hidden");
+}
+
+function updateScreech(dt) {
+  game.screech.left -= dt;
+  if (game.screech.left <= 0) {
+    closeScreech();
+    sayRandom(SAY.unwanted);
+    penalize(PENALTY.screech);
+    return;
+  }
+  renderScreech();
+}
+
+function pressScreech() {
+  game.screech.presses++;
+  if (game.screech.presses >= SCREECH_PRESSES) {
+    closeScreech();
+    sayRandom(SAY.groom);
+    return;
+  }
+  renderScreech();
+}
+
 // ---- Actions ----------------------------------------------------------------
 function dropPoop() {
   game.pendingPoops++;
@@ -260,7 +310,7 @@ function dropPoop() {
 }
 
 function act(tool) {
-  if (game.phase !== "playing") return;
+  if (game.phase !== "playing" || game.screech) return;
   const btn = el.btn[tool];
   const target = game.items.find((i) => inZoneP(i.p));
 
@@ -294,7 +344,7 @@ function act(tool) {
 }
 
 function scoop() {
-  if (game.phase !== "playing" || game.pendingPoops === 0) return;
+  if (game.phase !== "playing" || game.screech || game.pendingPoops === 0) return;
   game.scoopClicks++;
   Sound.sfx.scoop();
   pulse(el.btn.scoop, true);
@@ -314,6 +364,7 @@ function update(dt) {
     game.introTime -= dt;
     if (game.introTime <= 0) {
       game.phase = "playing";
+      game.screechTimer = rand(SCREECH_MIN, SCREECH_MAX);
       el.banner.classList.add("hidden");
       el.banner.classList.remove("flex");
     }
@@ -331,6 +382,15 @@ function update(dt) {
   }
 
   if (game.phase !== "playing") return;
+  if (game.screech) {
+    updateScreech(dt);
+    return;
+  }
+  game.screechTimer -= dt;
+  if (game.screechTimer <= 0) {
+    openScreech();
+    return;
+  }
 
   const cfg = SHIFTS[game.shift];
   game.shiftTime -= dt;
@@ -484,6 +544,12 @@ const KEYMAP = {
 
 window.addEventListener("keydown", (e) => {
   if (e.repeat || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (game.screech && e.key === " ") {
+    e.preventDefault();
+    if (document.activeElement) document.activeElement.blur(); // stop Space re-clicking a focused button
+    pressScreech();
+    return;
+  }
   const fn = KEYMAP[e.key.toLowerCase()];
   if (fn) {
     e.preventDefault();

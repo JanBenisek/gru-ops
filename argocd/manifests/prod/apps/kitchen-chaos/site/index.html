@@ -140,6 +140,18 @@
     </div>
   </div>
 
+  <!-- Screech pop-up: pauses the shift until petted or ignored -->
+  <div id="overlay-screech" class="fixed inset-0 z-50 hidden flex items-center justify-center overflow-y-auto bg-[#0d0221]/80 p-4">
+    <div class="pixel-panel my-auto max-w-md p-8 text-center">
+      <h2 class="text-xl text-red md:text-2xl">SCREECH!</h2>
+      <p class="mt-5 text-2xl leading-snug text-cream">Miss Coco wants attention. Pet her by mashing <kbd class="keycap">Space</kbd>.</p>
+      <div class="meter mt-5">
+        <div id="screech-fill" class="meter-fill" style="width: 0%;"></div>
+      </div>
+      <p class="hud-label mt-4">Time left <span id="screech-time">5.0s</span></p>
+    </div>
+  </div>
+
   <!-- Green fog + confetti layers -->
   <div id="fog" class="fog pointer-events-none fixed inset-0 z-40"></div>
   <canvas id="confetti" class="pointer-events-none fixed inset-0 z-[45] hidden"></canvas>
