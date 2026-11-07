@@ -200,7 +200,7 @@ h1, h2,
 
 .item-label {
   margin-top: 4px;
-  font-size: 7px;
+  font-size: 11px;
   line-height: 1.6;
   color: var(--cream);
   text-shadow: 2px 2px 0 var(--bg-deep);
@@ -473,6 +473,7 @@ h1, h2,
   .tool-btn { padding: 0.6rem 0.3rem; font-size: 9px; }
   .pixel-icon { width: 32px; height: 32px; }
   .item-bubble { font-size: 32px; }
+  .item-label { font-size: 9px; }
   .item-bubble .pixel-icon { width: 36px; height: 36px; }
   #overlay-start .pixel-panel { padding: 1.25rem; }
   #overlay-start p, #overlay-start li { font-size: 14px; line-height: 1.4; }
