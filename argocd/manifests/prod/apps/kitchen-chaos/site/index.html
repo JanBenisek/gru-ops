@@ -10,9 +10,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="h-screen overflow-hidden select-none">
+<body class="min-h-screen select-none md:h-screen md:overflow-hidden">
 
-  <div class="mx-auto flex h-full max-w-6xl flex-col gap-3 p-3 md:p-4">
+  <div class="mx-auto flex max-w-6xl flex-col gap-3 p-3 md:h-full md:p-4">
 
     <!-- HUD -->
     <header class="pixel-panel flex flex-wrap items-center justify-between gap-4 px-4 py-3">
@@ -20,7 +20,7 @@
         <h1 class="logo-text text-base md:text-xl">MISS COCO'S KITCHEN CHAOS</h1>
         <p id="shift-label" class="hud-sub mt-2">Ready for your shift</p>
       </div>
-      <div class="flex items-center gap-6 text-center">
+      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-center md:gap-6">
         <div>
           <p class="hud-label">Shift clock</p>
           <p id="shift-time" class="hud-value text-yellow">30</p>
@@ -49,7 +49,7 @@
     </header>
 
     <!-- Kitchen stage -->
-    <main id="stage" class="crt pixel-panel relative min-h-[320px] flex-1 overflow-hidden">
+    <main id="stage" class="crt pixel-panel relative h-[62vh] min-h-[320px] overflow-hidden md:h-auto md:flex-1">
       <div class="kitchen-wall absolute inset-x-0 top-0 h-[62%]"></div>
       <div class="window-glow absolute left-[4%] top-[8%] h-[28%] w-[16%]">
         <span class="pixel-star" style="top:18%; left:22%"></span>
@@ -96,7 +96,7 @@
       <!-- Finale -->
       <div id="finale" class="absolute inset-0 z-30 hidden flex-col items-center justify-center gap-5 bg-[#0d0221]/75 p-6 text-center">
         <h2 class="neon-banner px-4 py-4 text-lg md:text-2xl">🎂 HAPPY 30th BIRTHDAY! 🎂</h2>
-        <p id="finale-recap" class="pixel-panel max-w-2xl px-5 py-4 text-2xl text-cream"></p>
+        <p id="finale-recap" class="pixel-panel max-w-2xl px-5 py-4 text-lg text-cream md:text-2xl"></p>
         <button id="btn-restart-finale" class="tool-btn btn--scoop px-8">Restart</button>
       </div>
     </main>
@@ -115,8 +115,8 @@
   </div>
 
   <!-- Start overlay -->
-  <div id="overlay-start" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0d0221]/90 p-4">
-    <div class="pixel-panel max-w-lg p-8 text-center">
+  <div id="overlay-start" class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-[#0d0221]/90 p-4">
+    <div class="pixel-panel my-auto max-w-lg p-8 text-center">
       <h2 class="logo-text text-lg md:text-2xl">MISS COCO'S<br />KITCHEN CHAOS</h2>
       <p class="mt-5 text-2xl leading-snug text-cream">Keep Miss Coco fed, groomed, and un-poop-ed through four shifts of chaos.</p>
       <ul class="intro-list mt-5 space-y-2 text-left text-2xl text-cream">
@@ -131,8 +131,8 @@
   </div>
 
   <!-- Game over overlay -->
-  <div id="overlay-over" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-[#0d0221]/80 p-4">
-    <div class="pixel-panel max-w-lg p-8 text-center">
+  <div id="overlay-over" class="fixed inset-0 z-50 hidden flex items-center justify-center overflow-y-auto bg-[#0d0221]/80 p-4">
+    <div class="pixel-panel my-auto max-w-lg p-8 text-center">
       <h2 id="over-title" class="text-xl text-red md:text-2xl">GAME OVER</h2>
       <p id="over-reason" class="mt-5 text-2xl leading-snug text-cream"></p>
       <p id="over-stats" class="hud-sub mt-5"></p>
