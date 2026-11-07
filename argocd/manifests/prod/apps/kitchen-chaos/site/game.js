@@ -210,6 +210,7 @@ function enterLevel() {
   game.scoopClicks = 0;
   game.feedsSincePoop = 0;
   game.poopAnim = 0;
+  game.anxiety = 0; // each level starts calm
   const cfg = LEVELS[game.level];
   game.phase = "intro";
   game.introTime = INTRO_SECONDS;
