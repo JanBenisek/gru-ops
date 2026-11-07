@@ -1,9 +1,0 @@
-# Basic auth for coco-in-a-box. Credentials come from the sealed secret coco-in-a-box-basic-auth (key: users).
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  name: coco-in-a-box-basic-auth
-  namespace: games
-spec:
-  basicAuth:
-    secret: coco-in-a-box-basic-auth

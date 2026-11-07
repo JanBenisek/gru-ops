@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kitchen-chaos
+  namespace: games
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: kitchen-chaos.pengiuns.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kitchen-chaos
+            port:
+              number: 80
+  tls:
+  - hosts:
+      - kitchen-chaos.pengiuns.com
+    secretName: letsencrypt-wildcard-cert-pengiuns.com-production
