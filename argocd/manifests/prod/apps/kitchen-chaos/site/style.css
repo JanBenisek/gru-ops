@@ -453,4 +453,8 @@ h1, h2,
   .pixel-icon { width: 32px; height: 32px; }
   .item-bubble { font-size: 32px; }
   .item-bubble .pixel-icon { width: 36px; height: 36px; }
+  #overlay-start .pixel-panel { padding: 1.25rem; }
+  #overlay-start p, #overlay-start li { font-size: 14px; line-height: 1.4; }
+  #overlay-start .logo-text { font-size: 14px; }
+  #overlay-start #btn-start { margin-top: 1rem; font-size: 12px; }
 }
