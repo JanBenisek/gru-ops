@@ -445,6 +445,24 @@ h1, h2,
 /* ---------- Level banner pulse ---------- */
 #level-banner-title { text-shadow: 4px 4px 0 var(--bg-deep); }
 #over-title { text-shadow: 4px 4px 0 var(--bg-deep); }
+/* ---------- Screech pet scene: hand slaps down on every Space press ---------- */
+.pet-hand {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 72px;
+  height: 72px;
+  margin-left: -36px;
+}
+.pet-hand.pet-hit { animation: pet-hand 0.24s steps(2) 1; }
+.pet-cat.pet-hit { animation: pet-bounce 0.24s steps(2) 1; }
+@keyframes pet-hand {
+  50% { transform: translateY(36px); }
+}
+@keyframes pet-bounce {
+  50% { transform: translateY(6px) scaleY(0.94); }
+}
+
 
 /* ---------- Phone layout ---------- */
 @media (max-width: 640px) {
