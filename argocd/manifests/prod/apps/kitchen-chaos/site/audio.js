@@ -220,10 +220,44 @@ const Sound = (() => {
     o.stop(t + dur + 0.02);
   }
 
+  // Correct handling: quick rising two-note chime.
+  function ok() {
+    tone(660, 660, 0.12, "triangle", 0.22);
+    tone(990, 990, 0.18, "triangle", 0.22, 0.07);
+  }
+
+  // Miss: low sawtooth buzz, amplitude-wobbled at 28 Hz, fading out over 0.3s.
+  function brr() {
+    const t = ctx.currentTime;
+    const dur = 0.3;
+    const o = ctx.createOscillator();
+    o.type = "sawtooth";
+    o.frequency.setValueAtTime(120, t);
+    o.frequency.exponentialRampToValueAtTime(70, t + dur);
+    const trem = ctx.createGain();
+    trem.gain.value = 0.5;
+    const lfo = ctx.createOscillator();
+    lfo.type = "square";
+    lfo.frequency.value = 28;
+    const lfoAmt = ctx.createGain();
+    lfoAmt.gain.value = 0.5;
+    lfo.connect(lfoAmt);
+    lfoAmt.connect(trem.gain);
+    const env = ctx.createGain();
+    env.gain.setValueAtTime(0.2, t);
+    env.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(trem);
+    trem.connect(env);
+    env.connect(sfxBus);
+    o.start(t);
+    lfo.start(t);
+    o.stop(t + dur + 0.02);
+    lfo.stop(t + dur + 0.02);
+  }
+
   const sfx = {
-    miss() {
-      tone(190, 60, 0.25, "square", 0.16);
-    },
+    ok,
+    brr,
     scoop() {
       noise(ctx.currentTime, { type: "bandpass", freq: 900, q: 1, dur: 0.05, vol: 0.35, dest: sfxBus });
     },

@@ -210,8 +210,8 @@ function enterLevel() {
   game.introTime = INTRO_SECONDS;
   game.levelTime = LEVEL_SECONDS;
   game.spawnTimer = 0.8;
-  el.levelLabel.textContent = `Level ${game.level + 1}`;
-  el.bannerTitle.textContent = `LEVEL ${game.level + 1}`;
+  el.levelLabel.textContent = `Level ${game.level + 1}/${LEVELS.length}`;
+  el.bannerTitle.textContent = `LEVEL ${game.level + 1}/${LEVELS.length}`;
   el.bannerSub.textContent = cfg.sub;
   el.banner.classList.remove("hidden");
   el.banner.classList.add("flex");
@@ -234,7 +234,7 @@ function startFinale() {
   game.poopTimer = 0;
   game.scoopClicks = 0;
   for (const it of game.items) setKind(it, "cake");
-  el.levelLabel.textContent = `Level ${LEVELS.length} · Survived 🎉`;
+  el.levelLabel.textContent = `Level ${LEVELS.length}/${LEVELS.length} · Survived 🎉`;
   el.banner.classList.add("hidden");
   el.banner.classList.remove("flex");
   el.cat.dataset.party = "on";
@@ -320,6 +320,7 @@ function act(tool) {
   if (!target) {
     penalize(PENALTY.idle);
     pulse(btn, false);
+    Sound.sfx.brr();
     return;
   }
 
@@ -328,11 +329,13 @@ function act(tool) {
     if (tool === "feed") sayRandom(SAY.unwanted);
     penalize(PENALTY.wrong);
     pulse(btn, false);
+    Sound.sfx.brr();
     return;
   }
 
   removeItem(target, "pop-out");
   pulse(btn, true);
+  Sound.sfx.ok();
   if (tool === "feed") sayRandom(SAY.food);
   if (tool === "groom") sayRandom(SAY.groom);
 
@@ -405,7 +408,7 @@ function update(dt) {
     if (it.p > ZONE_END) {
       removeItem(it, "bad-out");
       penalize(PENALTY.miss);
-      Sound.sfx.miss();
+      Sound.sfx.brr();
       if (it.kind === "brush") sayRandom(SAY.stop);
     }
   }
