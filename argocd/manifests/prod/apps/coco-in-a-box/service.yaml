@@ -5,11 +5,6 @@ metadata:
   namespace: games
   labels:
     app.kubernetes.io/name: coco-in-a-box
-  annotations:
-    external-dns.alpha.kubernetes.io/ttl: "300"
-    external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
-    external-dns.alpha.kubernetes.io/hostname: coco-in-a-box.pengiuns.com
-    external-dns.alpha.kubernetes.io/target: 192.168.178.100
 spec:
   selector:
     app: coco-in-a-box
