@@ -245,7 +245,7 @@ function gameOver(reason) {
   el.overTitle.textContent = reason === "fog" ? "LITTER BOX OVERFLOW" : "GAME OVER";
   el.overReason.textContent =
     reason === "fog"
-      ? "The poop sat too long. Green fog everywhere. Miss Coco is unimpressed."
+      ? "You let the poop sit. The kitchen now smells like a gym sock that lost a fight. Miss Coco is not impressed."
       : "Anxiety hit 100%. Miss Coco has filed a formal complaint.";
   el.overStats.textContent = `Treats fed: ${game.treats} · Poops scooped: ${game.scooped} · Reached Shift ${game.shift + 1}`;
   el.overOver.classList.remove("hidden");
@@ -266,7 +266,6 @@ function act(tool) {
 
   if (!target) {
     penalize(PENALTY.idle);
-    Sound.sfx.wrong();
     pulse(btn, false);
     return;
   }
@@ -275,14 +274,12 @@ function act(tool) {
     removeItem(target, "bad-out");
     if (tool === "feed") sayRandom(SAY.unwanted);
     penalize(PENALTY.wrong);
-    Sound.sfx.wrong();
     pulse(btn, false);
     return;
   }
 
   removeItem(target, "pop-out");
   pulse(btn, true);
-  Sound.sfx.success();
   if (tool === "feed") sayRandom(SAY.food);
   if (tool === "groom") sayRandom(SAY.groom);
 
