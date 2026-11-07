@@ -76,6 +76,8 @@ const el = {
   overScreech: $("overlay-screech"),
   screechFill: $("screech-fill"),
   screechTime: $("screech-time"),
+  petHand: $("pet-hand"),
+  petCat: $("pet-cat-svg"),
   overTitle: $("over-title"),
   overReason: $("over-reason"),
   overStats: $("over-stats"),
@@ -138,6 +140,14 @@ function shake() {
   el.stage.classList.remove("shake");
   void el.stage.offsetWidth; // restart animation
   el.stage.classList.add("shake");
+}
+
+function petAnimate() {
+  for (const node of [el.petHand, el.petCat]) {
+    node.classList.remove("pet-hit");
+    void node.offsetWidth; // restart animation
+    node.classList.add("pet-hit");
+  }
 }
 
 function setKind(item, kind) {
@@ -300,6 +310,7 @@ function updateScreech(dt) {
 }
 
 function pressScreech() {
+  petAnimate();
   game.screech.presses++;
   if (game.screech.presses >= SCREECH_PRESSES) {
     game.anxiety = 0; // finishing the pet resets anxiety
@@ -750,6 +761,7 @@ function buildCat() {
     `<g class="face-hungry">${toRects(hungry)}</g>` +
     `<g class="face-pooping">${toRects(pooping)}</g>` +
     `<g class="party-hat">${toRects(merge(hatOutline, hat))}</g>`;
+  $("pet-cat-svg").innerHTML = $("cat-svg").innerHTML;
 }
 buildCat();
 
@@ -800,6 +812,11 @@ const ICON_DRAW = {
     iconPaint(g, (x, y) => inBox(x, y, 2, 2, 13, 7), ICON_COLORS.fill);
     iconPaint(g, (x, y) => y > 5 && y < 7 && Math.floor(x) % 2 === 1 && inBox(x, y, 2, 2, 13, 7), ICON_COLORS.outline);
     iconPaint(g, (x, y) => inBox(x, y, 6, 8, 9, 14), ICON_COLORS.accent);
+  },
+  hand(g) { // open palm
+    iconPaint(g, (x, y) => inBox(x, y, 3, 7, 12, 13), ICON_COLORS.paleSalmon);
+    iconPaint(g, (x, y) => inBox(x, y, 3, 3, 5, 8) || inBox(x, y, 7, 1, 9, 8) || inBox(x, y, 11, 3, 13, 8), ICON_COLORS.paleSalmon);
+    iconPaint(g, (x, y) => inBox(x, y, 1, 7, 3, 11), ICON_COLORS.paleSalmon);
   },
   decline(g) { // trash can
     iconPaint(g, (x, y) => inBox(x, y, 2, 2, 13, 3.9), ICON_COLORS.fill);
