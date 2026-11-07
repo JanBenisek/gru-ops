@@ -178,16 +178,6 @@ const Sound = (() => {
     noise(t, { type: "bandpass", freq: 1400, q: 1.2, dur: 0.16, vol: 0.5, dest: musicBus });
   }
 
-  // Dip the music bus briefly so a meow reads over the kick and bass.
-  function duckMusic() {
-    if (!musicBus) return;
-    const g = musicBus.gain;
-    const now = ctx.currentTime;
-    g.cancelScheduledValues(now);
-    g.setTargetAtTime(MUSIC_LEVEL * 0.35, now, 0.02);
-    g.setTargetAtTime(MUSIC_LEVEL, now + 0.25, 0.25);
-  }
-
   // Birthday lead: detuned square pair through a lowpass.
   function lead(t, midi, dur) {
     const f = 440 * Math.pow(2, (midi - 69) / 12);
@@ -230,36 +220,9 @@ const Sound = (() => {
     o.stop(t + dur + 0.02);
   }
 
-  // Cat voice: real recordings (CC0, Joseph Sardin via BigSoundBank), loaded as HTML audio.
-  // A clip that has not finished loading stays silent: there is no synth fallback.
-  function loadClip(src) {
-    const el = new Audio(src);
-    el.preload = "auto";
-    const clip = { el, ready: false };
-    el.addEventListener("canplaythrough", () => { clip.ready = true; }, { once: true });
-    el.addEventListener("error", () => { clip.ready = false; });
-    return clip;
-  }
-  const PURR_CLIP = loadClip("sounds/purr.wav");
-  const MEOW_CLIP = loadClip("sounds/meow.wav");
-
-  function playClip(clip, volume) {
-    if (!clip.ready) return;
-    clip.el.currentTime = 0;
-    clip.el.volume = volume;
-    clip.el.play().catch(() => {});
-  }
-
   const sfx = {
-    success() {
-      playClip(PURR_CLIP, 0.8);
-    },
     miss() {
       tone(190, 60, 0.25, "square", 0.16);
-    },
-    wrong() {
-      duckMusic();
-      playClip(MEOW_CLIP, 1);
     },
     scoop() {
       noise(ctx.currentTime, { type: "bandpass", freq: 900, q: 1, dur: 0.05, vol: 0.35, dest: sfxBus });
