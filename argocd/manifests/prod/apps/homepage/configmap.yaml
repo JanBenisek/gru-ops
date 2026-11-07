@@ -135,6 +135,18 @@ data:
             description: I am so funny
             namespace: funnaiest
             app: funnaiest
+        - Coco in a Box:
+            icon: mdi-coffee
+            href: https://coco-in-a-box.pengiuns.com
+            description: Miss Coco in a box
+            namespace: games
+            app: coco-in-a-box
+        - Kitchen Chaos:
+            icon: mdi-chef-hat
+            href: https://kitchen-chaos.pengiuns.com
+            description: Kitchen chaos
+            namespace: games
+            app: kitchen-chaos
         - Nommer:
             icon: mdi-baby-bottle-outline
             href: https://nommer.pengiuns.com

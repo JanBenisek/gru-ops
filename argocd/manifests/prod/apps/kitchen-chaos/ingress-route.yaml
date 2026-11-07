@@ -11,8 +11,6 @@ spec:
   routes:
     - match: Host(`kitchen-chaos.pengiuns.com`)
       kind: Rule
-      middlewares:
-        - name: kitchen-chaos-basic-auth
       services:
         - name: kitchen-chaos
           port: 80
