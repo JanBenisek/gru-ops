@@ -16,7 +16,7 @@ const SCREECH_FIRST_MIN = 8; // first pop-up of each round lands in this window 
 const SCREECH_FIRST_MAX = 20;
 const SCREECH_MIN = 25; // seconds of play between later pop-ups
 const SCREECH_MAX = 40;
-const SCREECH_WINDOW = 8; // seconds to pet before she counts it as ignored
+const SCREECH_WINDOW = 4; // seconds to pet before she counts it as ignored
 const SCREECH_PRESSES = 10; // Space presses to finish petting (10% each)
 
 const LEVELS = [
@@ -35,9 +35,9 @@ const ITEMS = {
   lego: { icon: "lego", label: "Lego", tool: "decline", weight: 10 },
 };
 const SAY = {
-  food: ["Papa Belt", "omnomnom", "gib", "smakota"], // fed
+  food: ["Papa Belt", "omnomnom", "gib", "smakota", "davaj davaj"], // fed
   unwanted: ["WTF", "eugh", "do you even love me"], // food declined or missed
-  groom: ["good servant", "continue you peasant"], // groomed
+  groom: ["good servant", "continue you peasant", "davaj davaj"], // groomed
   stop: ["why did you stop"], // brush missed
 };
 const SPEECH_MS = 2400;
