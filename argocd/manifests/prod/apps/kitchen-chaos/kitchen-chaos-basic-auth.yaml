@@ -1,0 +1,19 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "kitchen-chaos-basic-auth",
+    "namespace": "games"
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "kitchen-chaos-basic-auth",
+        "namespace": "games"
+      }
+    },
+    "encryptedData": {
+      "users": "AgCc57fDn0al89RdOoKTdPpgDwl7WjIBaTTN30Yl0HiZzP3sEb/G8dK4v0jBG5VPzIbNPDIMpfz1ijmpYHPblMn+FYWnwsE3kbPLvTZ8Q5UNUTU8hKHxNP3VoV7hq63j1B1YMt7fhF4DqaocuUs1/nYviCpx+n3WG1OwH9DFh6EoVSa4x8xL1Vly8BNrIM0yFi5f4dM6BQ5uTRkZ8VYEupJGjGixN5whpRzNdBs3MjnQA+6oEs2G+qV+KwTCmLFKcwfHZ0jszBlPxbpUwgQVO8hKOp4yK55jMahWsjmYcvTQjfhZa/anLdrlbNijO+hKdMI5zaRFWLSpM9H8WxdubrXDn5l2pbmiHcXWCSi6NjW58qJmuHj96ryC30YTehdjOuloT6xzk25gyZB9w4omcUcsn7+1lY9+2aGGCG17gYhXsJxljoIxB4jBmhbpzOZmL/cRpQDFq6nKDKXYTynl9zdlq//AHuRdrNkGur30IbG2B7AYwdUY5EEDg03oFZE5QU4xH7ZwhJj3vt1v57gjux+H9HQ9UAW/swK0yHZR7Edx2yrY/SVG7wZ8mVkYA2qIeh7Kishxdkp3KZYU6YFeLif+srxFiRu7Oc87IlujRA0dHDY13R0XLjBrjUWm7MNSQN3VwmtgzJhApkI5BVsQlMxiiTMAzCcvENsD6zQ4RKgvGaUk73bDEChVLvQYoCpxFZneZt9DF/7B95v06u2qPUX7NYSH44rnT4BDuByc/JNFDMjAt6AD791a6Dryoxxn45cSgoDHSD2fLFPyKwVLEYIbig=="
+    }
+  }
+}

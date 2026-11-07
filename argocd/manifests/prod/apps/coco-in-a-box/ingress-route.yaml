@@ -11,6 +11,8 @@ spec:
   routes:
     - match: Host(`coco-in-a-box.pengiuns.com`)
       kind: Rule
+      middlewares:
+        - name: coco-in-a-box-basic-auth
       services:
         - name: coco-in-a-box
           port: 80
