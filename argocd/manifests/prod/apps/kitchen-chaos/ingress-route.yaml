@@ -1,0 +1,18 @@
+# Replaces ingress.yaml. Cloudflare Tunnel sends to traefik:80, so use the web entrypoint.
+# TLS terminates at Cloudflare.
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kitchen-chaos
+  namespace: games
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`kitchen-chaos.pengiuns.com`)
+      kind: Rule
+      middlewares:
+        - name: kitchen-chaos-basic-auth
+      services:
+        - name: kitchen-chaos
+          port: 80

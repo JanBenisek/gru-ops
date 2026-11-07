@@ -41,6 +41,14 @@ cloudflare:
     - hostname: otterwiki.pengiuns.com
       service: http://traefik.traefik.svc.cluster.local:80
 
+    # Kitchen Chaos (protected via Traefik basicAuth)
+    - hostname: kitchen-chaos.pengiuns.com
+      service: http://traefik.traefik.svc.cluster.local:80
+
+    # Coco-in-a-box (protected via Traefik basicAuth)
+    - hostname: coco-in-a-box.pengiuns.com
+      service: http://traefik.traefik.svc.cluster.local:80
+
 
 image:
   repository: cloudflare/cloudflared

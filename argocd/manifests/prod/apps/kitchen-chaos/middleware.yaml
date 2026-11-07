@@ -1,0 +1,9 @@
+# Basic auth for kitchen-chaos. Credentials come from the sealed secret kitchen-chaos-basic-auth (key: users).
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: kitchen-chaos-basic-auth
+  namespace: games
+spec:
+  basicAuth:
+    secret: kitchen-chaos-basic-auth

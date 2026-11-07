@@ -1,0 +1,19 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "coco-in-a-box-basic-auth",
+    "namespace": "games"
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "coco-in-a-box-basic-auth",
+        "namespace": "games"
+      }
+    },
+    "encryptedData": {
+      "users": "AgByRX/wSxEU4k6y6qB8Tl8/f2wP5vvfhvuQW05w7sRYIwh7h+4zTH1P7EzlKeT+vRwlmcX9/wvZPYFvJAyqwKgfJeI520c8pN5PclVWtokEHvmn/ZGNE1DzCS0cjivu7PlsvTakJVDrTQIo2P8teSj9X6ep18kaI+EKVIs4xzAPY5eM531Ult7nlPt2Hg4CrwYCMuo8QnF1fGTeAWefko7AeSdzLmevpw32OotxwwdBML1ueejUphkYquSJ83voLKDRt5sA25iMwolY7EzNSXyfImpD1kPzG9LnJEd4cBORZhuXJfKz+qnEvw7eg3+1CUFitCIl3VPWP6kUy6PLeifY3CuntVOq4fZhU4YMclEsWoAGaui7eRASjtsD9QupKhW0hj+EPiaOU36ZV9bQINSiCNmxFxaQW98PUHlLgPNekVcwZGDCUBtWNmgwUBkYnGW1Bc15vZkADcoE9t2RcKejXeB5bevaggTLWSYJkdp8tZbVsS+eM0L69g+u+q843xn1vZwSVDqrBUfwCxZAFhXiNUFj5sPUe/gj3Zf7p1FHwJOoKkV+bOKQx/m/qEBCOR0apS+Zy+giNaZqzs2UP1c2AiR3USksx2UYoFFFJnAD2pAfDBdKhx6TT711LU7fC0vB60Gloe13TWvAYfas3EQks8YRtjIUjaPm/h3Z/OYHD4fB704N2RLF2qkH1clgsYXn6hK+6W5iYJFjUwmfrOtdKc7qnZ1OwSf8escqETPcguE/FFyilozTxCta+HcWPKSKrwcz7YG8wKkud8k/lSMrUg=="
+    }
+  }
+}
