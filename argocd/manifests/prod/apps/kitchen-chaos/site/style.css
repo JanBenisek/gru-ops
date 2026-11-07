@@ -442,3 +442,15 @@ h1, h2,
 /* ---------- Shift banner pulse ---------- */
 #shift-banner-title { text-shadow: 4px 4px 0 var(--bg-deep); }
 #over-title { text-shadow: 4px 4px 0 var(--bg-deep); }
+
+/* ---------- Phone layout ---------- */
+@media (max-width: 640px) {
+  body { font-size: 20px; }
+  .hud-label { font-size: 14px; }
+  .hud-value { font-size: 16px; }
+  .hud-sub { font-size: 16px; }
+  .tool-btn { padding: 0.6rem 0.3rem; font-size: 9px; }
+  .pixel-icon { width: 32px; height: 32px; }
+  .item-bubble { font-size: 32px; }
+  .item-bubble .pixel-icon { width: 36px; height: 36px; }
+}
