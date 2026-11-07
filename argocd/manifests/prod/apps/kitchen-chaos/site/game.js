@@ -205,6 +205,11 @@ function startGame() {
 
 function enterLevel() {
   clearBelt();
+  game.pendingPoops = 0; // each level starts with an empty litter box
+  game.poopTimer = 0;
+  game.scoopClicks = 0;
+  game.feedsSincePoop = 0;
+  game.poopAnim = 0;
   const cfg = LEVELS[game.level];
   game.phase = "intro";
   game.introTime = INTRO_SECONDS;
@@ -212,7 +217,7 @@ function enterLevel() {
   game.spawnTimer = 0.8;
   el.levelLabel.textContent = `Level ${game.level + 1}/${LEVELS.length}`;
   el.bannerTitle.textContent = `LEVEL ${game.level + 1}/${LEVELS.length}`;
-  el.bannerSub.textContent = cfg.sub;
+  el.bannerSub.textContent = `${cfg.sub} · ${LEVEL_SECONDS}s`;
   el.banner.classList.remove("hidden");
   el.banner.classList.add("flex");
   el.belt.style.setProperty("--belt-dur", `${(0.8 / cfg.belt).toFixed(2)}s`);
