@@ -12,9 +12,11 @@ const SCOOP_CLICKS = 5;
 const POOP_ANIM = 1.4;           // seconds the cat holds the 🙀 pose
 const ANXIETY_DECAY = 2;         // per second
 const PENALTY = { miss: 10, wrong: 15, idle: 6, screech: 15 };
-const SCREECH_MIN = 25; // seconds of play between screech pop-ups
+const SCREECH_FIRST_MIN = 8; // first pop-up of each round lands in this window (must stay under SHIFT_SECONDS)
+const SCREECH_FIRST_MAX = 20;
+const SCREECH_MIN = 25; // seconds of play between later pop-ups
 const SCREECH_MAX = 40;
-const SCREECH_WINDOW = 5; // seconds to pet before she counts it as ignored
+const SCREECH_WINDOW = 8; // seconds to pet before she counts it as ignored
 const SCREECH_PRESSES = 10; // Space presses to finish petting (10% each)
 
 const SHIFTS = [
@@ -294,6 +296,7 @@ function updateScreech(dt) {
 function pressScreech() {
   game.screech.presses++;
   if (game.screech.presses >= SCREECH_PRESSES) {
+    game.anxiety = 0; // finishing the pet resets anxiety
     closeScreech();
     sayRandom(SAY.groom);
     return;
@@ -364,7 +367,7 @@ function update(dt) {
     game.introTime -= dt;
     if (game.introTime <= 0) {
       game.phase = "playing";
-      game.screechTimer = rand(SCREECH_MIN, SCREECH_MAX);
+      game.screechTimer = rand(SCREECH_FIRST_MIN, SCREECH_FIRST_MAX);
       el.banner.classList.add("hidden");
       el.banner.classList.remove("flex");
     }
