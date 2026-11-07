@@ -20,10 +20,10 @@ const SCREECH_WINDOW = 8; // seconds to pet before she counts it as ignored
 const SCREECH_PRESSES = 10; // Space presses to finish petting (10% each)
 
 const LEVELS = [
-  { belt: 1.0, bpm: 128, spawn: [1.5, 2.2], feedsPerPoop: 3, sub: "Belt 1.0× · 128 BPM" },
-  { belt: 1.5, bpm: 142, spawn: [1.1, 1.6], feedsPerPoop: 3, sub: "Belt 1.5× · 142 BPM" },
-  { belt: 2.0, bpm: 160, spawn: [0.9, 1.3], feedsPerPoop: 2, sub: "Belt 2.0× · 160 BPM · Poop every 2 feeds" },
-  { belt: 2.5, bpm: 176, spawn: [0.7, 1.0], feedsPerPoop: 2, sub: "Belt 2.5× · 176 BPM · Poop every 2 feeds" },
+  { belt: 1.0, bpm: 128, spawn: [1.5, 2.2], feedsPerPoop: 3, sub: "Belt 1.0×" },
+  { belt: 1.5, bpm: 142, spawn: [1.1, 1.6], feedsPerPoop: 3, sub: "Belt 1.5×" },
+  { belt: 2.0, bpm: 160, spawn: [0.9, 1.3], feedsPerPoop: 2, sub: "Belt 2.0× · Poop every 2 feeds" },
+  { belt: 2.5, bpm: 176, spawn: [0.7, 1.0], feedsPerPoop: 2, sub: "Belt 2.5× · Poop every 2 feeds" },
 ];
 
 const ITEMS = {
