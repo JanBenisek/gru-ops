@@ -50,6 +50,7 @@ const el = {
   levelTime: $("level-time"),
   treats: $("stat-treats"),
   poops: $("stat-poops"),
+  missed: $("stat-missed"),
   anxBar: $("anxiety-bar"),
   anxText: $("anxiety-text"),
   musicBtn: $("btn-music"),
@@ -100,6 +101,8 @@ function newGame() {
     feedsSincePoop: 0,
     treats: 0,
     scooped: 0,
+    spawned: 0,
+    missed: 0,
     pendingPoops: 0,
     poopTimer: 0,
     scoopClicks: 0,
@@ -263,7 +266,7 @@ function gameOver(reason) {
     reason === "fog"
       ? "You let the poop sit. The kitchen now smells like a gym sock that lost a fight. Miss Coco is not impressed."
       : "Anxiety hit 100%. Miss Coco has filed a formal complaint.";
-  el.overStats.textContent = `Treats fed: ${game.treats} · Poops scooped: ${game.scooped} · Reached Level ${game.level + 1}`;
+  el.overStats.textContent = `Treats fed: ${game.treats} · Poops scooped: ${game.scooped} · Missed: ${game.missed}/${game.spawned} · Reached Level ${game.level + 1}`;
   el.overOver.classList.remove("hidden");
 }
 
@@ -412,6 +415,7 @@ function update(dt) {
   for (const it of game.items.slice()) {
     if (it.p > ZONE_END) {
       removeItem(it, "bad-out");
+      game.missed++;
       penalize(PENALTY.miss);
       Sound.sfx.brr();
       if (it.kind === "brush") sayRandom(SAY.stop);
@@ -421,6 +425,7 @@ function update(dt) {
   game.spawnTimer -= dt;
   if (game.spawnTimer <= 0 && game.items.every((i) => i.p >= SPAWN_GUARD)) {
     spawnItem();
+    game.spawned++;
     game.spawnTimer = rand(cfg.spawn[0], cfg.spawn[1]);
   }
 
@@ -456,6 +461,7 @@ function render() {
   el.levelTime.textContent = Math.max(0, Math.ceil(game.levelTime));
   el.treats.textContent = game.treats;
   el.poops.textContent = game.scooped;
+  el.missed.textContent = `${game.missed}/${game.spawned}`;
 
   const a = game.anxiety;
   el.anxBar.style.width = `${a}%`;
