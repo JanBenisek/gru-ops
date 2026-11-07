@@ -28,6 +28,8 @@ const Sound = (() => {
   let sfxBus = null;
   let noiseBuf = null;
   let musicBus = null;
+  let musicOn = true;
+  let musicGate = null; // persistent gain between music buses and master; toggled by setMusicOn
   let leadBus = null;
 
   let timerId = null;
@@ -66,6 +68,10 @@ const Sound = (() => {
     master.connect(comp);
     comp.connect(ctx.destination);
 
+    musicGate = ctx.createGain();
+    musicGate.gain.value = musicOn ? 1 : 0;
+    musicGate.connect(master);
+
     sfxBus = ctx.createGain();
     sfxBus.gain.value = 0.7;
     sfxBus.connect(master);
@@ -81,7 +87,7 @@ const Sound = (() => {
   function newMusicBus() {
     musicBus = ctx.createGain();
     musicBus.gain.value = MUSIC_LEVEL;
-    musicBus.connect(master);
+    musicBus.connect(musicGate);
 
     leadBus = ctx.createGain();
     leadBus.gain.value = 0;
@@ -327,5 +333,11 @@ const Sound = (() => {
     tone(900, 35, 0.7, "sawtooth", 0.22);
   }
 
-  return { start, stop, setBpm, morphToBirthday, recordScratch, sfx };
+  // Music on/off: gates only the music bus, so SFX and the scheduler are unaffected.
+  function setMusicOn(on) {
+    musicOn = on;
+    if (musicGate) musicGate.gain.setTargetAtTime(on ? 1 : 0, ctx.currentTime, 0.02);
+  }
+
+  return { start, stop, setBpm, morphToBirthday, recordScratch, sfx, setMusicOn };
 })();

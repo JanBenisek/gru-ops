@@ -92,7 +92,6 @@ h1, h2,
   height: 100%;
   background-color: var(--green);
   background-image: repeating-linear-gradient(90deg, transparent 0 10px, rgba(0, 0, 0, 0.45) 10px 14px);
-  transition: width 0.2s steps(4);
 }
 
 /* ---------- CRT scanlines over the stage ---------- */
