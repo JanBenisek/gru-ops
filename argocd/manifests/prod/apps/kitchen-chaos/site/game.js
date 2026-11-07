@@ -5,25 +5,25 @@ const ZONE_START = 0.8;          // target zone spans this fraction of the belt
 const ZONE_END = 0.97;
 const BASE_SPEED = 0.12;         // belt lengths per second at 1.0x
 const SPAWN_GUARD = 0.2;         // no new item until the last one is this far along
-const SHIFT_SECONDS = 30;
+const LEVEL_SECONDS = 30;
 const INTRO_SECONDS = 2.2;
 const POOP_TIMER = 3;            // seconds to finish scooping before the fog
 const SCOOP_CLICKS = 5;
 const POOP_ANIM = 1.4;           // seconds the cat holds the 🙀 pose
 const ANXIETY_DECAY = 2;         // per second
 const PENALTY = { miss: 10, wrong: 15, idle: 6, screech: 15 };
-const SCREECH_FIRST_MIN = 8; // first pop-up of each round lands in this window (must stay under SHIFT_SECONDS)
+const SCREECH_FIRST_MIN = 8; // first pop-up of each round lands in this window (must stay under LEVEL_SECONDS)
 const SCREECH_FIRST_MAX = 20;
 const SCREECH_MIN = 25; // seconds of play between later pop-ups
 const SCREECH_MAX = 40;
 const SCREECH_WINDOW = 8; // seconds to pet before she counts it as ignored
 const SCREECH_PRESSES = 10; // Space presses to finish petting (10% each)
 
-const SHIFTS = [
-  { title: "The 10s", belt: 1.0, bpm: 128, spawn: [1.5, 2.2], feedsPerPoop: 3, sub: "Belt 1.0× · 128 BPM" },
-  { title: "The 20s", belt: 1.5, bpm: 142, spawn: [1.1, 1.6], feedsPerPoop: 3, sub: "Belt 1.5× · 142 BPM" },
-  { title: "The 30s", belt: 2.0, bpm: 160, spawn: [0.9, 1.3], feedsPerPoop: 2, sub: "Belt 2.0× · 160 BPM · Poop every 2 feeds" },
-  { title: "The 40s", belt: 2.5, bpm: 176, spawn: [0.7, 1.0], feedsPerPoop: 2, sub: "Belt 2.5× · 176 BPM · Poop every 2 feeds" },
+const LEVELS = [
+  { belt: 1.0, bpm: 128, spawn: [1.5, 2.2], feedsPerPoop: 3, sub: "Belt 1.0× · 128 BPM" },
+  { belt: 1.5, bpm: 142, spawn: [1.1, 1.6], feedsPerPoop: 3, sub: "Belt 1.5× · 142 BPM" },
+  { belt: 2.0, bpm: 160, spawn: [0.9, 1.3], feedsPerPoop: 2, sub: "Belt 2.0× · 160 BPM · Poop every 2 feeds" },
+  { belt: 2.5, bpm: 176, spawn: [0.7, 1.0], feedsPerPoop: 2, sub: "Belt 2.5× · 176 BPM · Poop every 2 feeds" },
 ];
 
 const ITEMS = {
@@ -46,8 +46,8 @@ const CAKE = { icon: "cake", label: "Cake" };
 // ---- DOM --------------------------------------------------------------------
 const $ = (id) => document.getElementById(id);
 const el = {
-  shiftLabel: $("shift-label"),
-  shiftTime: $("shift-time"),
+  levelLabel: $("level-label"),
+  levelTime: $("level-time"),
   treats: $("stat-treats"),
   poops: $("stat-poops"),
   anxBar: $("anxiety-bar"),
@@ -65,9 +65,9 @@ const el = {
   poopPile: $("poop-pile"),
   scoopBar: $("scoop-bar"),
   scoopText: $("scoop-text"),
-  banner: $("shift-banner"),
-  bannerTitle: $("shift-banner-title"),
-  bannerSub: $("shift-banner-sub"),
+  banner: $("level-banner"),
+  bannerTitle: $("level-banner-title"),
+  bannerSub: $("level-banner-sub"),
   finale: $("finale"),
   recap: $("finale-recap"),
   fog: $("fog"),
@@ -90,8 +90,8 @@ el.zone.style.width = `${(ZONE_END - ZONE_START) * 100}%`;
 function newGame() {
   return {
     phase: "idle", // idle | intro | playing | finale | over
-    shift: 0,
-    shiftTime: SHIFT_SECONDS,
+    level: 0,
+    levelTime: LEVEL_SECONDS,
     introTime: 0,
     items: [],
     nextId: 1,
@@ -199,19 +199,19 @@ function startGame() {
   el.fog.classList.remove("on");
   el.cat.dataset.party = "off";
   stopConfetti();
-  Sound.start(SHIFTS[0].bpm); // user gesture (button click) unlocks audio
-  enterShift();
+  Sound.start(LEVELS[0].bpm); // user gesture (button click) unlocks audio
+  enterLevel();
 }
 
-function enterShift() {
+function enterLevel() {
   clearBelt();
-  const cfg = SHIFTS[game.shift];
+  const cfg = LEVELS[game.level];
   game.phase = "intro";
   game.introTime = INTRO_SECONDS;
-  game.shiftTime = SHIFT_SECONDS;
+  game.levelTime = LEVEL_SECONDS;
   game.spawnTimer = 0.8;
-  el.shiftLabel.textContent = `Shift ${game.shift + 1} · ${cfg.title}`;
-  el.bannerTitle.textContent = `SHIFT ${game.shift + 1} · ${cfg.title.toUpperCase()}`;
+  el.levelLabel.textContent = `Level ${game.level + 1}/${LEVELS.length}`;
+  el.bannerTitle.textContent = `LEVEL ${game.level + 1}/${LEVELS.length}`;
   el.bannerSub.textContent = cfg.sub;
   el.banner.classList.remove("hidden");
   el.banner.classList.add("flex");
@@ -219,10 +219,10 @@ function enterShift() {
   Sound.setBpm(cfg.bpm);
 }
 
-function endShift() {
-  if (game.shift < SHIFTS.length - 1) {
-    game.shift++;
-    enterShift();
+function endLevel() {
+  if (game.level < LEVELS.length - 1) {
+    game.level++;
+    enterLevel();
   } else {
     startFinale();
   }
@@ -234,7 +234,7 @@ function startFinale() {
   game.poopTimer = 0;
   game.scoopClicks = 0;
   for (const it of game.items) setKind(it, "cake");
-  el.shiftLabel.textContent = `Shift ${SHIFTS.length} · Survived 🎉`;
+  el.levelLabel.textContent = `Level ${LEVELS.length}/${LEVELS.length} · Survived 🎉`;
   el.banner.classList.add("hidden");
   el.banner.classList.remove("flex");
   el.cat.dataset.party = "on";
@@ -258,7 +258,7 @@ function gameOver(reason) {
     reason === "fog"
       ? "You let the poop sit. The kitchen now smells like a gym sock that lost a fight. Miss Coco is not impressed."
       : "Anxiety hit 100%. Miss Coco has filed a formal complaint.";
-  el.overStats.textContent = `Treats fed: ${game.treats} · Poops scooped: ${game.scooped} · Reached Shift ${game.shift + 1}`;
+  el.overStats.textContent = `Treats fed: ${game.treats} · Poops scooped: ${game.scooped} · Reached Level ${game.level + 1}`;
   el.overOver.classList.remove("hidden");
 }
 
@@ -320,6 +320,7 @@ function act(tool) {
   if (!target) {
     penalize(PENALTY.idle);
     pulse(btn, false);
+    Sound.sfx.brr();
     return;
   }
 
@@ -328,18 +329,20 @@ function act(tool) {
     if (tool === "feed") sayRandom(SAY.unwanted);
     penalize(PENALTY.wrong);
     pulse(btn, false);
+    Sound.sfx.brr();
     return;
   }
 
   removeItem(target, "pop-out");
   pulse(btn, true);
+  Sound.sfx.ok();
   if (tool === "feed") sayRandom(SAY.food);
   if (tool === "groom") sayRandom(SAY.groom);
 
   if (tool === "feed") {
     game.treats++;
     game.feedsSincePoop++;
-    if (game.feedsSincePoop >= SHIFTS[game.shift].feedsPerPoop) {
+    if (game.feedsSincePoop >= LEVELS[game.level].feedsPerPoop) {
       game.feedsSincePoop = 0;
       dropPoop();
     }
@@ -376,7 +379,7 @@ function update(dt) {
 
   if (game.phase === "finale") {
     // Cakes drift off the belt; nothing else happens.
-    const speed = BASE_SPEED * SHIFTS[SHIFTS.length - 1].belt;
+    const speed = BASE_SPEED * LEVELS[LEVELS.length - 1].belt;
     for (const it of game.items) it.p += speed * dt;
     for (const it of game.items.slice()) {
       if (it.p > 1.08) removeItem(it, null);
@@ -395,8 +398,8 @@ function update(dt) {
     return;
   }
 
-  const cfg = SHIFTS[game.shift];
-  game.shiftTime -= dt;
+  const cfg = LEVELS[game.level];
+  game.levelTime -= dt;
 
   const speed = BASE_SPEED * cfg.belt;
   for (const it of game.items) it.p += speed * dt;
@@ -405,7 +408,7 @@ function update(dt) {
     if (it.p > ZONE_END) {
       removeItem(it, "bad-out");
       penalize(PENALTY.miss);
-      Sound.sfx.miss();
+      Sound.sfx.brr();
       if (it.kind === "brush") sayRandom(SAY.stop);
     }
   }
@@ -430,7 +433,7 @@ function update(dt) {
     }
   }
 
-  if (game.shiftTime <= 0) endShift();
+  if (game.levelTime <= 0) endLevel();
 }
 
 // ---- Rendering --------------------------------------------------------------
@@ -445,7 +448,7 @@ function render() {
   else if (game.phase === "playing" && zoneItem && isFood(zoneItem.kind)) mood = "hungry";
   el.cat.dataset.mood = mood;
 
-  el.shiftTime.textContent = Math.max(0, Math.ceil(game.shiftTime));
+  el.levelTime.textContent = Math.max(0, Math.ceil(game.levelTime));
   el.treats.textContent = game.treats;
   el.poops.textContent = game.scooped;
 

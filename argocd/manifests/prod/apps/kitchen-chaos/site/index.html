@@ -18,12 +18,12 @@
     <header class="pixel-panel flex flex-wrap items-center justify-between gap-4 px-4 py-3">
       <div>
         <h1 class="logo-text text-base md:text-xl">MISS COCO'S KITCHEN CHAOS</h1>
-        <p id="shift-label" class="hud-sub mt-2">Ready for your shift</p>
+        <p id="level-label" class="hud-sub mt-2">Ready for your level</p>
       </div>
       <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-center md:gap-6">
         <div>
-          <p class="hud-label">Shift clock</p>
-          <p id="shift-time" class="hud-value text-yellow">30</p>
+          <p class="hud-label">Level clock</p>
+          <p id="level-time" class="hud-value text-yellow">30</p>
         </div>
         <div>
           <p class="hud-label">Treats fed</p>
@@ -85,11 +85,11 @@
         </div>
       </div>
 
-      <!-- Shift banner -->
-      <div id="shift-banner" class="absolute inset-0 z-30 hidden items-center justify-center bg-[#0d0221]/70">
+      <!-- Level banner -->
+      <div id="level-banner" class="absolute inset-0 z-30 hidden items-center justify-center bg-[#0d0221]/70">
         <div class="pixel-panel px-8 py-6 text-center">
-          <p id="shift-banner-title" class="text-2xl text-cyan md:text-3xl">SHIFT 1</p>
-          <p id="shift-banner-sub" class="hud-sub mt-4"></p>
+          <p id="level-banner-title" class="text-2xl text-cyan md:text-3xl">LEVEL 1</p>
+          <p id="level-banner-sub" class="hud-sub mt-4"></p>
         </div>
       </div>
 
@@ -118,7 +118,7 @@
   <div id="overlay-start" class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-[#0d0221]/90 p-4">
     <div class="pixel-panel my-auto max-w-lg p-8 text-center">
       <h2 class="logo-text text-lg md:text-2xl">MISS COCO'S<br />KITCHEN CHAOS</h2>
-      <p class="mt-5 text-2xl leading-snug text-cream">Keep Miss Coco fed, groomed, and un-poop-ed through four shifts of chaos.</p>
+      <p class="mt-5 text-2xl leading-snug text-cream">Keep Miss Coco fed, groomed, and un-poop-ed through four levels of chaos.</p>
       <ul class="intro-list mt-5 space-y-2 text-left text-2xl text-cream">
         <li><span class="pixel-icon" data-icon="tuna"></span><span class="pixel-icon" data-icon="salmon"></span> Tuna / Salmon → <b class="text-green">FEED (F)</b></li>
         <li><span class="pixel-icon" data-icon="groom"></span> Brush → <b class="text-cyan">GROOM (G)</b></li>
@@ -140,11 +140,11 @@
     </div>
   </div>
 
-  <!-- Screech pop-up: pauses the shift until petted or ignored -->
+  <!-- Screech pop-up: pauses the level until petted or ignored -->
   <div id="overlay-screech" class="fixed inset-0 z-50 hidden flex items-center justify-center overflow-y-auto bg-[#0d0221]/80 p-4">
     <div class="pixel-panel my-auto max-w-md p-8 text-center">
       <h2 class="text-xl text-red md:text-2xl">SCREECH!</h2>
-      <p class="mt-5 text-2xl leading-snug text-cream">Miss Coco wants attention. Pet her by mashing <kbd class="keycap">Space</kbd>.</p>
+      <p class="mt-5 text-2xl leading-snug text-cream">Miss Coco wants attention. Pet her by smashing <kbd class="keycap">Space</kbd>.</p>
       <div class="meter mt-5">
         <div id="screech-fill" class="meter-fill" style="width: 0%;"></div>
       </div>

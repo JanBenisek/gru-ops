@@ -30,7 +30,7 @@ h1, h2,
 .pixel-tag,
 .neon-banner,
 .logo-text,
-#shift-banner-title,
+#level-banner-title,
 #over-title,
 #scoop-text {
   font-family: 'Press Start 2P', monospace;
@@ -442,8 +442,8 @@ h1, h2,
   to { background-position: 300% 50%; }
 }
 
-/* ---------- Shift banner pulse ---------- */
-#shift-banner-title { text-shadow: 4px 4px 0 var(--bg-deep); }
+/* ---------- Level banner pulse ---------- */
+#level-banner-title { text-shadow: 4px 4px 0 var(--bg-deep); }
 #over-title { text-shadow: 4px 4px 0 var(--bg-deep); }
 
 /* ---------- Phone layout ---------- */
