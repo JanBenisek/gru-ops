@@ -17,6 +17,7 @@ const SHIFTS = [
   { title: "The 10s", belt: 1.0, bpm: 128, spawn: [1.5, 2.2], feedsPerPoop: 3, sub: "Belt 1.0× · 128 BPM" },
   { title: "The 20s", belt: 1.5, bpm: 142, spawn: [1.1, 1.6], feedsPerPoop: 3, sub: "Belt 1.5× · 142 BPM" },
   { title: "The 30s", belt: 2.0, bpm: 160, spawn: [0.9, 1.3], feedsPerPoop: 2, sub: "Belt 2.0× · 160 BPM · Poop every 2 feeds" },
+  { title: "The 40s", belt: 2.5, bpm: 176, spawn: [0.7, 1.0], feedsPerPoop: 2, sub: "Belt 2.5× · 176 BPM · Poop every 2 feeds" },
 ];
 
 const ITEMS = {
@@ -35,7 +36,6 @@ const SAY = {
 };
 const SPEECH_MS = 2400;
 const CAKE = { icon: "cake", label: "Cake" };
-const MOOD_FACE = { normal: "😸", hungry: "😾", pooping: "🙀" };
 
 // ---- DOM --------------------------------------------------------------------
 const $ = (id) => document.getElementById(id);
@@ -46,12 +46,12 @@ const el = {
   poops: $("stat-poops"),
   anxBar: $("anxiety-bar"),
   anxText: $("anxiety-text"),
+  musicBtn: $("btn-music"),
   stage: $("stage"),
   belt: $("belt"),
   zone: $("zone"),
   items: $("items"),
   cat: $("cat-wrap"),
-  mood: $("mood-bubble"),
   speech: $("speech"),
   litter: $("litter"),
   litterAlert: $("litter-alert"),
@@ -223,13 +223,13 @@ function startFinale() {
   game.poopTimer = 0;
   game.scoopClicks = 0;
   for (const it of game.items) setKind(it, "cake");
-  el.shiftLabel.textContent = "Shift 3 · Survived 🎉";
+  el.shiftLabel.textContent = `Shift ${SHIFTS.length} · Survived 🎉`;
   el.banner.classList.add("hidden");
   el.banner.classList.remove("flex");
   el.cat.dataset.party = "on";
   el.recap.textContent =
     `Total Treats Fed: ${game.treats} | Total Poops Scooped: ${game.scooped}. ` +
-    "You successfully survived the chaotic roar of your 20s—welcome to the cozy 30s!";
+    "You successfully survived the chaotic roar of your 40s—welcome to the cozy 50s!";
   el.finale.classList.remove("hidden");
   el.finale.classList.add("flex");
   Sound.morphToBirthday();
@@ -384,7 +384,6 @@ function render() {
   if (game.poopAnim > 0) mood = "pooping";
   else if (game.phase === "playing" && zoneItem && isFood(zoneItem.kind)) mood = "hungry";
   el.cat.dataset.mood = mood;
-  el.mood.textContent = MOOD_FACE[mood];
 
   el.shiftTime.textContent = Math.max(0, Math.ceil(game.shiftTime));
   el.treats.textContent = game.treats;
@@ -499,6 +498,12 @@ el.btn.feed.addEventListener("click", () => act("feed"));
 el.btn.groom.addEventListener("click", () => act("groom"));
 el.btn.decline.addEventListener("click", () => act("decline"));
 el.btn.scoop.addEventListener("click", scoop);
+el.musicBtn.addEventListener("click", () => {
+  const on = el.musicBtn.getAttribute("aria-pressed") !== "true";
+  el.musicBtn.setAttribute("aria-pressed", String(on));
+  el.musicBtn.textContent = on ? "ON" : "OFF";
+  Sound.setMusicOn(on);
+});
 $("btn-start").addEventListener("click", startGame);
 $("btn-restart").addEventListener("click", startGame);
 $("btn-restart-finale").addEventListener("click", startGame);
