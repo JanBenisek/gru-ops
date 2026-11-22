@@ -546,6 +546,25 @@ create extension if not exists earthdistance cascade;
 ./aux/seal-secret.sh kagent-github-token kagent GITHUB_TOKEN=ghp_XXXX prod/apps/kagent/manifests
 ```
 - `kagent-anthropic` holds an OpenCode Go key, not an Anthropic key. The `opencode-go` ModelConfig (`manifests/opencode-model-config.yaml`) sends it to `https://opencode.ai/inference/go/anthropic` with the `x-opencode-session` header, which OpenCode requires. `my-first-k8s-agent` uses that ModelConfig; `k8s-agent` and `default-model-config` still target api.anthropic.com and need an Anthropic key.
+- Set up DB (on the shared `cnpg-v2` cluster; psql as superuser, e.g. `kubectl exec -it cnpg-v2-1 -n cnpg -- psql -U postgres`). The chart needs two roles: `kagent_owner_user` runs migrations, `kagent_readwrite_user` serves runtime queries.
+```sql
+-- kagent with kagent_owner_user (migrations) and kagent_readwrite_user (runtime)
+create user kagent_owner_user with password 'PWD';
+create user kagent_readwrite_user with password 'PWD';
+create database kagent owner kagent_owner_user;
+\c kagent
+grant usage on schema public to kagent_readwrite_user;
+alter default privileges for role kagent_owner_user in schema public
+  grant select, insert, update, delete on tables to kagent_readwrite_user;
+alter default privileges for role kagent_owner_user in schema public
+  grant usage, select on sequences to kagent_readwrite_user;
+```
+- Seal the connection strings (in-cluster RW service `cnpg-v2-rw`, port 5432):
+```
+./aux/seal-secret.sh kagent-postgres-owner kagent ownerConnectionString=postgresql://kagent_owner_user:PWD@cnpg-v2-rw.cnpg.svc.cluster.local:5432/kagent prod/apps/kagent/manifests
+./aux/seal-secret.sh kagent-postgres-readwrite kagent readWriteConnectionString=postgresql://kagent_readwrite_user:PWD@cnpg-v2-rw.cnpg.svc.cluster.local:5432/kagent prod/apps/kagent/manifests
+```
+- The controller reads these at startup. After changing them, restart with `kubectl -n kagent rollout restart deploy/kagent-controller`.
 
 - Chat UI (LAN): open `https://kagent.pengiuns.com`, pick an agent, type a message. Chat history and New Chat are in the menu.
 - CLI from your laptop (needs kubeconfig for this cluster):
