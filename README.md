@@ -9,7 +9,7 @@ This is my tiny homelab, running k8s with Talos OS and Proxmox, build from three
 - `Hetzner` s3 for backup, `Cloudflare` for tunnels, domains and DNS.
 
 ### Apps
-- Homepage, Immich, IT-Tools, JupyterHub, LibreTranslate, Jellyfin & arr-stack, Metabase, Lightdash, Ollama, Open-WebUI, OtterWiki, Podinfo, Stirling PDF, Ayakaleaf, Filebrowser, Funnaiest, Hiker, Kagent, Nommer, OnlyOffice, Rill, SnapOtter
+- Homepage, Immich, IT-Tools, JupyterHub, LibreTranslate, Jellyfin & arr-stack, Metabase, Lightdash, Ollama, Open-WebUI, OtterWiki, Podinfo, Stirling PDF, Ayakaleaf, Coco-in-a-Box, Filebrowser, Funnaiest, Hiker, Kagent, Kitchen Chaos, Nommer, OnlyOffice, Rill, SnapOtter
 
 
 ## Cluster
@@ -20,7 +20,10 @@ This is my tiny homelab, running k8s with Talos OS and Proxmox, build from three
 | Stuart | HP EliteDesk 800 G3 Mini   | Intel Quad Core i5 7500 3,40 GHz (4 cores, 4 threads, 6MB cache)    | 40 GB  | 256 GB NVMe  | 500 GB SSD | Talos (worker) | 65W   |
 | Bob    | HP EliteDesk 800 G3 Mini   | Intel Quad Core i5 7600T 2.8GHz (4 cores, 4 threads, 6MB cache)     | 16 GB  | 256 GB NVMe  | N/A        | Proxmox        | 35W   |
 
-![Gru Homelab](assets/gru.png)
+<p align="center">
+  <img src="assets/homepage.png" alt="Homepage" height="400">
+  <img src="assets/server.png" alt="Server" height="400">
+</p>
 
 ## Storage
 
@@ -35,7 +38,6 @@ This is my tiny homelab, running k8s with Talos OS and Proxmox, build from three
 .
 ├── argocd
 │   ├── bootstrap
-│   │   ├── base
 │   │   ├── kustomization.yaml
 │   │   ├── namespace.yaml
 │   │   └── README.md
@@ -45,6 +47,9 @@ This is my tiny homelab, running k8s with Talos OS and Proxmox, build from three
 │   │       └── infra
 │   ├── prod
 │   │   ├── apps
+│   │   │   ├── ayakaleaf.yaml
+│   │   │   ├── coco-in-a-box.yaml
+│   │   │   ├── filebrowser.yaml
 │   │   │   ├── funnaiest.yaml
 │   │   │   ├── hiker.yaml
 │   │   │   ├── homepage.yaml
@@ -52,13 +57,21 @@ This is my tiny homelab, running k8s with Talos OS and Proxmox, build from three
 │   │   │   ├── it-tools.yaml
 │   │   │   ├── jellyfin.yaml
 │   │   │   ├── jupyter.yaml
+│   │   │   ├── kagent-crds.yaml
+│   │   │   ├── kagent.yaml
+│   │   │   ├── kitchen-chaos.yaml
 │   │   │   ├── libretranslate.yaml
+│   │   │   ├── lightdash.yaml
 │   │   │   ├── media-arr.yaml
 │   │   │   ├── metabase.yaml
+│   │   │   ├── nommer.yaml
 │   │   │   ├── ollama.yaml
+│   │   │   ├── onlyoffice.yaml
 │   │   │   ├── open-webui.yaml
 │   │   │   ├── otterwiki.yaml
 │   │   │   ├── podinfo.yaml
+│   │   │   ├── rill.yaml
+│   │   │   ├── snapotter.yaml
 │   │   │   └── stirling.yaml
 │   │   ├── apps.yaml
 │   │   ├── infra
@@ -83,18 +96,26 @@ This is my tiny homelab, running k8s with Talos OS and Proxmox, build from three
 │   ├── README.md
 │   └── root-app.yaml
 ├── assets
-│   └── gru.png
+│   ├── homepage.png
+│   └── server.png
 ├── aux
-│   ├── explorer.yaml
 │   ├── seal-secret.sh
-│   ├── sealed-secrets-private.key
 │   ├── sealed-secrets-public.crt
 │   └── synology-client-info.yml
+├── docs
+│   └── restore
+│       ├── RESTORE_PLAN.md
+│       ├── restore-bazarr.yaml
+│       ├── restore-jellyfin.yaml
+│       ├── restore-prowlarr.yaml
+│       ├── restore-qbittorrent.yaml
+│       ├── restore-radarr.yaml
+│       ├── restore-sabnzbd.yaml
+│       └── restore-sonarr.yaml
 ├── README.md
 ├── renovate.json
 └── terraform
     ├── cluster.tf
-    ├── kubeconfig
     ├── modules
     │   └── proxmox-vm
     │       ├── main.tf
@@ -102,13 +123,11 @@ This is my tiny homelab, running k8s with Talos OS and Proxmox, build from three
     │       └── variables.tf
     ├── patches
     │   ├── controlplane.yaml
-    │   └── worker.yaml
+    │   ├── hostname.yaml
+    │   ├── worker_bob.yaml
+    │   └── worker_stuart.yaml
     ├── providers.tf
     ├── README.md
     ├── s3-backup.tf
-    ├── secrets.auto.tfvars
-    ├── talosconfig
-    ├── terraform.tfstate
-    ├── terraform.tfstate.backup
     └── variables.tf
 ```
