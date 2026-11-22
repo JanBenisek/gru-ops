@@ -21,8 +21,8 @@ This is my tiny homelab, running k8s with Talos OS and Proxmox, build from three
 | Bob    | HP EliteDesk 800 G3 Mini   | Intel Quad Core i5 7600T 2.8GHz (4 cores, 4 threads, 6MB cache)     | 16 GB  | 256 GB NVMe  | N/A        | Proxmox        | 35W   |
 
 <p align="center">
-  <img src="assets/homepage.png" alt="Homepage" height="400">
-  <img src="assets/server.png" alt="Server" height="400">
+  <img src="assets/homepage.png" alt="Homepage" height="320">
+  <img src="assets/server.png" alt="Server" height="320">
 </p>
 
 ## Storage
