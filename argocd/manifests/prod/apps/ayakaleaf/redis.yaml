@@ -29,7 +29,7 @@ spec:
         fsGroup: 999
       containers:
       - name: redis
-        image: redis:8.10
+        image: redis:8.12
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 6379
