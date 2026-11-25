@@ -546,6 +546,18 @@ create extension if not exists earthdistance cascade;
 ./aux/seal-secret.sh kagent-github-token kagent GITHUB_TOKEN=ghp_XXXX prod/apps/kagent/manifests
 ```
 - `kagent-anthropic` holds an OpenCode Go key, not an Anthropic key. The `opencode-go` ModelConfig (`manifests/opencode-model-config.yaml`) sends it to `https://opencode.ai/inference/go/anthropic` with the `x-opencode-session` header, which OpenCode requires. `my-first-k8s-agent` uses that ModelConfig; `k8s-agent` and `default-model-config` still target api.anthropic.com and need an Anthropic key.
+- Set up DB (on the shared `cnpg-v2` cluster; psql as superuser, e.g. `kubectl exec -it cnpg-v2-1 -n cnpg -- psql -U postgres`). One login, `bot_kagent`, owns database `bot_kagent`. Migrations and runtime queries both use it.
+```sql
+-- kagent with bot_kagent (owner of its own database)
+create user bot_kagent with password 'PWD';
+create database bot_kagent owner bot_kagent;
+```
+- Seal the same connection string into both secrets (the chart requires the owner secret while migrations are on). In-cluster RW service `cnpg-v2-rw`, port 5432:
+```
+./aux/seal-secret.sh kagent-postgres-owner kagent ownerConnectionString=postgresql://bot_kagent:PWD@cnpg-v2-rw.cnpg.svc.cluster.local:5432/bot_kagent prod/apps/kagent/manifests
+./aux/seal-secret.sh kagent-postgres-readwrite kagent readWriteConnectionString=postgresql://bot_kagent:PWD@cnpg-v2-rw.cnpg.svc.cluster.local:5432/bot_kagent prod/apps/kagent/manifests
+```
+- The controller reads these at startup. After changing them, restart with `kubectl -n kagent rollout restart deploy/kagent-controller`.
 
 - Chat UI (LAN): open `https://kagent.pengiuns.com`, pick an agent, type a message. Chat history and New Chat are in the menu.
 - CLI from your laptop (needs kubeconfig for this cluster):

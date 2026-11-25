@@ -17,14 +17,6 @@ ui:
   route:
     enabled: false
 
-database:
-  postgres:
-    bundled:
-      # Synology CSI rejects volumes under 1Gi (chart default is 500Mi)
-      storage: 1Gi
-      # Cluster has no default StorageClass; PVC stays Pending without this
-      storageClassName: synology-storage-apps
-
 # Keep only the general k8s agent; chart enables all bundled agents by default
 kgateway-agent:
   enabled: false
@@ -44,3 +36,11 @@ cilium-manager-agent:
   enabled: false
 cilium-debug-agent:
   enabled: false
+
+# One login (bot_kagent) owns its database and runs both migrations and runtime queries.
+config:
+  database:
+    owner:
+      role: bot_kagent
+    readWrite:
+      role: bot_kagent
