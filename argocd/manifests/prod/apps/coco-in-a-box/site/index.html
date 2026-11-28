@@ -771,6 +771,7 @@
 
       function loadLevel(i) {
         levelIndex = i;
+        if (i === 0) navigator.sendBeacon('/game-start'); // new game (page load or Play again)
         region = LEVELS[i].layout;
         solution = solveLayout(region);
         revealed = false;
