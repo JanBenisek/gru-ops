@@ -208,6 +208,7 @@ function startGame() {
   el.cat.dataset.party = "off";
   stopConfetti();
   Sound.start(LEVELS[0].bpm); // user gesture (button click) unlocks audio
+  navigator.sendBeacon("/game-start"); // logged by Traefik access log
   enterLevel();
 }
 
